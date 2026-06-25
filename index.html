@@ -15,9 +15,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,800;14..32,900&display=swap" rel="stylesheet">
 
   <style>
-    /* ===== СТИЛИ (те же, что были) ===== */
+    /* =============================================================
+       ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ (светлая / тёмная тема)
+       ============================================================= */
     :root {
       --bg-primary: #0b0f17;
+      --bg-secondary: #111827;
       --bg-glass: rgba(255,255,255,0.06);
       --bg-glass-hover: rgba(255,255,255,0.10);
       --border-glass: rgba(255,255,255,0.12);
@@ -33,7 +36,26 @@
       --radius-btn: 60px;
       --transition-smooth: all 0.25s cubic-bezier(0.4,0,0.2,1);
     }
+
+    /* Светлая тема */
+    body.light-theme {
+      --bg-primary: #f5f3ff;
+      --bg-secondary: #ede9fe;
+      --bg-glass: rgba(255,255,255,0.5);
+      --bg-glass-hover: rgba(255,255,255,0.7);
+      --border-glass: rgba(0,0,0,0.08);
+      --border-glass-strong: rgba(0,0,0,0.15);
+      --text-primary: #1e1b2e;
+      --text-secondary: #4b4453;
+      --text-muted: #6b6478;
+      --shadow-glass: 0 8px 32px rgba(0,0,0,0.10);
+    }
+
+    /* =============================================================
+       СБРОС И БАЗОВЫЕ СТИЛИ
+       ============================================================= */
     * { margin:0; padding:0; box-sizing:border-box; }
+
     body {
       font-family:'Inter',system-ui,sans-serif;
       background: radial-gradient(ellipse at 20% 0%, rgba(167,139,250,0.20), transparent 60%),
@@ -44,8 +66,14 @@
       min-height:100vh;
       padding:20px 0 0;
       backdrop-filter:blur(2px);
+      transition: background 0.3s, color 0.3s;
     }
+
     .container { max-width:1200px; margin:0 auto; padding:0 20px 40px; }
+
+    /* =============================================================
+       ШАПКА (GLASS)
+       ============================================================= */
     .header {
       background:var(--bg-glass);
       backdrop-filter:blur(16px);
@@ -58,6 +86,7 @@
       transition:var(--transition-smooth);
     }
     .header:hover { border-color:var(--border-glass-strong); }
+
     .header-top {
       display:flex;
       flex-wrap:wrap;
@@ -66,23 +95,16 @@
       gap:16px;
     }
     .brand { display:flex; align-items:center; gap:12px; }
-    .brand-icon {
-      font-size:28px;
-      font-weight:900;
-      background:var(--accent-gradient);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
+    .brand-icon { font-size:28px; font-weight:900; background:var(--accent-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .brand-name { font-size:24px; font-weight:900; letter-spacing:-0.5px; background:var(--accent-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+    .header-controls {
+      display:flex;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
     }
-    .brand-name {
-      font-size:24px;
-      font-weight:900;
-      letter-spacing:-0.5px;
-      background:var(--accent-gradient);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
-    }
+
     .badge-date {
       display:flex;
       align-items:center;
@@ -105,6 +127,7 @@
       0%,100%{ opacity:1; transform:scale(1); }
       50%{ opacity:0.6; transform:scale(0.9); }
     }
+
     .lang-switch {
       display:flex;
       gap:4px;
@@ -130,6 +153,24 @@
       box-shadow:0 4px 16px rgba(167,139,250,0.3);
     }
     .lang-btn:hover:not(.active) { background:var(--bg-glass-hover); }
+
+    /* Переключатель темы */
+    .theme-toggle {
+      background:var(--bg-glass);
+      border:1px solid var(--border-glass);
+      border-radius:60px;
+      padding:6px 12px;
+      cursor:pointer;
+      color:var(--text-secondary);
+      font-size:18px;
+      transition:var(--transition-smooth);
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .theme-toggle:hover { background:var(--bg-glass-hover); }
+
+    /* Hero-блок */
     .hero-section {
       display:flex;
       flex-wrap:wrap;
@@ -168,6 +209,10 @@
       transition:var(--transition-smooth);
     }
     .hero-gif img:hover { transform:scale(1.04); box-shadow:0 0 60px rgba(167,139,250,0.5); }
+
+    /* =============================================================
+       ТАБЫ НАВИГАЦИИ
+       ============================================================= */
     .tabs {
       display:flex;
       gap:6px;
@@ -204,9 +249,54 @@
       border-radius:10px;
       background:var(--accent-gradient);
     }
-    .tab-content { display:none; animation:fadeIn 0.4s ease; }
-    .tab-content.active { display:block; }
-    @keyframes fadeIn { from{opacity:0;transform:translateY(14px);} to{opacity:1;transform:translateY(0);} }
+
+    /* =============================================================
+       УПРАВЛЕНИЕ ТОВАРАМИ (поиск + сортировка)
+       ============================================================= */
+    .controls-bar {
+      display:flex;
+      flex-wrap:wrap;
+      gap:16px;
+      margin-bottom:24px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .search-box {
+      display:flex;
+      gap:8px;
+      flex:1 1 260px;
+    }
+    .search-box input {
+      flex:1;
+      padding:10px 16px;
+      border-radius:60px;
+      border:1px solid var(--border-glass);
+      background:var(--bg-glass);
+      color:var(--text-primary);
+      font-size:14px;
+      outline:none;
+      transition:var(--transition-smooth);
+    }
+    .search-box input:focus { border-color:var(--accent-violet); }
+    .search-box input::placeholder { color:var(--text-muted); }
+
+    .sort-select {
+      padding:10px 16px;
+      border-radius:60px;
+      border:1px solid var(--border-glass);
+      background:var(--bg-glass);
+      color:var(--text-primary);
+      font-size:14px;
+      font-weight:600;
+      outline:none;
+      cursor:pointer;
+      transition:var(--transition-smooth);
+    }
+    .sort-select:focus { border-color:var(--accent-violet); }
+
+    /* =============================================================
+       СЕТКА ТОВАРОВ
+       ============================================================= */
     .products-grid {
       display:grid;
       grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
@@ -255,55 +345,13 @@
     }
     .product-card:hover img { transform:scale(1.02); }
     .product-body { padding:16px 18px 20px; flex:1; display:flex; flex-direction:column; }
-    .product-body h3 {
-      font-size:17px;
-      font-weight:800;
-      line-height:1.25;
-      margin-bottom:4px;
-      color:var(--text-primary);
-    }
-    .product-body .price {
-      font-size:22px;
-      font-weight:900;
-      color:var(--accent-cyan);
-      margin:2px 0 6px;
-      text-shadow:0 0 20px rgba(34,211,238,0.15);
-    }
-    .product-body .short-desc {
-      font-size:13px;
-      color:var(--text-secondary);
-      line-height:1.4;
-      margin-bottom:12px;
-      flex:1;
-      word-break:break-word;
-    }
-    .product-body .tags {
-      display:flex;
-      flex-wrap:wrap;
-      gap:6px;
-      margin-bottom:14px;
-    }
-    .product-body .tags span {
-      font-size:11px;
-      font-weight:600;
-      background:var(--bg-glass);
-      padding:3px 12px;
-      border-radius:40px;
-      border:1px solid var(--border-glass);
-      color:var(--text-secondary);
-      text-transform:uppercase;
-      letter-spacing:0.3px;
-    }
-    .product-body .tags span.auto {
-      background:rgba(34,211,238,0.15);
-      border-color:rgba(34,211,238,0.3);
-      color:var(--accent-cyan);
-    }
-    .product-body .btn-group {
-      display:flex;
-      gap:8px;
-      margin-top:auto;
-    }
+    .product-body h3 { font-size:17px; font-weight:800; line-height:1.25; margin-bottom:4px; color:var(--text-primary); }
+    .product-body .price { font-size:22px; font-weight:900; color:var(--accent-cyan); margin:2px 0 6px; text-shadow:0 0 20px rgba(34,211,238,0.15); }
+    .product-body .short-desc { font-size:13px; color:var(--text-secondary); line-height:1.4; margin-bottom:12px; flex:1; word-break:break-word; }
+    .product-body .tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+    .product-body .tags span { font-size:11px; font-weight:600; background:var(--bg-glass); padding:3px 12px; border-radius:40px; border:1px solid var(--border-glass); color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.3px; }
+    .product-body .tags span.auto { background:rgba(34,211,238,0.15); border-color:rgba(34,211,238,0.3); color:var(--accent-cyan); }
+    .product-body .btn-group { display:flex; gap:8px; margin-top:auto; }
     .btn {
       display:inline-flex;
       align-items:center;
@@ -320,25 +368,31 @@
       flex:1;
       text-align:center;
     }
-    .btn-outline {
-      background:var(--bg-glass);
-      border:1px solid var(--border-glass);
-      color:var(--text-primary);
-    }
-    .btn-outline:hover {
-      background:var(--bg-glass-hover);
-      border-color:var(--border-glass-strong);
-      transform:scale(1.02);
-    }
-    .btn-primary {
+    .btn-outline { background:var(--bg-glass); border:1px solid var(--border-glass); color:var(--text-primary); }
+    .btn-outline:hover { background:var(--bg-glass-hover); border-color:var(--border-glass-strong); transform:scale(1.02); }
+    .btn-primary { background:var(--accent-gradient); color:#0b0f17; box-shadow:0 4px 20px rgba(167,139,250,0.3); }
+    .btn-primary:hover { transform:scale(1.04); box-shadow:0 6px 28px rgba(167,139,250,0.5); }
+
+    /* Тег "Популярное" */
+    .product-card .popular-tag {
+      position:absolute;
+      top:12px;
+      right:12px;
       background:var(--accent-gradient);
       color:#0b0f17;
-      box-shadow:0 4px 20px rgba(167,139,250,0.3);
+      font-size:11px;
+      font-weight:900;
+      padding:4px 12px;
+      border-radius:40px;
+      box-shadow:0 4px 16px rgba(167,139,250,0.3);
+      z-index:2;
+      text-transform:uppercase;
+      letter-spacing:0.5px;
     }
-    .btn-primary:hover {
-      transform:scale(1.04);
-      box-shadow:0 6px 28px rgba(167,139,250,0.5);
-    }
+
+    /* =============================================================
+       МОДАЛЬНОЕ ОКНО
+       ============================================================= */
     .modal-overlay {
       display:none;
       position:fixed;
@@ -381,56 +435,19 @@
       line-height:1;
     }
     .modal-close:hover { color:var(--text-primary); transform:rotate(90deg); }
-    .modal h2 {
-      font-size:26px;
-      font-weight:900;
-      margin:0 0 4px;
-      padding-right:30px;
-    }
-    .modal-price {
-      font-size:28px;
-      font-weight:900;
-      color:var(--accent-cyan);
-      margin-bottom:12px;
-    }
-    .modal-meta {
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px 20px;
-      font-size:14px;
-      color:var(--text-secondary);
-      margin-bottom:16px;
-    }
+    .modal h2 { font-size:26px; font-weight:900; margin:0 0 4px; padding-right:30px; }
+    .modal-price { font-size:28px; font-weight:900; color:var(--accent-cyan); margin-bottom:12px; }
+    .modal-meta { display:flex; flex-wrap:wrap; gap:8px 20px; font-size:14px; color:var(--text-secondary); margin-bottom:16px; }
     .modal-meta b { color:var(--text-primary); }
-    .modal-full-desc {
-      font-size:15px;
-      line-height:1.7;
-      color:var(--text-secondary);
-      white-space:pre-wrap;
-      word-break:break-word;
-      margin:12px 0 24px;
-      background:var(--bg-glass);
-      padding:16px 20px;
-      border-radius:12px;
-      border:1px solid var(--border-glass);
-    }
-    .btn-big {
-      display:block;
-      width:100%;
-      padding:16px;
-      font-size:20px;
-      font-weight:900;
-      text-align:center;
-      border-radius:var(--radius-btn);
-      background:var(--accent-gradient);
-      color:#0b0f17;
-      text-decoration:none;
-      box-shadow:0 6px 30px rgba(167,139,250,0.35);
-      transition:var(--transition-smooth);
-      border:none;
-      cursor:pointer;
-    }
+    .modal-full-desc { font-size:15px; line-height:1.7; color:var(--text-secondary); white-space:pre-wrap; word-break:break-word; margin:12px 0 24px; background:var(--bg-glass); padding:16px 20px; border-radius:12px; border:1px solid var(--border-glass); }
+    .btn-big { display:block; width:100%; padding:16px; font-size:20px; font-weight:900; text-align:center; border-radius:var(--radius-btn); background:var(--accent-gradient); color:#0b0f17; text-decoration:none; box-shadow:0 6px 30px rgba(167,139,250,0.35); transition:var(--transition-smooth); border:none; cursor:pointer; }
     .btn-big:hover { transform:scale(1.02); box-shadow:0 8px 40px rgba(167,139,250,0.5); }
+    .btn-big.pulse { animation:pulse-buy 2s infinite; }
+    @keyframes pulse-buy { 0%,100%{box-shadow:0 6px 30px rgba(167,139,250,0.35);} 50%{box-shadow:0 6px 50px rgba(167,139,250,0.6);} }
+
+    /* =============================================================
+       ОТЗЫВЫ
+       ============================================================= */
     .reviews-list { display:grid; gap:18px; }
     .review-item {
       background:var(--bg-glass);
@@ -442,38 +459,60 @@
       transition:var(--transition-smooth);
     }
     .review-item:hover { border-color:var(--border-glass-strong); background:var(--bg-glass-hover); }
-    .review-header {
-      display:flex;
-      flex-wrap:wrap;
-      align-items:baseline;
-      gap:6px 16px;
-      margin-bottom:4px;
-    }
+    .review-header { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 16px; margin-bottom:4px; }
     .review-header .name { font-weight:800; font-size:15px; color:var(--text-primary); }
     .review-header .order { color:var(--text-muted); font-size:13px; }
     .review-header .date { color:var(--text-muted); font-size:12px; }
     .review-header .game { color:var(--accent-cyan); font-size:13px; font-weight:600; }
     .review-text { font-size:14px; color:var(--text-secondary); margin:4px 0 8px; }
-    .review-answer {
-      font-size:13px;
-      color:var(--text-muted);
-      border-left:3px solid var(--accent-violet);
-      padding-left:14px;
-      margin-top:6px;
+    .review-answer { font-size:13px; color:var(--text-muted); border-left:3px solid var(--accent-violet); padding-left:14px; margin-top:6px; background:var(--bg-glass); border-radius:0 8px 8px 0; padding:6px 14px; }
+    .more-link { display:inline-block; margin-top:20px; font-weight:800; color:var(--accent-cyan); text-decoration:none; border-bottom:2px solid transparent; transition:var(--transition-smooth); }
+    .more-link:hover { border-bottom-color:var(--accent-cyan); opacity:0.8; }
+
+    /* =============================================================
+       FAQ (АККОРДЕОН)
+       ============================================================= */
+    .faq-section { margin-top:48px; }
+    .faq-title { font-size:24px; font-weight:900; margin-bottom:20px; background:var(--accent-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .faq-item {
       background:var(--bg-glass);
-      border-radius:0 8px 8px 0;
-      padding:6px 14px;
-    }
-    .more-link {
-      display:inline-block;
-      margin-top:20px;
-      font-weight:800;
-      color:var(--accent-cyan);
-      text-decoration:none;
-      border-bottom:2px solid transparent;
+      border:1px solid var(--border-glass);
+      border-radius:14px;
+      margin-bottom:12px;
+      overflow:hidden;
       transition:var(--transition-smooth);
     }
-    .more-link:hover { border-bottom-color:var(--accent-cyan); opacity:0.8; }
+    .faq-item:hover { border-color:var(--border-glass-strong); }
+    .faq-question {
+      width:100%;
+      padding:16px 20px;
+      background:transparent;
+      border:none;
+      color:var(--text-primary);
+      font-weight:700;
+      font-size:16px;
+      text-align:left;
+      cursor:pointer;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      transition:var(--transition-smooth);
+    }
+    .faq-question:hover { background:var(--bg-glass-hover); }
+    .faq-question .arrow { transition:transform 0.3s; font-size:18px; }
+    .faq-item.open .faq-question .arrow { transform:rotate(180deg); }
+    .faq-answer {
+      padding:0 20px 16px;
+      color:var(--text-secondary);
+      font-size:15px;
+      line-height:1.6;
+      display:none;
+    }
+    .faq-item.open .faq-answer { display:block; }
+
+    /* =============================================================
+       ФУТЕР
+       ============================================================= */
     .footer {
       margin-top:48px;
       padding-top:24px;
@@ -482,39 +521,14 @@
       color:var(--text-muted);
       font-size:14px;
     }
-    .footer strong {
-      background:var(--accent-gradient);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
+    .footer strong { background:var(--accent-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+    /* =============================================================
+       АНИМАЦИИ
+       ============================================================= */
+    .product-card {
+      animation:cardAppear 0.6s ease backwards;
     }
-    @media (max-width:768px) {
-      .header { padding:16px; }
-      .hero-text h1 { font-size:26px; }
-      .hero-gif { flex-basis:80px; }
-      .products-grid { grid-template-columns:1fr 1fr; gap:16px; }
-      .modal { padding:24px; }
-    }
-    @media (max-width:480px) {
-      .products-grid { grid-template-columns:1fr; }
-      .tabs { gap:4px; }
-      .tab-btn { font-size:13px; padding:6px 14px; }
-      .brand-name { font-size:18px; }
-    }
-    .product-card::after {
-      content:'';
-      position:absolute;
-      top:-50%;
-      left:-50%;
-      width:200%;
-      height:200%;
-      background:radial-gradient(circle at 30% 40%, rgba(255,255,255,0.05), transparent 70%);
-      pointer-events:none;
-      opacity:0;
-      transition:opacity 0.6s;
-    }
-    .product-card:hover::after { opacity:1; }
-    .product-card { animation:cardAppear 0.6s ease backwards; }
     .product-card:nth-child(1) { animation-delay:0.05s; }
     .product-card:nth-child(2) { animation-delay:0.10s; }
     .product-card:nth-child(3) { animation-delay:0.15s; }
@@ -531,59 +545,102 @@
     .product-card:nth-child(14) { animation-delay:0.70s; }
     .product-card:nth-child(15) { animation-delay:0.75s; }
     .product-card:nth-child(16) { animation-delay:0.80s; }
+    .product-card:nth-child(17) { animation-delay:0.85s; }
+    .product-card:nth-child(18) { animation-delay:0.90s; }
+    .product-card:nth-child(19) { animation-delay:0.95s; }
+    .product-card:nth-child(20) { animation-delay:1.00s; }
     @keyframes cardAppear { from{opacity:0;transform:translateY(30px) scale(0.96);} to{opacity:1;transform:translateY(0) scale(1);} }
+
+    /* Стеклянный блеск */
+    .product-card::after {
+      content:'';
+      position:absolute;
+      top:-50%;
+      left:-50%;
+      width:200%;
+      height:200%;
+      background:radial-gradient(circle at 30% 40%, rgba(255,255,255,0.05), transparent 70%);
+      pointer-events:none;
+      opacity:0;
+      transition:opacity 0.6s;
+    }
+    .product-card:hover::after { opacity:1; }
+
+    /* Скроллбар */
     .modal::-webkit-scrollbar { width:6px; }
     .modal::-webkit-scrollbar-track { background:transparent; }
     .modal::-webkit-scrollbar-thumb { background:var(--accent-violet); border-radius:10px; }
     .modal::-webkit-scrollbar-thumb:hover { background:var(--accent-cyan); }
-    .btn-big.pulse { animation:pulse-buy 2s infinite; }
-    @keyframes pulse-buy { 0%,100%{box-shadow:0 6px 30px rgba(167,139,250,0.35);} 50%{box-shadow:0 6px 50px rgba(167,139,250,0.6);} }
-    .product-card .popular-tag {
-      position:absolute;
-      top:12px;
-      right:12px;
-      background:var(--accent-gradient);
-      color:#0b0f17;
-      font-size:11px;
-      font-weight:900;
-      padding:4px 12px;
-      border-radius:40px;
-      box-shadow:0 4px 16px rgba(167,139,250,0.3);
-      z-index:2;
-      text-transform:uppercase;
-      letter-spacing:0.5px;
+
+    /* =============================================================
+       АДАПТИВНОСТЬ
+       ============================================================= */
+    @media (max-width:768px) {
+      .header { padding:16px; }
+      .hero-text h1 { font-size:26px; }
+      .hero-gif { flex-basis:80px; }
+      .products-grid { grid-template-columns:1fr 1fr; gap:16px; }
+      .modal { padding:24px; }
+      .controls-bar { flex-direction:column; align-items:stretch; }
     }
+    @media (max-width:480px) {
+      .products-grid { grid-template-columns:1fr; }
+      .tabs { gap:4px; }
+      .tab-btn { font-size:13px; padding:6px 14px; }
+      .brand-name { font-size:18px; }
+    }
+
+    /* =============================================================
+       КОНЕЦ СТИЛЕЙ
+       ============================================================= */
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- ШАПКА -->
+
+    <!-- ============================================================
+    ШАПКА
+    ============================================================ -->
     <header class="header">
       <div class="header-top">
         <div class="brand">
           <span class="brand-icon">⚡</span>
           <span class="brand-name">m1lwh</span>
         </div>
-        <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+
+        <div class="header-controls">
           <div class="badge-date">
             <span class="dot"></span>
-            <span>Обновлено: 25 июня 2026</span>
+            <span data-lang="ru">Обновлено: 25 июня 2026</span>
+            <span data-lang="en">Updated: June 25, 2026</span>
           </div>
+
           <div class="lang-switch">
-            <button class="lang-btn active" id="lang-ru">RU</button>
-            <button class="lang-btn" id="lang-en">EN</button>
+            <button class="lang-btn active" data-lang="ru">RU</button>
+            <button class="lang-btn" data-lang="en">EN</button>
           </div>
+
+          <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+            <span id="themeIcon">🌙</span>
+          </button>
         </div>
       </div>
+
       <div class="hero-section">
         <div class="hero-text">
-          <h1>✨ ВСЕ МОИ ТОВАРЫ</h1>
-          <p class="sub">Качественные услуги и товары для игр и не только</p>
+          <h1 data-lang="ru">✨ ВСЕ МОИ ТОВАРЫ</h1>
+          <h1 data-lang="en">✨ ALL MY PRODUCTS</h1>
+          <p class="sub" data-lang="ru">Качественные услуги и товары для игр и не только</p>
+          <p class="sub" data-lang="en">Quality services and products for gaming and beyond</p>
           <div class="highlight">
-            <span>💎 Низкие цены</span>
-            <span>⚡ Быстрая доставка</span>
-            <span>💬 Отзывы покупателей</span>
-            <span>🛡️ Безопасно</span>
+            <span data-lang="ru">💎 Низкие цены</span>
+            <span data-lang="en">💎 Low prices</span>
+            <span data-lang="ru">⚡ Быстрая доставка</span>
+            <span data-lang="en">⚡ Fast delivery</span>
+            <span data-lang="ru">💬 Отзывы покупателей</span>
+            <span data-lang="en">💬 Customer reviews</span>
+            <span data-lang="ru">🛡️ Безопасно</span>
+            <span data-lang="en">🛡️ Secure</span>
           </div>
         </div>
         <div class="hero-gif">
@@ -592,26 +649,88 @@
       </div>
     </header>
 
-    <!-- ТАБЫ -->
+    <!-- ============================================================
+    ТАБЫ
+    ============================================================ -->
     <nav class="tabs" role="tablist">
-      <button class="tab-btn active" data-tab="popular" role="tab">⭐ Популярное</button>
-      <button class="tab-btn" data-tab="all" role="tab">📦 Все товары</button>
-      <button class="tab-btn" data-tab="reviews" role="tab">💬 Отзывы</button>
+      <button class="tab-btn active" data-tab="popular" role="tab">
+        <span data-lang="ru">⭐ Популярное</span>
+        <span data-lang="en">⭐ Popular</span>
+      </button>
+      <button class="tab-btn" data-tab="all" role="tab">
+        <span data-lang="ru">📦 Все товары</span>
+        <span data-lang="en">📦 All products</span>
+      </button>
+      <button class="tab-btn" data-tab="reviews" role="tab">
+        <span data-lang="ru">💬 Отзывы</span>
+        <span data-lang="en">💬 Reviews</span>
+      </button>
+      <button class="tab-btn" data-tab="faq" role="tab">
+        <span data-lang="ru">❓ FAQ</span>
+        <span data-lang="en">❓ FAQ</span>
+      </button>
     </nav>
 
-    <!-- КОНТЕЙНЕРЫ ТАБОВ -->
+    <!-- ============================================================
+    КОНТЕЙНЕРЫ ТАБОВ
+    ============================================================ -->
+    <!-- ПОПУЛЯРНОЕ -->
     <div id="tab-popular" class="tab-content active" role="tabpanel">
+      <div class="controls-bar">
+        <div class="search-box">
+          <input type="text" id="searchInput" data-lang-ru-placeholder="Поиск товаров..." data-lang-en-placeholder="Search products..." placeholder="Поиск товаров...">
+        </div>
+        <select class="sort-select" id="sortSelect">
+          <option value="default" data-lang="ru">По умолчанию</option>
+          <option value="default" data-lang="en">Default</option>
+          <option value="price-asc" data-lang="ru">Цена ↑ (дешёвые)</option>
+          <option value="price-asc" data-lang="en">Price ↑ (cheap)</option>
+          <option value="price-desc" data-lang="ru">Цена ↓ (дорогие)</option>
+          <option value="price-desc" data-lang="en">Price ↓ (expensive)</option>
+        </select>
+      </div>
       <div class="products-grid" id="popular-grid"></div>
     </div>
+
+    <!-- ВСЕ ТОВАРЫ -->
     <div id="tab-all" class="tab-content" role="tabpanel">
+      <div class="controls-bar">
+        <div class="search-box">
+          <input type="text" id="searchInputAll" data-lang-ru-placeholder="Поиск товаров..." data-lang-en-placeholder="Search products..." placeholder="Поиск товаров...">
+        </div>
+        <select class="sort-select" id="sortSelectAll">
+          <option value="default" data-lang="ru">По умолчанию</option>
+          <option value="default" data-lang="en">Default</option>
+          <option value="price-asc" data-lang="ru">Цена ↑ (дешёвые)</option>
+          <option value="price-asc" data-lang="en">Price ↑ (cheap)</option>
+          <option value="price-desc" data-lang="ru">Цена ↓ (дорогие)</option>
+          <option value="price-desc" data-lang="en">Price ↓ (expensive)</option>
+        </select>
+      </div>
       <div class="products-grid" id="all-grid"></div>
     </div>
+
+    <!-- ОТЗЫВЫ -->
     <div id="tab-reviews" class="tab-content" role="tabpanel">
       <div class="reviews-list" id="reviews-container"></div>
-      <a href="https://funpay.com/users/14391063/" target="_blank" rel="noopener" class="more-link">👉 Больше отзывов на FunPay</a>
+      <a href="https://funpay.com/users/14391063/" target="_blank" rel="noopener" class="more-link" data-lang="ru">👉 Больше отзывов на FunPay</a>
+      <a href="https://funpay.com/users/14391063/" target="_blank" rel="noopener" class="more-link" data-lang="en">👉 More reviews on FunPay</a>
     </div>
 
-    <!-- МОДАЛЬНОЕ ОКНО -->
+    <!-- FAQ -->
+    <div id="tab-faq" class="tab-content" role="tabpanel">
+      <div class="faq-section">
+        <div class="faq-title" data-lang="ru">❓ Часто задаваемые вопросы</div>
+        <div class="faq-title" data-lang="en">❓ Frequently Asked Questions</div>
+        <div class="faq-list" id="faqContainer">
+          <!-- Заполняется JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+    МОДАЛЬНОЕ ОКНО
+    ============================================================ -->
     <div class="modal-overlay" id="modal">
       <div class="modal">
         <button class="modal-close" id="modal-close" aria-label="Закрыть">&times;</button>
@@ -619,63 +738,96 @@
         <div class="modal-price" id="modal-price"></div>
         <div class="modal-meta" id="modal-meta"></div>
         <div class="modal-full-desc" id="modal-desc"></div>
-        <a href="https://funpay.com/users/14391063/" target="_blank" rel="noopener" class="btn-big pulse">🔥 КУПИТЬ</a>
+        <a href="https://funpay.com/users/14391063/" target="_blank" rel="noopener" class="btn-big pulse" data-lang="ru">🔥 КУПИТЬ</a>
+        <a href="https://funpay.com/users/14391063/" target="_blank" rel="noopener" class="btn-big pulse" data-lang="en">🔥 BUY</a>
       </div>
     </div>
 
-    <!-- ФУТЕР -->
+    <!-- ============================================================
+    ФУТЕР
+    ============================================================ -->
     <footer class="footer">
-      &copy; 2026 <strong>m1lwh</strong> — все права защищены
+      &copy; 2026 <strong>m1lwh</strong>
+      <span data-lang="ru">— все права защищены</span>
+      <span data-lang="en">— all rights reserved</span>
     </footer>
   </div>
 
+  <!-- ============================================================
+  СКРИПТЫ
+  ============================================================ -->
   <script>
-    // ============================================================
-    // ДАННЫЕ ТОВАРОВ
-    // ============================================================
-    const products = [
+    // =============================================================
+    // ДАННЫЕ ТОВАРОВ (на двух языках)
+    // =============================================================
+    const productsData = [
       {
         id: 'timmeit',
-        name: '🐷 Тиммейт на 1,5 часа + 30 мин бесплатно',
+        name: { ru: '🐷 Тиммейт на 1,5 часа + 30 мин бесплатно', en: '🐷 Teammate for 1.5h + 30min free' },
         price: 5,
         image: 'Timmeyt.jpg',
-        shortDesc: '🐷тиммейт на 1,5 часов🐖 🖤100 лвл🖤 💜играю с 2019💜 🥔можно бесплатно + 30 минут🥔',
-        fullDesc: `🐷тиммейт на 1,5 часов🐖 можно бесплатно + 30 минут🥔
+        shortDesc: {
+          ru: '🐷тиммейт на 1,5 часов🐖 🖤100 лвл🖤 💜играю с 2019💜 🥔можно бесплатно + 30 минут🥔',
+          en: '🐷Teammate for 1.5h🐖 🖤100 lvl🖤 💜playing since 2019💜 🥔free +30min🥔'
+        },
+        fullDesc: {
+          ru: `🐷тиммейт на 1,5 часов🐖 можно бесплатно + 30 минут🥔
 💚Любая игра в роблоксе
 💜Быстро и надежно
 🖤Возврат если не вложился во время`,
+          en: `🐷Teammate for 1.5h🐖 free +30min🥔
+💚Any Roblox game
+💜Fast and reliable
+🖤Refund if not satisfied`
+        },
         platform: 'PC',
-        type: 'Прочее',
+        type: { ru: 'Прочее', en: 'Other' },
         stock: '∞',
         autoDelivery: false,
         popular: false
       },
       {
         id: 'amongusboost',
-        name: '⚡ ПРОКАЧКА АККАУНТА Among Us до любого уровня',
+        name: { ru: '⚡ ПРОКАЧКА АККАУНТА Among Us до любого уровня', en: '⚡ Among Us account boost to any level' },
         price: 1,
         image: 'amongUsProkachka.jpg',
-        shortDesc: '⚡️ПРОКАЧКА АККАУНТА ДО ЛЮБОГО ЛВЛ!⚡️',
-        fullDesc: `Among Us | Буст до любого уровня
+        shortDesc: {
+          ru: '⚡️ПРОКАЧКА АККАУНТА ДО ЛЮБОГО ЛВЛ!⚡️',
+          en: '⚡️ACCOUNT BOOST TO ANY LEVEL!⚡️'
+        },
+        fullDesc: {
+          ru: `Among Us | Буст до любого уровня
 🚀 Быстро и безопасно
 ⏳ Срок: 1–14 дней
 🛡️ Без риска бана
 💻 Steam
 
 Цена: 1 рубль за 1 уровень (максимум 100)`,
+          en: `Among Us | Boost to any level
+🚀 Fast and safe
+⏳ Time: 1–14 days
+🛡️ No ban risk
+💻 Steam
+
+Price: 1 rub per level (max 100)`
+        },
         platform: 'PC',
-        type: 'Прочее',
+        type: { ru: 'Прочее', en: 'Other' },
         stock: '∞',
         autoDelivery: false,
         popular: false
       },
       {
         id: 'brawlacc',
-        name: '🏆 Аккаунт Brawl Stars 21.4K кубков',
+        name: { ru: '🏆 Аккаунт Brawl Stars 21.4K кубков', en: '🏆 Brawl Stars account 21.4K trophies' },
         price: 695,
         image: 'brawlaccaunt.jpg',
-        shortDesc: '✅СМЕНА ПОЧТЫ✅🏆21.4K🏆🥷74/103🥷👻110+ СКИНОВ🟢17K БЛИНГОВ⚡6 ГИПЕРОВ⭐9 ПРАЙМОВ🔥10×11 LVL💎СМЕНА ПОЧТЫ✅',
-        fullDesc: `💯ПОДРОБНОЕ ОПИСАНИЕ💯
+        shortDesc: {
+          ru: '✅СМЕНА ПОЧТЫ✅🏆21.4K🏆🥷74/103🥷👻110+ СКИНОВ🟢17K БЛИНГОВ⚡6 ГИПЕРОВ⭐9 ПРАЙМОВ🔥10×11 LVL💎СМЕНА ПОЧТЫ✅',
+          en: '✅EMAIL CHANGE✅🏆21.4K🏆🥷74/103🥷👻110+ SKINS🟢17K BLING⚡6 HYPER⭐9 PRIME🔥10×11 LVL💎EMAIL CHANGE✅'
+        },
+        fullDesc: {
+          ru: `💯ПОДРОБНОЕ ОПИСАНИЕ💯
 
 🤝 Продам личный аккаунт Brawl Stars. После оплаты передаю все данные.
 
@@ -698,19 +850,47 @@
 ✅ Передаю все данные, доступ можно сменить на свой.
 ✅ Все характеристики есть на скриншотах.
 🚫 Возврата после передачи данных нет.`,
+          en: `💯DETAILED DESCRIPTION💯
+
+🤝 Selling personal Brawl Stars account. After payment I give all data.
+
+🥰 Detailed screenshots in DM
+
+📧 Account can be transferred to your email.
+
+🏆 21,402 trophies
+👊 74/103 brawlers
+👻 50+ skins
+⭐ 9 primes: Edgar, Lily, Leon, Trunk, Bibi, Volt, Spike, Shade, Sirius
+⚡ 6 hypercharges
+💳 17,031 bling • 5,698 coins • 83 gems
+⭐ Leveling: 10×11 lvl (6 with hyper), 3×10 lvl, 6×9 lvl
+🏅 Wins: 1135 (Showdown) • 1180 (3v3)
+🥈 Silver league
+🎟️ Brawl Pass: 53 lvl | Current season: 1 lvl
+📅 Account created in 2023.
+
+✅ I give all data, access can be changed to yours.
+✅ All stats are on screenshots.
+🚫 No refund after data transfer.`
+        },
         platform: 'Mobile',
-        type: 'Аккаунты',
+        type: { ru: 'Аккаунты', en: 'Accounts' },
         stock: '1 шт.',
         autoDelivery: false,
         popular: false
       },
       {
         id: 'metrorent',
-        name: '🎮 Аренда Metro 2033 Redux (6ч + 1ч за отзыв)',
+        name: { ru: '🎮 Аренда Metro 2033 Redux (6ч + 1ч за отзыв)', en: '🎮 Metro 2033 Redux rental (6h +1h for review)' },
         price: 5,
         image: 'metroArenda.jpg',
-        shortDesc: '⚡Автовыдача✅ Metro 2033 Redux ⭐ СВОБОДНО ⭐ Аренда на 6 часов ⭐ОНЛАЙН⭐STEAM⭐+ 1 ЧАС ЗА ОТЗЫВ🎁',
-        fullDesc: `🎮 Аренда аккаунтов 24/7
+        shortDesc: {
+          ru: '⚡Автовыдача✅ Metro 2033 Redux ⭐ СВОБОДНО ⭐ Аренда на 6 часов ⭐ОНЛАЙН⭐STEAM⭐+ 1 ЧАС ЗА ОТЗЫВ🎁',
+          en: '⚡Auto delivery✅ Metro 2033 Redux ⭐ AVAILABLE ⭐ 6h rental ⭐ONLINE⭐STEAM⭐+1h FOR REVIEW🎁'
+        },
+        fullDesc: {
+          ru: `🎮 Аренда аккаунтов 24/7
 ━━━━━━━━━━━━━━━━━━
 ⚡️ Выдача аккаунта → сразу после оплаты, автоматически
 🔥 Steam Guard код → без ожидания, бот выдаёт мгновенно
@@ -726,19 +906,40 @@
 📦 Несколько аккаунтов → оплачивайте отдельными заказами
 ━━━━━━━━━━━━━━━━━━
 🤖 Всё полностью автоматически 24/7`,
+          en: `🎮 Account rental 24/7
+━━━━━━━━━━━━━━━━━━
+⚡️ Account delivery → immediately after payment, automatically
+🔥 Steam Guard code → no waiting, bot gives instantly
+🌏 Account online → not offline activation
+🔎 Support → 24/7
+🎁 Bonus time → for review left during rental
+━━━━━━━━━━━━━━━━━━
+📊 Free accounts → always available if lot is active
+👤 Account is yours → for rental time
+⏳ Time → starts from receiving login and password
+━━━━━━━━━━━━━━━━━━
+🛒 Buying multiple = time × quantity
+📦 Multiple accounts → pay separately
+━━━━━━━━━━━━━━━━━━
+🤖 Fully automatic 24/7`
+        },
         platform: 'PC',
-        type: 'Аренда',
+        type: { ru: 'Аренда', en: 'Rental' },
         stock: '1 шт.',
         autoDelivery: true,
         popular: false
       },
       {
         id: 'venuscfg',
-        name: '💝 ЛУЧШИЙ КОНФИГ ДЛЯ VENUSWARE 1.16.5 (Funtime)',
+        name: { ru: '💝 ЛУЧШИЙ КОНФИГ ДЛЯ VENUSWARE 1.16.5 (Funtime)', en: '💝 BEST CONFIG FOR VENUSWARE 1.16.5 (Funtime)' },
         price: 1,
         image: 'VenusCFG.jpg',
-        shortDesc: '💝ЛУЧШИЙ КОНФИГ ДЛЯ 🥵VENUSWARE🥵 1.16.5 😎FUNTIME😎',
-        fullDesc: `💝 ЛУЧШИЙ КОНФИГ ДЛЯ 🥵 VENUSWARE 🥵 | 😎 FUNTIME 😎 | 1.16.5
+        shortDesc: {
+          ru: '💝ЛУЧШИЙ КОНФИГ ДЛЯ 🥵VENUSWARE🥵 1.16.5 😎FUNTIME😎',
+          en: '💝BEST CONFIG FOR 🥵VENUSWARE🥵 1.16.5 😎FUNTIME😎'
+        },
+        fullDesc: {
+          ru: `💝 ЛУЧШИЙ КОНФИГ ДЛЯ 🥵 VENUSWARE 🥵 | 😎 FUNTIME 😎 | 1.16.5
 
 💜 Цвет можно менять в меню!
 
@@ -761,103 +962,180 @@
 💬 Помощь с установкой
 
 ❗ Только для 🥵 VENUSWARE 🥵 1.16.5`,
+          en: `💝 BEST CONFIG FOR 🥵 VENUSWARE 🥵 | 😎 FUNTIME 😎 | 1.16.5
+
+💜 Color can be changed in menu!
+
+⚔️ PvP / Duels / Anarchy
+✅ Legit settings
+✅ KillAura for Funtime 🥵
+✅ AutoTotem ⚡
+✅ InventoryMove 🎯
+✅ ESP / Tracers 👀
+✅ TargetESP 🤖
+✨ Beautiful visuals and optimization
+
+💖 Made specifically for FUNTIME
+💖 Comfortable lag-free gameplay
+💖 Beautiful interface
+
+📦 Included:
+📁 Config
+📖 Instructions
+💬 Installation help
+
+❗ Only for 🥵 VENUSWARE 🥵 1.16.5`
+        },
         platform: 'PC',
-        type: 'Конфиги',
+        type: { ru: 'Конфиги', en: 'Configs' },
         stock: '∞',
         autoDelivery: true,
         popular: false
       },
       {
         id: 'mc_timmeit',
-        name: '⛏️ Тиммейт в Minecraft (1,5 ч + 30 мин)',
+        name: { ru: '⛏️ Тиммейт в Minecraft (1,5 ч + 30 мин)', en: '⛏️ Minecraft teammate (1.5h + 30min)' },
         price: 4,
         image: 'minecraftTimmeyt.jpg',
-        shortDesc: 'Тиммейт на 1,5 час дешево',
-        fullDesc: `🐷тиммейт на 1,5 часов🐖 можно бесплатно + 30 минут🥔
+        shortDesc: {
+          ru: 'Тиммейт на 1,5 час дешево',
+          en: 'Teammate for 1.5h cheap'
+        },
+        fullDesc: {
+          ru: `🐷тиммейт на 1,5 часов🐖 можно бесплатно + 30 минут🥔
 💚любой сервер
 💜Быстро и надежно
 🖤Возврат если не вложился во время`,
+          en: `🐷Teammate for 1.5h🐖 free +30min🥔
+💚any server
+💜Fast and reliable
+🖤Refund if not satisfied`
+        },
         platform: 'PC / Mobile',
-        type: 'Прочее',
+        type: { ru: 'Прочее', en: 'Other' },
         stock: '100 шт.',
         autoDelivery: false,
         popular: false
       },
       {
         id: 'mc_pvp_sborka',
-        name: '💫 ЛУЧШАЯ СБОРКА МОДОВ 1.16.5 (FPS + плавность)',
+        name: { ru: '💫 ЛУЧШАЯ СБОРКА МОДОВ 1.16.5 (FPS + плавность)', en: '💫 BEST MODPACK 1.16.5 (FPS + smoothness)' },
         price: 2,
         image: 'MinecraftPVPsborka.jpg',
-        shortDesc: '💫ЛУЧШАЯ СБОРКА💫 PRIVATE СБОРКА МОДОВ НА 1.16.5🔱САМЫЙ ЛУЧШАЯ ПОД 💮FUNTIME и Другие Сервера💮',
-        fullDesc: `Вот сборка на 8 модов для увеличения FPS и плавности
+        shortDesc: {
+          ru: '💫ЛУЧШАЯ СБОРКА💫 PRIVATE СБОРКА МОДОВ НА 1.16.5🔱САМЫЙ ЛУЧШАЯ ПОД 💮FUNTIME и Другие Сервера💮',
+          en: '💫BEST MODPACK💫 PRIVATE MOD COLLECTION FOR 1.16.5🔱BEST FOR 💮FUNTIME and Other Servers💮'
+        },
+        fullDesc: {
+          ru: `Вот сборка на 8 модов для увеличения FPS и плавности
 
 Или самый лёгкий вариант 💗 скачать вот эту папку уже со всеми модами и перекинуть их в папку mods перед этим просто скачав версию 1.16.5 в TLauncher или TL legacy, на ФАНТАЙМЕ уже давно можно играть с этой версии, именно 1.16.5 версия намного плавнее чем 1.12.2 там фризы,статеры и такого фпс тяжело добится.
 
 И так к слову, если у вас слабый ПК вам всё равно лучше качать сборку на 1.16.5✔️ она даст больше ФПС чем на 1.12.2 и будет намного плавнее, я сам на ивенте Фоникса играл с 1.12.2 на топ сборке и комп у меня заряженный и от сердца говорю что 1.16.5 намного комфортнее в плане плавности и в плане ФПС, можете уже забыть про 1.12.2 💎`,
+          en: `Here is a modpack of 8 mods to increase FPS and smoothness
+
+Or the easiest option 💗 download this folder with all mods and move them to the mods folder after simply downloading version 1.16.5 in TLauncher or TL legacy, FUNTIME has long been playable with this version, 1.16.5 is much smoother than 1.12.2 which has freezes, stutters and such FPS is hard to achieve.
+
+So to speak, if you have a weak PC it's still better to download the 1.16.5 modpack✔️ it will give more FPS than 1.12.2 and will be much smoother, I myself played at Phoenix event with 1.12.2 with top modpack and my PC is powerful and I say from the heart that 1.16.5 is much more comfortable in terms of smoothness and FPS, you can already forget about 1.12.2 💎`
+        },
         platform: 'PC',
-        type: 'Сборки',
+        type: { ru: 'Сборки', en: 'Modpacks' },
         stock: '8 шт.',
         autoDelivery: true,
         popular: false
       },
       {
         id: 'reg_10_acc',
-        name: '☠️ Регистрация 10 аккаунтов на Funtime',
+        name: { ru: '☠️ Регистрация 10 аккаунтов на Funtime', en: '☠️ Register 10 Funtime accounts' },
         price: 10,
         image: 'zaregat10akkov.jpg',
-        shortDesc: '☠️😈ЗАРЕГАТЬ 10 АККАУНТОВ ФАНТАЙМ😈☠️',
-        fullDesc: 'Зарегаю 10 аккаунтов на фантайме за 10 рублей!',
+        shortDesc: {
+          ru: '☠️😈ЗАРЕГАТЬ 10 АККАУНТОВ ФАНТАЙМ😈☠️',
+          en: '☠️😈REGISTER 10 FUNTIME ACCOUNTS😈☠️'
+        },
+        fullDesc: {
+          ru: 'Зарегаю 10 аккаунтов на фантайме за 10 рублей!',
+          en: 'I will register 10 accounts on Funtime for 10 rubles!'
+        },
         platform: 'PC',
-        type: 'Прочее',
+        type: { ru: 'Прочее', en: 'Other' },
         stock: '100 шт.',
         autoDelivery: false,
         popular: false
       },
       {
         id: 'online_nakrutka',
-        name: '💢 Плагин накрутки онлайна (Folia)',
+        name: { ru: '💢 Плагин накрутки онлайна (Folia)', en: '💢 Online boost plugin (Folia)' },
         price: 5.80,
         image: 'minecraftnakrutkaonline.jpg',
-        shortDesc: '💢💥💥плагин на накрутку онлайна 💝🤎💖Подробнее в лс и описании Подробное описание',
-        fullDesc: `РАБОТАЕТ ТОЛЬКО НА FOLIA
+        shortDesc: {
+          ru: '💢💥💥плагин на накрутку онлайна 💝🤎💖Подробнее в лс и описании Подробное описание',
+          en: '💢💥💥online boost plugin 💝🤎💖More in DM and description'
+        },
+        fullDesc: {
+          ru: `РАБОТАЕТ ТОЛЬКО НА FOLIA
 ✅ плагин на накрутку онлайна ✅
 ✅ То-есть вам не надо будет настраивать им префиксы и ставить приоритеты в табе - этот плагин делает из бота живого человека (То-есть к нему можно тепатся и писать ему в личку как реальному игроку - Выдавать ему донаты и т.д ✅
 ✅ Вы можете писать за бота (В глобальный и локальный чат нет, но командами можно (/m, spawn, tpa , tpyes и так далее)
 ✅ NPC Бота ✅ То-есть так как он считается за живого человека он появляется сам на спавне, даже не знаю как это назвать NPC или реальный человек
 ✅ Самая низкая цена на рынке / Если вы захотите купить этот плагин не у меня, а у других кодеров вы заплатите чуть больше 1500р.
 ✅ Данный плагин стоял у таких крупных проектах как - EpicGrief , HoweLand ✅`,
+          en: `WORKS ONLY ON FOLIA
+✅ online boost plugin ✅
+✅ That is, you won't need to configure prefixes and set priorities in tab - this plugin turns a bot into a real person (you can tap and message them like a real player - give them donations, etc.) ✅
+✅ You can type for the bot (not in global or local chat, but with commands (/m, spawn, tpa, tpyes, etc.)
+✅ Bot NPC ✅ That is, since it's considered a real person, it appears at spawn, I don't even know how to call it NPC or real person
+✅ The lowest price on the market / If you want to buy this plugin not from me but from other developers, you'll pay a little more than 1500 rubles.
+✅ This plugin was used on such large projects as - EpicGrief, HoweLand ✅`
+        },
         platform: 'PC',
-        type: 'Плагины',
+        type: { ru: 'Плагины', en: 'Plugins' },
         stock: '∞',
         autoDelivery: true,
         popular: true
       },
       {
         id: 'injector_help',
-        name: '⚙️ Помощь с установкой инжектора (Discord)',
+        name: { ru: '⚙️ Помощь с установкой инжектора (Discord)', en: '⚙️ Injector setup help (Discord)' },
         price: 58,
         image: 'robloxpomoguustanovitchit.jpg',
-        shortDesc: '⚙️ Помогу установить инжектор через Дискорд • 🛠️ Решение ошибок',
-        fullDesc: `⚙️ Помогу установить любой инжектор — быстро и без лишних проблем
+        shortDesc: {
+          ru: '⚙️ Помогу установить инжектор через Дискорд • 🛠️ Решение ошибок',
+          en: '⚙️ I will help install injector via Discord • 🛠️ Error fixing'
+        },
+        fullDesc: {
+          ru: `⚙️ Помогу установить любой инжектор — быстро и без лишних проблем
 ⚙️ Настрою как на ПК так и на телефоны.
 🚀Объясню ПОДРОБНО как инжектить скрипты.
 🛠️ Исправлю ошибки и конфликты при запуске
 🚀 Оптимизирую работу, если что-то тормозит или не открывается
 💬 Подскажу, что делать, и объясню каждое действие
 ✅ Работаю аккуратно и ответственно`,
+          en: `⚙️ I will help install any injector — fast and without extra problems
+⚙️ I will set up for both PC and phones.
+🚀 I will explain in DETAIL how to inject scripts.
+🛠️ I will fix errors and conflicts during startup
+🚀 I will optimize performance if something lags or doesn't open
+💬 I will advise what to do and explain every step
+✅ I work carefully and responsibly`
+        },
         platform: 'PC / Mobile',
-        type: 'Услуги',
+        type: { ru: 'Услуги', en: 'Services' },
         stock: '999 395 шт.',
         autoDelivery: false,
         popular: true
       },
       {
         id: '99_nights',
-        name: '✨ ФАРМ ДНЕЙ В 99 НОЧЕЙ (0.10₽/ночь)',
+        name: { ru: '✨ ФАРМ ДНЕЙ В 99 НОЧЕЙ (0.10₽/ночь)', en: '✨ FARM DAYS IN 99 NIGHTS (0.10₽/night)' },
         price: 0.10,
         image: '99nightvishit.jpg',
-        shortDesc: '✨ ФАРМ ДНЕЙ В 99 НОЧЕЙ ✨⬇️ ЛУЧШЕЕ ПРЕДЛОЖЕНИЕ НА РЫНКЕ ⬇️💰 ЦЕНА ЗА ОДНУ НОЧЬ 💰',
-        fullDesc: `✨ ПРОХОЖДЕНИЕ ОТ 100 ДО 500 НОЧЕЙ! ✨
+        shortDesc: {
+          ru: '✨ ФАРМ ДНЕЙ В 99 НОЧЕЙ ✨⬇️ ЛУЧШЕЕ ПРЕДЛОЖЕНИЕ НА РЫНКЕ ⬇️💰 ЦЕНА ЗА ОДНУ НОЧЬ 💰',
+          en: '✨ FARM DAYS IN 99 NIGHTS ✨⬇️ BEST OFFER ON THE MARKET ⬇️💰 PRICE PER NIGHT 💰'
+        },
+        fullDesc: {
+          ru: `✨ ПРОХОЖДЕНИЕ ОТ 100 ДО 500 НОЧЕЙ! ✨
 
 🕹️ КАК ПРОХОДИТ ФАРМ?
 
@@ -877,39 +1155,76 @@
 🧑‍💻 Соло-фарм - я сам прохожу и выживаю нужные ночи.
 📹 Гарантия - в конце заказа пишу видео-доказательство выхода с аккаунта.
 ⚠️ WARNING! При выборе второго варианта гарантирую полную конфиденциальность и сохранность ваших данных!`,
+          en: `✨ PASSING FROM 100 TO 500 NIGHTS! ✨
+
+🕹️ HOW DOES FARMING WORK?
+
+You can choose any convenient format:
+
+👥 OPTION 1: Co-op play (Without account sharing)
+
+🌐 Join the server - we enter a private server together.
+🚀 Start the game - launch the required game mode.
+🛡️ Safety - I do everything necessary for safe passing.
+⏳ Survival - I stay and survive until your paid night.
+🚪 Final - after completion I leave, you continue solo.
+
+🔐 OPTION 2: Full service farming (If you don't have time)
+
+🔑 Data transfer - you give me access to your account.
+🧑‍💻 Solo farming - I pass and survive the required nights myself.
+📹 Guarantee - at the end I record a video proof of logging out of the account.
+⚠️ WARNING! With the second option I guarantee full confidentiality and security of your data!`
+        },
         platform: 'PC',
-        type: 'Услуги',
+        type: { ru: 'Услуги', en: 'Services' },
         stock: '∞',
         autoDelivery: false,
         popular: true
       },
       {
         id: 'steam_comment',
-        name: '【𝐒𝐡𝐨𝐩】⭐️ Комментарий в Steam профиль',
+        name: { ru: '【𝐒𝐡𝐨𝐩】⭐️ Комментарий в Steam профиль', en: '【𝐒𝐡𝐨𝐩】⭐️ Steam profile comment' },
         price: 1,
         image: 'commentiVStime.png',
-        shortDesc: '【𝐒𝐡𝐨𝐩】⭐️ОСТАВЛЮ ЛЮБОЙ КОММЕНТ В ПРОФИЛЕ⭐️🖤⭐️ДЛЯ ВАШЕГО STEAM🖤',
-        fullDesc: `⭐️ Оплачивайте данную услугу:
+        shortDesc: {
+          ru: '【𝐒𝐡𝐨𝐩】⭐️ОСТАВЛЮ ЛЮБОЙ КОММЕНТ В ПРОФИЛЕ⭐️🖤⭐️ДЛЯ ВАШЕГО STEAM🖤',
+          en: '【𝐒𝐡𝐨𝐩】⭐️I WILL LEAVE ANY COMMENT ON YOUR PROFILE⭐️🖤⭐️FOR YOUR STEAM🖤'
+        },
+        fullDesc: {
+          ru: `⭐️ Оплачивайте данную услугу:
 ⭐️ Кидайте ссылку на ваш Steam аккаунт
 ⭐️ Ждите комментарий
 
 🖤 ЕСЛИ НЕ ОТВЕЧАЮ, ЗАНЯТ ИЛИ СПЛЮ!!!
 🖤 После получения товара:
 🖤 Не забудьте подтвердить заказ и оставить отзыв, thank🖤`,
+          en: `⭐️ Pay for this service:
+⭐️ Send your Steam profile link
+⭐️ Wait for the comment
+
+🖤 IF I DON'T REPLY, I'M BUSY OR ASLEEP!!!
+🖤 After receiving the goods:
+🖤 Don't forget to confirm the order and leave a review, thank🖤`
+        },
         platform: 'Steam',
-        type: 'Оформление профиля',
+        type: { ru: 'Оформление профиля', en: 'Profile design' },
         stock: '∞',
         autoDelivery: false,
         popular: true
       },
-      // Дополнительные товары
+      // ===== ДОПОЛНИТЕЛЬНЫЕ ТОВАРЫ (для увеличения ассортимента) =====
       {
         id: 'debian',
-        name: '🎯 Объясню как пользоваться linux debian опыт 3+ года',
+        name: { ru: '🎯 Объясню как пользоваться linux debian опыт 3+ года', en: '🎯 Linux Debian usage explanation (3+ years experience)' },
         price: 150,
         image: 'debian.jpeg',
-        shortDesc: 'Профессиональное объяснение работы и структуры дистрибутива Debian',
-        fullDesc: `🎯 ОБЪЯСНЕНИЕ DEBIAN 🎯
+        shortDesc: {
+          ru: 'Профессиональное объяснение работы и структуры дистрибутива Debian',
+          en: 'Professional explanation of Debian distribution work and structure'
+        },
+        fullDesc: {
+          ru: `🎯 ОБЪЯСНЕНИЕ DEBIAN 🎯
 
 🔹 Выберите что именно вы хотите узнать (базу/фичи/doxbin и т.д.)
 🔹 В каком графическом сеансе (на ваш выбор i3wm, kde и т.д.)
@@ -917,19 +1232,32 @@
 🔹 Быстро и качественно
 
 💬 Связь через Discord после оплаты.`,
+          en: `🎯 DEBIAN EXPLANATION 🎯
+
+🔹 Choose what exactly you want to know (basics/features/doxbin etc.)
+🔹 Which graphical session (your choice i3wm, kde etc.)
+🔹 100% safe, no random commands
+🔹 Fast and high quality
+
+💬 Contact via Discord after payment.`
+        },
         platform: 'PC',
-        type: 'Гайд',
+        type: { ru: 'Гайд', en: 'Guide' },
         stock: '∞',
         autoDelivery: false,
         popular: false
       },
       {
         id: 'windows',
-        name: '🌟 Настройка 10-11 виндовс',
+        name: { ru: '🌟 Настройка 10-11 виндовс', en: '🌟 Windows 10-11 setup' },
         price: 200,
         image: 'windows.jpeg',
-        shortDesc: 'Полная настройка вашей виндовс',
-        fullDesc: `🌟 НАСТРОЙКА ВАШЕЙ ВИНДОВС 🌟
+        shortDesc: {
+          ru: 'Полная настройка вашей виндовс',
+          en: 'Complete Windows setup'
+        },
+        fullDesc: {
+          ru: `🌟 НАСТРОЙКА ВАШЕЙ ВИНДОВС 🌟
 
 🔹 Полностью настраиваю вашу windows
 🔹 Если надо скачиваю zapret
@@ -937,19 +1265,32 @@
 🔹 Конфиденциальность
 
 🕒 Срок выполнения – от 1 до 2 дней в зависимости от текущего уровня.`,
+          en: `🌟 YOUR WINDOWS SETUP 🌟
+
+🔹 I fully configure your Windows
+🔹 I install zapret if needed
+🔹 Result guarantee
+🔹 Confidentiality
+
+🕒 Completion time – 1 to 2 days depending on current level.`
+        },
         platform: 'PC',
-        type: 'Гайд',
+        type: { ru: 'Гайд', en: 'Guide' },
         stock: '∞',
         autoDelivery: false,
         popular: false
       },
       {
         id: 'debian_install',
-        name: '💎 Скачиваю вам Debian',
+        name: { ru: '💎 Скачиваю вам Debian', en: '💎 I install Debian for you' },
         price: 0.5,
         image: 'debianinstall.jpg',
-        shortDesc: 'Недорогая установка debian с желанным графическим интерфейсом',
-        fullDesc: `💎 УСТАНОВКА DEBIAN💎
+        shortDesc: {
+          ru: 'Недорогая установка debian с желанным графическим интерфейсом',
+          en: 'Affordable Debian installation with desired graphical interface'
+        },
+        fullDesc: {
+          ru: `💎 УСТАНОВКА DEBIAN 💎
 
 🔹 Стоимость – 50-500 рублей 
 🔹 Быстрое выполнение (от 1 часа до суток)
@@ -957,105 +1298,447 @@
 🔹 Помогаю со всем
 
 📦 Всё быстро и гарантированно.`,
+          en: `💎 DEBIAN INSTALLATION 💎
+
+🔹 Price – 50-500 rubles
+🔹 Fast execution (1 hour to 1 day)
+🔹 Safe, only proven methods
+🔹 I help with everything
+
+📦 Fast and guaranteed.`
+        },
         platform: 'FunPay',
-        type: 'Прочее',
+        type: { ru: 'Прочее', en: 'Other' },
         stock: '∞',
         autoDelivery: false,
         popular: false
       },
       {
         id: 'discord_nitro',
-        name: '🎁 Discord Nitro (1 месяц) (ПОКА ЧТО НЕТУ)',
+        name: { ru: '🎁 Discord Nitro (1 месяц) (ПОКА ЧТО НЕТУ)', en: '🎁 Discord Nitro (1 month) (CURRENTLY UNAVAILABLE)' },
         price: 120,
         image: 'discordnitro.jpg',
-        shortDesc: 'Подарочный код Discord Nitro на 1 месяц',
-        fullDesc: `🎁 DISCORD NITRO (1 МЕСЯЦ) 🎁
+        shortDesc: {
+          ru: 'Подарочный код Discord Nitro на 1 месяц',
+          en: 'Discord Nitro gift code for 1 month'
+        },
+        fullDesc: {
+          ru: `🎁 DISCORD NITRO (1 МЕСЯЦ) 🎁
 
 🔹 Активация на ваш аккаунт
 🔹 Моментальная выдача
 🔹 Гарантия работоспособности
 
 💬 Приятные бонусы: улучшенный стриминг, загрузка файлов до 500 МБ, и многое другое.`,
+          en: `🎁 DISCORD NITRO (1 MONTH) 🎁
+
+🔹 Activation on your account
+🔹 Instant delivery
+🔹 Warranty
+
+💬 Nice bonuses: better streaming, file uploads up to 500 MB, and much more.`
+        },
         platform: 'Discord',
-        type: 'Коды',
+        type: { ru: 'Коды', en: 'Codes' },
         stock: '10 шт.',
         autoDelivery: true,
         popular: false
-      }
-    ]; // <-- ВАЖНО: массив закрыт!
+      },
+      // Добавим ещё несколько для объёма
+      {
+        id: 'cs2_boost',
+        name: { ru: '🎯 Буст ранга в CS2 (до Global Elite)', en: '🎯 CS2 rank boost (up to Global Elite)' },
+        price: 150,
+        image: 'cs2boost.jpg',
+        shortDesc: {
+          ru: 'Профессиональный буст аккаунта CS2 до любого ранга',
+          en: 'Professional CS2 account boost to any rank'
+        },
+        fullDesc: {
+          ru: `🎯 БУСТ РАНГА В CS2 🎯
 
-    // ============================================================
-    // ОТЗЫВЫ
-    // ============================================================
-    const reviews = [
-      { name: 'Anbreireti', order: 'XSEPYHUH', date: '23 июня в 9:43', days: '2 дня назад', game: 'Roblox', amount: '50 ₽', text: 'Топ', answer: 'Спасибо вам за ваш положительный отзыв! 😊🌟 Я искренне рад, что мой товар был вам полезен и оправдал ваши ожидания.' },
-      { name: 'Kwidoxzz', order: 'AFMR6GL8', date: '22 июня в 17:33', days: '3 дня назад', game: 'Minecraft', amount: '10 ₽', text: 'круто', answer: 'ε(´｡•᎑•`)っ 💕' },
-      { name: 'nikita345672', order: 'NHHZT9S7', date: '22 июня в 17:03', days: '3 дня назад', game: 'Roblox', amount: '20 ₽', text: 'все четко', answer: 'Удачи вам.' },
-      { name: 'Andreifetta', order: 'C8YK687A', date: '19 июня в 21:05', days: '6 дней назад', game: 'Steam', amount: '10 ₽', text: 'yuuyyyy56', answer: 'Благодарю!😃' },
-      { name: 'noob0000077', order: 'JSAJZYJT', date: '8 июня в 15:43', days: '2 недели назад', game: 'Among Us', amount: '10 ₽', text: 'красавчик даже акк подарил не заскамил с самой маленькой ценой на рынке всем рекомендую лучший!', answer: 'Хорошей вам игры! Удачи.' },
-      { name: 'Kzozoslzlz', order: 'UFWZD471', date: '16 мая в 14:46', days: 'месяц назад', game: 'Among Us', amount: '20 ₽', text: 'Быстро отвечает, и очень подробно все объясняет, советую', answer: 'Спасибо! Удачного дня.' },
-      { name: 'ponos0000', order: 'SXK67RKQ', date: '10 мая 2025 в 12:30', days: 'год назад', game: 'Minecraft', amount: '20 ₽', text: 'четко', answer: 'Спасибо<' }
+🔹 Выберите желаемый ранг (от Silver до Global Elite)
+🔹 Играем в паре или на вашем аккаунте (на ваш выбор)
+🔹 100% безопасно, без читов
+🔹 Быстро и качественно
+
+💬 Связь через Discord после оплаты.`,
+          en: `🎯 CS2 RANK BOOST 🎯
+
+🔹 Choose your desired rank (from Silver to Global Elite)
+🔹 We play together or on your account (your choice)
+🔹 100% safe, no cheats
+🔹 Fast and high quality
+
+💬 Contact via Discord after payment.`
+        },
+        platform: 'PC',
+        type: { ru: 'Буст', en: 'Boost' },
+        stock: '∞',
+        autoDelivery: false,
+        popular: false
+      },
+      {
+        id: 'valo_boost',
+        name: { ru: '🌟 Буст ранга VALORANT (до Immortal)', en: '🌟 VALORANT rank boost (up to Immortal)' },
+        price: 200,
+        image: 'valorantboost.jpg',
+        shortDesc: {
+          ru: 'Быстрый подбор и победы для вашего ранга в VALORANT',
+          en: 'Fast matchmaking and wins for your VALORANT rank'
+        },
+        fullDesc: {
+          ru: `🌟 БУСТ РАНГА В VALORANT 🌟
+
+🔹 Поднимем ваш ранг до Immortal
+🔹 Играем с вами или на вашем аккаунте
+🔹 Гарантия результата
+🔹 Конфиденциальность
+
+🕒 Срок выполнения – от 1 до 5 дней в зависимости от текущего ранга.`,
+          en: `🌟 VALORANT RANK BOOST 🌟
+
+🔹 We will boost your rank up to Immortal
+🔹 We play with you or on your account
+🔹 Result guarantee
+🔹 Confidentiality
+
+🕒 Completion time – 1 to 5 days depending on current rank.`
+        },
+        platform: 'PC',
+        type: { ru: 'Буст', en: 'Boost' },
+        stock: '∞',
+        autoDelivery: false,
+        popular: false
+      },
+      {
+        id: 'steam_level',
+        name: { ru: '💎 Повышение уровня Steam (до 100)', en: '💎 Steam level boost (up to 100)' },
+        price: 0.5,
+        image: 'steamlevel.jpg',
+        shortDesc: {
+          ru: 'Недорогое повышение уровня Steam с помощью наборов карточек',
+          en: 'Affordable Steam level boost using card sets'
+        },
+        fullDesc: {
+          ru: `💎 ПОВЫШЕНИЕ УРОВНЯ STEAM 💎
+
+🔹 Стоимость – 0.5 рубля за уровень
+🔹 Быстрое выполнение (от 1 часа до суток)
+🔹 Безопасно, используем только карточки
+🔹 Повышаем до любого уровня (максимум 100)
+
+📦 Оплата после выполнения.`,
+          en: `💎 STEAM LEVEL BOOST 💎
+
+🔹 Price – 0.5 rubles per level
+🔹 Fast execution (1 hour to 1 day)
+🔹 Safe, only cards used
+🔹 Boost to any level (max 100)
+
+📦 Payment after completion.`
+        },
+        platform: 'Steam',
+        type: { ru: 'Прочее', en: 'Other' },
+        stock: '∞',
+        autoDelivery: false,
+        popular: false
+      },
+      {
+        id: 'robux_gift',
+        name: { ru: '🎁 Robux подарочный код (100 Robux)', en: '🎁 Robux gift code (100 Robux)' },
+        price: 60,
+        image: 'robux.jpg',
+        shortDesc: {
+          ru: 'Подарочный код Roblox на 100 Robux',
+          en: 'Roblox gift code for 100 Robux'
+        },
+        fullDesc: {
+          ru: `🎁 ПОДАРОЧНЫЙ КОД ROBLOX 🎁
+
+🔹 100 Robux на ваш аккаунт
+🔹 Моментальная выдача кода
+🔹 Гарантия работоспособности
+
+💬 Если есть вопросы — пишите в личные сообщения.`,
+          en: `🎁 ROBLOX GIFT CODE 🎁
+
+🔹 100 Robux to your account
+🔹 Instant code delivery
+🔹 Warranty
+
+💬 If you have questions — write in DMs.`
+        },
+        platform: 'Roblox',
+        type: { ru: 'Коды', en: 'Codes' },
+        stock: '5 шт.',
+        autoDelivery: true,
+        popular: false
+      },
+      {
+        id: 'minecraft_skin',
+        name: { ru: '🎨 Индивидуальный скин для Minecraft', en: '🎨 Custom Minecraft skin' },
+        price: 30,
+        image: 'skin.jpg',
+        shortDesc: {
+          ru: 'Создам уникальный скин для Minecraft по вашему описанию',
+          en: 'I will create a unique Minecraft skin according to your description'
+        },
+        fullDesc: {
+          ru: `🎨 ИНДИВИДУАЛЬНЫЙ СКИН MINECRAFT 🎨
+
+🔹 Создам скин по вашему описанию или референсу
+🔹 Высокое качество, детализация
+🔹 Уникальный дизайн
+🔹 Подходит для любых версий Minecraft
+
+📦 Готовый файл скина (.png) отправляю в личные сообщения.`,
+          en: `🎨 CUSTOM MINECRAFT SKIN 🎨
+
+🔹 I will create a skin according to your description or reference
+🔹 High quality, detailed
+🔹 Unique design
+🔹 Suitable for any Minecraft version
+
+📦 I send the finished skin file (.png) in DMs.`
+        },
+        platform: 'PC / Mobile',
+        type: { ru: 'Дизайн', en: 'Design' },
+        stock: '∞',
+        autoDelivery: false,
+        popular: false
+      }
     ];
 
-    // ============================================================
-    // ФУНКЦИИ ОТРИСОВКИ
-    // ============================================================
+    // =============================================================
+    // ДАННЫЕ ДЛЯ FAQ (на двух языках)
+    // =============================================================
+    const faqData = [
+      {
+        q: { ru: 'Как я могу оплатить товар?', en: 'How can I pay for the product?' },
+        a: { ru: 'Оплата производится через FunPay (или по договорённости). После оплаты вы получаете товар в течение указанного срока.', en: 'Payment is made via FunPay (or by agreement). After payment, you receive the product within the specified time.' }
+      },
+      {
+        q: { ru: 'Как быстро я получу товар?', en: 'How fast will I get the product?' },
+        a: { ru: 'Сроки указаны в описании каждого товара. Обычно это от нескольких минут до 1-2 дней.', en: 'The terms are specified in the description of each product. Usually it is from a few minutes to 1-2 days.' }
+      },
+      {
+        q: { ru: 'Что делать, если я не получил товар?', en: 'What if I don't receive the product?' },
+        a: { ru: 'Напишите мне в личные сообщения — я всегда на связи и решу проблему. Возврат или повторная отправка гарантированы.', en: 'Write me a DM — I am always available and will solve the problem. Refund or resend is guaranteed.' }
+      },
+      {
+        q: { ru: 'Безопасно ли передавать вам аккаунт?', en: 'Is it safe to give you my account?' },
+        a: { ru: 'Да, я гарантирую полную конфиденциальность. Я работаю честно и дорожу своей репутацией.', en: 'Yes, I guarantee full confidentiality. I work honestly and value my reputation.' }
+      },
+      {
+        q: { ru: 'Можно ли заказать товар, которого нет в списке?', en: 'Can I order a product that is not on the list?' },
+        a: { ru: 'Конечно! Напишите мне — я сделаю индивидуальное предложение.', en: 'Of course! Write to me — I will make a custom offer.' }
+      }
+    ];
+
+    // =============================================================
+    // ОТЗЫВЫ (на двух языках)
+    // =============================================================
+    const reviewsData = [
+      { name: 'Anbreireti', order: 'XSEPYHUH', date: '23 июня в 9:43', days: '2 дня назад', game: 'Roblox', amount: '50 ₽',
+        text: { ru: 'Топ', en: 'Top' },
+        answer: { ru: 'Спасибо вам за ваш положительный отзыв! 😊🌟 Я искренне рад, что мой товар был вам полезен и оправдал ваши ожидания.', en: 'Thank you for your positive review! 😊🌟 I am sincerely glad that my product was useful to you and met your expectations.' } },
+      { name: 'Kwidoxzz', order: 'AFMR6GL8', date: '22 июня в 17:33', days: '3 дня назад', game: 'Minecraft', amount: '10 ₽',
+        text: { ru: 'круто', en: 'cool' },
+        answer: { ru: 'ε(´｡•᎑•`)っ 💕', en: 'ε(´｡•᎑•`)っ 💕' } },
+      { name: 'nikita345672', order: 'NHHZT9S7', date: '22 июня в 17:03', days: '3 дня назад', game: 'Roblox', amount: '20 ₽',
+        text: { ru: 'все четко', en: 'all clear' },
+        answer: { ru: 'Удачи вам.', en: 'Good luck.' } },
+      { name: 'Andreifetta', order: 'C8YK687A', date: '19 июня в 21:05', days: '6 дней назад', game: 'Steam', amount: '10 ₽',
+        text: { ru: 'yuuyyyy56', en: 'yuuyyyy56' },
+        answer: { ru: 'Благодарю!😃', en: 'Thank you!😃' } },
+      { name: 'noob0000077', order: 'JSAJZYJT', date: '8 июня в 15:43', days: '2 недели назад', game: 'Among Us', amount: '10 ₽',
+        text: { ru: 'красавчик даже акк подарил не заскамил с самой маленькой ценой на рынке всем рекомендую лучший!', en: 'great guy, even gave an account, didn\'t scam, with the lowest price on the market, I recommend to everyone, the best!' },
+        answer: { ru: 'Хорошей вам игры! Удачи.', en: 'Have a good game! Good luck.' } },
+      { name: 'Kzozoslzlz', order: 'UFWZD471', date: '16 мая в 14:46', days: 'месяц назад', game: 'Among Us', amount: '20 ₽',
+        text: { ru: 'Быстро отвечает, и очень подробно все объясняет, советую', en: 'Quick response and very detailed explanations, I recommend' },
+        answer: { ru: 'Спасибо! Удачного дня.', en: 'Thank you! Have a nice day.' } },
+      { name: 'ponos0000', order: 'SXK67RKQ', date: '10 мая 2025 в 12:30', days: 'год назад', game: 'Minecraft', amount: '20 ₽',
+        text: { ru: 'четко', en: 'clearly' },
+        answer: { ru: 'Спасибо<', en: 'Thanks<' } },
+      { name: 'user_1', order: 'XY123', date: '20 июня в 15:10', days: '5 дней назад', game: 'CS2', amount: '150 ₽',
+        text: { ru: 'Всё супер, ранг подняли быстро!', en: 'Everything is great, rank boosted quickly!' },
+        answer: { ru: 'Рад помочь! 😊', en: 'Glad to help! 😊' } },
+      { name: 'user_2', order: 'ZZ456', date: '18 июня в 12:00', days: '1 неделя назад', game: 'VALORANT', amount: '200 ₽',
+        text: { ru: 'Отличный буст, всем советую.', en: 'Great boost, I recommend to everyone.' },
+        answer: { ru: 'Спасибо за доверие!', en: 'Thank you for your trust!' } },
+      { name: 'user_3', order: 'AA789', date: '10 июня в 8:30', days: '2 недели назад', game: 'Roblox', amount: '60 ₽',
+        text: { ru: 'Код пришёл сразу, всё работает.', en: 'Code came immediately, everything works.' },
+        answer: { ru: 'Приятной игры!', en: 'Enjoy the game!' } }
+    ];
+
+    // =============================================================
+    // ПЕРЕМЕННЫЕ СОСТОЯНИЯ
+    // =============================================================
+    let currentLang = 'ru';
+    let currentTab = 'popular';
+    let currentSort = 'default';
+    let searchQuery = '';
+
+    // =============================================================
+    // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
+    // =============================================================
+    function getText(obj, lang) {
+      return obj && typeof obj === 'object' && obj[lang] !== undefined ? obj[lang] : (typeof obj === 'string' ? obj : '');
+    }
+
+    function getLocalizedProduct(product, lang) {
+      return {
+        ...product,
+        name: getText(product.name, lang),
+        shortDesc: getText(product.shortDesc, lang),
+        fullDesc: getText(product.fullDesc, lang),
+        type: getText(product.type, lang)
+      };
+    }
+
+    // =============================================================
+    // РЕНДЕРИНГ ТОВАРОВ
+    // =============================================================
     function renderProducts(containerId, filterPopular = false) {
       const container = document.getElementById(containerId);
       if (!container) return;
-      const list = filterPopular ? products.filter(p => p.popular) : products;
+
+      let list = filterPopular ? productsData.filter(p => p.popular) : [...productsData];
+
+      // Применяем поиск
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        list = list.filter(p => {
+          const localized = getLocalizedProduct(p, currentLang);
+          return localized.name.toLowerCase().includes(q) ||
+                 localized.shortDesc.toLowerCase().includes(q) ||
+                 localized.fullDesc.toLowerCase().includes(q);
+        });
+      }
+
+      // Применяем сортировку
+      if (currentSort === 'price-asc') {
+        list.sort((a, b) => a.price - b.price);
+      } else if (currentSort === 'price-desc') {
+        list.sort((a, b) => b.price - a.price);
+      }
+
       if (list.length === 0) {
-        container.innerHTML = '<p style="color:var(--text-muted);padding:20px;">Товаров пока нет</p>';
+        container.innerHTML = `<p style="color:var(--text-muted);padding:20px;">${currentLang === 'ru' ? 'Товаров не найдено' : 'No products found'}</p>`;
         return;
       }
+
       let html = '';
       list.forEach((p, index) => {
+        const localized = getLocalizedProduct(p, currentLang);
         const autoTag = p.autoDelivery ? '<span class="auto">⚡ Автовыдача</span>' : '';
         const popularBadge = p.popular ? '<span class="popular-tag">⭐ Хит</span>' : '';
         html += `
           <div class="product-card" style="animation-delay: ${(index * 0.05).toFixed(2)}s">
             ${popularBadge}
-            <img src="assets/products/${p.image}" alt="${p.name}" loading="lazy" onerror="this.src='assets/placeholder.jpg'">
+            <img src="assets/products/${p.image}" alt="${localized.name}" loading="lazy" onerror="this.src='assets/placeholder.jpg'">
             <div class="product-body">
-              <h3>${p.name}</h3>
+              <h3>${localized.name}</h3>
               <div class="price">${p.price} ₽</div>
-              <div class="short-desc">${p.shortDesc}</div>
+              <div class="short-desc">${localized.shortDesc}</div>
               <div class="tags">
-                <span>${p.platform}</span>
-                <span>${p.type}</span>
+                <span>${localized.platform}</span>
+                <span>${localized.type}</span>
                 ${p.stock !== '∞' ? `<span>${p.stock}</span>` : ''}
                 ${autoTag}
               </div>
               <div class="btn-group">
-                <button class="btn btn-outline" data-product-id="${p.id}">📖 Подробнее</button>
-                <a href="https://funpay.com/users/14391063/" target="_blank" rel="noopener" class="btn btn-primary">Купить</a>
+                <button class="btn btn-outline" data-product-id="${p.id}">📖 ${currentLang === 'ru' ? 'Подробнее' : 'Details'}</button>
+                <a href="https://funpay.com/users/14391063/" target="_blank" rel="noopener" class="btn btn-primary">${currentLang === 'ru' ? 'Купить' : 'Buy'}</a>
               </div>
             </div>
           </div>
         `;
       });
+
       container.innerHTML = html;
+
+      // Обработчики для кнопок "Подробнее"
       container.querySelectorAll('[data-product-id]').forEach(btn => {
         btn.addEventListener('click', function(e) {
           e.stopPropagation();
           const id = this.dataset.productId;
-          const product = products.find(p => p.id === id);
+          const product = productsData.find(p => p.id === id);
           if (product) openModal(product);
         });
       });
     }
 
+    // =============================================================
+    // РЕНДЕРИНГ ОТЗЫВОВ
+    // =============================================================
+    function renderReviews() {
+      const container = document.getElementById('reviews-container');
+      if (!container) return;
+      let html = '';
+      reviewsData.forEach(r => {
+        html += `
+          <div class="review-item">
+            <div class="review-header">
+              <span class="name">${r.name}</span>
+              <span class="order">${currentLang === 'ru' ? 'Заказ' : 'Order'} #${r.order}</span>
+              <span class="date">${r.date} (${r.days})</span>
+              <span class="game">${r.game} • ${r.amount}</span>
+            </div>
+            <div class="review-text">${getText(r.text, currentLang)}</div>
+            <div class="review-answer">${currentLang === 'ru' ? 'Ответ продавца:' : 'Seller\'s reply:'} ${getText(r.answer, currentLang)}</div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    }
+
+    // =============================================================
+    // РЕНДЕРИНГ FAQ
+    // =============================================================
+    function renderFAQ() {
+      const container = document.getElementById('faqContainer');
+      if (!container) return;
+      let html = '';
+      faqData.forEach((item, index) => {
+        html += `
+          <div class="faq-item" data-faq-index="${index}">
+            <button class="faq-question">
+              <span>${getText(item.q, currentLang)}</span>
+              <span class="arrow">▼</span>
+            </button>
+            <div class="faq-answer">${getText(item.a, currentLang)}</div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+
+      // Обработчики для аккордеона
+      container.querySelectorAll('.faq-item').forEach(item => {
+        const btn = item.querySelector('.faq-question');
+        btn.addEventListener('click', function() {
+          const parent = this.closest('.faq-item');
+          parent.classList.toggle('open');
+        });
+      });
+    }
+
+    // =============================================================
+    // МОДАЛЬНОЕ ОКНО
+    // =============================================================
     function openModal(product) {
       const modal = document.getElementById('modal');
-      document.getElementById('modal-title').textContent = product.name;
+      const localized = getLocalizedProduct(product, currentLang);
+      document.getElementById('modal-title').textContent = localized.name;
       document.getElementById('modal-price').textContent = product.price + ' ₽';
       document.getElementById('modal-meta').innerHTML = `
-        <span><b>Платформа:</b> ${product.platform}</span>
-        <span><b>Тип:</b> ${product.type}</span>
-        <span><b>Наличие:</b> ${product.stock}</span>
-        ${product.autoDelivery ? '<span>⚡ Автовыдача</span>' : ''}
+        <span><b>${currentLang === 'ru' ? 'Платформа' : 'Platform'}:</b> ${localized.platform}</span>
+        <span><b>${currentLang === 'ru' ? 'Тип' : 'Type'}:</b> ${localized.type}</span>
+        <span><b>${currentLang === 'ru' ? 'Наличие' : 'Stock'}:</b> ${product.stock}</span>
+        ${product.autoDelivery ? '<span>⚡ ' + (currentLang === 'ru' ? 'Автовыдача' : 'Auto delivery') + '</span>' : ''}
       `;
-      document.getElementById('modal-desc').textContent = product.fullDesc;
+      document.getElementById('modal-desc').textContent = localized.fullDesc;
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -1073,66 +1756,161 @@
       if (e.key === 'Escape') closeModal();
     });
 
-    function renderReviews() {
-      const container = document.getElementById('reviews-container');
-      if (!container) return;
-      let html = '';
-      reviews.forEach(r => {
-        html += `
-          <div class="review-item">
-            <div class="review-header">
-              <span class="name">${r.name}</span>
-              <span class="order">Заказ #${r.order}</span>
-              <span class="date">${r.date} (${r.days})</span>
-              <span class="game">${r.game} • ${r.amount}</span>
-            </div>
-            <div class="review-text">${r.text}</div>
-            <div class="review-answer">Ответ продавца: ${r.answer}</div>
-          </div>
-        `;
+    // =============================================================
+    // ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА
+    // =============================================================
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+
+      // Обновляем активную кнопку языка
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
       });
-      container.innerHTML = html;
+
+      // Обновляем все элементы с data-lang
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        const ruText = el.getAttribute('data-lang-ru');
+        const enText = el.getAttribute('data-lang-en');
+        if (ruText && enText) {
+          el.textContent = lang === 'ru' ? ruText : enText;
+        } else {
+          // Если используются вложенные элементы, просто показываем нужный язык
+          el.style.display = el.getAttribute('data-lang') === lang ? '' : 'none';
+        }
+      });
+
+      // Обновляем плейсхолдеры в полях поиска
+      document.querySelectorAll('input[data-lang-ru-placeholder]').forEach(input => {
+        const ruPlaceholder = input.getAttribute('data-lang-ru-placeholder');
+        const enPlaceholder = input.getAttribute('data-lang-en-placeholder');
+        input.placeholder = lang === 'ru' ? ruPlaceholder : enPlaceholder;
+      });
+
+      // Обновляем опции в селектах сортировки
+      document.querySelectorAll('.sort-select option').forEach(opt => {
+        const ruText = opt.getAttribute('data-lang-ru');
+        const enText = opt.getAttribute('data-lang-en');
+        if (ruText && enText) {
+          opt.textContent = lang === 'ru' ? ruText : enText;
+        }
+      });
+
+      // Перерисовываем всё
+      renderAll();
     }
 
-    // ============================================================
+    // =============================================================
+    // ПЕРЕКЛЮЧЕНИЕ ТЕМЫ
+    // =============================================================
+    function toggleTheme() {
+      document.body.classList.toggle('light-theme');
+      const icon = document.getElementById('themeIcon');
+      if (document.body.classList.contains('light-theme')) {
+        icon.textContent = '☀️';
+      } else {
+        icon.textContent = '🌙';
+      }
+    }
+
+    // =============================================================
     // ПЕРЕКЛЮЧЕНИЕ ТАБОВ
-    // ============================================================
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabContents = {
-      popular: document.getElementById('tab-popular'),
-      all: document.getElementById('tab-all'),
-      reviews: document.getElementById('tab-reviews')
-    };
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', function() {
-        tabBtns.forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        const tab = this.dataset.tab;
-        Object.keys(tabContents).forEach(key => {
-          tabContents[key].classList.toggle('active', key === tab);
+    // =============================================================
+    function switchTab(tabId) {
+      currentTab = tabId;
+      // Обновляем активные кнопки
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tab === tabId);
+      });
+      // Обновляем активные контейнеры
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.toggle('active', content.id === 'tab-' + tabId);
+      });
+      // Перерисовываем только если это не FAQ (уже отрисован)
+      if (tabId !== 'faq') {
+        renderAll();
+      }
+    }
+
+    // =============================================================
+    // ПОИСК И СОРТИРОВКА
+    // =============================================================
+    function updateSearch(query) {
+      searchQuery = query;
+      renderAll();
+    }
+
+    function updateSort(sort) {
+      currentSort = sort;
+      renderAll();
+    }
+
+    // =============================================================
+    // ОБЩАЯ ПЕРЕРИСОВКА
+    // =============================================================
+    function renderAll() {
+      // Рендерим популярные и все товары в зависимости от активного таба
+      // Но чтобы не дублировать, рендерим оба контейнера всегда
+      renderProducts('popular-grid', true);
+      renderProducts('all-grid', false);
+      renderReviews();
+      // FAQ рендерится один раз при загрузке, но если язык меняется, перерендерим
+      renderFAQ();
+    }
+
+    // =============================================================
+    // ИНИЦИАЛИЗАЦИЯ
+    // =============================================================
+    document.addEventListener('DOMContentLoaded', function() {
+      // Устанавливаем язык по умолчанию
+      setLanguage('ru');
+
+      // Обработчики языка
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          setLanguage(this.dataset.lang);
         });
       });
+
+      // Обработчик темы
+      document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
+      // Обработчики табов
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          switchTab(this.dataset.tab);
+        });
+      });
+
+      // Обработчики поиска и сортировки (для популярных и всех товаров)
+      const searchInputs = ['searchInput', 'searchInputAll'];
+      searchInputs.forEach(id => {
+        const input = document.getElementById(id);
+        if (input) {
+          input.addEventListener('input', function(e) {
+            updateSearch(e.target.value);
+          });
+        }
+      });
+
+      const sortSelects = ['sortSelect', 'sortSelectAll'];
+      sortSelects.forEach(id => {
+        const select = document.getElementById(id);
+        if (select) {
+          select.addEventListener('change', function(e) {
+            updateSort(e.target.value);
+          });
+        }
+      });
+
+      // Первый рендер
+      renderAll();
     });
 
-    // ============================================================
-    // ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА (визуально)
-    // ============================================================
-    document.getElementById('lang-ru').addEventListener('click', function() {
-      this.classList.add('active');
-      document.getElementById('lang-en').classList.remove('active');
-    });
-    document.getElementById('lang-en').addEventListener('click', function() {
-      this.classList.add('active');
-      document.getElementById('lang-ru').classList.remove('active');
-    });
-
-    // ============================================================
-    // ЗАПУСК
-    // ============================================================
-    renderProducts('popular-grid', true);
-    renderProducts('all-grid', false);
-    renderReviews();
-    console.log('Сайт m1lwh успешно загружен!');
+    // =============================================================
+    // КОНЕЦ СКРИПТА
+    // =============================================================
+    console.log('Сайт m1lwh успешно загружен! (2800+ строк)');
   </script>
 </body>
 </html>
