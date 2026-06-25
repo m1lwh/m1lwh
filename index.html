@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,800;14..32,900&display=swap" rel="stylesheet">
 
   <style>
-    /* ===== Глобальные переменные (без изменений) ===== */
+    /* ===== Глобальные переменные ===== */
     :root {
       --bg-primary: #0b0f17;
       --bg-glass: rgba(255,255,255,0.06);
@@ -57,7 +57,7 @@
     }
     .container { max-width:1200px; margin:0 auto; padding:0 20px 40px; }
 
-    /* ===== ШАПКА (без изменений) ===== */
+    /* ===== ШАПКА ===== */
     .header {
       background:var(--bg-glass);
       backdrop-filter:blur(16px);
@@ -184,7 +184,7 @@
     }
     .hero-gif img:hover { transform:scale(1.04); box-shadow:0 0 60px rgba(167,139,250,0.5); }
 
-    /* ===== ТАБЫ (без изменений) ===== */
+    /* ===== ТАБЫ ===== */
     .tabs {
       display:flex;
       gap:6px;
@@ -222,7 +222,7 @@
       background:var(--accent-gradient);
     }
 
-    /* ===== ПАНЕЛЬ УПРАВЛЕНИЯ (без изменений) ===== */
+    /* ===== ПАНЕЛЬ УПРАВЛЕНИЯ ===== */
     .controls-bar {
       display:flex;
       flex-wrap:wrap;
@@ -271,7 +271,7 @@
     .sort-select:focus { border-color:var(--accent-violet); background:var(--bg-glass-hover); }
     .sort-select option { background:var(--bg-secondary); color:var(--text-primary); }
 
-    /* ===== СЕТКА ТОВАРОВ (без изменений) ===== */
+    /* ===== СЕТКА ТОВАРОВ ===== */
     .products-grid {
       display:grid;
       grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
@@ -364,16 +364,12 @@
       letter-spacing:0.5px;
     }
 
-    /* =============================================================
-       МОДАЛЬНОЕ ОКНО — ИСПРАВЛЕНО (чёткое, контрастное)
-       ============================================================= */
+    /* ===== МОДАЛЬНОЕ ОКНО (БЕЗ БЛЮРА) ===== */
     .modal-overlay {
       display:none;
       position:fixed;
       inset:0;
-      background:rgba(0,0,0,0.65);  /* плотный полупрозрачный фон */
-      backdrop-filter:blur(4px);    /* лёгкий блюр, не мешает чтению */
-      -webkit-backdrop-filter:blur(4px);
+      background:rgba(0,0,0,0.75);  /* просто затемнение, без блюра */
       z-index:2000;
       justify-content:center;
       align-items:center;
@@ -382,7 +378,7 @@
     .modal-overlay.open { display:flex; }
 
     .modal {
-      background: #111827;          /* тёмный плотный фон */
+      background: #111827;
       border: 1px solid rgba(255,255,255,0.15);
       border-radius: var(--radius-card);
       max-width: 680px;
@@ -434,7 +430,7 @@
     .modal-full-desc {
       font-size:15px;
       line-height:1.7;
-      color:#d1d5db;           /* светлый текст для читаемости */
+      color:#d1d5db;
       white-space:pre-wrap;
       word-break:break-word;
       margin:12px 0 24px;
@@ -463,7 +459,7 @@
     .btn-big.pulse { animation:pulse-buy 2s infinite; }
     @keyframes pulse-buy { 0%,100%{box-shadow:0 6px 30px rgba(167,139,250,0.35);} 50%{box-shadow:0 6px 50px rgba(167,139,250,0.6);} }
 
-    /* ===== ОТЗЫВЫ (без изменений) ===== */
+    /* ===== ОТЗЫВЫ ===== */
     .reviews-list { display:grid; gap:18px; }
     .review-item {
       background:var(--bg-glass);
@@ -485,7 +481,7 @@
     .more-link { display:inline-block; margin-top:20px; font-weight:800; color:var(--accent-cyan); text-decoration:none; border-bottom:2px solid transparent; transition:var(--transition-smooth); }
     .more-link:hover { border-bottom-color:var(--accent-cyan); opacity:0.8; }
 
-    /* ===== FAQ (без изменений) ===== */
+    /* ===== FAQ ===== */
     .faq-section { margin-top:48px; }
     .faq-title { font-size:24px; font-weight:900; margin-bottom:20px; background:var(--accent-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
     .faq-item {
@@ -518,7 +514,7 @@
     .faq-answer { padding:0 20px 16px; color:var(--text-secondary); font-size:15px; line-height:1.6; display:none; }
     .faq-item.open .faq-answer { display:block; }
 
-    /* ===== ФУТЕР (без изменений) ===== */
+    /* ===== ФУТЕР ===== */
     .footer {
       margin-top:48px;
       padding-top:24px;
@@ -529,7 +525,7 @@
     }
     .footer strong { background:var(--accent-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 
-    /* ===== АНИМАЦИИ (без изменений) ===== */
+    /* ===== АНИМАЦИИ ===== */
     .product-card {
       animation:cardAppear 0.6s ease backwards;
     }
@@ -549,10 +545,6 @@
     .product-card:nth-child(14) { animation-delay:0.70s; }
     .product-card:nth-child(15) { animation-delay:0.75s; }
     .product-card:nth-child(16) { animation-delay:0.80s; }
-    .product-card:nth-child(17) { animation-delay:0.85s; }
-    .product-card:nth-child(18) { animation-delay:0.90s; }
-    .product-card:nth-child(19) { animation-delay:0.95s; }
-    .product-card:nth-child(20) { animation-delay:1.00s; }
     @keyframes cardAppear { from{opacity:0;transform:translateY(30px) scale(0.96);} to{opacity:1;transform:translateY(0) scale(1);} }
 
     .product-card::after {
@@ -594,7 +586,7 @@
 <body>
   <div class="container">
 
-    <!-- ===== ШАПКА (без изменений) ===== -->
+    <!-- ===== ШАПКА ===== -->
     <header class="header">
       <div class="header-top">
         <div class="brand">
@@ -648,7 +640,7 @@
       </button>
     </nav>
 
-    <!-- ===== КОНТЕЙНЕРЫ ТАБОВ (без изменений) ===== -->
+    <!-- ===== КОНТЕЙНЕРЫ ТАБОВ ===== -->
     <div id="tab-popular" class="tab-content active" role="tabpanel">
       <div class="controls-bar">
         <div class="search-box">
@@ -712,11 +704,10 @@
     </footer>
   </div>
 
-  <!-- ============================================================
-  СКРИПТЫ (без изменений, уже работают)
-  ============================================================ -->
   <script>
-    // ===== ДАННЫЕ ТОВАРОВ (те же, что были) =====
+    // ============================================================
+    // ДАННЫЕ ТОВАРОВ (только ваши, без лишних)
+    // ============================================================
     const productsData = [
       {
         id: 'timmeit',
@@ -874,7 +865,7 @@
         autoDelivery: false,
         popular: true
       },
-      // Дополнительные товары
+      // ===== Дополнительные товары (вы их добавляли позже) =====
       {
         id: 'debian',
         name: { ru: '🎯 Объясню как пользоваться linux debian опыт 3+ года', en: '🎯 Linux Debian usage explanation (3+ years experience)' },
@@ -910,84 +901,6 @@
         fullDesc: { ru: '💎 УСТАНОВКА DEBIAN 💎\n\n🔹 Стоимость – 50-500 рублей \n🔹 Быстрое выполнение (от 1 часа до суток)\n🔹 Безопасно, используем только проверенные методы\n🔹 Помогаю со всем\n\n📦 Всё быстро и гарантированно.', en: '💎 DEBIAN INSTALLATION 💎\n\n🔹 Price – 50-500 rubles\n🔹 Fast execution (1 hour to 1 day)\n🔹 Safe, only proven methods\n🔹 I help with everything\n\n📦 Fast and guaranteed.' },
         platform: 'FunPay',
         type: { ru: 'Прочее', en: 'Other' },
-        stock: '∞',
-        autoDelivery: false,
-        popular: false
-      },
-      {
-        id: 'discord_nitro',
-        name: { ru: '🎁 Discord Nitro (1 месяц) (ПОКА ЧТО НЕТУ)', en: '🎁 Discord Nitro (1 month) (CURRENTLY UNAVAILABLE)' },
-        price: 120,
-        image: 'discordnitro.jpg',
-        shortDesc: { ru: 'Подарочный код Discord Nitro на 1 месяц', en: 'Discord Nitro gift code for 1 month' },
-        fullDesc: { ru: '🎁 DISCORD NITRO (1 МЕСЯЦ) 🎁\n\n🔹 Активация на ваш аккаунт\n🔹 Моментальная выдача\n🔹 Гарантия работоспособности\n\n💬 Приятные бонусы: улучшенный стриминг, загрузка файлов до 500 МБ, и многое другое.', en: '🎁 DISCORD NITRO (1 MONTH) 🎁\n\n🔹 Activation on your account\n🔹 Instant delivery\n🔹 Warranty\n\n💬 Nice bonuses: better streaming, file uploads up to 500 MB, and much more.' },
-        platform: 'Discord',
-        type: { ru: 'Коды', en: 'Codes' },
-        stock: '10 шт.',
-        autoDelivery: true,
-        popular: false
-      },
-      {
-        id: 'cs2_boost',
-        name: { ru: '🎯 Буст ранга в CS2 (до Global Elite)', en: '🎯 CS2 rank boost (up to Global Elite)' },
-        price: 150,
-        image: 'cs2boost.jpg',
-        shortDesc: { ru: 'Профессиональный буст аккаунта CS2 до любого ранга', en: 'Professional CS2 account boost to any rank' },
-        fullDesc: { ru: '🎯 БУСТ РАНГА В CS2 🎯\n\n🔹 Выберите желаемый ранг (от Silver до Global Elite)\n🔹 Играем в паре или на вашем аккаунте (на ваш выбор)\n🔹 100% безопасно, без читов\n🔹 Быстро и качественно\n\n💬 Связь через Discord после оплаты.', en: '🎯 CS2 RANK BOOST 🎯\n\n🔹 Choose your desired rank (from Silver to Global Elite)\n🔹 We play together or on your account (your choice)\n🔹 100% safe, no cheats\n🔹 Fast and high quality\n\n💬 Contact via Discord after payment.' },
-        platform: 'PC',
-        type: { ru: 'Буст', en: 'Boost' },
-        stock: '∞',
-        autoDelivery: false,
-        popular: false
-      },
-      {
-        id: 'valo_boost',
-        name: { ru: '🌟 Буст ранга VALORANT (до Immortal)', en: '🌟 VALORANT rank boost (up to Immortal)' },
-        price: 200,
-        image: 'valorantboost.jpg',
-        shortDesc: { ru: 'Быстрый подбор и победы для вашего ранга в VALORANT', en: 'Fast matchmaking and wins for your VALORANT rank' },
-        fullDesc: { ru: '🌟 БУСТ РАНГА В VALORANT 🌟\n\n🔹 Поднимем ваш ранг до Immortal\n🔹 Играем с вами или на вашем аккаунте\n🔹 Гарантия результата\n🔹 Конфиденциальность\n\n🕒 Срок выполнения – от 1 до 5 дней в зависимости от текущего ранга.', en: '🌟 VALORANT RANK BOOST 🌟\n\n🔹 We will boost your rank up to Immortal\n🔹 We play with you or on your account\n🔹 Result guarantee\n🔹 Confidentiality\n\n🕒 Completion time – 1 to 5 days depending on current rank.' },
-        platform: 'PC',
-        type: { ru: 'Буст', en: 'Boost' },
-        stock: '∞',
-        autoDelivery: false,
-        popular: false
-      },
-      {
-        id: 'steam_level',
-        name: { ru: '💎 Повышение уровня Steam (до 100)', en: '💎 Steam level boost (up to 100)' },
-        price: 0.5,
-        image: 'steamlevel.jpg',
-        shortDesc: { ru: 'Недорогое повышение уровня Steam с помощью наборов карточек', en: 'Affordable Steam level boost using card sets' },
-        fullDesc: { ru: '💎 ПОВЫШЕНИЕ УРОВНЯ STEAM 💎\n\n🔹 Стоимость – 0.5 рубля за уровень\n🔹 Быстрое выполнение (от 1 часа до суток)\n🔹 Безопасно, используем только карточки\n🔹 Повышаем до любого уровня (максимум 100)\n\n📦 Оплата после выполнения.', en: '💎 STEAM LEVEL BOOST 💎\n\n🔹 Price – 0.5 rubles per level\n🔹 Fast execution (1 hour to 1 day)\n🔹 Safe, only cards used\n🔹 Boost to any level (max 100)\n\n📦 Payment after completion.' },
-        platform: 'Steam',
-        type: { ru: 'Прочее', en: 'Other' },
-        stock: '∞',
-        autoDelivery: false,
-        popular: false
-      },
-      {
-        id: 'robux_gift',
-        name: { ru: '🎁 Robux подарочный код (100 Robux)', en: '🎁 Robux gift code (100 Robux)' },
-        price: 60,
-        image: 'robux.jpg',
-        shortDesc: { ru: 'Подарочный код Roblox на 100 Robux', en: 'Roblox gift code for 100 Robux' },
-        fullDesc: { ru: '🎁 ПОДАРОЧНЫЙ КОД ROBLOX 🎁\n\n🔹 100 Robux на ваш аккаунт\n🔹 Моментальная выдача кода\n🔹 Гарантия работоспособности\n\n💬 Если есть вопросы — пишите в личные сообщения.', en: '🎁 ROBLOX GIFT CODE 🎁\n\n🔹 100 Robux to your account\n🔹 Instant code delivery\n🔹 Warranty\n\n💬 If you have questions — write in DMs.' },
-        platform: 'Roblox',
-        type: { ru: 'Коды', en: 'Codes' },
-        stock: '5 шт.',
-        autoDelivery: true,
-        popular: false
-      },
-      {
-        id: 'minecraft_skin',
-        name: { ru: '🎨 Индивидуальный скин для Minecraft', en: '🎨 Custom Minecraft skin' },
-        price: 30,
-        image: 'skin.jpg',
-        shortDesc: { ru: 'Создам уникальный скин для Minecraft по вашему описанию', en: 'I will create a unique Minecraft skin according to your description' },
-        fullDesc: { ru: '🎨 ИНДИВИДУАЛЬНЫЙ СКИН MINECRAFT 🎨\n\n🔹 Создам скин по вашему описанию или референсу\n🔹 Высокое качество, детализация\n🔹 Уникальный дизайн\n🔹 Подходит для любых версий Minecraft\n\n📦 Готовый файл скина (.png) отправляю в личные сообщения.', en: '🎨 CUSTOM MINECRAFT SKIN 🎨\n\n🔹 I will create a skin according to your description or reference\n🔹 High quality, detailed\n🔹 Unique design\n🔹 Suitable for any Minecraft version\n\n📦 I send the finished skin file (.png) in DMs.' },
-        platform: 'PC / Mobile',
-        type: { ru: 'Дизайн', en: 'Design' },
         stock: '∞',
         autoDelivery: false,
         popular: false
@@ -1267,7 +1180,7 @@
       renderAll();
     });
 
-    console.log('✅ Сайт m1lwh полностью работает! Модальное окно исправлено.');
+    console.log('✅ Сайт m1lwh готов! Лишние товары удалены, блюр убран.');
   </script>
 </body>
 </html>
