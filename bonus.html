@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>🎁 Бонус за отзыв • Steam</title>
+  <meta name="description" content="Бонус за отзыв: спасибо за поддержку! Красивые значки Steam для профиля." />
+  <link rel="icon" type="image/png" href="assets/favicon.jpg">
+  <link rel="apple-touch-icon" href="assets/favicon.jpg">
+  <meta name="theme-color" content="#0b0f17">
+
+  <style>
+    :root{
+      --bg:#0b0f17; --card:#111827; --card2:#0f172a; --text:#e5e7eb; --muted:#9ca3af;
+      --accent:#a78bfa; --accent2:#22d3ee; --warn:#fbbf24; --border:rgba(255,255,255,.08);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      background: radial-gradient(1200px 600px at 20% 0%, rgba(167,139,250,.18), transparent 60%),
+                  radial-gradient(900px 500px at 90% 10%, rgba(34,211,238,.14), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    .wrap{max-width:980px;margin:0 auto;padding:28px 18px 60px}
+
+    .hero{
+      background: linear-gradient(135deg, rgba(167,139,250,.14), rgba(34,211,238,.10));
+      border:1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-radius:22px;
+      padding:18px 18px;
+      overflow:hidden;
+    }
+
+    .topbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+    .badge{
+      display:inline-flex;gap:10px;align-items:center;
+      padding:8px 12px;border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:14px;
+    }
+    .badge .dot{
+      width:10px;height:10px;border-radius:50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 4px rgba(167,139,250,.14);
+    }
+
+    h1{margin:10px 0 6px;font-size:26px}
+    .subtitle{margin:0;color:var(--muted)}
+    .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:10px;color:var(--muted);font-size:14px}
+    .meta b{color:var(--text);font-weight:600}
+
+    .hero-head{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:14px;
+      margin-top:10px;
+      align-items:start;
+    }
+    @media (max-width:900px){
+      .hero-head{grid-template-columns:1fr}
+    }
+
+    .hero-img-card img{
+      width:100%;
+      height:140px;
+      display:block;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      object-fit: contain;
+      object-position: center;
+      background: rgba(0,0,0,.35);
+      box-shadow: 0 10px 25px rgba(0,0,0,.25);
+    }
+    @media (max-width:900px){
+      .hero-img-card{max-width: 100%; justify-self: stretch;}
+    }
+
+    .hero-img-caption{
+      margin-top:8px;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .grid{display:grid;grid-template-columns: 1fr;gap:16px;margin-top:14px}
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:16px;
+      box-shadow: var(--shadow);
+    }
+    .card h2{margin:0 0 8px;font-size:18px}
+    .card p{margin:0;color:var(--muted)}
+
+    .bullet{
+      list-style:none;
+      padding:0;
+      margin:10px 0 0;
+      display:grid;
+      gap:10px;
+      color:var(--muted);
+    }
+    .bullet li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      line-height:1.35;
+    }
+    .bullet .ic{width:18px;flex:0 0 18px;opacity:.95}
+    .bullet b{color:var(--text)}
+    .credit-link{
+      color: var(--accent2);
+      text-decoration:none;
+      border-bottom:1px dashed rgba(34,211,238,.55);
+      padding-bottom:2px;
+      font-weight:800;
+    }
+    .credit-link:hover{opacity:.9}
+
+    .shop-grid{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+    }
+    .shop-btn{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      text-decoration:none;
+      color:var(--text);
+      box-shadow: 0 10px 22px rgba(0,0,0,.20);
+      transition: transform .08s ease, opacity .08s ease;
+    }
+    .shop-btn:hover{opacity:.95; transform: translateY(-1px);}
+    .shop-left{display:flex;align-items:flex-start;gap:10px;min-width:0}
+    .shop-ic{
+      width:34px;height:34px;border-radius:12px;
+      display:grid;place-items:center;
+      background: rgba(167,139,250,.14);
+      border:1px solid rgba(167,139,250,.25);
+      flex:0 0 auto;
+    }
+    .shop-text{min-width:0}
+    .shop-title{
+      font-weight:900;
+      line-height:1.15;
+      margin:0;
+      font-size:14.5px;
+    }
+    .shop-sub{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.25;
+    }
+    .shop-go{
+      color: var(--accent2);
+      font-weight:900;
+      flex:0 0 auto;
+    }
+
+    .bottom-note{ margin-top:18px; }
+    .center-title{
+      text-align:center;
+      font-weight:900;
+      letter-spacing:.4px;
+      margin:0 0 12px;
+    }
+    .note-lines{
+      color:var(--muted);
+      margin:0;
+      display:grid;
+      gap:10px;
+      line-height:1.45;
+    }
+    .note-line{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+    .note-line .ic{width:18px;flex:0 0 18px}
+    .note-line b{color:var(--text)}
+
+    .footer{margin-top:18px;color:var(--muted);font-size:14px;text-align:center;opacity:.95}
+
+    /* ====== BADGE GALLERY (25) ====== */
+   .badge-gallery{
+  margin-top:30px;
+  text-align:center;
+  padding:24px;
+}
+
+.gallery-title{
+  font-size:26px;
+  margin:0 0 8px;
+  font-weight:900;
+  letter-spacing:.3px;
+}
+
+.gallery-sub{
+  color:var(--muted);
+  margin:0 0 22px;
+}
+
+/* 🔥 КРУПНАЯ СЕТКА */
+.badge-grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap:22px;
+}
+
+/* планшет */
+@media (max-width: 900px){
+  .badge-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* телефон */
+@media (max-width: 520px){
+  .badge-grid{ grid-template-columns: repeat(1, minmax(0, 1fr)); }
+}
+
+/* карточка */
+.badge-item{
+  position:relative;
+  display:block;
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.12);
+  background:
+    radial-gradient(180px 100px at 20% 10%, rgba(167,139,250,.18), transparent 60%),
+    radial-gradient(180px 100px at 80% 0%, rgba(34,211,238,.16), transparent 55%),
+    rgba(255,255,255,.03);
+  box-shadow: 0 14px 32px rgba(0,0,0,.35);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+/* 🔥 БОЛЬШЕ ВЫСОТА */
+.badge-item .thumb{
+  width:100%;
+  aspect-ratio: 16 / 8;
+  display:block;
+  padding:18px;
+}
+
+.badge-item img{
+  width:100%;
+  height:100%;
+  display:block;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.30);
+  object-fit: contain;
+}
+
+/* hover эффект мощнее */
+.badge-item:hover{
+  transform: translateY(-6px);
+  border-color: rgba(34,211,238,.45);
+  box-shadow:
+    0 20px 45px rgba(0,0,0,.50),
+    0 0 0 8px rgba(34,211,238,.10);
+}
+
+/* кнопка при наведении */
+.badge-item::after{
+  content:"Купить карточки →";
+  position:absolute;
+  left:18px; right:18px; bottom:18px;
+  padding:12px;
+  border-radius:14px;
+  font-weight:900;
+  font-size:15px;
+  color:var(--text);
+  background: linear-gradient(135deg, rgba(34,211,238,.28), rgba(167,139,250,.22));
+  border:1px solid rgba(255,255,255,.15);
+  opacity:0;
+  transform: translateY(8px);
+  transition: opacity .18s ease, transform .18s ease;
+  pointer-events:none;
+}
+
+.badge-item:hover::after{
+  opacity:1;
+  transform: translateY(0);
+}
+
+/* номер */
+.badge-item .tag{
+  position:absolute;
+  top:14px; left:14px;
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:900;
+  color:var(--text);
+  background: rgba(0,0,0,.45);
+  border:1px solid rgba(255,255,255,.15);
+}
+
+/* ====== БЛОКИ С ГАЙДАМИ ====== */
+.guide-section {
+  margin-top: 30px;
+  text-align: left;
+}
+.guide-section h2 {
+  font-size: 24px;
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+.guide-section h3 {
+  font-size: 18px;
+  font-weight: 800;
+  margin: 20px 0 8px;
+  color: var(--accent2);
+}
+.guide-section p {
+  color: var(--muted);
+  margin: 0 0 12px;
+  line-height: 1.6;
+}
+.guide-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+}
+.guide-section ul li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  line-height: 1.4;
+}
+.guide-section ul li .ic {
+  width: 20px;
+  flex: 0 0 20px;
+  opacity: .9;
+}
+.guide-section ul li b {
+  color: var(--text);
+}
+.guide-section .source-link {
+  color: var(--accent2);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(34,211,238,.4);
+  font-weight: 600;
+}
+.guide-section .source-link:hover {
+  opacity: .8;
+}
+.guide-section .divider {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 20px 0;
+}
+.guide-section .important-note {
+  background: rgba(167,139,250,.08);
+  border-left: 3px solid var(--accent);
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+.guide-section .important-note p {
+  margin: 0;
+  color: var(--text);
+}
+.guide-section .highlight-box {
+  background: rgba(34,211,238,.06);
+  border: 1px solid rgba(34,211,238,.12);
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin: 12px 0;
+}
+.guide-section .highlight-box p {
+  margin: 0;
+  color: var(--text);
+}
+
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="topbar">
+        <div class="badge"><span class="dot"></span>
+          <span>Бонус за отзыв • Обновлено: 06 декабря 2025</span>
+        </div>
+      </div>
+
+      <div class="hero-head">
+        <div>
+          <h1>🎁 Бонус за отзыв</h1>
+          <p class="subtitle">
+            Огромное спасибо за ваш отзыв! 💜
+            Это реально очень помогает - поддержка продавца даёт мотивацию делать больше полезного, обновлять материалы и радовать вас новыми штуками.
+            Спасибо, что нашли минутку и написали - вы лучшие 😊
+          </p>
+          <div class="meta">
+            <span>От: <b>m1lwh</b></span>
+          </div>
+        </div>
+
+        <div class="hero-img-card">
+          <a href="assets/hero.gif" target="_blank" rel="noopener" style="display:block">
+            <img src="assets/hero.gif" alt="Steam badge example">
+          </a>
+          <div class="hero-img-caption">Пасибаааа ^^</div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <aside class="card">
+          <h2>✨ Про Бонусы за отзыв</h2>
+          <ul class="bullet">
+            <li><span class="ic">🎀</span><span>Оформление профиля — это стиль: значки, витрины, иллюстрации и мелочи, которые делают профиль "дороже".</span></li>
+            <li><span class="ic">🏷️</span><span>Красивые значки особенно круто смотрятся вместе с витринами (скриншоты/любимые игры/коллекции) и тематическим фоном.</span></li>
+          </ul>
+        </aside>
+      </div>
+    </header>
+
+    <!-- ✅ БЛОК С 25 ЗНАЧКАМИ -->
+    <section class="card badge-gallery">
+      <h2 class="gallery-title">🎨 Значки для профиля Steam</h2>
+      <h2 class="gallery-title">25 красивых значков</h2>
+      <p class="gallery-sub">Нажмите на значок, чтобы перейти к покупке карточек.</p>
+      <div class="badge-grid">
+        <a class="badge-item" href="https://steamcommunity.com/market/search?appid=753&category_753_Game%5B%5D=tag_app_745740" target="_blank"><img src="assets/badges/Screenshot_1.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?q=%E8%A6%81%E6%9D%A5%E7%82%B9%E7%99%BE%E5%90%88%E5%90%97+Love+Yuri" target="_blank"><img src="assets/badges/Screenshot_2.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?q=the+binding+of+isaac#p3_default_desc" target="_blank"><img src="assets/badges/Screenshot_3.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?q=half+life" target="_blank"><img src="assets/badges/Screenshot_4.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?q=Once+in+Yaissor" target="_blank"><img src="assets/badges/Screenshot_5.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?q=Hentai+Pussy+2" target="_blank"><img src="assets/badges/Screenshot_6.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?q=The+Legend+of+Heroes%3A+Trails+of+Cold+Steel+II" target="_blank"><img src="assets/badges/Screenshot_7.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?q=Supreme+Ruler+1936" target="_blank"><img src="assets/badges/Screenshot_8.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?q=STORM+AREA+51%3A+AYY+LMAO+EDITION" target="_blank"><img src="assets/badges/Screenshot_9.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?q=The+Pit+And+The+Pendulum#p3_default_desc" target="_blank"><img src="assets/badges/Screenshot_10.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?q=Mortal+Kombat+X" target="_blank"><img src="assets/badges/Screenshot_11.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?q=Mayjasmine+episode01+What+is+God%3F" target="_blank"><img src="assets/badges/Screenshot_12.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?q=Muse+Dash" target="_blank"><img src="assets/badges/Screenshot_13.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?q=Only+Up%3A+BRAINROT+TOGETHER" target="_blank"><img src="assets/badges/Screenshot_14.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?q=Serious+Sam+HD%3A+The+First+Encounter" target="_blank"><img src="assets/badges/Screenshot_15.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?q=Retrowave+2#p2_default_desc" target="_blank"><img src="assets/badges/Screenshot_16.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?q=Make+America+Great+Again%3A+The+Trump+Presidency" target="_blank"><img src="assets/badges/Screenshot_17.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?q=Super+Duper+Party+Pooper" target="_blank"><img src="assets/badges/Screenshot_18.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?q=Fluffy+Creatures+VS+The+World" target="_blank"><img src="assets/badges/Screenshot_19.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?appid=753&category_753_Game[]=tag_app_603360" target="_blank"><img src="assets/badges/Screenshot_20.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?q=%E5%96%B5%E5%8F%AF%E8%8E%89%E7%9A%84%E5%85%94%E7%8E%A9%E5%81%B6" target="_blank"><img src="assets/badges/Screenshot_21.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?q=Seek+Girl+%E2%85%A1" target="_blank"><img src="assets/badges/Screenshot_22.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?q=Strawberry+Vinegar" target="_blank"><img src="assets/badges/Screenshot_23.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?q=%E5%AE%8C%E8%9B%8B%EF%BC%81%E6%88%91%E8%A2%AB%E7%BE%8E%E5%A5%B3%E5%8C%85%E5%9B%B4%E4%BA%86%EF%BC%81" target="_blank"><img src="assets/badges/Screenshot_24.png"></a>
+        <a class="badge-item" href="https://steamcommunity.com/market/search?appid=753&q=Black+Ice" target="_blank"><img src="assets/badges/Screenshot_25.png"></a>
+      </div>
+    </section>
+
+    <div class="footer">✨ Ещё раз спасибо за поддержку! Ваши отзывы — это самая сильная мотивация 💜</div>
+
+    <section class="card bottom-note">
+      <div class="note-lines">
+        <div class="note-line"><span class="ic">💤</span><span>Обычно я доступен с <b>16:00</b> до <b>23:00</b> 💤</span></div>
+        <div class="note-line"><span class="ic">💌</span><span>Если есть вопросы — пишите, я постараюсь помочь 😊</span></div>
+      </div>
+    </section>
+
+    <section class="card shop-card bottom-note">
+      <h3 class="center-title">🛒 Поддержать продавца</h3>
+      <p>Если вам понравился результат и хотите поддержать — вот мои услуги на FunPay 💜</p>
+      <div class="shop-grid">
+        <a class="shop-btn" href="https://funpay.com/lots/offer?id=71149892" target="_blank" rel="noopener">
+          <div class="shop-left">
+            <div class="shop-ic">❤️</div>
+            <div class="shop-text">
+              <p class="shop-title">Комментарии</p>
+              <p class="shop-sub">🖼️ ⭐️ОСТАВЛЮ ЛЮБОЙ КОММЕНТ В ПРОФИЛЕ⭐️🖤⭐️ДЛЯ ВАШЕГО STEAM🖤 👍</p>
+            </div>
+          </div>
+          <div class="shop-go">→</div>
+        </a>
+        <a class="shop-btn" href="https://funpay.com/lots/offer?id=71147304" target="_blank" rel="noopener">
+          <div class="shop-left">
+            <div class="shop-ic">💬</div>
+            <div class="shop-text">
+              <p class="shop-title">Услуги в роблоксе</p>
+              <p class="shop-sub">🎀 ✨ ФАРМ ДНЕЙ В 99 НОЧЕЙ ✨⬇️ ЛУЧШЕЕ ПРЕДЛОЖЕНИЕ НА РЫНКЕ ⬇️💰 ЦЕНА ЗА ОДНУ НОЧЬ 💰 🎀</p>
+            </div>
+          </div>
+          <div class="shop-go">→</div>
+        </a>
+        <a class="shop-btn" href="https://funpay.com/lots/offer?id=43564129" target="_blank" rel="noopener">
+          <div class="shop-left">
+            <div class="shop-ic">⭐</div>
+            <div class="shop-text">
+              <p class="shop-title">Сборка для майнкрафт</p>
+              <p class="shop-sub">📋 💫ЛУЧШАЯ СБОРКА💫 PRIVATE СБОРКА МОДОВ НА 1.16.5🔱САМЫЙ ЛУЧШАЯ ПОД 💮FUNTIME и Другие Сервера💮 👍</p>
+            </div>
+          </div>
+          <div class="shop-go">→</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ====== БЛОК: БОНУС ЗА ОТЗЫВ (ИНФО) ====== -->
+    <section class="card guide-section">
+      <h2>🎁 БОНУС ЗА ОТЗЫВ</h2>
+      <div class="important-note">
+        <p><strong>Важное примечание:</strong> Данная статья написана пользователем <strong>m1lwh</strong> (<a href="https://funpay.com/users/14391063/" target="_blank" class="source-link">ссылка на FunPay</a>)</p>
+      </div>
+      <hr class="divider">
+      <h3>➢ СЕКРЕТНЫЙ ТГ-БОТ ДЛЯ ПОЛУЧЕНИЯ ВСЕХ TWITCH DROPS</h3>
+      <p>
+        <a href="https://t.me/DropsRadarBot?start=funpay" target="_blank" class="source-link">@DropsRadarBot</a><br>
+        <a href="https://t.me/DropsRadarBot?start=funpay" target="_blank" class="source-link">https://t.me/DropsRadarBot?start=funpay</a>
+      </p>
+      <p>Он пришлет пуш, как только начнется новая раздача по твоим выбранным любимым играм (Rust, Fortnite, Arc Raiders и др.), чтобы ты всегда забирал халяву вовремя!</p>
+      <hr class="divider">
+      <h3>➢ Оптимизация игр (Для 🖥️𝐏𝐂)</h3>
+      <p><a href="https://telegra.ph/Optimizaciya-igr-09-15" target="_blank" class="source-link">https://telegra.ph/Optimizaciya-igr-09-15</a></p>
+      <hr class="divider">
+      <h3>➣ Оптимизация игр (Для 📱𝐀𝐧𝐝𝐫𝐨𝐢𝐝)</h3>
+      <p><a href="https://docs.google.com/document/d/1PVkJvPB8bRLciQymkHd7SdE7m6sxfEAuXr0H_IcsxoA/edit?usp=drivesdk" target="_blank" class="source-link">https://docs.google.com/document/d/1PVkJvPB8bRLciQymkHd7SdE7m6sxfEAuXr0H_IcsxoA/edit?usp=drivesdk</a></p>
+      <hr class="divider">
+      <h3>➢ 300к аватарок</h3>
+      <p><a href="https://docs.google.com/document/d/1TpaqcuHgL4PphLrjuMQKngp0pXtfhAKUxT15J4WLG1o/edit?usp=drivesdk" target="_blank" class="source-link">https://docs.google.com/document/d/1TpaqcuHgL4PphLrjuMQKngp0pXtfhAKUxT15J4WLG1o/edit?usp=drivesdk</a></p>
+      <hr class="divider">
+      <h3>➣ КИБЕРСПОРТИВНОЕ РАЗРЕШЕНИЕ</h3>
+      <p><a href="https://docs.google.com/document/d/1g_engHHBcwSv22D1_XFFCGP2LwKiZuKv_x5Dd6YX_c8/edit?usp=drivesdk" target="_blank" class="source-link">https://docs.google.com/document/d/1g_engHHBcwSv22D1_XFFCGP2LwKiZuKv_x5Dd6YX_c8/edit?usp=drivesdk</a></p>
+      <hr class="divider">
+      <h3>📘 Бонусный товар</h3>
+      <p>Так же вы можете выбрать любой мой товар стоимостью до 2 рублей, кроме аккаунтов и оффлайн-активаций. После того, как вы выберите товар, выполняйте следующие действия:</p>
+      <ul>
+        <li><span class="ic">📋</span><span>скопируйте ссылку товара, который вы хотите получить</span></li>
+        <li><span class="ic">📨</span><span>вставьте в чат ссылку на товар</span></li>
+        <li><span class="ic">🎁</span><span>продавец вручную выдаст вам бонус!</span></li>
+      </ul>
+      <hr class="divider">
+      <h3>💙 Спасибо</h3>
+      <p>Спасибо за то, что пользуетесь нашим магазином! 💙🌊</p>
+    </section>
+
+    <!-- ====== БЛОК: ОПТИМИЗАЦИЯ ANDROID ====== -->
+    <section class="card guide-section">
+      <h2>📱 ОПТИМИЗАЦИЯ ТЕЛЕФОНА (Android)</h2>
+
+      <h3>1. Переключитесь на быстрое подключение к Интернету</h3>
+      <p>Если вы играете во многие онлайн-игры на своем телефоне Android, скорость вашего интернет-соединения влияет на вашу игровую производительность. Это потому, что ваши игры должны постоянно отправлять и получать данные. Если у вас плохое интернет-соединение, передача данных займет больше времени. В свою очередь, это испортит вам игровой процесс. Итак, чтобы ваши онлайн-игры работали так же плавно и без задержек, как оффлайн-игры, подумайте об использовании быстрого подключения к Интернету, когда вы хотите играть в свои игры.</p>
+      <p>Вы можете использовать любое достаточно быстрое соединение. Это может быть соединение Wi-Fi или даже соединение для мобильной передачи данных.</p>
+
+      <h3>2. Включить Force 4x</h3>
+      <p>Force 4x - это функция некоторых телефонов Android, которая значительно улучшает качество ваших игр. Он отключен на большинстве телефонов, потому что он очень быстро разряжает аккумулятор телефона.</p>
+      <p>Если вас не слишком заботит время автономной работы и вы хотите максимально использовать возможности игры на своем телефоне, вы можете включить эту функцию.</p>
+      <div class="highlight-box">
+        <p><strong>📃 Инструкция:</strong> Откройте приложение "Настройки", коснитесь <b>О телефоне</b>, затем семь раз коснитесь <b>«Номер сборки»</b>. На вашем телефоне должно быть указано, что вы разработчик. Вернитесь в главное меню настроек и нажмите <b>«Система»</b>. Щелкните <b>Параметры разработчика</b>. Найдите параметр <b>Force 4x MSAA</b> и включите его.</p>
+      </div>
+      <p>Как только вы активируете эту функцию, ваше устройство будет обрабатывать и генерировать несколько сцен и игровых изображений намного лучше, чем в обычном режиме. Это заставляет Android использовать функцию сглаживания и в четыре раза увеличивать ее в играх и приложениях, работающих с графической библиотекой OpenGL 2.0.</p>
+
+      <h3>3. Удалите ненужные файлы с телефона</h3>
+      <p>Чем больше файлов вы храните на телефоне, тем ниже производительность. Если вы сохранили на своем телефоне какие-либо файлы, которые больше не собираетесь использовать, вам следует избавиться от них, чтобы повысить производительность телефона. Эта улучшенная производительность положительно повлияет на ваши игровые сеансы.</p>
+      <p>Ваш телефон Android собирает нежелательный контент из нескольких источников. Оставшиеся неустановленные приложения, старые файлы мультимедиа и неиспользуемые документы являются частью этих ненужных файлов.</p>
+      <div class="highlight-box">
+        <p><strong>📃 Инструкция:</strong> Получите доступ к настройкам на телефоне, коснитесь <b>Место хранения</b>. Нажмите кнопку <b>«Освободить место»</b>. Выберите элементы, которые вы больше не используете, и нажмите <b>«Изменить»</b> в левом нижнем углу.</p>
+      </div>
+
+      <h3>4. Используйте приложение для ускорения игр</h3>
+      <p>Поскольку все больше и больше людей играют в игры на телефонах Android, теперь есть приложения для оптимизации вашего устройства Android для игр. Эти приложения для ускорения игр настраивают различные параметры вашего телефона, чтобы обеспечить бесперебойную работу вашего телефона, а также отключают уведомления, чтобы вас не отвлекали во время игры. Вам не нужно вручную оптимизировать каждую опцию, потому что приложение сделает это за вас в один клик.</p>
+      <ul>
+        <li><span class="ic">📘</span><span><b>Game Booster</b> - Приложение на Samsung</span></li>
+        <li><span class="ic">📘</span><span><b>Game Center</b> - Айфон</span></li>
+      </ul>
+      <p>Это бесплатное приложение для улучшения игр, с помощью которого вы можете сделать свое устройство Android пригодным для игр. Есть еще несколько программ запуска игр для Android, которые вы можете использовать. Но с появлением «Игрового режима» на различных смартфонах такие приложения не предлагают никаких дополнительных функций.</p>
+
+      <h3>5. Разгоните процессор вашего телефона</h3>
+      <p>Наконец, для каждого истинного любителя мобильных игр есть что-то более практичное. Это дает вам варианты <b>Разгон процессора</b> В вашем телефоне извлекайте больше энергии из того же процессора. Это позволяет вашим играм обрабатывать больше элементов одновременно, и это приводит к улучшенной игровой среде.</p>
+      <p>Вы можете разогнать процессор на большинстве телефонов Android. Однако имейте в виду, что вам нужно будет рутировать телефон, прежде чем вы сможете его разогнать. Если вы не знаете, как <b>Рутирование</b> работает — возможно, лучше этого не делать, иначе вы рискуете повредить свое устройство.</p>
+      <p>Чтобы увеличить скорость вашего телефона Android, вам сначала необходимо установить собственное ядро. Затем вы можете использовать такое приложение, как <b>Franco Kernel Manager</b> для разгона вашего процессора. Разгон вашего телефона приведет к перегреву и сокращению срока службы батареи, но он может выжать из вашего устройства каждую каплю энергии.</p>
+
+      <hr class="divider">
+      <h3>📘 ИТОГ (ОБЯЗАТЕЛЬНО ПРОЧТИТЕ)</h3>
+      <p><strong>Общее повышение производительности — рекомендации:</strong></p>
+      <ul>
+        <li><span class="ic">✅</span><span><b>Выполните сброс до заводских настроек.</b> Один из самых действенных способов для увеличения производительности. Телефоны часто перегружены ненужными файлами, программами и приложениями. Предварительно сделайте резервное копирование, чтобы сохранить ценную и необходимую информацию.</span></li>
+        <li><span class="ic">✅</span><span><b>Обновите прошивку.</b> У многих на Android-устройствах не стоит галочка автоматического обновления ПО. А вручную это сделать забывают. Потому зайдите в меню устройства и загрузите обновления.</span></li>
+        <li><span class="ic">✅</span><span><b>Удалите лишние программы.</b> Устанавливая приложения, юзеры часто ими не пользуются. А они занимают пространство, нагружают ОЗУ и влияют на FPS в играх. Изучите всё то, что у вас установлено, и избавьтесь от лишнего.</span></li>
+        <li><span class="ic">✅</span><span><b>Купите карту памяти.</b> Чтобы снять нагрузку с основного хранилища на телефоне, стоит приобрести отдельную карту памяти. Перенесите туда часть приложений, сохраняйте фото и видео на неё.</span></li>
+        <li><span class="ic">✅</span><span><b>Отключите синхронизацию и GPS.</b> Это влияет на автономность и скорость работы устройства.</span></li>
+        <li><span class="ic">✅</span><span><b>Выполните аппаратное ускорение GPU.</b> Чтобы повысить скорость работы девайса, что отразится и на FPS в играх, стоит сделать аппаратное ускорение. Для этого требуется зайти в меню параметров разработчика, и выбрать пункт с принудительной обработкой GPU, включив её. Чтобы попасть в это меню, требуется зайти в раздел настроек "О телефоне" и кликнуть около 7 раз на надпись <b>Номер сборки</b>.</span></li>
+        <li><span class="ic">✅</span><span><b>Сделайте оптимизацию на рабочем столе.</b> Современные смартфоны при разблокировке экрана выглядят очень красочно и интересно. Множество виджетов добавляют привлекательности. Но забирают драгоценные ресурсы. Отключите всё лишнее, и FPS в игре наверняка поднимется.</span></li>
+      </ul>
+      <p>Это достаточно простые и доступные каждому действия, направленные на общее увеличение производительности. Но эти манипуляции имеют непосредственное отношение и к качеству работы игр на Android-устройствах. Выполнив все эти действия, или хотя бы часть из них, показатели FPS обязательно изменятся в сторону улучшения.</p>
+
+      <h3>Программы для улучшения производительности</h3>
+      <p>Это более нацеленный вариант того, как повысить FPS в Android играх. Для этого потребуется установить специальные приложения или утилиты. Рассмотрим некоторые из них.</p>
+      <ul>
+        <li><span class="ic">⚡</span><span><b>Root Booster.</b> Очень популярная программа, позволяющая ускорить работу девайса, оптимизировать его и поменять настройки. Здесь есть функция выбора необходимой частоты процессора для тех или иных задач. Дополнительно можно избавиться от мусора на телефоне в виде пустых папок, остаточных файлов от удалённых игр и приложений, выполнить очистку системного кэша и пр.</span></li>
+        <li><span class="ic">⚡</span><span><b>GLTools.</b> Программа больше нацелена именно на изменения параметров самих игр. С её помощью можно изменить параметры сглаживания, уменьшить количество цветов в приложении с целью повышения скорости, оптимизировать шейдеры GLSL (чем больше шейдеров используется, тем выше производительность игры). Также через программу уменьшается разрешение, что параллельно ведёт к увеличению показателей производительности. При работе с этой программой важно учитывать, то изменения в отношении той или иной игры могут иметь разный характер. Некоторые вовсе никак не влияют на FPS, другие получают значительные улучшения. Всегда меняйте настройки только по одному параметру, проверяйте изменения, и лишь затем переходите к следующему пункту настроек.</span></li>
+        <li><span class="ic">⚡</span><span><b>Специальные утилиты.</b> Множество популярных Android-игр получили собственные приложения, которые разработаны для помощи в оптимизации игрового процесса. Они помогают изменить настройки графики, поднять или повысить FPS. Примером можно назвать утилиту для игры PUGB, которая носит название <b>GFX Tools</b>.</span></li>
+        <li><span class="ic">⚡</span><span><b>Game Center.</b> Это фирменная игровая утилита, разработанная для аппаратов производства Samsung. С помощью этого софта можно менять разрешение игры, и ограничивать параметры FPS. Тем самым пользователю доступно не только улучшение производительности игры, но и экономия заряда аккумулятора. Настройки можно менять для всех игр одновременно, либо делать конкретные настройки под конкретное приложение.</span></li>
+      </ul>
+    </section>
+
+    <!-- ====== БЛОК: КИБЕРСПОРТИВНОЕ РАЗРЕШЕНИЕ ====== -->
+    <section class="card guide-section">
+      <h2>🎮 КИБЕРСПОРТИВНОЕ РАЗРЕШЕНИЕ — All PC Games</h2>
+      <p>📌 Для этого нам потребуется видеокарта от <b>NVIDIA</b> или <b>AMD</b>.</p>
+      <p>► После нам нужно перейти в панель управления, переходим в <b>изменение разрешения</b>, нажимаем <b>настройки</b>, создаём <b>пользовательское разрешение</b> и выставляем параметры.</p>
+
+      <div class="highlight-box">
+        <p><strong>📌 На выбор 3 разрешения:</strong></p>
+        <p style="font-size:20px; font-weight:900; color:var(--accent2); text-align:center; margin:8px 0;">
+          1728×1080 &nbsp;|&nbsp; 1440×1080 &nbsp;|&nbsp; 1024×768
+        </p>
+      </div>
+
+      <p>🗣️ После нажимаем <b>ТЕСТ</b>, после применяем это разрешение и можем заходить в игру и играть на данном разрешении.</p>
+
+      <hr class="divider">
+      <p style="text-align:center; font-size:18px; font-weight:800; color:var(--accent2);">
+        Спасибо за покупку, уважаемый пользователь! 🎀♥️
+      </p>
+    </section>
+
+    <div class="footer">🎁 Бонус за отзыв • от m1lwh</div>
+  </div>
+</body>
+</html>

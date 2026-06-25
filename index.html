@@ -1,0 +1,2172 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>m1lwh - магазин цифровых товаров</title>
+  <meta name="description" content="Витрина товаров от m1lwh – игры, услуги, аккаунты" />
+  <link rel="icon" type="image/png" href="assets/favicon.jpg">
+  <link rel="apple-touch-icon" href="assets/favicon.jpg">
+  <meta name="theme-color" content="#0a0a12">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,800;14..32,900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== ТЁМНАЯ ФИОЛЕТОВО-ЧЁРНАЯ ТЕМА ===== */
+    :root {
+      --bg-primary: #0a0a12;
+      --bg-glass: rgba(255,255,255,0.04);
+      --bg-glass-hover: rgba(255,255,255,0.08);
+      --border-glass: rgba(255,255,255,0.06);
+      --border-glass-strong: rgba(255,255,255,0.12);
+      --text-primary: #ece8f5;
+      --text-secondary: #b0a8c8;
+      --text-muted: #7a728a;
+      --accent-violet: #8b6fd4;
+      --accent-cyan: #30b5d0;
+      --accent-gradient: linear-gradient(135deg, var(--accent-violet), var(--accent-cyan));
+      --shadow-glass: 0 8px 32px rgba(0,0,0,0.7);
+      --radius-card: 20px;
+      --radius-btn: 60px;
+      --transition-smooth: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    body.light-theme {
+      --bg-primary: #18182a;
+      --bg-glass: rgba(255,255,255,0.08);
+      --bg-glass-hover: rgba(255,255,255,0.15);
+      --border-glass: rgba(255,255,255,0.12);
+      --border-glass-strong: rgba(255,255,255,0.2);
+      --text-primary: #ece8f5;
+      --text-secondary: #c8c0d8;
+      --text-muted: #9a92aa;
+      --accent-violet: #a082e8;
+      --accent-cyan: #50c8e0;
+      --shadow-glass: 0 8px 32px rgba(0,0,0,0.5);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family:'Inter',system-ui,sans-serif;
+      background: radial-gradient(ellipse at 20% 0%, rgba(139,111,212,0.12), transparent 60%),
+                  radial-gradient(ellipse at 90% 10%, rgba(48,181,208,0.08), transparent 55%),
+                  var(--bg-primary);
+      color:var(--text-primary);
+      line-height:1.6;
+      min-height:100vh;
+      padding:20px 0 0;
+      transition: background 0.3s, color 0.3s;
+    }
+    .container { max-width:1200px; margin:0 auto; padding:0 20px 40px; }
+
+    /* ===== ШАПКА ===== */
+    .header {
+      background:var(--bg-glass);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      border:1px solid var(--border-glass);
+      border-radius:var(--radius-card);
+      padding:20px 28px;
+      margin-bottom:32px;
+      box-shadow:var(--shadow-glass);
+      transition:var(--transition-smooth);
+    }
+    .header:hover { border-color:var(--border-glass-strong); }
+    .header-top {
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .brand { display:flex; align-items:center; gap:12px; }
+    .brand-icon { font-size:28px; font-weight:900; background:var(--accent-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .brand-name { font-size:24px; font-weight:900; letter-spacing:-0.5px; background:var(--accent-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .header-controls {
+      display:flex;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .badge-date {
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 16px;
+      border-radius:60px;
+      background:var(--bg-glass);
+      border:1px solid var(--border-glass);
+      font-size:13px;
+      color:var(--text-secondary);
+    }
+    .badge-date .dot {
+      width:8px; height:8px;
+      border-radius:50%;
+      background:var(--accent-gradient);
+      box-shadow:0 0 12px rgba(139,111,212,0.5);
+      animation:pulse-dot 2s infinite;
+    }
+    @keyframes pulse-dot { 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:0.6; transform:scale(0.9); } }
+    .lang-switch {
+      display:flex;
+      gap:4px;
+      background:var(--bg-glass);
+      border-radius:60px;
+      padding:4px;
+      border:1px solid var(--border-glass);
+    }
+    .lang-btn {
+      background:transparent;
+      border:none;
+      padding:6px 14px;
+      border-radius:60px;
+      font-size:13px;
+      font-weight:600;
+      color:var(--text-secondary);
+      cursor:pointer;
+      transition:var(--transition-smooth);
+    }
+    .lang-btn.active {
+      background:var(--accent-gradient);
+      color:#0a0a12;
+      box-shadow:0 4px 16px rgba(139,111,212,0.3);
+    }
+    .lang-btn:hover:not(.active) { background:var(--bg-glass-hover); }
+    .theme-toggle {
+      background:var(--bg-glass);
+      border:1px solid var(--border-glass);
+      border-radius:60px;
+      padding:6px 12px;
+      cursor:pointer;
+      color:var(--text-secondary);
+      font-size:18px;
+      transition:var(--transition-smooth);
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .theme-toggle:hover { background:var(--bg-glass-hover); }
+
+    /* === КНОПКА БОНУСА === */
+    .bonus-btn {
+      background:var(--accent-gradient);
+      border:none;
+      padding:8px 18px;
+      border-radius:60px;
+      font-weight:800;
+      font-size:14px;
+      color:#0a0a12;
+      cursor:pointer;
+      transition:var(--transition-smooth);
+      box-shadow:0 4px 16px rgba(139,111,212,0.3);
+      white-space:nowrap;
+    }
+    .bonus-btn:hover {
+      transform:scale(1.05);
+      box-shadow:0 6px 24px rgba(139,111,212,0.5);
+    }
+
+    .hero-section {
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:30px;
+      margin-top:18px;
+    }
+    .hero-text { flex:1 1 280px; }
+    .hero-text h1 {
+      font-size:34px;
+      font-weight:900;
+      letter-spacing:-0.5px;
+      margin-bottom:6px;
+      background:var(--accent-gradient);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      display:inline-block;
+      text-shadow:0 0 40px rgba(139,111,212,0.2);
+    }
+    .hero-text .sub { color:var(--text-secondary); font-size:16px; margin:0; }
+    .hero-text .highlight {
+      margin-top:8px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px 24px;
+      font-size:14px;
+      color:var(--text-muted);
+    }
+    .hero-text .highlight span { display:inline-flex; align-items:center; gap:6px; }
+    .hero-gif {
+      flex:0 0 120px;
+      text-align:center;
+      cursor:pointer;
+      transition:transform 0.2s;
+    }
+    .hero-gif:hover { transform:scale(1.05); }
+    .hero-gif img {
+      width:100%; max-width:140px; height:auto;
+      border-radius:16px;
+      box-shadow:0 0 40px rgba(139,111,212,0.25);
+      border:1px solid var(--border-glass);
+      transition:var(--transition-smooth);
+      pointer-events:none;
+    }
+
+    /* ===== ТАБЫ ===== */
+    .tabs {
+      display:flex;
+      gap:6px;
+      margin-bottom:28px;
+      border-bottom:1px solid var(--border-glass);
+      padding-bottom:4px;
+      flex-wrap:wrap;
+    }
+    .tab-btn {
+      background:transparent;
+      border:none;
+      padding:10px 22px;
+      border-radius:60px;
+      font-size:15px;
+      font-weight:700;
+      color:var(--text-secondary);
+      cursor:pointer;
+      transition:var(--transition-smooth);
+      position:relative;
+      white-space:nowrap;
+    }
+    .tab-btn:hover { background:var(--bg-glass); color:var(--text-primary); }
+    .tab-btn.active {
+      background:var(--accent-gradient);
+      color:#0a0a12;
+      box-shadow:0 4px 20px rgba(139,111,212,0.3);
+    }
+    .tab-btn.active::after {
+      content:'';
+      position:absolute;
+      bottom:-5px;
+      left:20%;
+      width:60%;
+      height:3px;
+      border-radius:10px;
+      background:var(--accent-gradient);
+    }
+
+    /* ===== ПАНЕЛЬ УПРАВЛЕНИЯ ===== */
+    .controls-bar {
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-bottom:24px;
+      align-items:center;
+      justify-content:space-between;
+      background:var(--bg-glass);
+      backdrop-filter:blur(8px);
+      border-radius:60px;
+      padding:6px 12px 6px 18px;
+      border:1px solid var(--border-glass);
+    }
+    .search-box {
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex:1 1 200px;
+    }
+    .search-box input {
+      flex:1;
+      padding:8px 12px;
+      border-radius:40px;
+      border:1px solid transparent;
+      background:var(--bg-glass);
+      color:var(--text-primary);
+      font-size:14px;
+      outline:none;
+      transition:var(--transition-smooth);
+      min-width:120px;
+    }
+    .search-box input:focus { border-color:var(--accent-violet); background:var(--bg-glass-hover); }
+    .search-box input::placeholder { color:var(--text-muted); }
+    .sort-select {
+      padding:8px 14px;
+      border-radius:40px;
+      border:1px solid transparent;
+      background:var(--bg-glass);
+      color:var(--text-primary);
+      font-size:14px;
+      font-weight:600;
+      outline:none;
+      cursor:pointer;
+      transition:var(--transition-smooth);
+    }
+    .sort-select:focus { border-color:var(--accent-violet); background:var(--bg-glass-hover); }
+    .sort-select option { background:var(--bg-primary); color:var(--text-primary); }
+
+    /* ===== СЕТКА ТОВАРОВ ===== */
+    .products-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+      gap:28px;
+      perspective: 1000px;
+    }
+
+    .product-card {
+      background:var(--bg-glass);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      border:1px solid var(--border-glass);
+      border-radius:var(--radius-card);
+      overflow:hidden;
+      box-shadow:var(--shadow-glass);
+      transition: transform 0.2s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      display:flex;
+      flex-direction:column;
+      position:relative;
+      transform-style: preserve-3d;
+      will-change: transform;
+      transform: rotateX(0deg) rotateY(0deg) scale(1);
+    }
+
+    .product-card:hover {
+      border-color:var(--border-glass-strong);
+      background:var(--bg-glass-hover);
+      box-shadow:0 20px 50px rgba(0,0,0,0.7);
+      transform: scale(1.02) rotateX(0deg) rotateY(0deg);
+    }
+
+    .product-card::before {
+      content:'';
+      position:absolute;
+      inset:0;
+      border-radius:var(--radius-card);
+      padding:1px;
+      background:var(--accent-gradient);
+      -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+      pointer-events:none;
+      opacity:0;
+      transition:opacity 0.4s;
+    }
+    .product-card:hover::before { opacity:0.6; }
+
+    .product-card img {
+      width:100%; height:170px;
+      object-fit:cover;
+      background:rgba(255,255,255,0.02);
+      border-bottom:1px solid var(--border-glass);
+      transition:var(--transition-smooth);
+    }
+    .product-card:hover img { transform:scale(1.02); }
+
+    .product-body { padding:16px 18px 20px; flex:1; display:flex; flex-direction:column; }
+    .product-body h3 { font-size:17px; font-weight:800; line-height:1.25; margin-bottom:4px; color:var(--text-primary); }
+    .product-body .price { font-size:22px; font-weight:900; color:var(--accent-cyan); margin:2px 0 6px; text-shadow:0 0 20px rgba(48,181,208,0.15); }
+    .product-body .short-desc { font-size:13px; color:var(--text-secondary); line-height:1.4; margin-bottom:12px; flex:1; word-break:break-word; }
+    .product-body .tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
+    .product-body .tags span { font-size:11px; font-weight:600; background:var(--bg-glass); padding:3px 12px; border-radius:40px; border:1px solid var(--border-glass); color:var(--text-secondary); text-transform:uppercase; letter-spacing:0.3px; }
+    .product-body .tags span.auto { background:rgba(48,181,208,0.12); border-color:rgba(48,181,208,0.25); color:var(--accent-cyan); }
+    .product-body .btn-group { display:flex; gap:8px; margin-top:auto; }
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      padding:10px 16px;
+      border-radius:var(--radius-btn);
+      font-weight:800;
+      font-size:13px;
+      text-decoration:none;
+      border:none;
+      cursor:pointer;
+      transition:var(--transition-smooth);
+      flex:1;
+      text-align:center;
+    }
+    .btn-outline { background:var(--bg-glass); border:1px solid var(--border-glass); color:var(--text-primary); }
+    .btn-outline:hover { background:var(--bg-glass-hover); border-color:var(--border-glass-strong); transform:scale(1.02); }
+    .btn-primary { background:var(--accent-gradient); color:#0a0a12; box-shadow:0 4px 20px rgba(139,111,212,0.25); }
+    .btn-primary:hover { transform:scale(1.04); box-shadow:0 6px 28px rgba(139,111,212,0.4); }
+
+    .product-card .popular-tag {
+      position:absolute;
+      top:12px;
+      right:12px;
+      background:var(--accent-gradient);
+      color:#0a0a12;
+      font-size:11px;
+      font-weight:900;
+      padding:4px 12px;
+      border-radius:40px;
+      box-shadow:0 4px 16px rgba(139,111,212,0.25);
+      z-index:2;
+      text-transform:uppercase;
+      letter-spacing:0.5px;
+    }
+
+    /* ===== МОДАЛЬНОЕ ОКНО (общее) ===== */
+    .modal-overlay {
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.85);
+      z-index:2000;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+    }
+    .modal-overlay.open { display:flex; }
+    .modal {
+      background: #12121e;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-card);
+      max-width: 700px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 32px 36px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.9);
+      position: relative;
+      margin: auto;
+      color: var(--text-primary);
+    }
+    .modal-close {
+      position:absolute;
+      top:16px;
+      right:22px;
+      font-size:32px;
+      background:none;
+      border:none;
+      color:var(--text-muted);
+      cursor:pointer;
+      transition:var(--transition-smooth);
+      line-height:1;
+    }
+    .modal-close:hover { color:var(--text-primary); transform:rotate(90deg); }
+    .modal h2 { font-size:26px; font-weight:900; margin:0 0 4px; padding-right:30px; color: #f0ecf5; }
+    .modal-price { font-size:28px; font-weight:900; color:var(--accent-cyan); margin-bottom:12px; text-shadow:0 0 20px rgba(48,181,208,0.15); }
+    .modal-meta { display:flex; flex-wrap:wrap; gap:8px 20px; font-size:14px; color:var(--text-secondary); margin-bottom:16px; }
+    .modal-meta b { color:var(--text-primary); }
+    .modal-full-desc {
+      font-size:15px;
+      line-height:1.7;
+      color:#c8c4d0;
+      white-space:pre-wrap;
+      word-break:break-word;
+      margin:12px 0 24px;
+      background:rgba(255,255,255,0.04);
+      padding:16px 20px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.05);
+    }
+    .btn-big {
+      display:block;
+      width:100%;
+      padding:16px;
+      font-size:20px;
+      font-weight:900;
+      text-align:center;
+      border-radius:var(--radius-btn);
+      background:var(--accent-gradient);
+      color:#0a0a12;
+      text-decoration:none;
+      box-shadow:0 6px 30px rgba(139,111,212,0.3);
+      transition:var(--transition-smooth);
+      border:none;
+      cursor:pointer;
+    }
+    .btn-big:hover { transform:scale(1.02); box-shadow:0 8px 40px rgba(139,111,212,0.45); }
+    .btn-big.pulse { animation:pulse-buy 2s infinite; }
+    @keyframes pulse-buy { 0%,100%{box-shadow:0 6px 30px rgba(139,111,212,0.3);} 50%{box-shadow:0 6px 50px rgba(139,111,212,0.5);} }
+
+    /* ===== ОТЗЫВЫ ===== */
+    .reviews-list { display:grid; gap:18px; }
+    .review-item {
+      background:var(--bg-glass);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      border:1px solid var(--border-glass);
+      border-radius:16px;
+      padding:18px 22px;
+      transition:var(--transition-smooth);
+    }
+    .review-item:hover { border-color:var(--border-glass-strong); background:var(--bg-glass-hover); transform:translateY(-2px); }
+    .review-header { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 16px; margin-bottom:4px; }
+    .review-header .name { font-weight:800; font-size:15px; color:var(--text-primary); }
+    .review-header .name a { color:var(--accent-cyan); text-decoration:none; }
+    .review-header .name a:hover { text-decoration:underline; }
+    .review-header .order { color:var(--text-muted); font-size:13px; }
+    .review-header .order a { color:var(--text-muted); text-decoration:none; }
+    .review-header .order a:hover { color:var(--accent-cyan); }
+    .review-header .date { color:var(--text-muted); font-size:12px; }
+    .review-header .game { color:var(--accent-cyan); font-size:13px; font-weight:600; }
+    .review-text { font-size:14px; color:var(--text-secondary); margin:4px 0 8px; }
+    .review-answer { font-size:13px; color:var(--text-muted); border-left:3px solid var(--accent-violet); padding-left:14px; margin-top:6px; background:var(--bg-glass); border-radius:0 8px 8px 0; padding:6px 14px; }
+    .more-link { display:inline-block; margin-top:20px; font-weight:800; color:var(--accent-cyan); text-decoration:none; border-bottom:2px solid transparent; transition:var(--transition-smooth); }
+    .more-link:hover { border-bottom-color:var(--accent-cyan); opacity:0.8; }
+
+    /* ===== FAQ ===== */
+    .faq-section { margin-top:48px; }
+    .faq-title { font-size:24px; font-weight:900; margin-bottom:20px; background:var(--accent-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .faq-item {
+      background:var(--bg-glass);
+      border:1px solid var(--border-glass);
+      border-radius:14px;
+      margin-bottom:12px;
+      overflow:hidden;
+      transition:var(--transition-smooth);
+    }
+    .faq-item:hover { border-color:var(--border-glass-strong); }
+    .faq-question {
+      width:100%;
+      padding:16px 20px;
+      background:transparent;
+      border:none;
+      color:var(--text-primary);
+      font-weight:700;
+      font-size:16px;
+      text-align:left;
+      cursor:pointer;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      transition:var(--transition-smooth);
+    }
+    .faq-question:hover { background:var(--bg-glass-hover); }
+    .faq-question .arrow { transition:transform 0.3s; font-size:18px; }
+    .faq-item.open .faq-question .arrow { transform:rotate(180deg); }
+    .faq-answer { padding:0 20px 16px; color:var(--text-secondary); font-size:15px; line-height:1.6; display:none; }
+    .faq-item.open .faq-answer { display:block; }
+
+    /* ===== СЕКЦИЯ "СВЯЗЬ" ===== */
+    .contacts-section {
+      margin-top:48px;
+      padding:24px 0;
+      border-top:1px solid var(--border-glass);
+      border-bottom:1px solid var(--border-glass);
+    }
+    .contacts-title {
+      font-size:24px;
+      font-weight:900;
+      margin-bottom:16px;
+      background:var(--accent-gradient);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      display:inline-block;
+    }
+    .contacts-grid {
+      display:flex;
+      flex-wrap:wrap;
+      gap:24px 40px;
+      align-items:center;
+    }
+    .contact-item {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:16px;
+      color:var(--text-secondary);
+    }
+    .contact-item .icon {
+      font-size:28px;
+      width:36px;
+      text-align:center;
+    }
+    .contact-item a {
+      color:var(--accent-cyan);
+      text-decoration:none;
+      font-weight:600;
+      transition:color 0.3s;
+    }
+    .contact-item a:hover {
+      color:var(--accent-violet);
+      text-decoration:underline;
+    }
+
+    /* ===== ФУТЕР ===== */
+    .footer {
+      margin-top:48px;
+      padding-top:24px;
+      border-top:1px solid var(--border-glass);
+      text-align:center;
+      color:var(--text-muted);
+      font-size:14px;
+    }
+    .footer strong { background:var(--accent-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+    /* ===== АНИМАЦИИ ===== */
+    .product-card {
+      animation:cardAppear 0.6s ease backwards;
+    }
+    .product-card:nth-child(1) { animation-delay:0.05s; }
+    .product-card:nth-child(2) { animation-delay:0.10s; }
+    .product-card:nth-child(3) { animation-delay:0.15s; }
+    .product-card:nth-child(4) { animation-delay:0.20s; }
+    .product-card:nth-child(5) { animation-delay:0.25s; }
+    .product-card:nth-child(6) { animation-delay:0.30s; }
+    .product-card:nth-child(7) { animation-delay:0.35s; }
+    .product-card:nth-child(8) { animation-delay:0.40s; }
+    .product-card:nth-child(9) { animation-delay:0.45s; }
+    .product-card:nth-child(10) { animation-delay:0.50s; }
+    .product-card:nth-child(11) { animation-delay:0.55s; }
+    .product-card:nth-child(12) { animation-delay:0.60s; }
+    .product-card:nth-child(13) { animation-delay:0.65s; }
+    .product-card:nth-child(14) { animation-delay:0.70s; }
+    .product-card:nth-child(15) { animation-delay:0.75s; }
+    @keyframes cardAppear { from{opacity:0;transform:translateY(30px) scale(0.96);} to{opacity:1;transform:translateY(0) scale(1);} }
+
+    .product-card::after {
+      content:'';
+      position:absolute;
+      top:-50%;
+      left:-50%;
+      width:200%;
+      height:200%;
+      background:radial-gradient(circle at 30% 40%, rgba(255,255,255,0.03), transparent 70%);
+      pointer-events:none;
+      opacity:0;
+      transition:opacity 0.6s;
+    }
+    .product-card:hover::after { opacity:1; }
+
+    .modal::-webkit-scrollbar { width:6px; }
+    .modal::-webkit-scrollbar-track { background:transparent; }
+    .modal::-webkit-scrollbar-thumb { background:var(--accent-violet); border-radius:10px; }
+    .modal::-webkit-scrollbar-thumb:hover { background:var(--accent-cyan); }
+
+    @media (max-width:768px) {
+      .header { padding:16px; }
+      .hero-text h1 { font-size:26px; }
+      .hero-gif { flex-basis:80px; }
+      .products-grid { grid-template-columns:1fr 1fr; gap:16px; }
+      .modal { padding:24px; margin:10px; }
+      .controls-bar { flex-direction:column; align-items:stretch; padding:12px; border-radius:20px; }
+      .search-box { flex:1; }
+      .header-controls { gap:8px; }
+      .bonus-btn { font-size:12px; padding:6px 14px; }
+    }
+    @media (max-width:480px) {
+      .products-grid { grid-template-columns:1fr; }
+      .tabs { gap:4px; }
+      .tab-btn { font-size:13px; padding:6px 14px; }
+      .brand-name { font-size:18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ===== ШАПКА ===== -->
+    <header class="header">
+      <div class="header-top">
+        <div class="brand">
+          <span class="brand-icon">⚡</span>
+          <span class="brand-name">m1lwh</span>
+        </div>
+        <div class="header-controls">
+          <div class="badge-date">
+            <span class="dot"></span>
+            <span data-lang-ru="Обновлено: 25 июня 2026" data-lang-en="Updated: June 25, 2026" class="lang-text">Обновлено: 25 июня 2026</span>
+          </div>
+          <div class="lang-switch">
+            <button class="lang-btn active" data-lang="ru">RU</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+          </div>
+          <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+            <span id="themeIcon">🌙</span>
+          </button>
+          <!-- КНОПКА БОНУСА -->
+          <button class="bonus-btn" id="bonusBtn">🎁 Бонус за отзыв</button>
+        </div>
+      </div>
+      <div class="hero-section">
+        <div class="hero-text">
+          <h1 data-lang-ru="✨ ВСЕ МОИ ТОВАРЫ" data-lang-en="✨ ALL MY PRODUCTS" class="lang-text">✨ ВСЕ МОИ ТОВАРЫ</h1>
+          <p class="sub lang-text" data-lang-ru="Качественные услуги и товары для игр и не только" data-lang-en="Quality services and products for gaming and beyond">Качественные услуги и товары для игр и не только</p>
+          <p class="sub" style="font-weight:700; font-size:1.1rem; margin-top:4px;">
+            <span data-lang-ru="Можно приобрести только на " data-lang-en="Can be purchased only on " class="lang-text">Можно приобрести только на </span>
+            <a href="https://funpay.com/users/14391063/" target="_blank" rel="noopener" style="color: var(--accent-cyan); text-decoration: underline; font-weight:800;">FUNPAY</a>
+            <span data-lang-ru=" (клик)" data-lang-en=" (click)" class="lang-text"> (клик)</span>
+          </p>
+          <div class="highlight">
+            <span data-lang-ru="💎 Низкие цены" data-lang-en="💎 Low prices" class="lang-text">💎 Низкие цены</span>
+            <span data-lang-ru="⚡ Быстрая доставка" data-lang-en="⚡ Fast delivery" class="lang-text">⚡ Быстрая доставка</span>
+            <span data-lang-ru="💬 Отзывы покупателей" data-lang-en="💬 Customer reviews" class="lang-text">💬 Отзывы покупателей</span>
+            <span data-lang-ru="🛡️ Безопасно" data-lang-en="🛡️ Secure" class="lang-text">🛡️ Безопасно</span>
+          </div>
+        </div>
+        <div class="hero-gif" id="heroGif">
+          <img src="assets/hero.gif" alt="m1lwh" loading="lazy">
+        </div>
+      </div>
+    </header>
+
+    <!-- ===== ТАБЫ (без "Тайны") ===== -->
+    <nav class="tabs" role="tablist">
+      <button class="tab-btn active" data-tab="popular" role="tab">
+        <span data-lang-ru="⭐ Популярное" data-lang-en="⭐ Popular" class="lang-text">⭐ Популярное</span>
+      </button>
+      <button class="tab-btn" data-tab="all" role="tab">
+        <span data-lang-ru="📦 Все товары" data-lang-en="📦 All products" class="lang-text">📦 Все товары</span>
+      </button>
+      <button class="tab-btn" data-tab="reviews" role="tab">
+        <span data-lang-ru="💬 Отзывы" data-lang-en="💬 Reviews" class="lang-text">💬 Отзывы</span>
+      </button>
+      <button class="tab-btn" data-tab="faq" role="tab">
+        <span data-lang-ru="❓ FAQ" data-lang-en="❓ FAQ" class="lang-text">❓ FAQ</span>
+      </button>
+    </nav>
+
+    <!-- ===== КОНТЕЙНЕРЫ ТАБОВ ===== -->
+    <div id="tab-popular" class="tab-content active" role="tabpanel">
+      <div class="controls-bar">
+        <div class="search-box">
+          <input type="text" id="searchInput" data-lang-ru-placeholder="Поиск товаров..." data-lang-en-placeholder="Search products..." placeholder="Поиск товаров...">
+        </div>
+        <select class="sort-select" id="sortSelect">
+          <option value="default" data-lang-ru="По умолчанию" data-lang-en="Default" class="lang-text">По умолчанию</option>
+          <option value="price-asc" data-lang-ru="Цена ↑ (дешёвые)" data-lang-en="Price ↑ (cheap)" class="lang-text">Цена ↑ (дешёвые)</option>
+          <option value="price-desc" data-lang-ru="Цена ↓ (дорогие)" data-lang-en="Price ↓ (expensive)" class="lang-text">Цена ↓ (дорогие)</option>
+        </select>
+      </div>
+      <div class="products-grid" id="popular-grid"></div>
+    </div>
+
+    <div id="tab-all" class="tab-content" role="tabpanel">
+      <div class="controls-bar">
+        <div class="search-box">
+          <input type="text" id="searchInputAll" data-lang-ru-placeholder="Поиск товаров..." data-lang-en-placeholder="Search products..." placeholder="Поиск товаров...">
+        </div>
+        <select class="sort-select" id="sortSelectAll">
+          <option value="default" data-lang-ru="По умолчанию" data-lang-en="Default" class="lang-text">По умолчанию</option>
+          <option value="price-asc" data-lang-ru="Цена ↑ (дешёвые)" data-lang-en="Price ↑ (cheap)" class="lang-text">Цена ↑ (дешёвые)</option>
+          <option value="price-desc" data-lang-ru="Цена ↓ (дорогие)" data-lang-en="Price ↓ (expensive)" class="lang-text">Цена ↓ (дорогие)</option>
+        </select>
+      </div>
+      <div class="products-grid" id="all-grid"></div>
+    </div>
+
+    <div id="tab-reviews" class="tab-content" role="tabpanel">
+      <div class="reviews-list" id="reviews-container"></div>
+      <a href="https://funpay.com/users/14391063/" target="_blank" rel="noopener" class="more-link">
+        <span data-lang-ru="👉 Все отзывы на FunPay" data-lang-en="👉 All reviews on FunPay" class="lang-text">👉 Все отзывы на FunPay</span>
+      </a>
+    </div>
+
+    <div id="tab-faq" class="tab-content" role="tabpanel">
+      <div class="faq-section">
+        <div class="faq-title lang-text" data-lang-ru="❓ Часто задаваемые вопросы" data-lang-en="❓ Frequently Asked Questions">❓ Часто задаваемые вопросы</div>
+        <div class="faq-list" id="faqContainer"></div>
+      </div>
+    </div>
+
+    <!-- ===== МОДАЛЬНОЕ ОКНО (для товара) ===== -->
+    <div class="modal-overlay" id="modal">
+      <div class="modal">
+        <button class="modal-close" id="modal-close" aria-label="Закрыть">&times;</button>
+        <h2 id="modal-title"></h2>
+        <div class="modal-price" id="modal-price"></div>
+        <div class="modal-meta" id="modal-meta"></div>
+        <div class="modal-full-desc" id="modal-desc"></div>
+        <a href="https://funpay.com/users/14391063/" target="_blank" rel="noopener" class="btn-big pulse">
+          <span data-lang-ru="🔥 КУПИТЬ" data-lang-en="🔥 BUY" class="lang-text">🔥 КУПИТЬ</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ===== МОДАЛЬНОЕ ОКНО ДЛЯ БОНУСА ===== -->
+    <div class="modal-overlay" id="bonusModal">
+      <div class="modal" style="max-width: 420px;">
+        <button class="modal-close" id="bonusModalClose">&times;</button>
+        <h2 style="margin-bottom: 12px;">🎁 Бонус за отзыв</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 16px;">
+          Введите секретный ключ, который вы получили за отзыв:
+        </p>
+        <input type="text" id="bonusKeyInput" placeholder="Введите ключ..." style="
+          width: 100%;
+          padding: 12px 16px;
+          border-radius: 40px;
+          border: 1px solid var(--border-glass);
+          background: var(--bg-glass);
+          color: var(--text-primary);
+          font-size: 16px;
+          outline: none;
+          margin-bottom: 16px;
+        ">
+        <button id="bonusCheckBtn" class="btn-big" style="font-size: 16px; padding: 12px;">
+          🔓 Проверить
+        </button>
+        <p id="bonusMessage" style="margin-top: 12px; font-weight: 700; text-align: center;"></p>
+      </div>
+    </div>
+
+    <!-- ===== СЕКЦИЯ "СВЯЗЬ" ===== -->
+    <section class="contacts-section">
+      <div class="contacts-title">📞 Связь</div>
+      <div class="contacts-grid">
+        <div class="contact-item">
+          <span class="icon">💬</span>
+          <span>Discord: <a href="https://discord.com/users/m1lwh_tvink" target="_blank">m1lwh_tvink</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="icon">✈️</span>
+          <span>Telegram: <a href="https://t.me/m1lwh" target="_blank">@m1lwh</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="icon">🎮</span>
+          <span>Steam: <a href="https://steamcommunity.com/profiles/76561199688363949/" target="_blank">m1lwh</a></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ФУТЕР ===== -->
+    <footer class="footer">
+      &copy; 2026 <strong>m1lwh</strong>
+      <span data-lang-ru="— все права защищены" data-lang-en="— all rights reserved" class="lang-text">— все права защищены</span>
+    </footer>
+  </div>
+
+  <script>
+    // ============================================================
+    // ДАННЫЕ ТОВАРОВ — с расширенными описаниями
+    // ============================================================
+    const productsData = [
+      {
+        id: 'timmeit',
+        name: { ru: '🐷 Тиммейт на 1,5 часа + 30 мин бесплатно', en: '🐷 Teammate for 1.5h + 30min free' },
+        price: 5,
+        image: 'Timmeyt.jpg',
+        shortDesc: { ru: '🐷тиммейт на 1,5 часов🐖 🖤100 лвл🖤 💜играю с 2019💜 🥔можно бесплатно + 30 минут🥔', en: '🐷Teammate for 1.5h🐖 🖤100 lvl🖤 💜playing since 2019💜 🥔free +30min🥔' },
+        fullDesc: {
+          ru: `🐷 ТИММЕЙТ НА 1,5 ЧАСА + 30 МИНУТ БЕСПЛАТНО! 🐷
+
+💎 Что вы получаете:
+✅ Полноценный тиммейт на 1,5 часа игры в Roblox.
+✅ Бонусом — 30 минут бесплатно, если понравится играть вместе.
+✅ Мой аккаунт — 100+ уровень, играю с 2019 года, знаю все тонкости.
+✅ Поддержка в любой игре Roblox: от Adopt Me до Tower Defense Simulator.
+✅ Быстрая связь, дружелюбное общение, помощь в прохождении сложных этапов.
+
+🛡️ Гарантии:
+🔹 Возврат средств, если я не справлюсь с задачей или не уложусь во время.
+🔹 Полная конфиденциальность — никаких данных вашего аккаунта не требуется.
+
+🎯 Почему я?
+- Опыт игры с 2019 года.
+- Положительные отзывы от множества клиентов.
+- Индивидуальный подход к каждому заказу.
+- Гибкость — могу подстроиться под ваше расписание.
+
+💬 Просто выберите игру, время — и я с вами!`,
+          en: `🐷 TEAMMATE FOR 1.5 HOURS + 30 MINUTES FREE! 🐷
+
+💎 What you get:
+✅ Full teammate for 1.5 hours in Roblox.
+✅ Bonus — 30 minutes free if you enjoy playing together.
+✅ My account — 100+ level, playing since 2019, know all the tricks.
+✅ Support in any Roblox game: from Adopt Me to Tower Defense Simulator.
+✅ Fast communication, friendly chat, help with difficult stages.
+
+🛡️ Guarantees:
+🔹 Refund if I can't complete the task or don't make it in time.
+🔹 Full confidentiality — no account data required.
+
+🎯 Why me?
+- Experience since 2019.
+- Positive reviews from many clients.
+- Individual approach to each order.
+- Flexibility — can adapt to your schedule.
+
+💬 Just choose the game and time — and I'm with you!`
+        },
+        platform: 'PC',
+        type: { ru: 'Прочее', en: 'Other' },
+        stock: '∞',
+        autoDelivery: false,
+        popular: false
+      },
+      {
+        id: 'amongusboost',
+        name: { ru: '⚡ ПРОКАЧКА АККАУНТА Among Us до любого уровня', en: '⚡ Among Us account boost to any level' },
+        price: 1,
+        image: 'amongUsProkachka.jpg',
+        shortDesc: { ru: '⚡️ПРОКАЧКА АККАУНТА ДО ЛЮБОГО ЛВЛ!⚡️', en: '⚡️ACCOUNT BOOST TO ANY LEVEL!⚡️' },
+        fullDesc: {
+          ru: `⚡ ПРОКАЧКА АККАУНТА AMONG US ДО ЛЮБОГО УРОВНЯ! ⚡
+
+🔥 Хотите поднять уровень в Among Us быстро и безопасно? Я помогу!
+
+🔹 Как работает:
+1. Вы указываете желаемый уровень (до 100).
+2. Я выполняю прокачку на вашем аккаунте.
+3. Использую только легальные методы — без риска бана.
+4. Срок выполнения: от 1 до 14 дней (зависит от текущего уровня).
+
+💰 Цена: 1 рубль за 1 уровень (минимум — заказ от 10 уровней).
+
+✅ Преимущества:
+- Steam-аккаунт не требуется — работаю через мобильную версию или эмулятор.
+- Полная анонимность.
+- Можно отслеживать прогресс в реальном времени.
+
+⚠️ Важно: аккаунт должен быть на вашей почте — я не запрашиваю пароль, только никнейм для добавления в друзья.
+
+📩 Связь через Discord после оплаты.`,
+          en: `⚡ AMONG US ACCOUNT BOOST TO ANY LEVEL! ⚡
+
+🔥 Want to level up your Among Us account fast and safe? I'll help!
+
+🔹 How it works:
+1. You specify the desired level (up to 100).
+2. I boost your account.
+3. Only legal methods — no ban risk.
+4. Time: 1 to 14 days (depends on current level).
+
+💰 Price: 1 rub per level (minimum order — 10 levels).
+
+✅ Advantages:
+- No Steam account needed — works via mobile or emulator.
+- Fully anonymous.
+- Real-time progress tracking.
+
+⚠️ Important: account must be on your email — I don't ask for password, only nickname for adding as friend.
+
+📩 Contact via Discord after payment.`
+        },
+        platform: 'PC',
+        type: { ru: 'Прочее', en: 'Other' },
+        stock: '∞',
+        autoDelivery: false,
+        popular: false
+      },
+      {
+        id: 'brawlacc',
+        name: { ru: '🏆 Аккаунт Brawl Stars 21.4K кубков', en: '🏆 Brawl Stars account 21.4K trophies' },
+        price: 695,
+        image: 'brawlaccaunt.jpg',
+        shortDesc: { ru: '✅СМЕНА ПОЧТЫ✅🏆21.4K🏆🥷74/103🥷👻110+ СКИНОВ🟢17K БЛИНГОВ⚡6 ГИПЕРОВ⭐9 ПРАЙМОВ🔥10×11 LVL💎СМЕНА ПОЧТЫ✅', en: '✅EMAIL CHANGE✅🏆21.4K🏆🥷74/103🥷👻110+ SKINS🟢17K BLING⚡6 HYPER⭐9 PRIME🔥10×11 LVL💎EMAIL CHANGE✅' },
+        fullDesc: {
+          ru: `🏆 ПРОДАМ ЛИЧНЫЙ АККАУНТ BRAWL STARS — 21 402 КУБКА! 🏆
+
+🔥 Отличный аккаунт для старта или продолжения игры!
+
+📊 Характеристики:
+- 🏆 Кубки: 21 402
+- 👊 Бойцы: 74 из 103
+- 👻 Скины: 50+ (включая эксклюзивные)
+- ⭐ Праймы: 9 (Эдгар, Лили, Леон, Транк, Биби, Вольт, Спайк, Шейд, Сириус)
+- ⚡ Гиперзаряды: 6
+- 💎 Блинги: 17 031 • Монеты: 5 698 • Гемы: 83
+- ⭐ Прокачка: 10×11 ур. (6 с гипером), 3×10 ур., 6×9 ур.
+- 🏅 Победы: 1135 (Столкновение) • 1180 (3×3)
+- 🥈 Серебряная лига
+- 🎟️ Brawl Pass: 53 ур. (текущий сезон: 1 ур.)
+- 📅 Аккаунт создан в 2023 году.
+
+💎 Плюсы:
+✅ Полная смена почты — аккаунт становится вашим навсегда.
+✅ Подробные скриншоты всех характеристик в ЛС.
+✅ Передаю все данные: логин, пароль, код восстановления.
+✅ Быстрая сделка — после оплаты вы получаете доступ в течение 10 минут.
+
+🚫 Возврат не предусмотрен после передачи данных (всё честно, вы видите аккаунт до покупки).
+
+💬 Связь через FunPay или Discord.`,
+          en: `🏆 SELLING PERSONAL BRAWL STARS ACCOUNT — 21,402 TROPHIES! 🏆
+
+🔥 Great account for starting or continuing the game!
+
+📊 Stats:
+- 🏆 Trophies: 21,402
+- 👊 Brawlers: 74 out of 103
+- 👻 Skins: 50+ (including exclusive)
+- ⭐ Primes: 9 (Edgar, Lily, Leon, Trunk, Bibi, Volt, Spike, Shade, Sirius)
+- ⚡ Hypercharges: 6
+- 💎 Bling: 17,031 • Coins: 5,698 • Gems: 83
+- ⭐ Leveling: 10×11 lvl (6 with hyper), 3×10 lvl, 6×9 lvl
+- 🏅 Wins: 1135 (Showdown) • 1180 (3v3)
+- 🥈 Silver league
+- 🎟️ Brawl Pass: 53 lvl (current season: 1 lvl)
+- 📅 Account created in 2023.
+
+💎 Advantages:
+✅ Full email change — account becomes yours forever.
+✅ Detailed screenshots in DM.
+✅ I provide all data: login, password, recovery code.
+✅ Fast deal — after payment you get access within 10 minutes.
+
+🚫 No refund after data transfer (everything is fair, you see the account before purchase).
+
+💬 Contact via FunPay or Discord.`
+        },
+        platform: 'Mobile',
+        type: { ru: 'Аккаунты', en: 'Accounts' },
+        stock: '1 шт.',
+        autoDelivery: false,
+        popular: false
+      },
+      {
+        id: 'metrorent',
+        name: { ru: '🎮 Аренда Metro 2033 Redux (6ч + 1ч за отзыв)', en: '🎮 Metro 2033 Redux rental (6h +1h for review)' },
+        price: 5,
+        image: 'metroArenda.jpg',
+        shortDesc: { ru: '⚡Автовыдача✅ Metro 2033 Redux ⭐ СВОБОДНО ⭐ Аренда на 6 часов ⭐ОНЛАЙН⭐STEAM⭐+ 1 ЧАС ЗА ОТЗЫВ🎁', en: '⚡Auto delivery✅ Metro 2033 Redux ⭐ AVAILABLE ⭐ 6h rental ⭐ONLINE⭐STEAM⭐+1h FOR REVIEW🎁' },
+        fullDesc: {
+          ru: `🎮 АРЕНДА АККАУНТА METRO 2033 REDUX — 6 ЧАСОВ + 1 ЧАС ЗА ОТЗЫВ! 🎮
+
+🔥 Играйте в культовый шутер Metro 2033 Redux без покупки лицензии!
+
+⚡️ Автоматическая выдача сразу после оплаты.
+🔥 Steam Guard код выдаётся ботом мгновенно — без ожидания.
+🌏 Аккаунт онлайн — это не оффлайн активация, вы играете на реальном аккаунте.
+🔎 Круглосуточная техподдержка.
+🎁 Бонус: +1 час к аренде за отзыв, оставленный в течение аренды.
+
+📊 Особенности:
+- Аккаунты всегда свободны, если лот активен.
+- Аккаунт только ваш на время аренды.
+- Время отсчитывается с момента получения логина и пароля.
+
+🛒 При покупке нескольких штук время умножается (6ч × кол-во).
+📦 Для нескольких аккаунтов оплачивайте отдельными заказами.
+
+🤖 Всё полностью автоматически 24/7.
+
+💬 Если возникли вопросы — пишите в поддержку.`,
+          en: `🎮 RENTAL OF METRO 2033 REDUX ACCOUNT — 6 HOURS + 1 HOUR FOR REVIEW! 🎮
+
+🔥 Play the iconic shooter Metro 2033 Redux without buying a license!
+
+⚡️ Automatic delivery immediately after payment.
+🔥 Steam Guard code issued instantly by bot — no waiting.
+🌏 Account online — not offline activation, you play on a real account.
+🔎 24/7 technical support.
+🎁 Bonus: +1 hour of rental for a review left during the rental.
+
+📊 Features:
+- Accounts are always free if the lot is active.
+- Account is yours for the rental time.
+- Time starts from receiving login and password.
+
+🛒 When buying multiple, time multiplies (6h × quantity).
+📦 For multiple accounts, pay separately.
+
+🤖 Fully automatic 24/7.
+
+💬 If you have questions — write to support.`
+        },
+        platform: 'PC',
+        type: { ru: 'Аренда', en: 'Rental' },
+        stock: '1 шт.',
+        autoDelivery: true,
+        popular: false
+      },
+      {
+        id: 'venuscfg',
+        name: { ru: '💝 ЛУЧШИЙ КОНФИГ ДЛЯ VENUSWARE 1.16.5 (Funtime)', en: '💝 BEST CONFIG FOR VENUSWARE 1.16.5 (Funtime)' },
+        price: 1,
+        image: 'VenusCFG.jpg',
+        shortDesc: { ru: '💝ЛУЧШИЙ КОНФИГ ДЛЯ 🥵VENUSWARE🥵 1.16.5 😎FUNTIME😎', en: '💝BEST CONFIG FOR 🥵VENUSWARE🥵 1.16.5 😎FUNTIME😎' },
+        fullDesc: {
+          ru: `💝 ЛУЧШИЙ КОНФИГ ДЛЯ VENUSWARE 1.16.5 (FUNTIME) 💝
+
+🔥 Специально для сервера Funtime и других проектов 1.16.5!
+
+💜 Гибкая настройка: цветовую схему можно менять прямо в меню.
+
+⚔️ Возможности:
+- PvP / Дуэли / Анархия — всё настроено под разные режимы.
+- Legit настройки — выглядят как игра обычного игрока.
+- KillAura с оптимизацией под Funtime.
+- AutoTotem — автоматическая активация тотема.
+- InventoryMove — перемещение предметов без замедления.
+- ESP / Tracers — визуальное выделение игроков.
+- TargetESP — фокус на ближайшем противнике.
+- Красивые визуалы и высокая производительность.
+
+💖 Сделан специально для Funtime, но подходит и для других серверов 1.16.5.
+💖 Комфортная игра без лагов благодаря оптимизации.
+💖 Красивый интерфейс с анимациями.
+
+📦 В комплекте:
+- Конфиг (готовый к использованию).
+- Инструкция по установке.
+- Помощь с установкой (я всегда на связи).
+
+❗ Только для VENUSWARE версии 1.16.5.
+
+💬 После оплаты вы получите ссылку на скачивание в личные сообщения.`,
+          en: `💝 BEST CONFIG FOR VENUSWARE 1.16.5 (FUNTIME) 💝
+
+🔥 Specially for Funtime server and other 1.16.5 projects!
+
+💜 Flexible settings: color scheme can be changed in menu.
+
+⚔️ Features:
+- PvP / Duels / Anarchy — configured for different modes.
+- Legit settings — looks like normal player.
+- KillAura optimized for Funtime.
+- AutoTotem — automatic totem activation.
+- InventoryMove — move items without slowdown.
+- ESP / Tracers — visual highlighting of players.
+- TargetESP — focus on nearest enemy.
+- Beautiful visuals and high performance.
+
+💖 Made specifically for Funtime, but works on other 1.16.5 servers too.
+💖 Comfortable lag-free gameplay.
+💖 Beautiful interface with animations.
+
+📦 Included:
+- Config (ready to use).
+- Installation instructions.
+- Installation help (I'm always available).
+
+❗ Only for VENUSWARE version 1.16.5.
+
+💬 After payment you will receive a download link in DM.`
+        },
+        platform: 'PC',
+        type: { ru: 'Конфиги', en: 'Configs' },
+        stock: '∞',
+        autoDelivery: true,
+        popular: false
+      },
+      {
+        id: 'mc_timmeit',
+        name: { ru: '⛏️ Тиммейт в Minecraft (1,5 ч + 30 мин)', en: '⛏️ Minecraft teammate (1.5h + 30min)' },
+        price: 4,
+        image: 'minecraftTimmeyt.jpg',
+        shortDesc: { ru: 'Тиммейт на 1,5 час дешево', en: 'Teammate for 1.5h cheap' },
+        fullDesc: {
+          ru: `⛏️ ТИММЕЙТ В MINECRAFT — 1,5 ЧАСА + 30 МИНУТ БЕСПЛАТНО! ⛏️
+
+🐷 Дружный и опытный игрок поможет вам в любых приключениях!
+
+💎 Что я предлагаю:
+✅ Совместная игра на любом сервере (выживание, мини-игры, строительство).
+✅ Помощь в добыче ресурсов, строительстве, прохождении данжей.
+✅ Бонус: +30 минут бесплатно, если вам понравится играть вместе.
+✅ Опыт игры более 5 лет — знаю все механики.
+
+🛡️ Гарантии:
+🔹 Возврат средств, если я не выполню обещанное.
+🔹 Полная конфиденциальность — вы играете со мной без передачи аккаунта.
+
+🎯 Для кого:
+- Игроки, которым скучно играть в одиночку.
+- Те, кто хочет быстрее пройти сложные этапы.
+- Любители весёлого общения в игре.
+
+💬 Выбирайте сервер и время — я подстроюсь под вас!`,
+          en: `⛏️ MINECRAFT TEAMMATE — 1.5 HOURS + 30 MINUTES FREE! ⛏️
+
+🐷 Friendly and experienced player will help you in any adventures!
+
+💎 What I offer:
+✅ Co-op on any server (survival, minigames, building).
+✅ Help with resource gathering, building, dungeon runs.
+✅ Bonus: +30 minutes free if you enjoy playing together.
+✅ Over 5 years of experience — know all mechanics.
+
+🛡️ Guarantees:
+🔹 Refund if I don't deliver.
+🔹 Full confidentiality — you play with me without account sharing.
+
+🎯 For whom:
+- Players who are bored playing alone.
+- Those who want to progress faster.
+- Lovers of fun in-game chat.
+
+💬 Choose the server and time — I'll adapt to you!`
+        },
+        platform: 'PC / Mobile',
+        type: { ru: 'Прочее', en: 'Other' },
+        stock: '100 шт.',
+        autoDelivery: false,
+        popular: false
+      },
+      {
+        id: 'mc_pvp_sborka',
+        name: { ru: '💫 ЛУЧШАЯ СБОРКА МОДОВ 1.16.5 (FPS + плавность)', en: '💫 BEST MODPACK 1.16.5 (FPS + smoothness)' },
+        price: 2,
+        image: 'MinecraftPVPsborka.jpg',
+        shortDesc: { ru: '💫ЛУЧШАЯ СБОРКА💫 PRIVATE СБОРКА МОДОВ НА 1.16.5🔱САМЫЙ ЛУЧШАЯ ПОД 💮FUNTIME и Другие Сервера💮', en: '💫BEST MODPACK💫 PRIVATE MOD COLLECTION FOR 1.16.5🔱BEST FOR 💮FUNTIME and Other Servers💮' },
+        fullDesc: {
+          ru: `💫 ЛУЧШАЯ СБОРКА МОДОВ ДЛЯ MINECRAFT 1.16.5 (FPS + ПЛАВНОСТЬ) 💫
+
+🔥 Увеличьте FPS и получите плавный геймплей на слабых ПК!
+
+💎 В сборку входят 8 оптимизированных модов:
+- Улучшение производительности.
+- Уменьшение лагов и фризов.
+- Повышение FPS до 30-50% (зависит от системы).
+- Совместимость с Funtime и другими серверами 1.16.5.
+
+🚀 Преимущества:
+✅ Версия 1.16.5 намного плавнее, чем 1.12.2 — забудьте о тормозах!
+✅ Простая установка: скачиваете папку, копируете в mods (предварительно установив Forge).
+✅ Подходит как для TLauncher, так и для официального лаунчера.
+✅ Я лично протестировал на многих серверах — результат впечатляет.
+
+💡 Рекомендую даже для мощных ПК — разница в плавности заметна сразу.
+
+📦 В комплекте:
+- Готовая папка с модами.
+- Инструкция по установке.
+
+💬 Если возникнут вопросы — я помогу с установкой.`,
+          en: `💫 BEST MODPACK FOR MINECRAFT 1.16.5 (FPS + SMOOTHNESS) 💫
+
+🔥 Increase FPS and get smooth gameplay on weak PCs!
+
+💎 The pack includes 8 optimized mods:
+- Performance improvement.
+- Reduced lag and stutters.
+- FPS boost up to 30-50% (depends on system).
+- Compatible with Funtime and other 1.16.5 servers.
+
+🚀 Advantages:
+✅ Version 1.16.5 is much smoother than 1.12.2 — forget about freezes!
+✅ Easy installation: download folder, copy to mods (after installing Forge).
+✅ Works on both TLauncher and official launcher.
+✅ I personally tested on many servers — result is impressive.
+
+💡 I recommend even for powerful PCs — smoothness improvement is obvious.
+
+📦 Included:
+- Ready folder with mods.
+- Installation instructions.
+
+💬 If you have questions — I'll help with installation.`
+        },
+        platform: 'PC',
+        type: { ru: 'Сборки', en: 'Modpacks' },
+        stock: '8 шт.',
+        autoDelivery: true,
+        popular: false
+      },
+      {
+        id: 'reg_10_acc',
+        name: { ru: '☠️ Регистрация 10 аккаунтов на Funtime', en: '☠️ Register 10 Funtime accounts' },
+        price: 10,
+        image: 'zaregat10akkov.jpg',
+        shortDesc: { ru: '☠️😈ЗАРЕГАТЬ 10 АККАУНТОВ ФАНТАЙМ😈☠️', en: '☠️😈REGISTER 10 FUNTIME ACCOUNTS😈☠️' },
+        fullDesc: {
+          ru: `☠️ РЕГИСТРАЦИЯ 10 АККАУНТОВ НА СЕРВЕРЕ FUNTIME! ☠️
+
+😈 Нужны дополнительные аккаунты для игры или тестов? Я зарегистрирую их для вас!
+
+🔥 Что вы получите:
+✅ 10 полностью готовых аккаунтов на сервере Funtime.
+✅ Каждый аккаунт с уникальным логином и паролем.
+✅ Все данные отправлю в личные сообщения после оплаты.
+✅ Быстро — в течение 1-2 часов после заказа.
+
+💎 Зачем это нужно?
+- Для участия в ивентах с несколькими аккаунтами.
+- Для тестирования стратегий.
+- Для обхода ограничений (если нужно).
+
+🛡️ Гарантия:
+- Аккаунты создаются вручную, без использования ботов.
+- Полная анонимность — никаких связей с вашим основным аккаунтом.
+
+💰 Цена: всего 10 рублей за 10 аккаунтов — отличное предложение!
+
+💬 Заказ через FunPay или личные сообщения.`,
+          en: `☠️ REGISTRATION OF 10 ACCOUNTS ON FUNTIME SERVER! ☠️
+
+😈 Need extra accounts for gaming or testing? I'll register them for you!
+
+🔥 What you get:
+✅ 10 fully ready accounts on Funtime server.
+✅ Each with unique login and password.
+✅ All data sent in DM after payment.
+✅ Fast — within 1-2 hours after order.
+
+💎 Why you need this:
+- For events with multiple accounts.
+- For testing strategies.
+- To bypass restrictions (if needed).
+
+🛡️ Guarantee:
+- Accounts are created manually, no bots.
+- Full anonymity — no links to your main account.
+
+💰 Price: only 10 rubles for 10 accounts — great deal!
+
+💬 Order via FunPay or DM.`
+        },
+        platform: 'PC',
+        type: { ru: 'Прочее', en: 'Other' },
+        stock: '100 шт.',
+        autoDelivery: false,
+        popular: false
+      },
+      {
+        id: 'online_nakrutka',
+        name: { ru: '💢 Плагин накрутки онлайна (Folia)', en: '💢 Online boost plugin (Folia)' },
+        price: 5.80,
+        image: 'minecraftnakrutkaonline.jpg',
+        shortDesc: { ru: '💢💥💥плагин на накрутку онлайна 💝🤎💖Подробнее в лс и описании Подробное описание', en: '💢💥💥online boost plugin 💝🤎💖More in DM and description' },
+        fullDesc: {
+          ru: `💢 ПЛАГИН НАКРУТКИ ОНЛАЙНА ДЛЯ FOLIA (ЛУЧШАЯ ЦЕНА НА РЫНКЕ) 💢
+
+🔥 Увеличьте онлайн вашего сервера Minecraft без реальных игроков!
+
+💎 Что делает этот плагин:
+- Создаёт ботов, которые выглядят как живые игроки.
+- Боты появляются на спавне, их можно тапать, писать в личку, выдавать донаты.
+- Вы можете управлять ботами через команды (/m, spawn, tpa, tpyes и другие).
+- Боты не пишут в чат (чтобы не спамить), но выполняют команды.
+
+✅ Особенности:
+- Работает ТОЛЬКО на ядрах Folia (не Paper/Spigot).
+- Не нужно настраивать префиксы и приоритеты в табе — плагин делает всё автоматически.
+- Самая низкая цена на рынке (у других кодеров от 1500₽).
+- Плагин успешно использовался на крупных проектах, таких как EpicGrief и HoweLand.
+
+📦 В комплекте:
+- Готовый .jar файл.
+- Конфигурационный файл с настройками.
+- Инструкция по установке.
+
+💬 Поддержка: помогу с установкой и настройкой.
+
+⚠️ Важно: плагин предназначен для серверов с ядром Folia.`,
+          en: `💢 ONLINE BOOST PLUGIN FOR FOLIA (BEST PRICE ON THE MARKET) 💢
+
+🔥 Increase your Minecraft server's online without real players!
+
+💎 What this plugin does:
+- Creates bots that look like real players.
+- Bots appear at spawn, can be tapped, messaged, given donations.
+- You can control bots via commands (/m, spawn, tpa, tpyes, etc.).
+- Bots don't write in chat (to avoid spam), but execute commands.
+
+✅ Features:
+- Works ONLY on Folia cores (not Paper/Spigot).
+- No need to configure prefixes and tab priorities — plugin does everything automatically.
+- Lowest price on the market (other coders ask 1500₽+).
+- Used on large projects like EpicGrief and HoweLand.
+
+📦 Included:
+- Ready .jar file.
+- Configuration file.
+- Installation instructions.
+
+💬 Support: I'll help with installation and setup.
+
+⚠️ Important: plugin is for servers with Folia core.`
+        },
+        platform: 'PC',
+        type: { ru: 'Плагины', en: 'Plugins' },
+        stock: '∞',
+        autoDelivery: true,
+        popular: true
+      },
+      {
+        id: 'injector_help',
+        name: { ru: '⚙️ Помощь с установкой инжектора (Discord)', en: '⚙️ Injector setup help (Discord)' },
+        price: 58,
+        image: 'robloxpomoguustanovitchit.jpg',
+        shortDesc: { ru: '⚙️ Помогу установить инжектор через Дискорд • 🛠️ Решение ошибок', en: '⚙️ I will help install injector via Discord • 🛠️ Error fixing' },
+        fullDesc: {
+          ru: `⚙️ ПОМОЩЬ С УСТАНОВКОЙ ИНЖЕКТОРА (DISCORD) ⚙️
+
+🔥 Нужно установить инжектор для Roblox, но не знаете как? Я помогу!
+
+🔧 Что я делаю:
+- Полная установка любого инжектора на ваш ПК или телефон.
+- Объясняю подробно, как инжектить скрипты (с нуля).
+- Исправляю ошибки и конфликты при запуске.
+- Оптимизация работы, если что-то тормозит или не открывается.
+- Подсказываю, что делать, и объясняю каждый шаг.
+
+✅ Почему стоит обратиться ко мне:
+- Огромный опыт — помог уже сотням пользователей.
+- Работаю аккуратно и ответственно.
+- Конфиденциальность — не сохраняю ваши данные.
+
+⏳ Время выполнения: от 15 минут до 1 часа (зависит от сложности).
+
+💬 Связь через Discord после оплаты.
+
+🛡️ Гарантия: если не смогу помочь — верну деньги.`,
+          en: `⚙️ INJECTOR SETUP HELP (DISCORD) ⚙️
+
+🔥 Need to install an injector for Roblox but don't know how? I'll help!
+
+🔧 What I do:
+- Full installation of any injector on your PC or phone.
+- Detailed explanation of how to inject scripts (from scratch).
+- Fix errors and conflicts during startup.
+- Optimize performance if something lags or doesn't open.
+- Advise what to do and explain every step.
+
+✅ Why choose me:
+- Huge experience — helped hundreds of users.
+- I work carefully and responsibly.
+- Confidentiality — I don't store your data.
+
+⏳ Time: 15 minutes to 1 hour (depends on complexity).
+
+💬 Contact via Discord after payment.
+
+🛡️ Guarantee: if I can't help — I'll refund.`
+        },
+        platform: 'PC / Mobile',
+        type: { ru: 'Услуги', en: 'Services' },
+        stock: '999 395 шт.',
+        autoDelivery: false,
+        popular: true
+      },
+      {
+        id: '99_nights',
+        name: { ru: '✨ ФАРМ ДНЕЙ В 99 НОЧЕЙ (0.10₽/ночь)', en: '✨ FARM DAYS IN 99 NIGHTS (0.10₽/night)' },
+        price: 0.10,
+        image: '99nightvishit.jpg',
+        shortDesc: { ru: '✨ ФАРМ ДНЕЙ В 99 НОЧЕЙ ✨⬇️ ЛУЧШЕЕ ПРЕДЛОЖЕНИЕ НА РЫНКЕ ⬇️💰 ЦЕНА ЗА ОДНУ НОЧЬ 💰', en: '✨ FARM DAYS IN 99 NIGHTS ✨⬇️ BEST OFFER ON THE MARKET ⬇️💰 PRICE PER NIGHT 💰' },
+        fullDesc: {
+          ru: `✨ ФАРМ ДНЕЙ В 99 НОЧЕЙ (ОТ 100 ДО 500 НОЧЕЙ) ✨
+
+🔥 Лучшее предложение на рынке по цене за ночь!
+
+🕹️ Два варианта работы:
+
+👥 ВАРИАНТ 1: Совместная игра (без передачи аккаунта)
+- Мы вместе заходим на приватный сервер.
+- Запускаем нужный режим.
+- Я обеспечиваю безопасное прохождение.
+- Я выживаю до вашей оплаченной ночи.
+- После выполнения я выхожу, вы продолжаете соло.
+
+🔐 ВАРИАНТ 2: Фарм под ключ (передаёте аккаунт)
+- Вы даёте мне доступ к вашему аккаунту.
+- Я прохожу и выживаю нужное количество ночей.
+- В конце снимаю видео-доказательство выхода с аккаунта.
+- Полная конфиденциальность и сохранность данных гарантированы.
+
+💰 Цена: 0.10 рубля за 1 ночь (минимальный заказ — 100 ночей).
+
+⚠️ Выбирайте вариант, который вам удобнее!
+
+📩 Заказ через FunPay.`,
+          en: `✨ FARMING DAYS IN 99 NIGHTS (FROM 100 TO 500 NIGHTS) ✨
+
+🔥 Best offer on the market for price per night!
+
+🕹️ Two options:
+
+👥 OPTION 1: Co-op play (without account sharing)
+- We join a private server together.
+- Launch the required mode.
+- I ensure safe passage.
+- I survive until your paid night.
+- After completion I leave, you continue solo.
+
+🔐 OPTION 2: Full service farming (account sharing)
+- You give me access to your account.
+- I pass and survive the required nights.
+- At the end I record a video proof of logging out.
+- Full confidentiality and data safety guaranteed.
+
+💰 Price: 0.10 rub per night (minimum order — 100 nights).
+
+⚠️ Choose the option that suits you!
+
+📩 Order via FunPay.`
+        },
+        platform: 'PC',
+        type: { ru: 'Услуги', en: 'Services' },
+        stock: '∞',
+        autoDelivery: false,
+        popular: true
+      },
+      {
+        id: 'steam_comment',
+        name: { ru: '【𝐒𝐡𝐨𝐩】⭐️ Комментарий в Steam профиль', en: '【𝐒𝐡𝐨𝐩】⭐️ Steam profile comment' },
+        price: 1,
+        image: 'commentiVStime.png',
+        shortDesc: { ru: '【𝐒𝐡𝐨𝐩】⭐️ОСТАВЛЮ ЛЮБОЙ КОММЕНТ В ПРОФИЛЕ⭐️🖤⭐️ДЛЯ ВАШЕГО STEAM🖤', en: '【𝐒𝐡𝐨𝐩】⭐️I WILL LEAVE ANY COMMENT ON YOUR PROFILE⭐️🖤⭐️FOR YOUR STEAM🖤' },
+        fullDesc: {
+          ru: `【𝐒𝐡𝐨𝐩】⭐️ КОММЕНТАРИЙ В STEAM ПРОФИЛЬ — 1 РУБЛЬ! ⭐️
+
+🔥 Хотите оживить свой Steam профиль? Я оставлю любой комментарий!
+
+💎 Как это работает:
+1. Оплачиваете услугу (1 рубль).
+2. Кидаете ссылку на ваш Steam аккаунт.
+3. Пишете текст комментария (или я придумаю сам).
+4. Ждёте — комментарий появится в течение часа.
+
+🖤 Что важно:
+- Если я не отвечаю — значит, занят или сплю. Но комментарий будет оставлен в любом случае.
+- Комментарий может быть любым: от дружеского до серьёзного (но без оскорблений).
+- После получения комментария не забудьте подтвердить заказ и оставить отзыв.
+
+📦 Зачем это?
+- Чтобы ваш профиль выглядел более живым.
+- Для создания положительного имиджа.
+- Просто для веселья!
+
+💬 Заказ через FunPay.`,
+          en: `【𝐒𝐡𝐨𝐩】⭐️ COMMENT ON YOUR STEAM PROFILE — 1 RUB! ⭐️
+
+🔥 Want to liven up your Steam profile? I'll leave any comment!
+
+💎 How it works:
+1. Pay for the service (1 rub).
+2. Send your Steam profile link.
+3. Write the comment text (or I'll come up with one).
+4. Wait — comment appears within an hour.
+
+🖤 Important:
+- If I don't reply — I'm busy or asleep. But the comment will be left anyway.
+- Comment can be anything: friendly or serious (no insults).
+- After receiving the comment, don't forget to confirm the order and leave a review.
+
+📦 Why?
+- To make your profile look more alive.
+- To create a positive image.
+- Just for fun!
+
+💬 Order via FunPay.`
+        },
+        platform: 'Steam',
+        type: { ru: 'Оформление профиля', en: 'Profile design' },
+        stock: '∞',
+        autoDelivery: false,
+        popular: true
+      },
+      // ===== Дополнительные товары =====
+      {
+        id: 'debian',
+        name: { ru: '🎯 Объясню как пользоваться linux debian опыт 3+ года', en: '🎯 Linux Debian usage explanation (3+ years experience)' },
+        price: 150,
+        image: 'debian.jpeg',
+        shortDesc: { ru: 'Профессиональное объяснение работы и структуры дистрибутива Debian', en: 'Professional explanation of Debian distribution work and structure' },
+        fullDesc: {
+          ru: `🐧 ОБЪЯСНЮ, КАК ПОЛЬЗОВАТЬСЯ LINUX DEBIAN — ОПЫТ 3+ ГОДА! 🐧
+
+🔥 Хотите освоить Debian, но не знаете с чего начать? Я научу вас!
+
+💎 Что вы узнаете:
+- Основы работы с Debian (терминал, пакетный менеджер, файловая система).
+- Настройка графической среды (i3wm, KDE, GNOME — на ваш выбор).
+- Установка и настройка программ.
+- Работа с сетью, безопасность, управление пользователями.
+- Советы по оптимизации и устранению ошибок.
+
+🔹 Вы выбираете, что именно хотите изучить: базу, фичи, Doxbin или что-то ещё.
+🔹 Я объясняю на простых примерах, без лишней теории.
+🔹 100% безопасно — никаких рандомных команд, всё под контролем.
+🔹 Занятие длится до полного понимания темы.
+
+💬 Связь через Discord после оплаты.
+
+🛡️ Гарантия: если останутся вопросы — я отвечу бесплатно.`,
+          en: `🐧 I WILL EXPLAIN HOW TO USE LINUX DEBIAN — 3+ YEARS EXPERIENCE! 🐧
+
+🔥 Want to master Debian but don't know where to start? I'll teach you!
+
+💎 What you'll learn:
+- Basics of Debian (terminal, package manager, file system).
+- Setting up graphical environment (i3wm, KDE, GNOME — your choice).
+- Installing and configuring software.
+- Networking, security, user management.
+- Optimization and error fixing tips.
+
+🔹 You choose what exactly you want to learn: basics, features, Doxbin, etc.
+🔹 I explain with simple examples, no unnecessary theory.
+🔹 100% safe — no random commands, everything under control.
+🔹 Session lasts until you fully understand the topic.
+
+💬 Contact via Discord after payment.
+
+🛡️ Guarantee: if you still have questions — I'll answer for free.`
+        },
+        platform: 'PC',
+        type: { ru: 'Гайд', en: 'Guide' },
+        stock: '∞',
+        autoDelivery: false,
+        popular: false
+      },
+      {
+        id: 'windows',
+        name: { ru: '🌟 Настройка 10-11 виндовс', en: '🌟 Windows 10-11 setup' },
+        price: 200,
+        image: 'windows.jpeg',
+        shortDesc: { ru: 'Полная настройка вашей виндовс', en: 'Complete Windows setup' },
+        fullDesc: {
+          ru: `🌟 ПОЛНАЯ НАСТРОЙКА WINDOWS 10/11 — ОТ И ДО! 🌟
+
+🔥 Устали от тормозов, рекламы и ненужных служб? Я настрою вашу Windows как надо!
+
+🔧 Что я делаю:
+- Чистка системы от мусора и ненужных программ.
+- Отключение телеметрии и рекламы.
+- Оптимизация автозагрузки и служб для повышения производительности.
+- Настройка параметров конфиденциальности и безопасности.
+- Установка необходимых драйверов (если нужно).
+- По желанию — установка и настройка программы Zapret для обхода блокировок.
+
+✅ Почему я:
+- Работаю с Windows с 2010 года, знаю все тонкости.
+- Использую только проверенные методы — без риска для системы.
+- После настройки система работает быстрее, стабильнее и безопаснее.
+
+⏳ Срок выполнения: от 1 до 2 дней (зависит от состояния системы).
+
+💬 Связь через Discord.
+
+🛡️ Гарантия: если что-то пойдёт не так — я бесплатно исправлю.`,
+          en: `🌟 FULL WINDOWS 10/11 SETUP — FROM A TO Z! 🌟
+
+🔥 Tired of lag, ads, and unnecessary services? I'll tune your Windows right!
+
+🔧 What I do:
+- Clean system from junk and unwanted programs.
+- Disable telemetry and ads.
+- Optimize startup and services for better performance.
+- Configure privacy and security settings.
+- Install necessary drivers (if needed).
+- Optionally — install and configure Zapret for bypassing restrictions.
+
+✅ Why me:
+- Working with Windows since 2010, know all the details.
+- Use only proven methods — no risk for system.
+- After setup, system works faster, more stable, and safer.
+
+⏳ Time: 1 to 2 days (depends on system state).
+
+💬 Contact via Discord.
+
+🛡️ Guarantee: if something goes wrong — I'll fix for free.`
+        },
+        platform: 'PC',
+        type: { ru: 'Гайд', en: 'Guide' },
+        stock: '∞',
+        autoDelivery: false,
+        popular: false
+      },
+      {
+        id: 'debian_install',
+        name: { ru: '💎 Скачиваю вам Debian', en: '💎 I install Debian for you' },
+        price: 150,
+        image: 'debianinstall.jpg',
+        shortDesc: { ru: 'Недорогая установка debian с желанным графическим интерфейсом', en: 'Affordable Debian installation with desired graphical interface' },
+        fullDesc: {
+          ru: `💎 УСТАНОВКА DEBIAN — БЫСТРО И НЕДОРОГО! 💎
+
+🔥 Хотите перейти на Linux, но боитесь сложностей? Я установлю Debian за вас!
+
+🔹 Стоимость: 50–500 рублей (зависит от сложности и требуемого окружения).
+🔹 Срок: от 1 часа до суток (в зависимости от вашего интернета и желаемых настроек).
+🔹 Что я делаю:
+- Полная установка Debian с нуля.
+- Настройка графической среды (KDE, GNOME, i3wm — на ваш выбор).
+- Установка необходимого софта (браузер, офис, медиаплееры и т.д.).
+- Базовая настройка сети и безопасности.
+- Помощь с первыми шагами после установки.
+
+✅ Почему стоит выбрать меня:
+- Устанавливаю только чистую систему, без лишних пакетов.
+- Всё делаю удалённо (через AnyDesk / TeamViewer).
+- Объясняю, что и зачем делаю.
+- Гарантия: если после установки что-то работает не так — поправлю бесплатно.
+
+💬 Связь через Discord или FunPay.`,
+          en: `💎 DEBIAN INSTALLATION — FAST AND AFFORDABLE! 💎
+
+🔥 Want to switch to Linux but afraid of complexity? I'll install Debian for you!
+
+🔹 Price: 50–500 rubles (depends on complexity and desired environment).
+🔹 Time: 1 hour to 1 day (depends on your internet and settings).
+🔹 What I do:
+- Full Debian installation from scratch.
+- Setting up graphical environment (KDE, GNOME, i3wm — your choice).
+- Installing necessary software (browser, office, media players, etc.).
+- Basic network and security setup.
+- Help with first steps after installation.
+
+✅ Why choose me:
+- I install only clean system, without unnecessary packages.
+- Everything remotely (via AnyDesk / TeamViewer).
+- I explain what and why I do.
+- Guarantee: if something doesn't work after installation — I'll fix for free.
+
+💬 Contact via Discord or FunPay.`
+        },
+        platform: 'FunPay',
+        type: { ru: 'Прочее', en: 'Other' },
+        stock: '∞',
+        autoDelivery: false,
+        popular: false
+      }
+    ];
+
+    // ===== ОТЗЫВЫ (8 штук) =====
+    const reviewsData = [
+      {
+        name: 'Iozh1k',
+        profile: 'https://funpay.com/users/6866327/',
+        order: 'DBHFFSDL',
+        orderLink: 'https://funpay.com/orders/DBHFFSDL/',
+        date: 'Сегодня в 13:46',
+        days: 'час назад',
+        game: 'Roblox',
+        amount: '20 ₽',
+        text: '👍👍',
+        answer: '⭐️ Огромное спасибо за высокую оценку! ⭐️ Я рад, что вы остались довольны покупкой. Ваша поддержка очень важна для меня! Приходите к нам снова! ❤️⁡'
+      },
+      {
+        name: 'Anbreireti',
+        profile: 'https://funpay.com/users/15908289/',
+        order: 'XSEPYHUH',
+        orderLink: 'https://funpay.com/orders/XSEPYHUH/',
+        date: '23 июня в 9:43',
+        days: '2 дня назад',
+        game: 'Roblox',
+        amount: '50 ₽',
+        text: 'Топ',
+        answer: 'Спасибо вам за ваш положительный отзыв! 😊🌟 Я искренне рад, что мой товар был вам полезен и оправдал ваши ожидания.'
+      },
+      {
+        name: 'Kwidoxzz',
+        profile: 'https://funpay.com/users/12508963/',
+        order: 'AFMR6GL8',
+        orderLink: 'https://funpay.com/orders/AFMR6GL8/',
+        date: '22 июня в 17:33',
+        days: '3 дня назад',
+        game: 'Minecraft',
+        amount: '10 ₽',
+        text: 'круто',
+        answer: 'ε(´｡•᎑•`)っ 💕'
+      },
+      {
+        name: 'nikita345672',
+        profile: 'https://funpay.com/users/19946169/',
+        order: 'NHHZT9S7',
+        orderLink: 'https://funpay.com/orders/NHHZT9S7/',
+        date: '22 июня в 17:03',
+        days: '3 дня назад',
+        game: 'Roblox',
+        amount: '20 ₽',
+        text: 'все четко',
+        answer: 'Удачи вам.'
+      },
+      {
+        name: 'Andreifetta',
+        profile: 'https://funpay.com/users/10440004/',
+        order: 'C8YK687A',
+        orderLink: 'https://funpay.com/orders/C8YK687A/',
+        date: '19 июня в 21:05',
+        days: '6 дней назад',
+        game: 'Steam',
+        amount: '10 ₽',
+        text: 'yuuyyyy56',
+        answer: 'Благодарю!😃'
+      },
+      {
+        name: 'noob0000077',
+        profile: 'https://funpay.com/users/9316511/',
+        order: 'JSAJZYJT',
+        orderLink: 'https://funpay.com/orders/JSAJZYJT/',
+        date: '8 июня в 15:43',
+        days: '2 недели назад',
+        game: 'Among Us',
+        amount: '10 ₽',
+        text: 'красавчик даже акк подарил не заскамил с самой маленькой ценой на рынке всем рекомендую лучший!',
+        answer: 'Хорошей вам игры! Удачи.'
+      },
+      {
+        name: 'Kzozoslzlz',
+        profile: 'https://funpay.com/users/17003814/',
+        order: 'UFWZD471',
+        orderLink: 'https://funpay.com/orders/UFWZD471/',
+        date: '16 мая в 14:46',
+        days: 'месяц назад',
+        game: 'Among Us',
+        amount: '20 ₽',
+        text: 'Быстро отвечает, и очень подробно все объясняет, советую',
+        answer: 'Спасибо! Удачного дня.'
+      },
+      {
+        name: 'ponos0000',
+        profile: 'https://funpay.com/users/14204071/',
+        order: 'SXK67RKQ',
+        orderLink: 'https://funpay.com/orders/SXK67RKQ/',
+        date: '10 мая 2025 в 12:30',
+        days: 'год назад',
+        game: 'Minecraft',
+        amount: '20 ₽',
+        text: 'четко',
+        answer: 'Спасибо'
+      }
+    ];
+
+    // ===== FAQ =====
+    const faqData = [
+      { q: { ru: 'Как я могу оплатить товар?', en: 'How can I pay for the product?' }, a: { ru: 'Оплата производится через FunPay (или по договорённости). После оплаты вы получаете товар в течение указанного срока.', en: 'Payment is made via FunPay (or by agreement). After payment, you receive the product within the specified time.' } },
+      { q: { ru: 'Как быстро я получу товар?', en: 'How fast will I get the product?' }, a: { ru: 'Сроки указаны в описании каждого товара. Обычно это от нескольких минут до 1-2 дней.', en: 'The terms are specified in the description of each product. Usually it is from a few minutes to 1-2 days.' } },
+      { q: { ru: 'Что делать, если я не получил товар?', en: 'What if I don\'t receive the product?' }, a: { ru: 'Напишите мне в личные сообщения — я всегда на связи и решу проблему. Возврат или повторная отправка гарантированы.', en: 'Write me a DM — I am always available and will solve the problem. Refund or resend is guaranteed.' } },
+      { q: { ru: 'Безопасно ли передавать вам аккаунт?', en: 'Is it safe to give you my account?' }, a: { ru: 'Да, я гарантирую полную конфиденциальность. Я работаю честно и дорожу своей репутацией.', en: 'Yes, I guarantee full confidentiality. I work honestly and value my reputation.' } },
+      { q: { ru: 'Можно ли заказать товар, которого нет в списке?', en: 'Can I order a product that is not on the list?' }, a: { ru: 'Конечно! Напишите мне — я сделаю индивидуальное предложение.', en: 'Of course! Write to me — I will make a custom offer.' } }
+    ];
+
+    // ============================================================
+    // ОСНОВНОЙ СКРИПТ
+    // ============================================================
+    let currentLang = 'ru';
+    let currentSort = 'default';
+    let searchQuery = '';
+
+    function getText(obj, lang) {
+      if (obj && typeof obj === 'object') return obj[lang] !== undefined ? obj[lang] : obj.ru || obj.en || '';
+      return String(obj);
+    }
+
+    function getLocalizedProduct(product, lang) {
+      return {
+        ...product,
+        name: getText(product.name, lang),
+        shortDesc: getText(product.shortDesc, lang),
+        fullDesc: getText(product.fullDesc, lang),
+        type: getText(product.type, lang)
+      };
+    }
+
+    function updatePageTexts(lang) {
+      document.querySelectorAll('.lang-text').forEach(el => {
+        const ru = el.getAttribute('data-lang-ru');
+        const en = el.getAttribute('data-lang-en');
+        if (ru && en) el.textContent = lang === 'ru' ? ru : en;
+      });
+      document.querySelectorAll('input[data-lang-ru-placeholder]').forEach(input => {
+        const ru = input.getAttribute('data-lang-ru-placeholder');
+        const en = input.getAttribute('data-lang-en-placeholder');
+        if (ru && en) input.placeholder = lang === 'ru' ? ru : en;
+      });
+      document.querySelectorAll('.sort-select option').forEach(opt => {
+        const ru = opt.getAttribute('data-lang-ru');
+        const en = opt.getAttribute('data-lang-en');
+        if (ru && en) opt.textContent = lang === 'ru' ? ru : en;
+      });
+    }
+
+    function renderProducts(containerId, filterPopular = false) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      let list = filterPopular ? productsData.filter(p => p.popular) : [...productsData];
+
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        list = list.filter(p => {
+          const localized = getLocalizedProduct(p, currentLang);
+          return localized.name.toLowerCase().includes(q) ||
+                 localized.shortDesc.toLowerCase().includes(q) ||
+                 localized.fullDesc.toLowerCase().includes(q);
+        });
+      }
+
+      if (currentSort === 'price-asc') list.sort((a,b) => a.price - b.price);
+      else if (currentSort === 'price-desc') list.sort((a,b) => b.price - a.price);
+
+      if (list.length === 0) {
+        container.innerHTML = `<p style="color:var(--text-muted);padding:20px;">${currentLang === 'ru' ? 'Товаров не найдено' : 'No products found'}</p>`;
+        return;
+      }
+
+      let html = '';
+      list.forEach((p, index) => {
+        const localized = getLocalizedProduct(p, currentLang);
+        const autoTag = p.autoDelivery ? '<span class="auto">⚡ Автовыдача</span>' : '';
+        const popularBadge = p.popular ? '<span class="popular-tag">⭐ Хит</span>' : '';
+        html += `
+          <div class="product-card" data-product-id="${p.id}" style="animation-delay: ${(index * 0.05).toFixed(2)}s">
+            ${popularBadge}
+            <img src="assets/products/${p.image}" alt="${localized.name}" loading="lazy" onerror="this.src='assets/placeholder.jpg'">
+            <div class="product-body">
+              <h3>${localized.name}</h3>
+              <div class="price">${p.price} ₽</div>
+              <div class="short-desc">${localized.shortDesc}</div>
+              <div class="tags">
+                <span>${localized.platform}</span>
+                <span>${localized.type}</span>
+                ${p.stock !== '∞' ? `<span>${p.stock}</span>` : ''}
+                ${autoTag}
+              </div>
+              <div class="btn-group">
+                <button class="btn btn-outline" data-product-id="${p.id}">📖 ${currentLang === 'ru' ? 'Подробнее' : 'Details'}</button>
+                <a href="https://funpay.com/users/14391063/" target="_blank" rel="noopener" class="btn btn-primary">${currentLang === 'ru' ? 'Купить' : 'Buy'}</a>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+
+      // ===== 3D-наклон карточек =====
+      const cards = container.querySelectorAll('.product-card');
+      cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotateX = ((y - centerY) / centerY) * -8;
+          const rotateY = ((x - centerX) / centerX) * 8;
+          card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
+        });
+      });
+
+      // Обработчики для кнопок "Подробнее"
+      container.querySelectorAll('[data-product-id]').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const id = this.dataset.productId;
+          const product = productsData.find(p => p.id === id);
+          if (product) openModal(product);
+        });
+      });
+    }
+
+    function renderReviews() {
+      const container = document.getElementById('reviews-container');
+      if (!container) return;
+      let html = '';
+      reviewsData.forEach(r => {
+        html += `
+          <div class="review-item">
+            <div class="review-header">
+              <span class="name"><a href="${r.profile}" target="_blank">${r.name}</a></span>
+              <span class="order"><a href="${r.orderLink}" target="_blank">Заказ #${r.order}</a></span>
+              <span class="date">${r.date} (${r.days})</span>
+              <span class="game">${r.game} • ${r.amount}</span>
+            </div>
+            <div class="review-text">${r.text}</div>
+            <div class="review-answer">${currentLang === 'ru' ? 'Ответ продавца:' : 'Seller\'s reply:'} ${r.answer}</div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    }
+
+    function renderFAQ() {
+      const container = document.getElementById('faqContainer');
+      if (!container) return;
+      let html = '';
+      faqData.forEach((item, index) => {
+        html += `
+          <div class="faq-item" data-faq-index="${index}">
+            <button class="faq-question">
+              <span>${getText(item.q, currentLang)}</span>
+              <span class="arrow">▼</span>
+            </button>
+            <div class="faq-answer">${getText(item.a, currentLang)}</div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+      container.querySelectorAll('.faq-item').forEach(item => {
+        const btn = item.querySelector('.faq-question');
+        btn.addEventListener('click', function() {
+          this.closest('.faq-item').classList.toggle('open');
+        });
+      });
+    }
+
+    function openModal(product) {
+      const modal = document.getElementById('modal');
+      const localized = getLocalizedProduct(product, currentLang);
+      document.getElementById('modal-title').textContent = localized.name;
+      document.getElementById('modal-price').textContent = product.price + ' ₽';
+      document.getElementById('modal-meta').innerHTML = `
+        <span><b>${currentLang === 'ru' ? 'Платформа' : 'Platform'}:</b> ${localized.platform}</span>
+        <span><b>${currentLang === 'ru' ? 'Тип' : 'Type'}:</b> ${localized.type}</span>
+        <span><b>${currentLang === 'ru' ? 'Наличие' : 'Stock'}:</b> ${product.stock}</span>
+        ${product.autoDelivery ? '<span>⚡ ' + (currentLang === 'ru' ? 'Автовыдача' : 'Auto delivery') + '</span>' : ''}
+      `;
+      document.getElementById('modal-desc').textContent = localized.fullDesc;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('modal-close').addEventListener('click', closeModal);
+    document.getElementById('modal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // ============================================================
+    // БОНУС ЗА ОТЗЫВ
+    // ============================================================
+    const bonusBtn = document.getElementById('bonusBtn');
+    const bonusModal = document.getElementById('bonusModal');
+    const bonusClose = document.getElementById('bonusModalClose');
+    const bonusInput = document.getElementById('bonusKeyInput');
+    const bonusCheck = document.getElementById('bonusCheckBtn');
+    const bonusMsg = document.getElementById('bonusMessage');
+
+    const CORRECT_KEY = 'rmhxucdldcqmrpxkljng';
+
+    bonusBtn.addEventListener('click', function() {
+      bonusModal.classList.add('open');
+      bonusInput.value = '';
+      bonusMsg.textContent = '';
+      bonusMsg.style.color = '';
+      document.body.style.overflow = 'hidden';
+    });
+
+    bonusClose.addEventListener('click', function() {
+      bonusModal.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+
+    bonusModal.addEventListener('click', function(e) {
+      if (e.target === this) {
+        bonusModal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    bonusCheck.addEventListener('click', function() {
+      const key = bonusInput.value.trim();
+      if (key === CORRECT_KEY) {
+        bonusMsg.textContent = '✅ Ключ верный! Перенаправляем...';
+        bonusMsg.style.color = 'var(--accent-cyan)';
+        setTimeout(function() {
+          window.location.href = 'bonus.html';
+        }, 1000);
+      } else {
+        bonusMsg.textContent = '❌ Неверный ключ. Попробуйте ещё раз.';
+        bonusMsg.style.color = '#ff6b6b';
+      }
+    });
+
+    bonusInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        bonusCheck.click();
+      }
+    });
+
+    // ============================================================
+    // МИЛЫЙ ЗВУК "НЯ" ПРИ НАЖАТИИ НА ГИФКУ
+    // ============================================================
+    const heroGif = document.getElementById('heroGif');
+
+    function playNyaSound() {
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        oscillator.type = 'sawtooth';
+        oscillator.frequency.setValueAtTime(800, audioCtx.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 0.15);
+        gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.3);
+      } catch (e) {
+        console.log('Звук не воспроизведён');
+      }
+    }
+
+    heroGif.addEventListener('click', function() {
+      playNyaSound();
+    });
+
+    // ============================================================
+    // ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА
+    // ============================================================
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      updatePageTexts(lang);
+      renderAll();
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('light-theme');
+      document.getElementById('themeIcon').textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tab === tabId);
+      });
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.toggle('active', content.id === 'tab-' + tabId);
+      });
+      if (tabId !== 'faq') renderAll();
+    }
+
+    function updateSearch(query) {
+      searchQuery = query;
+      renderAll();
+    }
+
+    function updateSort(sort) {
+      currentSort = sort;
+      renderAll();
+    }
+
+    function renderAll() {
+      renderProducts('popular-grid', true);
+      renderProducts('all-grid', false);
+      renderReviews();
+      renderFAQ();
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      setLanguage('ru');
+
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          setLanguage(this.dataset.lang);
+        });
+      });
+
+      document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          switchTab(this.dataset.tab);
+        });
+      });
+
+      ['searchInput', 'searchInputAll'].forEach(id => {
+        const input = document.getElementById(id);
+        if (input) input.addEventListener('input', function(e) { updateSearch(e.target.value); });
+      });
+
+      ['sortSelect', 'sortSelectAll'].forEach(id => {
+        const select = document.getElementById(id);
+        if (select) select.addEventListener('change', function(e) { updateSort(e.target.value); });
+      });
+
+      renderAll();
+    });
+
+    console.log('✅ Сайт обновлён: удалены "Тайны", оставлен только милый звук при нажатии на гифку.');
+  </script>
+</body>
+</html>
