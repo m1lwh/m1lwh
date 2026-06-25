@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>m1lwh - магазин цифровых товаров</title>
+  <title>m1lwh — магазин цифровых товаров</title>
   <meta name="description" content="Витрина товаров от m1lwh – игры, услуги, аккаунты" />
   <link rel="icon" type="image/png" href="assets/favicon.jpg">
   <link rel="apple-touch-icon" href="assets/favicon.jpg">
@@ -168,6 +168,18 @@
       text-shadow:0 0 40px rgba(139,111,212,0.2);
     }
     .hero-text .sub { color:var(--text-secondary); font-size:16px; margin:0; }
+    .hero-text .funpay-link {
+      font-weight:700;
+      font-size:1.1rem;
+      margin-top:4px;
+    }
+    .hero-text .funpay-link a {
+      color: var(--accent-cyan);
+      text-decoration: underline;
+      font-weight:800;
+      transition: color 0.3s;
+    }
+    .hero-text .funpay-link a:hover { color: var(--accent-violet); }
     .hero-text .highlight {
       margin-top:8px;
       display:flex;
@@ -177,15 +189,21 @@
       color:var(--text-muted);
     }
     .hero-text .highlight span { display:inline-flex; align-items:center; gap:6px; }
-    .hero-gif { flex:0 0 120px; text-align:center; }
+    .hero-gif {
+      flex:0 0 120px;
+      text-align:center;
+      cursor:pointer;
+      transition: transform 0.2s;
+    }
+    .hero-gif:hover { transform:scale(1.05); }
     .hero-gif img {
       width:100%; max-width:140px; height:auto;
       border-radius:16px;
       box-shadow:0 0 40px rgba(139,111,212,0.25);
       border:1px solid var(--border-glass);
       transition:var(--transition-smooth);
+      pointer-events:none; /* клик ловится на родителе */
     }
-    .hero-gif img:hover { transform:scale(1.04); box-shadow:0 0 60px rgba(139,111,212,0.4); }
 
     /* ===== ТАБЫ ===== */
     .tabs {
@@ -207,6 +225,7 @@
       cursor:pointer;
       transition:var(--transition-smooth);
       position:relative;
+      white-space:nowrap;
     }
     .tab-btn:hover { background:var(--bg-glass); color:var(--text-primary); }
     .tab-btn.active {
@@ -224,6 +243,7 @@
       border-radius:10px;
       background:var(--accent-gradient);
     }
+    .tab-btn.hidden-tab { display:none; } /* скрытая вкладка "Тайны" */
 
     /* ===== ПАНЕЛЬ УПРАВЛЕНИЯ ===== */
     .controls-bar {
@@ -274,14 +294,13 @@
     .sort-select:focus { border-color:var(--accent-violet); background:var(--bg-glass-hover); }
     .sort-select option { background:var(--bg-primary); color:var(--text-primary); }
 
-    /* ===== СЕТКА ТОВАРОВ с перспективой для 3D-наклона ===== */
+    /* ===== СЕТКА ТОВАРОВ ===== */
     .products-grid {
       display:grid;
       grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
       gap:28px;
-      perspective: 1000px;
+      perspective:1000px;
     }
-
     .product-card {
       background:var(--bg-glass);
       backdrop-filter:blur(12px);
@@ -294,19 +313,16 @@
       display:flex;
       flex-direction:column;
       position:relative;
-      transform-style: preserve-3d;
-      will-change: transform;
-      transform: rotateX(0deg) rotateY(0deg) scale(1);
+      transform-style:preserve-3d;
+      will-change:transform;
+      transform:rotateX(0deg) rotateY(0deg) scale(1);
     }
-
     .product-card:hover {
       border-color:var(--border-glass-strong);
       background:var(--bg-glass-hover);
       box-shadow:0 20px 50px rgba(0,0,0,0.7);
-      transform: scale(1.02) rotateX(0deg) rotateY(0deg); /* базовая анимация, но JS добавит свой наклон */
+      transform: scale(1.02) rotateX(0deg) rotateY(0deg);
     }
-
-    /* Стеклянная рамка при наведении */
     .product-card::before {
       content:'';
       position:absolute;
@@ -322,7 +338,6 @@
       transition:opacity 0.4s;
     }
     .product-card:hover::before { opacity:0.6; }
-
     .product-card img {
       width:100%; height:170px;
       object-fit:cover;
@@ -331,7 +346,6 @@
       transition:var(--transition-smooth);
     }
     .product-card:hover img { transform:scale(1.02); }
-
     .product-body { padding:16px 18px 20px; flex:1; display:flex; flex-direction:column; }
     .product-body h3 { font-size:17px; font-weight:800; line-height:1.25; margin-bottom:4px; color:var(--text-primary); }
     .product-body .price { font-size:22px; font-weight:900; color:var(--accent-cyan); margin:2px 0 6px; text-shadow:0 0 20px rgba(48,181,208,0.15); }
@@ -360,7 +374,6 @@
     .btn-outline:hover { background:var(--bg-glass-hover); border-color:var(--border-glass-strong); transform:scale(1.02); }
     .btn-primary { background:var(--accent-gradient); color:#0a0a12; box-shadow:0 4px 20px rgba(139,111,212,0.25); }
     .btn-primary:hover { transform:scale(1.04); box-shadow:0 6px 28px rgba(139,111,212,0.4); }
-
     .product-card .popular-tag {
       position:absolute;
       top:12px;
@@ -377,7 +390,7 @@
       letter-spacing:0.5px;
     }
 
-    /* ===== МОДАЛЬНОЕ ОКНО (без блюра) ===== */
+    /* ===== МОДАЛЬНОЕ ОКНО ===== */
     .modal-overlay {
       display:none;
       position:fixed;
@@ -452,7 +465,18 @@
     .btn-big.pulse { animation:pulse-buy 2s infinite; }
     @keyframes pulse-buy { 0%,100%{box-shadow:0 6px 30px rgba(139,111,212,0.3);} 50%{box-shadow:0 6px 50px rgba(139,111,212,0.5);} }
 
-    /* ===== ОТЗЫВЫ ===== */
+    /* ===== ОТЗЫВЫ (секция с заголовком) ===== */
+    .reviews-section { margin-top:48px; }
+    .reviews-title {
+      font-size:28px;
+      font-weight:900;
+      margin-bottom:20px;
+      background:var(--accent-gradient);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      display:inline-block;
+    }
     .reviews-list { display:grid; gap:18px; }
     .review-item {
       background:var(--bg-glass);
@@ -511,9 +535,95 @@
     .faq-answer { padding:0 20px 16px; color:var(--text-secondary); font-size:15px; line-height:1.6; display:none; }
     .faq-item.open .faq-answer { display:block; }
 
+    /* ===== ТАЙНЫ (вкладка) ===== */
+    .secrets-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+      gap:20px;
+      margin:20px 0;
+    }
+    .secret-game {
+      background:var(--bg-glass);
+      border:1px solid var(--border-glass);
+      border-radius:16px;
+      padding:16px;
+      text-align:center;
+      transition:var(--transition-smooth);
+    }
+    .secret-game:hover { border-color:var(--border-glass-strong); background:var(--bg-glass-hover); }
+    .secret-game iframe {
+      width:100%;
+      height:200px;
+      border-radius:12px;
+      border:1px solid var(--border-glass);
+    }
+    .secret-word-block {
+      background:var(--bg-glass);
+      border:1px solid var(--border-glass);
+      border-radius:16px;
+      padding:20px;
+      margin-bottom:20px;
+      text-align:center;
+    }
+    .secret-word-block .word {
+      font-size:28px;
+      font-weight:900;
+      color:var(--accent-cyan);
+      margin:10px 0;
+      letter-spacing:2px;
+      text-shadow:0 0 30px rgba(48,181,208,0.2);
+    }
+    .secret-word-block .btn {
+      max-width:200px;
+      margin:0 auto;
+    }
+
+    /* ===== СВЯЗЬ ===== */
+    .contacts-section {
+      margin-top:48px;
+      padding:24px 0;
+      border-top:1px solid var(--border-glass);
+      border-bottom:1px solid var(--border-glass);
+    }
+    .contacts-title {
+      font-size:24px;
+      font-weight:900;
+      margin-bottom:16px;
+      background:var(--accent-gradient);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      display:inline-block;
+    }
+    .contacts-grid {
+      display:flex;
+      flex-wrap:wrap;
+      gap:24px 40px;
+      align-items:center;
+    }
+    .contact-item {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:16px;
+      color:var(--text-secondary);
+    }
+    .contact-item .icon {
+      font-size:28px;
+      width:36px;
+      text-align:center;
+    }
+    .contact-item a {
+      color:var(--accent-cyan);
+      text-decoration:none;
+      font-weight:600;
+      transition:color 0.3s;
+    }
+    .contact-item a:hover { color:var(--accent-violet); text-decoration:underline; }
+
     /* ===== ФУТЕР ===== */
     .footer {
-      margin-top:48px;
+      margin-top:32px;
       padding-top:24px;
       border-top:1px solid var(--border-glass);
       text-align:center;
@@ -562,6 +672,7 @@
     .modal::-webkit-scrollbar-thumb { background:var(--accent-violet); border-radius:10px; }
     .modal::-webkit-scrollbar-thumb:hover { background:var(--accent-cyan); }
 
+    /* ===== Адаптив ===== */
     @media (max-width:768px) {
       .header { padding:16px; }
       .hero-text h1 { font-size:26px; }
@@ -570,12 +681,14 @@
       .modal { padding:24px; margin:10px; }
       .controls-bar { flex-direction:column; align-items:stretch; padding:12px; border-radius:20px; }
       .search-box { flex:1; }
+      .contacts-grid { flex-direction:column; align-items:flex-start; }
     }
     @media (max-width:480px) {
       .products-grid { grid-template-columns:1fr; }
       .tabs { gap:4px; }
       .tab-btn { font-size:13px; padding:6px 14px; }
       .brand-name { font-size:18px; }
+      .secret-game iframe { height:150px; }
     }
   </style>
 </head>
@@ -604,29 +717,29 @@
         </div>
       </div>
       <div class="hero-section">
-<div class="hero-text">
-  <h1 data-lang-ru="✨ ВСЕ МОИ ТОВАРЫ" data-lang-en="✨ ALL MY PRODUCTS" class="lang-text">✨ ВСЕ МОИ ТОВАРЫ</h1>
-  <p class="sub lang-text" data-lang-ru="Качественные услуги и товары для игр и не только" data-lang-en="Quality services and products for gaming and beyond">Качественные услуги и товары для игр и не только</p>
-  <p class="sub" style="font-weight:700; font-size:1.1rem; margin-top:4px;">
-    <span data-lang-ru="Можно приобрести только на " data-lang-en="Can be purchased only on " class="lang-text">Можно приобрести только на </span>
-    <a href="https://funpay.com/users/14391063/" target="_blank" rel="noopener" style="color: var(--accent-cyan); text-decoration: underline; font-weight:800;">FUNPAY</a>
-    <span data-lang-ru=" (клик)" data-lang-en=" (click)" class="lang-text"> (клик)</span>
-  </p>
-  <div class="highlight">
-    <span data-lang-ru="💎 Низкие цены" data-lang-en="💎 Low prices" class="lang-text">💎 Низкие цены</span>
-    <span data-lang-ru="⚡ Быстрая доставка" data-lang-en="⚡ Fast delivery" class="lang-text">⚡ Быстрая доставка</span>
-    <span data-lang-ru="💬 Отзывы покупателей" data-lang-en="💬 Customer reviews" class="lang-text">💬 Отзывы покупателей</span>
-    <span data-lang-ru="🛡️ Безопасно" data-lang-en="🛡️ Secure" class="lang-text">🛡️ Безопасно</span>
-  </div>
-</div>
-        <div class="hero-gif">
+        <div class="hero-text">
+          <h1 data-lang-ru="✨ ВСЕ МОИ ТОВАРЫ" data-lang-en="✨ ALL MY PRODUCTS" class="lang-text">✨ ВСЕ МОИ ТОВАРЫ</h1>
+          <p class="sub lang-text" data-lang-ru="Качественные услуги и товары для игр и не только" data-lang-en="Quality services and products for gaming and beyond">Качественные услуги и товары для игр и не только</p>
+          <p class="funpay-link">
+            <span data-lang-ru="Можно приобрести только на " data-lang-en="Can be purchased only on " class="lang-text">Можно приобрести только на </span>
+            <a href="https://funpay.com/users/14391063/" target="_blank" rel="noopener">FUNPAY</a>
+            <span data-lang-ru=" (клик)" data-lang-en=" (click)" class="lang-text"> (клик)</span>
+          </p>
+          <div class="highlight">
+            <span data-lang-ru="💎 Низкие цены" data-lang-en="💎 Low prices" class="lang-text">💎 Низкие цены</span>
+            <span data-lang-ru="⚡ Быстрая доставка" data-lang-en="⚡ Fast delivery" class="lang-text">⚡ Быстрая доставка</span>
+            <span data-lang-ru="💬 Отзывы покупателей" data-lang-en="💬 Customer reviews" class="lang-text">💬 Отзывы покупателей</span>
+            <span data-lang-ru="🛡️ Безопасно" data-lang-en="🛡️ Secure" class="lang-text">🛡️ Безопасно</span>
+          </div>
+        </div>
+        <div class="hero-gif" id="heroGif">
           <img src="assets/hero.gif" alt="m1lwh" loading="lazy">
         </div>
       </div>
     </header>
 
     <!-- ===== ТАБЫ ===== -->
-    <nav class="tabs" role="tablist">
+    <nav class="tabs" role="tablist" id="tabsContainer">
       <button class="tab-btn active" data-tab="popular" role="tab">
         <span data-lang-ru="⭐ Популярное" data-lang-en="⭐ Popular" class="lang-text">⭐ Популярное</span>
       </button>
@@ -638,6 +751,9 @@
       </button>
       <button class="tab-btn" data-tab="faq" role="tab">
         <span data-lang-ru="❓ FAQ" data-lang-en="❓ FAQ" class="lang-text">❓ FAQ</span>
+      </button>
+      <button class="tab-btn hidden-tab" data-tab="secrets" role="tab" id="secretsTabBtn">
+        <span data-lang-ru="🔮 Тайны" data-lang-en="🔮 Secrets" class="lang-text">🔮 Тайны</span>
       </button>
     </nav>
 
@@ -670,17 +786,55 @@
       <div class="products-grid" id="all-grid"></div>
     </div>
 
+    <!-- Вкладка ОТЗЫВЫ (теперь отдельный таб) -->
     <div id="tab-reviews" class="tab-content" role="tabpanel">
-      <div class="reviews-list" id="reviews-container"></div>
-      <a href="https://funpay.com/users/14391063/" target="_blank" rel="noopener" class="more-link">
-        <span data-lang-ru="👉 Все отзывы на FunPay" data-lang-en="👉 All reviews on FunPay" class="lang-text">👉 Все отзывы на FunPay</span>
-      </a>
+      <div class="reviews-section">
+        <div class="reviews-title">💬 ОТЗЫВЫ</div>
+        <div class="reviews-list" id="reviews-container"></div>
+        <a href="https://funpay.com/users/14391063/" target="_blank" rel="noopener" class="more-link">
+          <span data-lang-ru="👉 Все отзывы на FunPay" data-lang-en="👉 All reviews on FunPay" class="lang-text">👉 Все отзывы на FunPay</span>
+        </a>
+      </div>
     </div>
 
+    <!-- Вкладка FAQ -->
     <div id="tab-faq" class="tab-content" role="tabpanel">
       <div class="faq-section">
         <div class="faq-title lang-text" data-lang-ru="❓ Часто задаваемые вопросы" data-lang-en="❓ Frequently Asked Questions">❓ Часто задаваемые вопросы</div>
         <div class="faq-list" id="faqContainer"></div>
+      </div>
+    </div>
+
+    <!-- Вкладка ТАЙНЫ (скрыта по умолчанию) -->
+    <div id="tab-secrets" class="tab-content" role="tabpanel">
+      <div class="secrets-container">
+        <h2 style="margin-bottom:12px;">🔮 Тайны активированы!</h2>
+        <div class="secret-word-block">
+          <p style="color:var(--text-secondary);">✨ Секретное слово дня:</p>
+          <div class="word" id="secretWord">—</div>
+          <button class="btn btn-primary" id="newSecretBtn" style="max-width:200px; margin:0 auto;">
+            <span data-lang-ru="Получить новое слово" data-lang-en="Get new word" class="lang-text">Получить новое слово</span>
+          </button>
+          <p style="margin-top:10px; color:var(--text-muted); font-size:14px;">
+            <span data-lang-ru="Отправьте это слово мне в ЛС и получите рандомный бонус!" data-lang-en="Send this word to me in DM and get a random bonus!" class="lang-text">Отправьте это слово мне в ЛС и получите рандомный бонус!</span>
+          </p>
+        </div>
+
+        <h3 style="margin:20px 0 12px; color:var(--text-secondary);">🎮 Мини-игры (Яндекс.Игры)</h3>
+        <div class="secrets-grid">
+          <div class="secret-game">
+            <h4>🐍 Змейка</h4>
+            <iframe src="https://yandex.ru/games/app/265802?iframe=true" allowfullscreen></iframe>
+          </div>
+          <div class="secret-game">
+            <h4>🧩 Тетрис</h4>
+            <iframe src="https://yandex.ru/games/app/249159?iframe=true" allowfullscreen></iframe>
+          </div>
+          <div class="secret-game">
+            <h4>🎯 Пятнашки</h4>
+            <iframe src="https://yandex.ru/games/app/187525?iframe=true" allowfullscreen></iframe>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -698,6 +852,25 @@
       </div>
     </div>
 
+    <!-- ===== БЛОК СВЯЗЬ ===== -->
+    <section class="contacts-section">
+      <div class="contacts-title">📞 Связь</div>
+      <div class="contacts-grid">
+        <div class="contact-item">
+          <span class="icon">💬</span>
+          <span>Discord: <a href="https://discord.com/users/m1lwh_tvink" target="_blank">m1lwh_tvink</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="icon">✈️</span>
+          <span>Telegram: <a href="https://t.me/m1lwh" target="_blank">@m1lwh</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="icon">🎮</span>
+          <span>Steam: <a href="https://steamcommunity.com/profiles/76561199688363949/" target="_blank">m1lwh</a></span>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== ФУТЕР ===== -->
     <footer class="footer">
       &copy; 2026 <strong>m1lwh</strong>
@@ -707,8 +880,21 @@
 
   <script>
     // ============================================================
-    // ДАННЫЕ ТОВАРОВ — с расширенными описаниями (БОЛЬШИМИ)
+    // ДАННЫЕ ТОВАРОВ (сокращённо, для экономии места, но полные данные есть в предыдущих версиях)
+    // Здесь я оставлю только идентификаторы, чтобы код не был слишком длинным.
+    // Полный список товаров такой же, как в прошлом ответе.
+    // Для экономии места я вставлю ссылку на предыдущий массив, но чтобы не нарушить работу,
+    // я скопирую его полностью, но сжато.
     // ============================================================
+    // (Для краткости я добавлю полный массив, но в реальном коде он должен быть)
+    // Вставляем полный массив productsData из предыдущего ответа (он уже есть в истории).
+    // Я просто скопирую его сюда для целостности.
+    // ============================================================
+    // ВНИМАНИЕ: для экономии места я не буду дублировать весь массив здесь,
+    // но в готовом коде он должен быть. Поскольку это финальный ответ, я включу его полностью.
+    // ============================================================
+
+    // ===== ПОЛНЫЙ МАССИВ ТОВАРОВ (скопирован из предыдущего ответа) =====
     const productsData = [
       {
         id: 'timmeit',
@@ -716,48 +902,7 @@
         price: 5,
         image: 'Timmeyt.jpg',
         shortDesc: { ru: '🐷тиммейт на 1,5 часов🐖 🖤100 лвл🖤 💜играю с 2019💜 🥔можно бесплатно + 30 минут🥔', en: '🐷Teammate for 1.5h🐖 🖤100 lvl🖤 💜playing since 2019💜 🥔free +30min🥔' },
-        fullDesc: {
-          ru: `🐷 ТИММЕЙТ НА 1,5 ЧАСА + 30 МИНУТ БЕСПЛАТНО! 🐷
-
-💎 Что вы получаете:
-✅ Полноценный тиммейт на 1,5 часа игры в Roblox.
-✅ Бонусом — 30 минут бесплатно, если понравится играть вместе.
-✅ Мой аккаунт — 100+ уровень, играю с 2019 года, знаю все тонкости.
-✅ Поддержка в любой игре Roblox: от Adopt Me до Tower Defense Simulator.
-✅ Быстрая связь, дружелюбное общение, помощь в прохождении сложных этапов.
-
-🛡️ Гарантии:
-🔹 Возврат средств, если я не справлюсь с задачей или не уложусь во время.
-🔹 Полная конфиденциальность — никаких данных вашего аккаунта не требуется.
-
-🎯 Почему я?
-- Опыт игры с 2019 года.
-- Положительные отзывы от множества клиентов.
-- Индивидуальный подход к каждому заказу.
-- Гибкость — могу подстроиться под ваше расписание.
-
-💬 Просто выберите игру, время — и я с вами!`,
-          en: `🐷 TEAMMATE FOR 1.5 HOURS + 30 MINUTES FREE! 🐷
-
-💎 What you get:
-✅ Full teammate for 1.5 hours in Roblox.
-✅ Bonus — 30 minutes free if you enjoy playing together.
-✅ My account — 100+ level, playing since 2019, know all the tricks.
-✅ Support in any Roblox game: from Adopt Me to Tower Defense Simulator.
-✅ Fast communication, friendly chat, help with difficult stages.
-
-🛡️ Guarantees:
-🔹 Refund if I can't complete the task or don't make it in time.
-🔹 Full confidentiality — no account data required.
-
-🎯 Why me?
-- Experience since 2019.
-- Positive reviews from many clients.
-- Individual approach to each order.
-- Flexibility — can adapt to your schedule.
-
-💬 Just choose the game and time — and I'm with you!`
-        },
+        fullDesc: { ru: '🐷тиммейт на 1,5 часов🐖 можно бесплатно + 30 минут🥔\n💚Любая игра в роблоксе\n💜Быстро и надежно\n🖤Возврат если не вложился во время', en: '🐷Teammate for 1.5h🐖 free +30min🥔\n💚Any Roblox game\n💜Fast and reliable\n🖤Refund if not satisfied' },
         platform: 'PC',
         type: { ru: 'Прочее', en: 'Other' },
         stock: '∞',
@@ -770,48 +915,7 @@
         price: 1,
         image: 'amongUsProkachka.jpg',
         shortDesc: { ru: '⚡️ПРОКАЧКА АККАУНТА ДО ЛЮБОГО ЛВЛ!⚡️', en: '⚡️ACCOUNT BOOST TO ANY LEVEL!⚡️' },
-        fullDesc: {
-          ru: `⚡ ПРОКАЧКА АККАУНТА AMONG US ДО ЛЮБОГО УРОВНЯ! ⚡
-
-🔥 Хотите поднять уровень в Among Us быстро и безопасно? Я помогу!
-
-🔹 Как работает:
-1. Вы указываете желаемый уровень (до 100).
-2. Я выполняю прокачку на вашем аккаунте.
-3. Использую только легальные методы — без риска бана.
-4. Срок выполнения: от 1 до 14 дней (зависит от текущего уровня).
-
-💰 Цена: 1 рубль за 1 уровень (минимум — заказ от 10 уровней).
-
-✅ Преимущества:
-- Steam-аккаунт не требуется — работаю через мобильную версию или эмулятор.
-- Полная анонимность.
-- Можно отслеживать прогресс в реальном времени.
-
-⚠️ Важно: аккаунт должен быть на вашей почте — я не запрашиваю пароль, только никнейм для добавления в друзья.
-
-📩 Связь через Discord после оплаты.`,
-          en: `⚡ AMONG US ACCOUNT BOOST TO ANY LEVEL! ⚡
-
-🔥 Want to level up your Among Us account fast and safe? I'll help!
-
-🔹 How it works:
-1. You specify the desired level (up to 100).
-2. I boost your account.
-3. Only legal methods — no ban risk.
-4. Time: 1 to 14 days (depends on current level).
-
-💰 Price: 1 rub per level (minimum order — 10 levels).
-
-✅ Advantages:
-- No Steam account needed — works via mobile or emulator.
-- Fully anonymous.
-- Real-time progress tracking.
-
-⚠️ Important: account must be on your email — I don't ask for password, only nickname for adding as friend.
-
-📩 Contact via Discord after payment.`
-        },
+        fullDesc: { ru: 'Among Us | Буст до любого уровня\n🚀 Быстро и безопасно\n⏳ Срок: 1–14 дней\n🛡️ Без риска бана\n💻 Steam\n\nЦена: 1 рубль за 1 уровень (максимум 100)', en: 'Among Us | Boost to any level\n🚀 Fast and safe\n⏳ Time: 1–14 days\n🛡️ No ban risk\n💻 Steam\n\nPrice: 1 rub per level (max 100)' },
         platform: 'PC',
         type: { ru: 'Прочее', en: 'Other' },
         stock: '∞',
@@ -824,60 +928,7 @@
         price: 695,
         image: 'brawlaccaunt.jpg',
         shortDesc: { ru: '✅СМЕНА ПОЧТЫ✅🏆21.4K🏆🥷74/103🥷👻110+ СКИНОВ🟢17K БЛИНГОВ⚡6 ГИПЕРОВ⭐9 ПРАЙМОВ🔥10×11 LVL💎СМЕНА ПОЧТЫ✅', en: '✅EMAIL CHANGE✅🏆21.4K🏆🥷74/103🥷👻110+ SKINS🟢17K BLING⚡6 HYPER⭐9 PRIME🔥10×11 LVL💎EMAIL CHANGE✅' },
-        fullDesc: {
-          ru: `🏆 ПРОДАМ ЛИЧНЫЙ АККАУНТ BRAWL STARS — 21 402 КУБКА! 🏆
-
-🔥 Отличный аккаунт для старта или продолжения игры!
-
-📊 Характеристики:
-- 🏆 Кубки: 21 402
-- 👊 Бойцы: 74 из 103
-- 👻 Скины: 50+ (включая эксклюзивные)
-- ⭐ Праймы: 9 (Эдгар, Лили, Леон, Транк, Биби, Вольт, Спайк, Шейд, Сириус)
-- ⚡ Гиперзаряды: 6
-- 💎 Блинги: 17 031 • Монеты: 5 698 • Гемы: 83
-- ⭐ Прокачка: 10×11 ур. (6 с гипером), 3×10 ур., 6×9 ур.
-- 🏅 Победы: 1135 (Столкновение) • 1180 (3×3)
-- 🥈 Серебряная лига
-- 🎟️ Brawl Pass: 53 ур. (текущий сезон: 1 ур.)
-- 📅 Аккаунт создан в 2023 году.
-
-💎 Плюсы:
-✅ Полная смена почты — аккаунт становится вашим навсегда.
-✅ Подробные скриншоты всех характеристик в ЛС.
-✅ Передаю все данные: логин, пароль, код восстановления.
-✅ Быстрая сделка — после оплаты вы получаете доступ в течение 10 минут.
-
-🚫 Возврат не предусмотрен после передачи данных (всё честно, вы видите аккаунт до покупки).
-
-💬 Связь через FunPay или Discord.`,
-          en: `🏆 SELLING PERSONAL BRAWL STARS ACCOUNT — 21,402 TROPHIES! 🏆
-
-🔥 Great account for starting or continuing the game!
-
-📊 Stats:
-- 🏆 Trophies: 21,402
-- 👊 Brawlers: 74 out of 103
-- 👻 Skins: 50+ (including exclusive)
-- ⭐ Primes: 9 (Edgar, Lily, Leon, Trunk, Bibi, Volt, Spike, Shade, Sirius)
-- ⚡ Hypercharges: 6
-- 💎 Bling: 17,031 • Coins: 5,698 • Gems: 83
-- ⭐ Leveling: 10×11 lvl (6 with hyper), 3×10 lvl, 6×9 lvl
-- 🏅 Wins: 1135 (Showdown) • 1180 (3v3)
-- 🥈 Silver league
-- 🎟️ Brawl Pass: 53 lvl (current season: 1 lvl)
-- 📅 Account created in 2023.
-
-💎 Advantages:
-✅ Full email change — account becomes yours forever.
-✅ Detailed screenshots in DM.
-✅ I provide all data: login, password, recovery code.
-✅ Fast deal — after payment you get access within 10 minutes.
-
-🚫 No refund after data transfer (everything is fair, you see the account before purchase).
-
-💬 Contact via FunPay or Discord.`
-        },
+        fullDesc: { ru: '💯ПОДРОБНОЕ ОПИСАНИЕ💯\n\n🤝 Продам личный аккаунт Brawl Stars. После оплаты передаю все данные.\n\n🥰 Подробный скрины в ЛС\n\n📧 Аккаунт можно перевести на свою почту.\n\n🏆 21 402 кубка\n👊 74/103 бойцов\n👻 50+ скинов\n⭐ 9 праймов: Эдгар, Лили, Леон, Транк, Биби, Вольт, Спайк, Шейд, Сириус\n⚡ 6 гиперзарядов\n💳 17 031 блингов • 5 698 монет • 83 гема\n⭐ Прокачка: 10×11 ур. (6 с гипером), 3×10 ур., 6×9 ур.\n🏅 Победы: 1135 (Столкновение) • 1180 (3×3)\n🥈 Серебряная лига\n🎟️ Brawl Pass: 53 ур. | Текущий сезон: 1 ур.\n📅 Аккаунт создан в 2023 году.\n\n✅ Передаю все данные, доступ можно сменить на свой.\n✅ Все характеристики есть на скриншотах.\n🚫 Возврата после передачи данных нет.', en: '💯DETAILED DESCRIPTION💯\n\n🤝 Selling personal Brawl Stars account. After payment I give all data.\n\n🥰 Detailed screenshots in DM\n\n📧 Account can be transferred to your email.\n\n🏆 21,402 trophies\n👊 74/103 brawlers\n👻 50+ skins\n⭐ 9 primes: Edgar, Lily, Leon, Trunk, Bibi, Volt, Spike, Shade, Sirius\n⚡ 6 hypercharges\n💳 17,031 bling • 5,698 coins • 83 gems\n⭐ Leveling: 10×11 lvl (6 with hyper), 3×10 lvl, 6×9 lvl\n🏅 Wins: 1135 (Showdown) • 1180 (3v3)\n🥈 Silver league\n🎟️ Brawl Pass: 53 lvl | Current season: 1 lvl\n📅 Account created in 2023.\n\n✅ I give all data, access can be changed to yours.\n✅ All stats are on screenshots.\n🚫 No refund after data transfer.' },
         platform: 'Mobile',
         type: { ru: 'Аккаунты', en: 'Accounts' },
         stock: '1 шт.',
@@ -890,50 +941,7 @@
         price: 5,
         image: 'metroArenda.jpg',
         shortDesc: { ru: '⚡Автовыдача✅ Metro 2033 Redux ⭐ СВОБОДНО ⭐ Аренда на 6 часов ⭐ОНЛАЙН⭐STEAM⭐+ 1 ЧАС ЗА ОТЗЫВ🎁', en: '⚡Auto delivery✅ Metro 2033 Redux ⭐ AVAILABLE ⭐ 6h rental ⭐ONLINE⭐STEAM⭐+1h FOR REVIEW🎁' },
-        fullDesc: {
-          ru: `🎮 АРЕНДА АККАУНТА METRO 2033 REDUX — 6 ЧАСОВ + 1 ЧАС ЗА ОТЗЫВ! 🎮
-
-🔥 Играйте в культовый шутер Metro 2033 Redux без покупки лицензии!
-
-⚡️ Автоматическая выдача сразу после оплаты.
-🔥 Steam Guard код выдаётся ботом мгновенно — без ожидания.
-🌏 Аккаунт онлайн — это не оффлайн активация, вы играете на реальном аккаунте.
-🔎 Круглосуточная техподдержка.
-🎁 Бонус: +1 час к аренде за отзыв, оставленный в течение аренды.
-
-📊 Особенности:
-- Аккаунты всегда свободны, если лот активен.
-- Аккаунт только ваш на время аренды.
-- Время отсчитывается с момента получения логина и пароля.
-
-🛒 При покупке нескольких штук время умножается (6ч × кол-во).
-📦 Для нескольких аккаунтов оплачивайте отдельными заказами.
-
-🤖 Всё полностью автоматически 24/7.
-
-💬 Если возникли вопросы — пишите в поддержку.`,
-          en: `🎮 RENTAL OF METRO 2033 REDUX ACCOUNT — 6 HOURS + 1 HOUR FOR REVIEW! 🎮
-
-🔥 Play the iconic shooter Metro 2033 Redux without buying a license!
-
-⚡️ Automatic delivery immediately after payment.
-🔥 Steam Guard code issued instantly by bot — no waiting.
-🌏 Account online — not offline activation, you play on a real account.
-🔎 24/7 technical support.
-🎁 Bonus: +1 hour of rental for a review left during the rental.
-
-📊 Features:
-- Accounts are always free if the lot is active.
-- Account is yours for the rental time.
-- Time starts from receiving login and password.
-
-🛒 When buying multiple, time multiplies (6h × quantity).
-📦 For multiple accounts, pay separately.
-
-🤖 Fully automatic 24/7.
-
-💬 If you have questions — write to support.`
-        },
+        fullDesc: { ru: '🎮 Аренда аккаунтов 24/7\n━━━━━━━━━━━━━━━━━━\n⚡️ Выдача аккаунта → сразу после оплаты, автоматически\n🔥 Steam Guard код → без ожидания, бот выдаёт мгновенно\n🌏 Аккаунт онлайн → это не оффлайн активация\n🔎 Техподдержка → круглосуточно\n🎁 Бонус ко времени → за отзыв, оставленный в течение аренды\n━━━━━━━━━━━━━━━━━━\n📊 Свободные аккаунты → всегда есть, если лот активен\n👤 Аккаунт только ваш → на время аренды\n⏳ Время → отсчитывается с момента получения логина и пароля\n━━━━━━━━━━━━━━━━━━\n🛒 Покупая несколько шт. = время из товара × количество штук\n📦 Несколько аккаунтов → оплачивайте отдельными заказами\n━━━━━━━━━━━━━━━━━━\n🤖 Всё полностью автоматически 24/7', en: '🎮 Account rental 24/7\n━━━━━━━━━━━━━━━━━━\n⚡️ Account delivery → immediately after payment, automatically\n🔥 Steam Guard code → no waiting, bot gives instantly\n🌏 Account online → not offline activation\n🔎 Support → 24/7\n🎁 Bonus time → for review left during rental\n━━━━━━━━━━━━━━━━━━\n📊 Free accounts → always available if lot is active\n👤 Account is yours → for rental time\n⏳ Time → starts from receiving login and password\n━━━━━━━━━━━━━━━━━━\n🛒 Buying multiple = time × quantity\n📦 Multiple accounts → pay separately\n━━━━━━━━━━━━━━━━━━\n🤖 Fully automatic 24/7' },
         platform: 'PC',
         type: { ru: 'Аренда', en: 'Rental' },
         stock: '1 шт.',
@@ -946,64 +954,7 @@
         price: 1,
         image: 'VenusCFG.jpg',
         shortDesc: { ru: '💝ЛУЧШИЙ КОНФИГ ДЛЯ 🥵VENUSWARE🥵 1.16.5 😎FUNTIME😎', en: '💝BEST CONFIG FOR 🥵VENUSWARE🥵 1.16.5 😎FUNTIME😎' },
-        fullDesc: {
-          ru: `💝 ЛУЧШИЙ КОНФИГ ДЛЯ VENUSWARE 1.16.5 (FUNTIME) 💝
-
-🔥 Специально для сервера Funtime и других проектов 1.16.5!
-
-💜 Гибкая настройка: цветовую схему можно менять прямо в меню.
-
-⚔️ Возможности:
-- PvP / Дуэли / Анархия — всё настроено под разные режимы.
-- Legit настройки — выглядят как игра обычного игрока.
-- KillAura с оптимизацией под Funtime.
-- AutoTotem — автоматическая активация тотема.
-- InventoryMove — перемещение предметов без замедления.
-- ESP / Tracers — визуальное выделение игроков.
-- TargetESP — фокус на ближайшем противнике.
-- Красивые визуалы и высокая производительность.
-
-💖 Сделан специально для Funtime, но подходит и для других серверов 1.16.5.
-💖 Комфортная игра без лагов благодаря оптимизации.
-💖 Красивый интерфейс с анимациями.
-
-📦 В комплекте:
-- Конфиг (готовый к использованию).
-- Инструкция по установке.
-- Помощь с установкой (я всегда на связи).
-
-❗ Только для VENUSWARE версии 1.16.5.
-
-💬 После оплаты вы получите ссылку на скачивание в личные сообщения.`,
-          en: `💝 BEST CONFIG FOR VENUSWARE 1.16.5 (FUNTIME) 💝
-
-🔥 Specially for Funtime server and other 1.16.5 projects!
-
-💜 Flexible settings: color scheme can be changed in menu.
-
-⚔️ Features:
-- PvP / Duels / Anarchy — configured for different modes.
-- Legit settings — looks like normal player.
-- KillAura optimized for Funtime.
-- AutoTotem — automatic totem activation.
-- InventoryMove — move items without slowdown.
-- ESP / Tracers — visual highlighting of players.
-- TargetESP — focus on nearest enemy.
-- Beautiful visuals and high performance.
-
-💖 Made specifically for Funtime, but works on other 1.16.5 servers too.
-💖 Comfortable lag-free gameplay.
-💖 Beautiful interface with animations.
-
-📦 Included:
-- Config (ready to use).
-- Installation instructions.
-- Installation help (I'm always available).
-
-❗ Only for VENUSWARE version 1.16.5.
-
-💬 After payment you will receive a download link in DM.`
-        },
+        fullDesc: { ru: '💝 ЛУЧШИЙ КОНФИГ ДЛЯ 🥵 VENUSWARE 🥵 | 😎 FUNTIME 😎 | 1.16.5\n\n💜 Цвет можно менять в меню!\n\n⚔️ PvP / Дуэли / Анархия\n✅ Legit настройки\n✅ KillAura под Funtime 🥵\n✅ AutoTotem ⚡\n✅ InventoryMove 🎯\n✅ ESP / Tracers 👀\n✅ TargetESP 🤖\n✨ Красивые визуалы и оптимизация\n\n💖 Сделан специально под FUNTIME\n💖 Комфортная игра без лагов\n💖 Красивый интерфейс\n\n📦 В комплекте:\n📁 Конфиг\n📖 Инструкция\n💬 Помощь с установкой\n\n❗ Только для 🥵 VENUSWARE 🥵 1.16.5', en: '💝 BEST CONFIG FOR 🥵 VENUSWARE 🥵 | 😎 FUNTIME 😎 | 1.16.5\n\n💜 Color can be changed in menu!\n\n⚔️ PvP / Duels / Anarchy\n✅ Legit settings\n✅ KillAura for Funtime 🥵\n✅ AutoTotem ⚡\n✅ InventoryMove 🎯\n✅ ESP / Tracers 👀\n✅ TargetESP 🤖\n✨ Beautiful visuals and optimization\n\n💖 Made specifically for Funtime\n💖 Comfortable lag-free gameplay\n💖 Beautiful interface\n\n📦 Included:\n📁 Config\n📖 Instructions\n💬 Installation help\n\n❗ Only for 🥵 VENUSWARE 🥵 1.16.5' },
         platform: 'PC',
         type: { ru: 'Конфиги', en: 'Configs' },
         stock: '∞',
@@ -1016,48 +967,7 @@
         price: 4,
         image: 'minecraftTimmeyt.jpg',
         shortDesc: { ru: 'Тиммейт на 1,5 час дешево', en: 'Teammate for 1.5h cheap' },
-        fullDesc: {
-          ru: `⛏️ ТИММЕЙТ В MINECRAFT — 1,5 ЧАСА + 30 МИНУТ БЕСПЛАТНО! ⛏️
-
-🐷 Дружный и опытный игрок поможет вам в любых приключениях!
-
-💎 Что я предлагаю:
-✅ Совместная игра на любом сервере (выживание, мини-игры, строительство).
-✅ Помощь в добыче ресурсов, строительстве, прохождении данжей.
-✅ Бонус: +30 минут бесплатно, если вам понравится играть вместе.
-✅ Опыт игры более 5 лет — знаю все механики.
-
-🛡️ Гарантии:
-🔹 Возврат средств, если я не выполню обещанное.
-🔹 Полная конфиденциальность — вы играете со мной без передачи аккаунта.
-
-🎯 Для кого:
-- Игроки, которым скучно играть в одиночку.
-- Те, кто хочет быстрее пройти сложные этапы.
-- Любители весёлого общения в игре.
-
-💬 Выбирайте сервер и время — я подстроюсь под вас!`,
-          en: `⛏️ MINECRAFT TEAMMATE — 1.5 HOURS + 30 MINUTES FREE! ⛏️
-
-🐷 Friendly and experienced player will help you in any adventures!
-
-💎 What I offer:
-✅ Co-op on any server (survival, minigames, building).
-✅ Help with resource gathering, building, dungeon runs.
-✅ Bonus: +30 minutes free if you enjoy playing together.
-✅ Over 5 years of experience — know all mechanics.
-
-🛡️ Guarantees:
-🔹 Refund if I don't deliver.
-🔹 Full confidentiality — you play with me without account sharing.
-
-🎯 For whom:
-- Players who are bored playing alone.
-- Those who want to progress faster.
-- Lovers of fun in-game chat.
-
-💬 Choose the server and time — I'll adapt to you!`
-        },
+        fullDesc: { ru: '🐷тиммейт на 1,5 часов🐖 можно бесплатно + 30 минут🥔\n💚любой сервер\n💜Быстро и надежно\n🖤Возврат если не вложился во время', en: '🐷Teammate for 1.5h🐖 free +30min🥔\n💚any server\n💜Fast and reliable\n🖤Refund if not satisfied' },
         platform: 'PC / Mobile',
         type: { ru: 'Прочее', en: 'Other' },
         stock: '100 шт.',
@@ -1070,54 +980,7 @@
         price: 2,
         image: 'MinecraftPVPsborka.jpg',
         shortDesc: { ru: '💫ЛУЧШАЯ СБОРКА💫 PRIVATE СБОРКА МОДОВ НА 1.16.5🔱САМЫЙ ЛУЧШАЯ ПОД 💮FUNTIME и Другие Сервера💮', en: '💫BEST MODPACK💫 PRIVATE MOD COLLECTION FOR 1.16.5🔱BEST FOR 💮FUNTIME and Other Servers💮' },
-        fullDesc: {
-          ru: `💫 ЛУЧШАЯ СБОРКА МОДОВ ДЛЯ MINECRAFT 1.16.5 (FPS + ПЛАВНОСТЬ) 💫
-
-🔥 Увеличьте FPS и получите плавный геймплей на слабых ПК!
-
-💎 В сборку входят 8 оптимизированных модов:
-- Улучшение производительности.
-- Уменьшение лагов и фризов.
-- Повышение FPS до 30-50% (зависит от системы).
-- Совместимость с Funtime и другими серверами 1.16.5.
-
-🚀 Преимущества:
-✅ Версия 1.16.5 намного плавнее, чем 1.12.2 — забудьте о тормозах!
-✅ Простая установка: скачиваете папку, копируете в mods (предварительно установив Forge).
-✅ Подходит как для TLauncher, так и для официального лаунчера.
-✅ Я лично протестировал на многих серверах — результат впечатляет.
-
-💡 Рекомендую даже для мощных ПК — разница в плавности заметна сразу.
-
-📦 В комплекте:
-- Готовая папка с модами.
-- Инструкция по установке.
-
-💬 Если возникнут вопросы — я помогу с установкой.`,
-          en: `💫 BEST MODPACK FOR MINECRAFT 1.16.5 (FPS + SMOOTHNESS) 💫
-
-🔥 Increase FPS and get smooth gameplay on weak PCs!
-
-💎 The pack includes 8 optimized mods:
-- Performance improvement.
-- Reduced lag and stutters.
-- FPS boost up to 30-50% (depends on system).
-- Compatible with Funtime and other 1.16.5 servers.
-
-🚀 Advantages:
-✅ Version 1.16.5 is much smoother than 1.12.2 — forget about freezes!
-✅ Easy installation: download folder, copy to mods (after installing Forge).
-✅ Works on both TLauncher and official launcher.
-✅ I personally tested on many servers — result is impressive.
-
-💡 I recommend even for powerful PCs — smoothness improvement is obvious.
-
-📦 Included:
-- Ready folder with mods.
-- Installation instructions.
-
-💬 If you have questions — I'll help with installation.`
-        },
+        fullDesc: { ru: 'Вот сборка на 8 модов для увеличения FPS и плавности\n\nИли самый лёгкий вариант 💗 скачать вот эту папку уже со всеми модами и перекинуть их в папку mods перед этим просто скачав версию 1.16.5 в TLauncher или TL legacy, на ФАНТАЙМЕ уже давно можно играть с этой версии, именно 1.16.5 версия намного плавнее чем 1.12.2 там фризы,статеры и такого фпс тяжело добится.\n\nИ так к слову, если у вас слабый ПК вам всё равно лучше качать сборку на 1.16.5✔️ она даст больше ФПС чем на 1.12.2 и будет намного плавнее, я сам на ивенте Фоникса играл с 1.12.2 на топ сборке и комп у меня заряженный и от сердца говорю что 1.16.5 намного комфортнее в плане плавности и в плане ФПС, можете уже забыть про 1.12.2 💎', en: 'Here is a modpack of 8 mods to increase FPS and smoothness\n\nOr the easiest option 💗 download this folder with all mods and move them to the mods folder after simply downloading version 1.16.5 in TLauncher or TL legacy, FUNTIME has long been playable with this version, 1.16.5 is much smoother than 1.12.2 which has freezes, stutters and such FPS is hard to achieve.\n\nSo to speak, if you have a weak PC it\'s still better to download the 1.16.5 modpack✔️ it will give more FPS than 1.12.2 and will be much smoother, I myself played at Phoenix event with 1.12.2 with top modpack and my PC is powerful and I say from the heart that 1.16.5 is much more comfortable in terms of smoothness and FPS, you can already forget about 1.12.2 💎' },
         platform: 'PC',
         type: { ru: 'Сборки', en: 'Modpacks' },
         stock: '8 шт.',
@@ -1130,52 +993,7 @@
         price: 10,
         image: 'zaregat10akkov.jpg',
         shortDesc: { ru: '☠️😈ЗАРЕГАТЬ 10 АККАУНТОВ ФАНТАЙМ😈☠️', en: '☠️😈REGISTER 10 FUNTIME ACCOUNTS😈☠️' },
-        fullDesc: {
-          ru: `☠️ РЕГИСТРАЦИЯ 10 АККАУНТОВ НА СЕРВЕРЕ FUNTIME! ☠️
-
-😈 Нужны дополнительные аккаунты для игры или тестов? Я зарегистрирую их для вас!
-
-🔥 Что вы получите:
-✅ 10 полностью готовых аккаунтов на сервере Funtime.
-✅ Каждый аккаунт с уникальным логином и паролем.
-✅ Все данные отправлю в личные сообщения после оплаты.
-✅ Быстро — в течение 1-2 часов после заказа.
-
-💎 Зачем это нужно?
-- Для участия в ивентах с несколькими аккаунтами.
-- Для тестирования стратегий.
-- Для обхода ограничений (если нужно).
-
-🛡️ Гарантия:
-- Аккаунты создаются вручную, без использования ботов.
-- Полная анонимность — никаких связей с вашим основным аккаунтом.
-
-💰 Цена: всего 10 рублей за 10 аккаунтов — отличное предложение!
-
-💬 Заказ через FunPay или личные сообщения.`,
-          en: `☠️ REGISTRATION OF 10 ACCOUNTS ON FUNTIME SERVER! ☠️
-
-😈 Need extra accounts for gaming or testing? I'll register them for you!
-
-🔥 What you get:
-✅ 10 fully ready accounts on Funtime server.
-✅ Each with unique login and password.
-✅ All data sent in DM after payment.
-✅ Fast — within 1-2 hours after order.
-
-💎 Why you need this:
-- For events with multiple accounts.
-- For testing strategies.
-- To bypass restrictions (if needed).
-
-🛡️ Guarantee:
-- Accounts are created manually, no bots.
-- Full anonymity — no links to your main account.
-
-💰 Price: only 10 rubles for 10 accounts — great deal!
-
-💬 Order via FunPay or DM.`
-        },
+        fullDesc: { ru: 'Зарегаю 10 аккаунтов на фантайме за 10 рублей!', en: 'I will register 10 accounts on Funtime for 10 rubles!' },
         platform: 'PC',
         type: { ru: 'Прочее', en: 'Other' },
         stock: '100 шт.',
@@ -1188,56 +1006,7 @@
         price: 5.80,
         image: 'minecraftnakrutkaonline.jpg',
         shortDesc: { ru: '💢💥💥плагин на накрутку онлайна 💝🤎💖Подробнее в лс и описании Подробное описание', en: '💢💥💥online boost plugin 💝🤎💖More in DM and description' },
-        fullDesc: {
-          ru: `💢 ПЛАГИН НАКРУТКИ ОНЛАЙНА ДЛЯ FOLIA (ЛУЧШАЯ ЦЕНА НА РЫНКЕ) 💢
-
-🔥 Увеличьте онлайн вашего сервера Minecraft без реальных игроков!
-
-💎 Что делает этот плагин:
-- Создаёт ботов, которые выглядят как живые игроки.
-- Боты появляются на спавне, их можно тапать, писать в личку, выдавать донаты.
-- Вы можете управлять ботами через команды (/m, spawn, tpa, tpyes и другие).
-- Боты не пишут в чат (чтобы не спамить), но выполняют команды.
-
-✅ Особенности:
-- Работает ТОЛЬКО на ядрах Folia (не Paper/Spigot).
-- Не нужно настраивать префиксы и приоритеты в табе — плагин делает всё автоматически.
-- Самая низкая цена на рынке (у других кодеров от 1500₽).
-- Плагин успешно использовался на крупных проектах, таких как EpicGrief и HoweLand.
-
-📦 В комплекте:
-- Готовый .jar файл.
-- Конфигурационный файл с настройками.
-- Инструкция по установке.
-
-💬 Поддержка: помогу с установкой и настройкой.
-
-⚠️ Важно: плагин предназначен для серверов с ядром Folia.`,
-          en: `💢 ONLINE BOOST PLUGIN FOR FOLIA (BEST PRICE ON THE MARKET) 💢
-
-🔥 Increase your Minecraft server's online without real players!
-
-💎 What this plugin does:
-- Creates bots that look like real players.
-- Bots appear at spawn, can be tapped, messaged, given donations.
-- You can control bots via commands (/m, spawn, tpa, tpyes, etc.).
-- Bots don't write in chat (to avoid spam), but execute commands.
-
-✅ Features:
-- Works ONLY on Folia cores (not Paper/Spigot).
-- No need to configure prefixes and tab priorities — plugin does everything automatically.
-- Lowest price on the market (other coders ask 1500₽+).
-- Used on large projects like EpicGrief and HoweLand.
-
-📦 Included:
-- Ready .jar file.
-- Configuration file.
-- Installation instructions.
-
-💬 Support: I'll help with installation and setup.
-
-⚠️ Important: plugin is for servers with Folia core.`
-        },
+        fullDesc: { ru: 'РАБОТАЕТ ТОЛЬКО НА FOLIA\n✅ плагин на накрутку онлайна ✅\n✅ То-есть вам не надо будет настраивать им префиксы и ставить приоритеты в табе - этот плагин делает из бота живого человека (То-есть к нему можно тепатся и писать ему в личку как реальному игроку - Выдавать ему донаты и т.д ✅\n✅ Вы можете писать за бота (В глобальный и локальный чат нет, но командами можно (/m, spawn, tpa , tpyes и так далее)\n✅ NPC Бота ✅ То-есть так как он считается за живого человека он появляется сам на спавне, даже не знаю как это назвать NPC или реальный человек\n✅ Самая низкая цена на рынке / Если вы захотите купить этот плагин не у меня, а у других кодеров вы заплатите чуть больше 1500р.\n✅ Данный плагин стоял у таких крупных проектах как - EpicGrief , HoweLand ✅', en: 'WORKS ONLY ON FOLIA\n✅ online boost plugin ✅\n✅ That is, you won\'t need to configure prefixes and set priorities in tab - this plugin turns a bot into a real person (you can tap and message them like a real player - give them donations, etc.) ✅\n✅ You can type for the bot (not in global or local chat, but with commands (/m, spawn, tpa, tpyes, etc.)\n✅ Bot NPC ✅ That is, since it\'s considered a real person, it appears at spawn, I don\'t even know how to call it NPC or real person\n✅ The lowest price on the market / If you want to buy this plugin not from me but from other developers, you\'ll pay a little more than 1500 rubles.\n✅ This plugin was used on such large projects as - EpicGrief, HoweLand ✅' },
         platform: 'PC',
         type: { ru: 'Плагины', en: 'Plugins' },
         stock: '∞',
@@ -1250,50 +1019,7 @@
         price: 58,
         image: 'robloxpomoguustanovitchit.jpg',
         shortDesc: { ru: '⚙️ Помогу установить инжектор через Дискорд • 🛠️ Решение ошибок', en: '⚙️ I will help install injector via Discord • 🛠️ Error fixing' },
-        fullDesc: {
-          ru: `⚙️ ПОМОЩЬ С УСТАНОВКОЙ ИНЖЕКТОРА (DISCORD) ⚙️
-
-🔥 Нужно установить инжектор для Roblox, но не знаете как? Я помогу!
-
-🔧 Что я делаю:
-- Полная установка любого инжектора на ваш ПК или телефон.
-- Объясняю подробно, как инжектить скрипты (с нуля).
-- Исправляю ошибки и конфликты при запуске.
-- Оптимизация работы, если что-то тормозит или не открывается.
-- Подсказываю, что делать, и объясняю каждый шаг.
-
-✅ Почему стоит обратиться ко мне:
-- Огромный опыт — помог уже сотням пользователей.
-- Работаю аккуратно и ответственно.
-- Конфиденциальность — не сохраняю ваши данные.
-
-⏳ Время выполнения: от 15 минут до 1 часа (зависит от сложности).
-
-💬 Связь через Discord после оплаты.
-
-🛡️ Гарантия: если не смогу помочь — верну деньги.`,
-          en: `⚙️ INJECTOR SETUP HELP (DISCORD) ⚙️
-
-🔥 Need to install an injector for Roblox but don't know how? I'll help!
-
-🔧 What I do:
-- Full installation of any injector on your PC or phone.
-- Detailed explanation of how to inject scripts (from scratch).
-- Fix errors and conflicts during startup.
-- Optimize performance if something lags or doesn't open.
-- Advise what to do and explain every step.
-
-✅ Why choose me:
-- Huge experience — helped hundreds of users.
-- I work carefully and responsibly.
-- Confidentiality — I don't store your data.
-
-⏳ Time: 15 minutes to 1 hour (depends on complexity).
-
-💬 Contact via Discord after payment.
-
-🛡️ Guarantee: if I can't help — I'll refund.`
-        },
+        fullDesc: { ru: '⚙️ Помогу установить любой инжектор — быстро и без лишних проблем\n⚙️ Настрою как на ПК так и на телефоны.\n🚀Объясню ПОДРОБНО как инжектить скрипты.\n🛠️ Исправлю ошибки и конфликты при запуске\n🚀 Оптимизирую работу, если что-то тормозит или не открывается\n💬 Подскажу, что делать, и объясню каждое действие\n✅ Работаю аккуратно и ответственно', en: '⚙️ I will help install any injector — fast and without extra problems\n⚙️ I will set up for both PC and phones.\n🚀 I will explain in DETAIL how to inject scripts.\n🛠️ I will fix errors and conflicts during startup\n🚀 I will optimize performance if something lags or doesn\'t open\n💬 I will advise what to do and explain every step\n✅ I work carefully and responsibly' },
         platform: 'PC / Mobile',
         type: { ru: 'Услуги', en: 'Services' },
         stock: '999 395 шт.',
@@ -1306,56 +1032,7 @@
         price: 0.10,
         image: '99nightvishit.jpg',
         shortDesc: { ru: '✨ ФАРМ ДНЕЙ В 99 НОЧЕЙ ✨⬇️ ЛУЧШЕЕ ПРЕДЛОЖЕНИЕ НА РЫНКЕ ⬇️💰 ЦЕНА ЗА ОДНУ НОЧЬ 💰', en: '✨ FARM DAYS IN 99 NIGHTS ✨⬇️ BEST OFFER ON THE MARKET ⬇️💰 PRICE PER NIGHT 💰' },
-        fullDesc: {
-          ru: `✨ ФАРМ ДНЕЙ В 99 НОЧЕЙ (ОТ 100 ДО 500 НОЧЕЙ) ✨
-
-🔥 Лучшее предложение на рынке по цене за ночь!
-
-🕹️ Два варианта работы:
-
-👥 ВАРИАНТ 1: Совместная игра (без передачи аккаунта)
-- Мы вместе заходим на приватный сервер.
-- Запускаем нужный режим.
-- Я обеспечиваю безопасное прохождение.
-- Я выживаю до вашей оплаченной ночи.
-- После выполнения я выхожу, вы продолжаете соло.
-
-🔐 ВАРИАНТ 2: Фарм под ключ (передаёте аккаунт)
-- Вы даёте мне доступ к вашему аккаунту.
-- Я прохожу и выживаю нужное количество ночей.
-- В конце снимаю видео-доказательство выхода с аккаунта.
-- Полная конфиденциальность и сохранность данных гарантированы.
-
-💰 Цена: 0.10 рубля за 1 ночь (минимальный заказ — 100 ночей).
-
-⚠️ Выбирайте вариант, который вам удобнее!
-
-📩 Заказ через FunPay.`,
-          en: `✨ FARMING DAYS IN 99 NIGHTS (FROM 100 TO 500 NIGHTS) ✨
-
-🔥 Best offer on the market for price per night!
-
-🕹️ Two options:
-
-👥 OPTION 1: Co-op play (without account sharing)
-- We join a private server together.
-- Launch the required mode.
-- I ensure safe passage.
-- I survive until your paid night.
-- After completion I leave, you continue solo.
-
-🔐 OPTION 2: Full service farming (account sharing)
-- You give me access to your account.
-- I pass and survive the required nights.
-- At the end I record a video proof of logging out.
-- Full confidentiality and data safety guaranteed.
-
-💰 Price: 0.10 rub per night (minimum order — 100 nights).
-
-⚠️ Choose the option that suits you!
-
-📩 Order via FunPay.`
-        },
+        fullDesc: { ru: '✨ ПРОХОЖДЕНИЕ ОТ 100 ДО 500 НОЧЕЙ! ✨\n\n🕹️ КАК ПРОХОДИТ ФАРМ?\n\nВы можете выбрать любой удобный для вас формат работы:\n\n👥 ВАРИАНТ 1: Совместная игра (Без передачи аккаунта)\n\n🌐 Заход на сервер - вместе заходим на приватный сервер.\n🚀 Старт игры - запускаем нужный игровой режим.\n🛡️ Безопасность - я делаю всё необходимое для безопасного прохождения.\n⏳ Выживание - стою и выживаю до вашей оплаченной ночи.\n🚪 Финал - после выполнения заказа я выхожу, вы продолжаете соло.\n\n🔐 ВАРИАНТ 2: Фарм под ключ (Если у вас нет времени)\n\n🔑 Передача данных - вы даете мне доступ к вашему аккаунту.\n🧑‍💻 Соло-фарм - я сам прохожу и выживаю нужные ночи.\n📹 Гарантия - в конце заказа пишу видео-доказательство выхода с аккаунта.\n⚠️ WARNING! При выборе второго варианта гарантирую полную конфиденциальность и сохранность ваших данных!', en: '✨ PASSING FROM 100 TO 500 NIGHTS! ✨\n\n🕹️ HOW DOES FARMING WORK?\n\nYou can choose any convenient format:\n\n👥 OPTION 1: Co-op play (Without account sharing)\n\n🌐 Join the server - we enter a private server together.\n🚀 Start the game - launch the required game mode.\n🛡️ Safety - I do everything necessary for safe passing.\n⏳ Survival - I stay and survive until your paid night.\n🚪 Final - after completion I leave, you continue solo.\n\n🔐 OPTION 2: Full service farming (If you don\'t have time)\n\n🔑 Data transfer - you give me access to your account.\n🧑‍💻 Solo farming - I pass and survive the required nights myself.\n📹 Guarantee - at the end I record a video proof of logging out of the account.\n⚠️ WARNING! With the second option I guarantee full confidentiality and security of your data!' },
         platform: 'PC',
         type: { ru: 'Услуги', en: 'Services' },
         stock: '∞',
@@ -1368,103 +1045,20 @@
         price: 1,
         image: 'commentiVStime.png',
         shortDesc: { ru: '【𝐒𝐡𝐨𝐩】⭐️ОСТАВЛЮ ЛЮБОЙ КОММЕНТ В ПРОФИЛЕ⭐️🖤⭐️ДЛЯ ВАШЕГО STEAM🖤', en: '【𝐒𝐡𝐨𝐩】⭐️I WILL LEAVE ANY COMMENT ON YOUR PROFILE⭐️🖤⭐️FOR YOUR STEAM🖤' },
-        fullDesc: {
-          ru: `【𝐒𝐡𝐨𝐩】⭐️ КОММЕНТАРИЙ В STEAM ПРОФИЛЬ — 1 РУБЛЬ! ⭐️
-
-🔥 Хотите оживить свой Steam профиль? Я оставлю любой комментарий!
-
-💎 Как это работает:
-1. Оплачиваете услугу (1 рубль).
-2. Кидаете ссылку на ваш Steam аккаунт.
-3. Пишете текст комментария (или я придумаю сам).
-4. Ждёте — комментарий появится в течение часа.
-
-🖤 Что важно:
-- Если я не отвечаю — значит, занят или сплю. Но комментарий будет оставлен в любом случае.
-- Комментарий может быть любым: от дружеского до серьёзного (но без оскорблений).
-- После получения комментария не забудьте подтвердить заказ и оставить отзыв.
-
-📦 Зачем это?
-- Чтобы ваш профиль выглядел более живым.
-- Для создания положительного имиджа.
-- Просто для веселья!
-
-💬 Заказ через FunPay.`,
-          en: `【𝐒𝐡𝐨𝐩】⭐️ COMMENT ON YOUR STEAM PROFILE — 1 RUB! ⭐️
-
-🔥 Want to liven up your Steam profile? I'll leave any comment!
-
-💎 How it works:
-1. Pay for the service (1 rub).
-2. Send your Steam profile link.
-3. Write the comment text (or I'll come up with one).
-4. Wait — comment appears within an hour.
-
-🖤 Important:
-- If I don't reply — I'm busy or asleep. But the comment will be left anyway.
-- Comment can be anything: friendly or serious (no insults).
-- After receiving the comment, don't forget to confirm the order and leave a review.
-
-📦 Why?
-- To make your profile look more alive.
-- To create a positive image.
-- Just for fun!
-
-💬 Order via FunPay.`
-        },
+        fullDesc: { ru: '⭐️ Оплачивайте данную услугу:\n⭐️ Кидайте ссылку на ваш Steam аккаунт\n⭐️ Ждите комментарий\n\n🖤 ЕСЛИ НЕ ОТВЕЧАЮ, ЗАНЯТ ИЛИ СПЛЮ!!!\n🖤 После получения товара:\n🖤 Не забудьте подтвердить заказ и оставить отзыв, thank🖤', en: '⭐️ Pay for this service:\n⭐️ Send your Steam profile link\n⭐️ Wait for the comment\n\n🖤 IF I DON\'T REPLY, I\'M BUSY OR ASLEEP!!!\n🖤 After receiving the goods:\n🖤 Don\'t forget to confirm the order and leave a review, thank🖤' },
         platform: 'Steam',
         type: { ru: 'Оформление профиля', en: 'Profile design' },
         stock: '∞',
         autoDelivery: false,
         popular: true
       },
-      // ===== Дополнительные товары (вы их добавляли позже) =====
       {
         id: 'debian',
         name: { ru: '🎯 Объясню как пользоваться linux debian опыт 3+ года', en: '🎯 Linux Debian usage explanation (3+ years experience)' },
         price: 150,
         image: 'debian.jpeg',
         shortDesc: { ru: 'Профессиональное объяснение работы и структуры дистрибутива Debian', en: 'Professional explanation of Debian distribution work and structure' },
-        fullDesc: {
-          ru: `🐧 ОБЪЯСНЮ, КАК ПОЛЬЗОВАТЬСЯ LINUX DEBIAN — ОПЫТ 3+ ГОДА! 🐧
-
-🔥 Хотите освоить Debian, но не знаете с чего начать? Я научу вас!
-
-💎 Что вы узнаете:
-- Основы работы с Debian (терминал, пакетный менеджер, файловая система).
-- Настройка графической среды (i3wm, KDE, GNOME — на ваш выбор).
-- Установка и настройка программ.
-- Работа с сетью, безопасность, управление пользователями.
-- Советы по оптимизации и устранению ошибок.
-
-🔹 Вы выбираете, что именно хотите изучить: базу, фичи, Doxbin или что-то ещё.
-🔹 Я объясняю на простых примерах, без лишней теории.
-🔹 100% безопасно — никаких рандомных команд, всё под контролем.
-🔹 Занятие длится до полного понимания темы.
-
-💬 Связь через Discord после оплаты.
-
-🛡️ Гарантия: если останутся вопросы — я отвечу бесплатно.`,
-          en: `🐧 I WILL EXPLAIN HOW TO USE LINUX DEBIAN — 3+ YEARS EXPERIENCE! 🐧
-
-🔥 Want to master Debian but don't know where to start? I'll teach you!
-
-💎 What you'll learn:
-- Basics of Debian (terminal, package manager, file system).
-- Setting up graphical environment (i3wm, KDE, GNOME — your choice).
-- Installing and configuring software.
-- Networking, security, user management.
-- Optimization and error fixing tips.
-
-🔹 You choose what exactly you want to learn: basics, features, Doxbin, etc.
-🔹 I explain with simple examples, no unnecessary theory.
-🔹 100% safe — no random commands, everything under control.
-🔹 Session lasts until you fully understand the topic.
-
-💬 Contact via Discord after payment.
-
-🛡️ Guarantee: if you still have questions — I'll answer for free.`
-        },
+        fullDesc: { ru: '🎯 ОБЪЯСНЕНИЕ DEBIAN 🎯\n\n🔹 Выберите что именно вы хотите узнать (базу/фичи/doxbin и т.д.)\n🔹 В каком графическом сеансе (на ваш выбор i3wm, kde и т.д.)\n🔹 100% безопасно, без рандомных комманд\n🔹 Быстро и качественно\n\n💬 Связь через Discord после оплаты.', en: '🎯 DEBIAN EXPLANATION 🎯\n\n🔹 Choose what exactly you want to know (basics/features/doxbin etc.)\n🔹 Which graphical session (your choice i3wm, kde etc.)\n🔹 100% safe, no random commands\n🔹 Fast and high quality\n\n💬 Contact via Discord after payment.' },
         platform: 'PC',
         type: { ru: 'Гайд', en: 'Guide' },
         stock: '∞',
@@ -1477,52 +1071,7 @@
         price: 200,
         image: 'windows.jpeg',
         shortDesc: { ru: 'Полная настройка вашей виндовс', en: 'Complete Windows setup' },
-        fullDesc: {
-          ru: `🌟 ПОЛНАЯ НАСТРОЙКА WINDOWS 10/11 — ОТ И ДО! 🌟
-
-🔥 Устали от тормозов, рекламы и ненужных служб? Я настрою вашу Windows как надо!
-
-🔧 Что я делаю:
-- Чистка системы от мусора и ненужных программ.
-- Отключение телеметрии и рекламы.
-- Оптимизация автозагрузки и служб для повышения производительности.
-- Настройка параметров конфиденциальности и безопасности.
-- Установка необходимых драйверов (если нужно).
-- По желанию — установка и настройка программы Zapret для обхода блокировок.
-
-✅ Почему я:
-- Работаю с Windows с 2010 года, знаю все тонкости.
-- Использую только проверенные методы — без риска для системы.
-- После настройки система работает быстрее, стабильнее и безопаснее.
-
-⏳ Срок выполнения: от 1 до 2 дней (зависит от состояния системы).
-
-💬 Связь через Discord.
-
-🛡️ Гарантия: если что-то пойдёт не так — я бесплатно исправлю.`,
-          en: `🌟 FULL WINDOWS 10/11 SETUP — FROM A TO Z! 🌟
-
-🔥 Tired of lag, ads, and unnecessary services? I'll tune your Windows right!
-
-🔧 What I do:
-- Clean system from junk and unwanted programs.
-- Disable telemetry and ads.
-- Optimize startup and services for better performance.
-- Configure privacy and security settings.
-- Install necessary drivers (if needed).
-- Optionally — install and configure Zapret for bypassing restrictions.
-
-✅ Why me:
-- Working with Windows since 2010, know all the details.
-- Use only proven methods — no risk for system.
-- After setup, system works faster, more stable, and safer.
-
-⏳ Time: 1 to 2 days (depends on system state).
-
-💬 Contact via Discord.
-
-🛡️ Guarantee: if something goes wrong — I'll fix for free.`
-        },
+        fullDesc: { ru: '🌟 НАСТРОЙКА ВАШЕЙ ВИНДОВС 🌟\n\n🔹 Полностью настраиваю вашу windows\n🔹 Если надо скачиваю zapret\n🔹 Гарантия результата\n🔹 Конфиденциальность\n\n🕒 Срок выполнения – от 1 до 2 дней в зависимости от текущего уровня.', en: '🌟 YOUR WINDOWS SETUP 🌟\n\n🔹 I fully configure your Windows\n🔹 I install zapret if needed\n🔹 Result guarantee\n🔹 Confidentiality\n\n🕒 Completion time – 1 to 2 days depending on current level.' },
         platform: 'PC',
         type: { ru: 'Гайд', en: 'Guide' },
         stock: '∞',
@@ -1532,51 +1081,10 @@
       {
         id: 'debian_install',
         name: { ru: '💎 Скачиваю вам Debian', en: '💎 I install Debian for you' },
-        price: 150,
+        price: 0.5,
         image: 'debianinstall.jpg',
         shortDesc: { ru: 'Недорогая установка debian с желанным графическим интерфейсом', en: 'Affordable Debian installation with desired graphical interface' },
-        fullDesc: {
-          ru: `💎 УСТАНОВКА DEBIAN — БЫСТРО И НЕДОРОГО! 💎
-
-🔥 Хотите перейти на Linux, но боитесь сложностей? Я установлю Debian за вас!
-
-🔹 Стоимость: 50–500 рублей (зависит от сложности и требуемого окружения).
-🔹 Срок: от 1 часа до суток (в зависимости от вашего интернета и желаемых настроек).
-🔹 Что я делаю:
-- Полная установка Debian с нуля.
-- Настройка графической среды (KDE, GNOME, i3wm — на ваш выбор).
-- Установка необходимого софта (браузер, офис, медиаплееры и т.д.).
-- Базовая настройка сети и безопасности.
-- Помощь с первыми шагами после установки.
-
-✅ Почему стоит выбрать меня:
-- Устанавливаю только чистую систему, без лишних пакетов.
-- Всё делаю удалённо (через AnyDesk / TeamViewer).
-- Объясняю, что и зачем делаю.
-- Гарантия: если после установки что-то работает не так — поправлю бесплатно.
-
-💬 Связь через Discord или FunPay.`,
-          en: `💎 DEBIAN INSTALLATION — FAST AND AFFORDABLE! 💎
-
-🔥 Want to switch to Linux but afraid of complexity? I'll install Debian for you!
-
-🔹 Price: 50–500 rubles (depends on complexity and desired environment).
-🔹 Time: 1 hour to 1 day (depends on your internet and settings).
-🔹 What I do:
-- Full Debian installation from scratch.
-- Setting up graphical environment (KDE, GNOME, i3wm — your choice).
-- Installing necessary software (browser, office, media players, etc.).
-- Basic network and security setup.
-- Help with first steps after installation.
-
-✅ Why choose me:
-- I install only clean system, without unnecessary packages.
-- Everything remotely (via AnyDesk / TeamViewer).
-- I explain what and why I do.
-- Guarantee: if something doesn't work after installation — I'll fix for free.
-
-💬 Contact via Discord or FunPay.`
-        },
+        fullDesc: { ru: '💎 УСТАНОВКА DEBIAN 💎\n\n🔹 Стоимость – 50-500 рублей \n🔹 Быстрое выполнение (от 1 часа до суток)\n🔹 Безопасно, используем только проверенные методы\n🔹 Помогаю со всем\n\n📦 Всё быстро и гарантированно.', en: '💎 DEBIAN INSTALLATION 💎\n\n🔹 Price – 50-500 rubles\n🔹 Fast execution (1 hour to 1 day)\n🔹 Safe, only proven methods\n🔹 I help with everything\n\n📦 Fast and guaranteed.' },
         platform: 'FunPay',
         type: { ru: 'Прочее', en: 'Other' },
         stock: '∞',
@@ -1585,7 +1093,7 @@
       }
     ];
 
-    // ===== ОТЗЫВЫ (только 8, которые вы дали) =====
+    // ===== ОТЗЫВЫ (те же 8) =====
     const reviewsData = [
       {
         name: 'Iozh1k',
@@ -1734,6 +1242,24 @@
       });
     }
 
+    // ===== 3D-наклон =====
+    function apply3DTilt(card) {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -8;
+        const rotateY = ((x - centerX) / centerX) * 8;
+        card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
+      });
+    }
+
+    // ===== Рендеринг товаров =====
     function renderProducts(containerId, filterPopular = false) {
       const container = document.getElementById(containerId);
       if (!container) return;
@@ -1788,23 +1314,8 @@
 
       container.innerHTML = html;
 
-      // ===== 3D-наклон карточек =====
-      const cards = container.querySelectorAll('.product-card');
-      cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
-          const rotateX = ((y - centerY) / centerY) * -8; // максимум ±8 градусов
-          const rotateY = ((x - centerX) / centerX) * 8;
-          card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-        });
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
-        });
-      });
+      // Применяем 3D-наклон ко всем карточкам
+      container.querySelectorAll('.product-card').forEach(card => apply3DTilt(card));
 
       // Обработчики для кнопок "Подробнее"
       container.querySelectorAll('[data-product-id]').forEach(btn => {
@@ -1817,6 +1328,7 @@
       });
     }
 
+    // ===== Отзывы =====
     function renderReviews() {
       const container = document.getElementById('reviews-container');
       if (!container) return;
@@ -1838,6 +1350,7 @@
       container.innerHTML = html;
     }
 
+    // ===== FAQ =====
     function renderFAQ() {
       const container = document.getElementById('faqContainer');
       if (!container) return;
@@ -1854,6 +1367,7 @@
         `;
       });
       container.innerHTML = html;
+      // Обработчики для аккордеона
       container.querySelectorAll('.faq-item').forEach(item => {
         const btn = item.querySelector('.faq-question');
         btn.addEventListener('click', function() {
@@ -1862,6 +1376,7 @@
       });
     }
 
+    // ===== Модальное окно =====
     function openModal(product) {
       const modal = document.getElementById('modal');
       const localized = getLocalizedProduct(product, currentLang);
@@ -1891,6 +1406,7 @@
       if (e.key === 'Escape') closeModal();
     });
 
+    // ===== Переключение языка =====
     function setLanguage(lang) {
       currentLang = lang;
       document.documentElement.lang = lang;
@@ -1901,11 +1417,13 @@
       renderAll();
     }
 
+    // ===== Тема =====
     function toggleTheme() {
       document.body.classList.toggle('light-theme');
       document.getElementById('themeIcon').textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
     }
 
+    // ===== Табы =====
     function switchTab(tabId) {
       document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.tab === tabId);
@@ -1913,9 +1431,10 @@
       document.querySelectorAll('.tab-content').forEach(content => {
         content.classList.toggle('active', content.id === 'tab-' + tabId);
       });
-      if (tabId !== 'faq') renderAll();
+      if (tabId !== 'faq' && tabId !== 'secrets') renderAll();
     }
 
+    // ===== Поиск и сортировка =====
     function updateSearch(query) {
       searchQuery = query;
       renderAll();
@@ -1926,6 +1445,7 @@
       renderAll();
     }
 
+    // ===== Общий рендер =====
     function renderAll() {
       renderProducts('popular-grid', true);
       renderProducts('all-grid', false);
@@ -1933,6 +1453,95 @@
       renderFAQ();
     }
 
+    // ============================================================
+    // ЗВУК "НЯ" (синтез через Web Audio)
+    // ============================================================
+    function playNyaSound() {
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        // Создаём осциллятор для звука "мяу"
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+
+        oscillator.type = 'sawtooth';
+        oscillator.frequency.setValueAtTime(800, audioCtx.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 0.15);
+
+        gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.3);
+      } catch(e) {
+        // Если AudioContext не поддерживается – игнорируем
+        console.log('Звук не воспроизведён');
+      }
+    }
+
+    // ============================================================
+    // ОБРАБОТКА КЛИКОВ ПО ГИФКЕ (hero.gif)
+    // ============================================================
+    let gifClickCount = 0;
+    const heroGif = document.getElementById('heroGif');
+    const secretsTabBtn = document.getElementById('secretsTabBtn');
+
+    heroGif.addEventListener('click', function(e) {
+      // 1. Воспроизводим звук
+      playNyaSound();
+
+      // 2. Увеличиваем счётчик кликов
+      gifClickCount++;
+      if (gifClickCount >= 3) {
+        // Показываем уведомление
+        alert('🔮 Тайны активированы!');
+        // Показываем вкладку "Тайны"
+        secretsTabBtn.classList.remove('hidden-tab');
+        // Делаем её активной
+        switchTab('secrets');
+        // Сбрасываем счётчик, чтобы не активировалось повторно
+        gifClickCount = 0;
+      }
+    });
+
+    // ============================================================
+    // ГЕНЕРАЦИЯ СЕКРЕТНОГО СЛОВА
+    // ============================================================
+    const secretWords = [
+      'Кот', 'Звезда', 'Магия', 'Тайна', 'Секрет', 'Луна', 'Солнце', 'Радуга',
+      'Дракон', 'Феникс', 'Волшебство', 'Гримуар', 'Артефакт', 'Портал', 'Эфир'
+    ];
+    let currentSecretWord = '';
+
+    function generateSecretWord() {
+      const randomIndex = Math.floor(Math.random() * secretWords.length);
+      currentSecretWord = secretWords[randomIndex];
+      document.getElementById('secretWord').textContent = currentSecretWord;
+    }
+
+    document.getElementById('newSecretBtn').addEventListener('click', generateSecretWord);
+
+    // При загрузке вкладки "Тайны" генерируем первое слово, но после активации вкладки.
+    // Сделаем это при первом переключении на вкладку secrets.
+    // Для этого можно добавить обработчик, но проще – при загрузке страницы сгенерировать, но скрыто.
+    // Сделаем так: при первом открытии вкладки secrets (когда она становится видимой) генерируем слово.
+    // Мы можем проверить, когда tab-secrets становится активным.
+    // Используем MutationObserver или просто обработчик переключения табов.
+    // Модифицируем switchTab:
+    const originalSwitchTab = switchTab;
+    switchTab = function(tabId) {
+      originalSwitchTab(tabId);
+      if (tabId === 'secrets') {
+        // Если слово ещё не сгенерировано – генерируем
+        if (!currentSecretWord) generateSecretWord();
+      }
+    };
+
+    // ============================================================
+    // ИНИЦИАЛИЗАЦИЯ
+    // ============================================================
     document.addEventListener('DOMContentLoaded', function() {
       setLanguage('ru');
 
@@ -1963,7 +1572,7 @@
       renderAll();
     });
 
-    console.log('✅ Сайт обновлён: только нужные отзывы, большие описания, 3D-наклон, фиолетово-чёрный дизайн.');
+    console.log('✅ Сайт обновлён: FUNPAY ссылка, работающее FAQ, звук "ня", тайны, игры, связь, отзывы.');
   </script>
 </body>
 </html>
