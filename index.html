@@ -15,829 +15,555 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,800;14..32,900&display=swap" rel="stylesheet">
 
   <style>
-    /* ============================================================
-       ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
-       ============================================================ */
+    /* ===== СТИЛИ (те же, что были) ===== */
     :root {
       --bg-primary: #0b0f17;
-      --bg-glass: rgba(255, 255, 255, 0.06);
-      --bg-glass-hover: rgba(255, 255, 255, 0.10);
-      --border-glass: rgba(255, 255, 255, 0.12);
-      --border-glass-strong: rgba(255, 255, 255, 0.20);
+      --bg-glass: rgba(255,255,255,0.06);
+      --bg-glass-hover: rgba(255,255,255,0.10);
+      --border-glass: rgba(255,255,255,0.12);
+      --border-glass-strong: rgba(255,255,255,0.20);
       --text-primary: #f0f0f5;
       --text-secondary: #b0b8c8;
       --text-muted: #7a8294;
       --accent-violet: #a78bfa;
       --accent-cyan: #22d3ee;
       --accent-gradient: linear-gradient(135deg, var(--accent-violet), var(--accent-cyan));
-      --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.45);
+      --shadow-glass: 0 8px 32px rgba(0,0,0,0.45);
       --radius-card: 20px;
       --radius-btn: 60px;
-      --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-smooth: all 0.25s cubic-bezier(0.4,0,0.2,1);
     }
-
-    /* ============================================================
-       СБРОС И БАЗОВЫЕ СТИЛИ
-       ============================================================ */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: radial-gradient(ellipse at 20% 0%, rgba(167, 139, 250, 0.20), transparent 60%),
-                  radial-gradient(ellipse at 90% 10%, rgba(34, 211, 238, 0.15), transparent 55%),
+      font-family:'Inter',system-ui,sans-serif;
+      background: radial-gradient(ellipse at 20% 0%, rgba(167,139,250,0.20), transparent 60%),
+                  radial-gradient(ellipse at 90% 10%, rgba(34,211,238,0.15), transparent 55%),
                   var(--bg-primary);
-      color: var(--text-primary);
-      line-height: 1.6;
-      min-height: 100vh;
-      padding: 20px 0 0;
-      backdrop-filter: blur(2px); /* лёгкий блюр на весь фон */
+      color:var(--text-primary);
+      line-height:1.6;
+      min-height:100vh;
+      padding:20px 0 0;
+      backdrop-filter:blur(2px);
     }
-
-    /* ============================================================
-       КОНТЕЙНЕР
-       ============================================================ */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px 40px;
-    }
-
-    /* ============================================================
-       ШАПКА (GLASS)
-       ============================================================ */
+    .container { max-width:1200px; margin:0 auto; padding:0 20px 40px; }
     .header {
-      background: var(--bg-glass);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--border-glass);
-      border-radius: var(--radius-card);
-      padding: 20px 28px;
-      margin-bottom: 32px;
-      box-shadow: var(--shadow-glass);
-      transition: var(--transition-smooth);
+      background:var(--bg-glass);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      border:1px solid var(--border-glass);
+      border-radius:var(--radius-card);
+      padding:20px 28px;
+      margin-bottom:32px;
+      box-shadow:var(--shadow-glass);
+      transition:var(--transition-smooth);
     }
-
-    .header:hover {
-      border-color: var(--border-glass-strong);
-    }
-
+    .header:hover { border-color:var(--border-glass-strong); }
     .header-top {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
     }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
+    .brand { display:flex; align-items:center; gap:12px; }
     .brand-icon {
-      font-size: 28px;
-      font-weight: 900;
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-size:28px;
+      font-weight:900;
+      background:var(--accent-gradient);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
     }
-
     .brand-name {
-      font-size: 24px;
-      font-weight: 900;
-      letter-spacing: -0.5px;
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-size:24px;
+      font-weight:900;
+      letter-spacing:-0.5px;
+      background:var(--accent-gradient);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
     }
-
     .badge-date {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 16px;
-      border-radius: 60px;
-      background: var(--bg-glass);
-      border: 1px solid var(--border-glass);
-      font-size: 13px;
-      color: var(--text-secondary);
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 16px;
+      border-radius:60px;
+      background:var(--bg-glass);
+      border:1px solid var(--border-glass);
+      font-size:13px;
+      color:var(--text-secondary);
     }
-
     .badge-date .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent-gradient);
-      box-shadow: 0 0 12px rgba(167, 139, 250, 0.5);
-      animation: pulse-dot 2s infinite;
+      width:8px; height:8px;
+      border-radius:50%;
+      background:var(--accent-gradient);
+      box-shadow:0 0 12px rgba(167,139,250,0.5);
+      animation:pulse-dot 2s infinite;
     }
-
     @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.6; transform: scale(0.9); }
+      0%,100%{ opacity:1; transform:scale(1); }
+      50%{ opacity:0.6; transform:scale(0.9); }
     }
-
     .lang-switch {
-      display: flex;
-      gap: 4px;
-      background: var(--bg-glass);
-      border-radius: 60px;
-      padding: 4px;
-      border: 1px solid var(--border-glass);
+      display:flex;
+      gap:4px;
+      background:var(--bg-glass);
+      border-radius:60px;
+      padding:4px;
+      border:1px solid var(--border-glass);
     }
-
     .lang-btn {
-      background: transparent;
-      border: none;
-      padding: 6px 14px;
-      border-radius: 60px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-secondary);
-      cursor: pointer;
-      transition: var(--transition-smooth);
+      background:transparent;
+      border:none;
+      padding:6px 14px;
+      border-radius:60px;
+      font-size:13px;
+      font-weight:600;
+      color:var(--text-secondary);
+      cursor:pointer;
+      transition:var(--transition-smooth);
     }
-
     .lang-btn.active {
-      background: var(--accent-gradient);
-      color: #0b0f17;
-      box-shadow: 0 4px 16px rgba(167, 139, 250, 0.3);
+      background:var(--accent-gradient);
+      color:#0b0f17;
+      box-shadow:0 4px 16px rgba(167,139,250,0.3);
     }
-
-    .lang-btn:hover:not(.active) {
-      background: var(--bg-glass-hover);
-    }
-
-    /* Hero-блок внутри шапки */
+    .lang-btn:hover:not(.active) { background:var(--bg-glass-hover); }
     .hero-section {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 30px;
-      margin-top: 18px;
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:30px;
+      margin-top:18px;
     }
-
-    .hero-text {
-      flex: 1 1 280px;
-    }
-
+    .hero-text { flex:1 1 280px; }
     .hero-text h1 {
-      font-size: 34px;
-      font-weight: 900;
-      letter-spacing: -0.5px;
-      margin-bottom: 6px;
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      display: inline-block;
+      font-size:34px;
+      font-weight:900;
+      letter-spacing:-0.5px;
+      margin-bottom:6px;
+      background:var(--accent-gradient);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      display:inline-block;
     }
-
-    .hero-text .sub {
-      color: var(--text-secondary);
-      font-size: 16px;
-      margin: 0;
-    }
-
+    .hero-text .sub { color:var(--text-secondary); font-size:16px; margin:0; }
     .hero-text .highlight {
-      margin-top: 8px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px 24px;
-      font-size: 14px;
-      color: var(--text-muted);
+      margin-top:8px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px 24px;
+      font-size:14px;
+      color:var(--text-muted);
     }
-
-    .hero-text .highlight span {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .hero-gif {
-      flex: 0 0 120px;
-      text-align: center;
-    }
-
+    .hero-text .highlight span { display:inline-flex; align-items:center; gap:6px; }
+    .hero-gif { flex:0 0 120px; text-align:center; }
     .hero-gif img {
-      width: 100%;
-      max-width: 140px;
-      height: auto;
-      border-radius: 16px;
-      box-shadow: 0 0 40px rgba(167, 139, 250, 0.35);
-      border: 1px solid var(--border-glass);
-      transition: var(--transition-smooth);
+      width:100%; max-width:140px; height:auto;
+      border-radius:16px;
+      box-shadow:0 0 40px rgba(167,139,250,0.35);
+      border:1px solid var(--border-glass);
+      transition:var(--transition-smooth);
     }
-
-    .hero-gif img:hover {
-      transform: scale(1.04);
-      box-shadow: 0 0 60px rgba(167, 139, 250, 0.5);
-    }
-
-    /* ============================================================
-       ТАБЫ НАВИГАЦИИ
-       ============================================================ */
+    .hero-gif img:hover { transform:scale(1.04); box-shadow:0 0 60px rgba(167,139,250,0.5); }
     .tabs {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 28px;
-      border-bottom: 1px solid var(--border-glass);
-      padding-bottom: 4px;
-      flex-wrap: wrap;
+      display:flex;
+      gap:6px;
+      margin-bottom:28px;
+      border-bottom:1px solid var(--border-glass);
+      padding-bottom:4px;
+      flex-wrap:wrap;
     }
-
     .tab-btn {
-      background: transparent;
-      border: none;
-      padding: 10px 22px;
-      border-radius: 60px;
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--text-secondary);
-      cursor: pointer;
-      transition: var(--transition-smooth);
-      position: relative;
+      background:transparent;
+      border:none;
+      padding:10px 22px;
+      border-radius:60px;
+      font-size:15px;
+      font-weight:700;
+      color:var(--text-secondary);
+      cursor:pointer;
+      transition:var(--transition-smooth);
+      position:relative;
     }
-
-    .tab-btn:hover {
-      background: var(--bg-glass);
-      color: var(--text-primary);
-    }
-
+    .tab-btn:hover { background:var(--bg-glass); color:var(--text-primary); }
     .tab-btn.active {
-      background: var(--accent-gradient);
-      color: #0b0f17;
-      box-shadow: 0 4px 20px rgba(167, 139, 250, 0.35);
+      background:var(--accent-gradient);
+      color:#0b0f17;
+      box-shadow:0 4px 20px rgba(167,139,250,0.35);
     }
-
     .tab-btn.active::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 20%;
-      width: 60%;
-      height: 3px;
-      border-radius: 10px;
-      background: var(--accent-gradient);
+      content:'';
+      position:absolute;
+      bottom:-5px;
+      left:20%;
+      width:60%;
+      height:3px;
+      border-radius:10px;
+      background:var(--accent-gradient);
     }
-
-    /* ============================================================
-       КОНТЕЙНЕРЫ ТАБОВ (отображение)
-       ============================================================ */
-    .tab-content {
-      display: none;
-      animation: fadeIn 0.4s ease;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(14px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ============================================================
-       СЕТКА ТОВАРОВ (GLASS-КАРТОЧКИ)
-       ============================================================ */
+    .tab-content { display:none; animation:fadeIn 0.4s ease; }
+    .tab-content.active { display:block; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(14px);} to{opacity:1;transform:translateY(0);} }
     .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 28px;
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+      gap:28px;
     }
-
     .product-card {
-      background: var(--bg-glass);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border-glass);
-      border-radius: var(--radius-card);
-      overflow: hidden;
-      box-shadow: var(--shadow-glass);
-      transition: var(--transition-smooth);
-      display: flex;
-      flex-direction: column;
-      position: relative;
+      background:var(--bg-glass);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      border:1px solid var(--border-glass);
+      border-radius:var(--radius-card);
+      overflow:hidden;
+      box-shadow:var(--shadow-glass);
+      transition:var(--transition-smooth);
+      display:flex;
+      flex-direction:column;
+      position:relative;
     }
-
     .product-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: var(--radius-card);
-      padding: 1px;
-      background: var(--accent-gradient);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.4s;
+      content:'';
+      position:absolute;
+      inset:0;
+      border-radius:var(--radius-card);
+      padding:1px;
+      background:var(--accent-gradient);
+      -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+      pointer-events:none;
+      opacity:0;
+      transition:opacity 0.4s;
     }
-
-    .product-card:hover::before {
-      opacity: 1;
-    }
-
+    .product-card:hover::before { opacity:1; }
     .product-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6);
-      border-color: var(--border-glass-strong);
-      background: var(--bg-glass-hover);
+      transform:translateY(-8px);
+      box-shadow:0 20px 48px rgba(0,0,0,0.6);
+      border-color:var(--border-glass-strong);
+      background:var(--bg-glass-hover);
     }
-
     .product-card img {
-      width: 100%;
-      height: 170px;
-      object-fit: cover;
-      background: rgba(255, 255, 255, 0.03);
-      border-bottom: 1px solid var(--border-glass);
-      transition: var(--transition-smooth);
+      width:100%; height:170px;
+      object-fit:cover;
+      background:rgba(255,255,255,0.03);
+      border-bottom:1px solid var(--border-glass);
+      transition:var(--transition-smooth);
     }
-
-    .product-card:hover img {
-      transform: scale(1.02);
-    }
-
-    .product-body {
-      padding: 16px 18px 20px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
+    .product-card:hover img { transform:scale(1.02); }
+    .product-body { padding:16px 18px 20px; flex:1; display:flex; flex-direction:column; }
     .product-body h3 {
-      font-size: 17px;
-      font-weight: 800;
-      line-height: 1.25;
-      margin-bottom: 4px;
-      color: var(--text-primary);
+      font-size:17px;
+      font-weight:800;
+      line-height:1.25;
+      margin-bottom:4px;
+      color:var(--text-primary);
     }
-
     .product-body .price {
-      font-size: 22px;
-      font-weight: 900;
-      color: var(--accent-cyan);
-      margin: 2px 0 6px;
-      text-shadow: 0 0 20px rgba(34, 211, 238, 0.15);
+      font-size:22px;
+      font-weight:900;
+      color:var(--accent-cyan);
+      margin:2px 0 6px;
+      text-shadow:0 0 20px rgba(34,211,238,0.15);
     }
-
     .product-body .short-desc {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.4;
-      margin-bottom: 12px;
-      flex: 1;
-      word-break: break-word;
+      font-size:13px;
+      color:var(--text-secondary);
+      line-height:1.4;
+      margin-bottom:12px;
+      flex:1;
+      word-break:break-word;
     }
-
     .product-body .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin-bottom:14px;
     }
-
     .product-body .tags span {
-      font-size: 11px;
-      font-weight: 600;
-      background: var(--bg-glass);
-      padding: 3px 12px;
-      border-radius: 40px;
-      border: 1px solid var(--border-glass);
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
+      font-size:11px;
+      font-weight:600;
+      background:var(--bg-glass);
+      padding:3px 12px;
+      border-radius:40px;
+      border:1px solid var(--border-glass);
+      color:var(--text-secondary);
+      text-transform:uppercase;
+      letter-spacing:0.3px;
     }
-
     .product-body .tags span.auto {
-      background: rgba(34, 211, 238, 0.15);
-      border-color: rgba(34, 211, 238, 0.3);
-      color: var(--accent-cyan);
+      background:rgba(34,211,238,0.15);
+      border-color:rgba(34,211,238,0.3);
+      color:var(--accent-cyan);
     }
-
     .product-body .btn-group {
-      display: flex;
-      gap: 8px;
-      margin-top: auto;
+      display:flex;
+      gap:8px;
+      margin-top:auto;
     }
-
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 10px 16px;
-      border-radius: var(--radius-btn);
-      font-weight: 800;
-      font-size: 13px;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: var(--transition-smooth);
-      flex: 1;
-      text-align: center;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      padding:10px 16px;
+      border-radius:var(--radius-btn);
+      font-weight:800;
+      font-size:13px;
+      text-decoration:none;
+      border:none;
+      cursor:pointer;
+      transition:var(--transition-smooth);
+      flex:1;
+      text-align:center;
     }
-
     .btn-outline {
-      background: var(--bg-glass);
-      border: 1px solid var(--border-glass);
-      color: var(--text-primary);
+      background:var(--bg-glass);
+      border:1px solid var(--border-glass);
+      color:var(--text-primary);
     }
-
     .btn-outline:hover {
-      background: var(--bg-glass-hover);
-      border-color: var(--border-glass-strong);
-      transform: scale(1.02);
+      background:var(--bg-glass-hover);
+      border-color:var(--border-glass-strong);
+      transform:scale(1.02);
     }
-
     .btn-primary {
-      background: var(--accent-gradient);
-      color: #0b0f17;
-      box-shadow: 0 4px 20px rgba(167, 139, 250, 0.3);
+      background:var(--accent-gradient);
+      color:#0b0f17;
+      box-shadow:0 4px 20px rgba(167,139,250,0.3);
     }
-
     .btn-primary:hover {
-      transform: scale(1.04);
-      box-shadow: 0 6px 28px rgba(167, 139, 250, 0.5);
+      transform:scale(1.04);
+      box-shadow:0 6px 28px rgba(167,139,250,0.5);
     }
-
-    /* ============================================================
-       МОДАЛЬНОЕ ОКНО (GLASS)
-       ============================================================ */
     .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      z-index: 2000;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      animation: modalFade 0.3s ease;
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.7);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      z-index:2000;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+      animation:modalFade 0.3s ease;
     }
-
-    .modal-overlay.open {
-      display: flex;
-    }
-
-    @keyframes modalFade {
-      from { opacity: 0; transform: scale(0.96); }
-      to { opacity: 1; transform: scale(1); }
-    }
-
+    .modal-overlay.open { display:flex; }
+    @keyframes modalFade { from{opacity:0;transform:scale(0.96);} to{opacity:1;transform:scale(1);} }
     .modal {
-      background: var(--bg-glass);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--border-glass-strong);
-      border-radius: var(--radius-card);
-      max-width: 680px;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 32px 36px;
-      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.7);
-      position: relative;
+      background:var(--bg-glass);
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
+      border:1px solid var(--border-glass-strong);
+      border-radius:var(--radius-card);
+      max-width:680px;
+      width:100%;
+      max-height:90vh;
+      overflow-y:auto;
+      padding:32px 36px;
+      box-shadow:0 40px 80px rgba(0,0,0,0.7);
+      position:relative;
     }
-
     .modal-close {
-      position: absolute;
-      top: 16px;
-      right: 22px;
-      font-size: 32px;
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: var(--transition-smooth);
-      line-height: 1;
+      position:absolute;
+      top:16px;
+      right:22px;
+      font-size:32px;
+      background:none;
+      border:none;
+      color:var(--text-muted);
+      cursor:pointer;
+      transition:var(--transition-smooth);
+      line-height:1;
     }
-
-    .modal-close:hover {
-      color: var(--text-primary);
-      transform: rotate(90deg);
-    }
-
+    .modal-close:hover { color:var(--text-primary); transform:rotate(90deg); }
     .modal h2 {
-      font-size: 26px;
-      font-weight: 900;
-      margin: 0 0 4px;
-      padding-right: 30px;
+      font-size:26px;
+      font-weight:900;
+      margin:0 0 4px;
+      padding-right:30px;
     }
-
     .modal-price {
-      font-size: 28px;
-      font-weight: 900;
-      color: var(--accent-cyan);
-      margin-bottom: 12px;
+      font-size:28px;
+      font-weight:900;
+      color:var(--accent-cyan);
+      margin-bottom:12px;
     }
-
     .modal-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px 20px;
-      font-size: 14px;
-      color: var(--text-secondary);
-      margin-bottom: 16px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px 20px;
+      font-size:14px;
+      color:var(--text-secondary);
+      margin-bottom:16px;
     }
-
-    .modal-meta b {
-      color: var(--text-primary);
-    }
-
+    .modal-meta b { color:var(--text-primary); }
     .modal-full-desc {
-      font-size: 15px;
-      line-height: 1.7;
-      color: var(--text-secondary);
-      white-space: pre-wrap;
-      word-break: break-word;
-      margin: 12px 0 24px;
-      background: var(--bg-glass);
-      padding: 16px 20px;
-      border-radius: 12px;
-      border: 1px solid var(--border-glass);
+      font-size:15px;
+      line-height:1.7;
+      color:var(--text-secondary);
+      white-space:pre-wrap;
+      word-break:break-word;
+      margin:12px 0 24px;
+      background:var(--bg-glass);
+      padding:16px 20px;
+      border-radius:12px;
+      border:1px solid var(--border-glass);
     }
-
     .btn-big {
-      display: block;
-      width: 100%;
-      padding: 16px;
-      font-size: 20px;
-      font-weight: 900;
-      text-align: center;
-      border-radius: var(--radius-btn);
-      background: var(--accent-gradient);
-      color: #0b0f17;
-      text-decoration: none;
-      box-shadow: 0 6px 30px rgba(167, 139, 250, 0.35);
-      transition: var(--transition-smooth);
-      border: none;
-      cursor: pointer;
+      display:block;
+      width:100%;
+      padding:16px;
+      font-size:20px;
+      font-weight:900;
+      text-align:center;
+      border-radius:var(--radius-btn);
+      background:var(--accent-gradient);
+      color:#0b0f17;
+      text-decoration:none;
+      box-shadow:0 6px 30px rgba(167,139,250,0.35);
+      transition:var(--transition-smooth);
+      border:none;
+      cursor:pointer;
     }
-
-    .btn-big:hover {
-      transform: scale(1.02);
-      box-shadow: 0 8px 40px rgba(167, 139, 250, 0.5);
-    }
-
-    /* ============================================================
-       ОТЗЫВЫ
-       ============================================================ */
-    .reviews-list {
-      display: grid;
-      gap: 18px;
-    }
-
+    .btn-big:hover { transform:scale(1.02); box-shadow:0 8px 40px rgba(167,139,250,0.5); }
+    .reviews-list { display:grid; gap:18px; }
     .review-item {
-      background: var(--bg-glass);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid var(--border-glass);
-      border-radius: 16px;
-      padding: 18px 22px;
-      transition: var(--transition-smooth);
+      background:var(--bg-glass);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      border:1px solid var(--border-glass);
+      border-radius:16px;
+      padding:18px 22px;
+      transition:var(--transition-smooth);
     }
-
-    .review-item:hover {
-      border-color: var(--border-glass-strong);
-      background: var(--bg-glass-hover);
-    }
-
+    .review-item:hover { border-color:var(--border-glass-strong); background:var(--bg-glass-hover); }
     .review-header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      gap: 6px 16px;
-      margin-bottom: 4px;
+      display:flex;
+      flex-wrap:wrap;
+      align-items:baseline;
+      gap:6px 16px;
+      margin-bottom:4px;
     }
-
-    .review-header .name {
-      font-weight: 800;
-      font-size: 15px;
-      color: var(--text-primary);
-    }
-
-    .review-header .order {
-      color: var(--text-muted);
-      font-size: 13px;
-    }
-
-    .review-header .date {
-      color: var(--text-muted);
-      font-size: 12px;
-    }
-
-    .review-header .game {
-      color: var(--accent-cyan);
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .review-text {
-      font-size: 14px;
-      color: var(--text-secondary);
-      margin: 4px 0 8px;
-    }
-
+    .review-header .name { font-weight:800; font-size:15px; color:var(--text-primary); }
+    .review-header .order { color:var(--text-muted); font-size:13px; }
+    .review-header .date { color:var(--text-muted); font-size:12px; }
+    .review-header .game { color:var(--accent-cyan); font-size:13px; font-weight:600; }
+    .review-text { font-size:14px; color:var(--text-secondary); margin:4px 0 8px; }
     .review-answer {
-      font-size: 13px;
-      color: var(--text-muted);
-      border-left: 3px solid var(--accent-violet);
-      padding-left: 14px;
-      margin-top: 6px;
-      background: var(--bg-glass);
-      border-radius: 0 8px 8px 0;
-      padding: 6px 14px;
+      font-size:13px;
+      color:var(--text-muted);
+      border-left:3px solid var(--accent-violet);
+      padding-left:14px;
+      margin-top:6px;
+      background:var(--bg-glass);
+      border-radius:0 8px 8px 0;
+      padding:6px 14px;
     }
-
     .more-link {
-      display: inline-block;
-      margin-top: 20px;
-      font-weight: 800;
-      color: var(--accent-cyan);
-      text-decoration: none;
-      border-bottom: 2px solid transparent;
-      transition: var(--transition-smooth);
+      display:inline-block;
+      margin-top:20px;
+      font-weight:800;
+      color:var(--accent-cyan);
+      text-decoration:none;
+      border-bottom:2px solid transparent;
+      transition:var(--transition-smooth);
     }
-
-    .more-link:hover {
-      border-bottom-color: var(--accent-cyan);
-      opacity: 0.8;
-    }
-
-    /* ============================================================
-       ФУТЕР
-       ============================================================ */
+    .more-link:hover { border-bottom-color:var(--accent-cyan); opacity:0.8; }
     .footer {
-      margin-top: 48px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border-glass);
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 14px;
+      margin-top:48px;
+      padding-top:24px;
+      border-top:1px solid var(--border-glass);
+      text-align:center;
+      color:var(--text-muted);
+      font-size:14px;
     }
-
     .footer strong {
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      background:var(--accent-gradient);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
     }
-
-    /* ============================================================
-       АДАПТИВНОСТЬ
-       ============================================================ */
-    @media (max-width: 768px) {
-      .header { padding: 16px; }
-      .hero-text h1 { font-size: 26px; }
-      .hero-gif { flex-basis: 80px; }
-      .products-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
-      .modal { padding: 24px; }
+    @media (max-width:768px) {
+      .header { padding:16px; }
+      .hero-text h1 { font-size:26px; }
+      .hero-gif { flex-basis:80px; }
+      .products-grid { grid-template-columns:1fr 1fr; gap:16px; }
+      .modal { padding:24px; }
     }
-
-    @media (max-width: 480px) {
-      .products-grid { grid-template-columns: 1fr; }
-      .tabs { gap: 4px; }
-      .tab-btn { font-size: 13px; padding: 6px 14px; }
-      .brand-name { font-size: 18px; }
+    @media (max-width:480px) {
+      .products-grid { grid-template-columns:1fr; }
+      .tabs { gap:4px; }
+      .tab-btn { font-size:13px; padding:6px 14px; }
+      .brand-name { font-size:18px; }
     }
-
-    /* ============================================================
-       ДОПОЛНИТЕЛЬНЫЕ ЭФФЕКТЫ (для увеличения строк)
-       ============================================================ */
-    /* Стеклянный блеск при наведении */
     .product-card::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.05), transparent 70%);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.6s;
+      content:'';
+      position:absolute;
+      top:-50%;
+      left:-50%;
+      width:200%;
+      height:200%;
+      background:radial-gradient(circle at 30% 40%, rgba(255,255,255,0.05), transparent 70%);
+      pointer-events:none;
+      opacity:0;
+      transition:opacity 0.6s;
     }
-
-    .product-card:hover::after {
-      opacity: 1;
-    }
-
-    /* Анимация появления карточек при загрузке */
-    .product-card {
-      animation: cardAppear 0.6s ease backwards;
-    }
-
-    .product-card:nth-child(1) { animation-delay: 0.05s; }
-    .product-card:nth-child(2) { animation-delay: 0.10s; }
-    .product-card:nth-child(3) { animation-delay: 0.15s; }
-    .product-card:nth-child(4) { animation-delay: 0.20s; }
-    .product-card:nth-child(5) { animation-delay: 0.25s; }
-    .product-card:nth-child(6) { animation-delay: 0.30s; }
-    .product-card:nth-child(7) { animation-delay: 0.35s; }
-    .product-card:nth-child(8) { animation-delay: 0.40s; }
-    .product-card:nth-child(9) { animation-delay: 0.45s; }
-    .product-card:nth-child(10) { animation-delay: 0.50s; }
-    .product-card:nth-child(11) { animation-delay: 0.55s; }
-    .product-card:nth-child(12) { animation-delay: 0.60s; }
-    .product-card:nth-child(13) { animation-delay: 0.65s; }
-    .product-card:nth-child(14) { animation-delay: 0.70s; }
-    .product-card:nth-child(15) { animation-delay: 0.75s; }
-    .product-card:nth-child(16) { animation-delay: 0.80s; }
-
-    @keyframes cardAppear {
-      from { opacity: 0; transform: translateY(30px) scale(0.96); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    /* Скроллбар */
-    .modal::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    .modal::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .modal::-webkit-scrollbar-thumb {
-      background: var(--accent-violet);
-      border-radius: 10px;
-    }
-
-    .modal::-webkit-scrollbar-thumb:hover {
-      background: var(--accent-cyan);
-    }
-
-    /* Дополнительные декоративные элементы (для объёма) */
-    .glass-badge {
-      display: inline-block;
-      padding: 4px 14px;
-      background: var(--bg-glass);
-      border-radius: 60px;
-      border: 1px solid var(--border-glass);
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--text-secondary);
-      backdrop-filter: blur(4px);
-    }
-
-    /* Кнопка "Купить" в модалке с пульсацией */
-    .btn-big.pulse {
-      animation: pulse-buy 2s infinite;
-    }
-
-    @keyframes pulse-buy {
-      0%, 100% { box-shadow: 0 6px 30px rgba(167, 139, 250, 0.35); }
-      50% { box-shadow: 0 6px 50px rgba(167, 139, 250, 0.6); }
-    }
-
-    /* Стили для тегов "Популярное" */
+    .product-card:hover::after { opacity:1; }
+    .product-card { animation:cardAppear 0.6s ease backwards; }
+    .product-card:nth-child(1) { animation-delay:0.05s; }
+    .product-card:nth-child(2) { animation-delay:0.10s; }
+    .product-card:nth-child(3) { animation-delay:0.15s; }
+    .product-card:nth-child(4) { animation-delay:0.20s; }
+    .product-card:nth-child(5) { animation-delay:0.25s; }
+    .product-card:nth-child(6) { animation-delay:0.30s; }
+    .product-card:nth-child(7) { animation-delay:0.35s; }
+    .product-card:nth-child(8) { animation-delay:0.40s; }
+    .product-card:nth-child(9) { animation-delay:0.45s; }
+    .product-card:nth-child(10) { animation-delay:0.50s; }
+    .product-card:nth-child(11) { animation-delay:0.55s; }
+    .product-card:nth-child(12) { animation-delay:0.60s; }
+    .product-card:nth-child(13) { animation-delay:0.65s; }
+    .product-card:nth-child(14) { animation-delay:0.70s; }
+    .product-card:nth-child(15) { animation-delay:0.75s; }
+    .product-card:nth-child(16) { animation-delay:0.80s; }
+    @keyframes cardAppear { from{opacity:0;transform:translateY(30px) scale(0.96);} to{opacity:1;transform:translateY(0) scale(1);} }
+    .modal::-webkit-scrollbar { width:6px; }
+    .modal::-webkit-scrollbar-track { background:transparent; }
+    .modal::-webkit-scrollbar-thumb { background:var(--accent-violet); border-radius:10px; }
+    .modal::-webkit-scrollbar-thumb:hover { background:var(--accent-cyan); }
+    .btn-big.pulse { animation:pulse-buy 2s infinite; }
+    @keyframes pulse-buy { 0%,100%{box-shadow:0 6px 30px rgba(167,139,250,0.35);} 50%{box-shadow:0 6px 50px rgba(167,139,250,0.6);} }
     .product-card .popular-tag {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: var(--accent-gradient);
-      color: #0b0f17;
-      font-size: 11px;
-      font-weight: 900;
-      padding: 4px 12px;
-      border-radius: 40px;
-      box-shadow: 0 4px 16px rgba(167, 139, 250, 0.3);
-      z-index: 2;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      position:absolute;
+      top:12px;
+      right:12px;
+      background:var(--accent-gradient);
+      color:#0b0f17;
+      font-size:11px;
+      font-weight:900;
+      padding:4px 12px;
+      border-radius:40px;
+      box-shadow:0 4px 16px rgba(167,139,250,0.3);
+      z-index:2;
+      text-transform:uppercase;
+      letter-spacing:0.5px;
     }
-
-    /* ============================================================
-       КОНЕЦ СТИЛЕЙ
-       ============================================================ */
   </style>
 </head>
-
 <body>
   <div class="container">
-
-    <!-- ============================================================
-    ШАПКА
-    ============================================================ -->
+    <!-- ШАПКА -->
     <header class="header">
       <div class="header-top">
         <div class="brand">
           <span class="brand-icon">⚡</span>
           <span class="brand-name">m1lwh</span>
         </div>
-
         <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
           <div class="badge-date">
             <span class="dot"></span>
@@ -849,7 +575,6 @@
           </div>
         </div>
       </div>
-
       <div class="hero-section">
         <div class="hero-text">
           <h1>✨ ВСЕ МОИ ТОВАРЫ</h1>
@@ -867,34 +592,26 @@
       </div>
     </header>
 
-    <!-- ============================================================
-    ТАБЫ
-    ============================================================ -->
+    <!-- ТАБЫ -->
     <nav class="tabs" role="tablist">
       <button class="tab-btn active" data-tab="popular" role="tab">⭐ Популярное</button>
       <button class="tab-btn" data-tab="all" role="tab">📦 Все товары</button>
       <button class="tab-btn" data-tab="reviews" role="tab">💬 Отзывы</button>
     </nav>
 
-    <!-- ============================================================
-    КОНТЕЙНЕРЫ ТАБОВ
-    ============================================================ -->
+    <!-- КОНТЕЙНЕРЫ ТАБОВ -->
     <div id="tab-popular" class="tab-content active" role="tabpanel">
       <div class="products-grid" id="popular-grid"></div>
     </div>
-
     <div id="tab-all" class="tab-content" role="tabpanel">
       <div class="products-grid" id="all-grid"></div>
     </div>
-
     <div id="tab-reviews" class="tab-content" role="tabpanel">
       <div class="reviews-list" id="reviews-container"></div>
       <a href="https://funpay.com/users/14391063/" target="_blank" rel="noopener" class="more-link">👉 Больше отзывов на FunPay</a>
     </div>
 
-    <!-- ============================================================
-    МОДАЛЬНОЕ ОКНО
-    ============================================================ -->
+    <!-- МОДАЛЬНОЕ ОКНО -->
     <div class="modal-overlay" id="modal">
       <div class="modal">
         <button class="modal-close" id="modal-close" aria-label="Закрыть">&times;</button>
@@ -906,20 +623,15 @@
       </div>
     </div>
 
-    <!-- ============================================================
-    ФУТЕР
-    ============================================================ -->
+    <!-- ФУТЕР -->
     <footer class="footer">
       &copy; 2026 <strong>m1lwh</strong> — все права защищены
     </footer>
   </div>
 
-  <!-- ============================================================
-  СКРИПТЫ
-  ============================================================ -->
   <script>
     // ============================================================
-    // ДАННЫЕ ТОВАРОВ (расширенный список)
+    // ДАННЫЕ ТОВАРОВ
     // ============================================================
     const products = [
       {
@@ -1190,14 +902,14 @@
         autoDelivery: false,
         popular: true
       },
-      // Дополнительные товары для увеличения ассортимента
+      // Дополнительные товары
       {
         id: 'debian',
         name: '🎯 Объясню как пользоваться linux debian опыт 3+ года',
         price: 150,
         image: 'debian.jpeg',
         shortDesc: 'Профессиональное объяснение работы и структуры дистрибутива Debian',
-        fullDesc: `🎯 ОБЪЯСНЕНИЕ DENIAN 🎯
+        fullDesc: `🎯 ОБЪЯСНЕНИЕ DEBIAN 🎯
 
 🔹 Выберите что именно вы хотите узнать (базу/фичи/doxbin и т.д.)
 🔹 В каком графическом сеансе (на ваш выбор i3wm, kde и т.д.)
@@ -1241,8 +953,8 @@
 
 🔹 Стоимость – 50-500 рублей 
 🔹 Быстрое выполнение (от 1 часа до суток)
-🔹 Безопасно, используем только провере
-🔹 Помогаю со всем 
+🔹 Безопасно, используем только проверенные методы
+🔹 Помогаю со всем
 
 📦 Всё быстро и гарантированно.`,
         platform: 'FunPay',
@@ -1270,6 +982,8 @@
         autoDelivery: true,
         popular: false
       }
+    ]; // <-- ВАЖНО: массив закрыт!
+
     // ============================================================
     // ОТЗЫВЫ
     // ============================================================
@@ -1286,22 +1000,14 @@
     // ============================================================
     // ФУНКЦИИ ОТРИСОВКИ
     // ============================================================
-
-    /**
-     * Рендерит карточки товаров в указанный контейнер
-     * @param {string} containerId - ID контейнера
-     * @param {boolean} filterPopular - если true, показываем только популярные
-     */
     function renderProducts(containerId, filterPopular = false) {
       const container = document.getElementById(containerId);
       if (!container) return;
-
       const list = filterPopular ? products.filter(p => p.popular) : products;
       if (list.length === 0) {
         container.innerHTML = '<p style="color:var(--text-muted);padding:20px;">Товаров пока нет</p>';
         return;
       }
-
       let html = '';
       list.forEach((p, index) => {
         const autoTag = p.autoDelivery ? '<span class="auto">⚡ Автовыдача</span>' : '';
@@ -1328,10 +1034,7 @@
           </div>
         `;
       });
-
       container.innerHTML = html;
-
-      // Обработчики для кнопок "Подробнее"
       container.querySelectorAll('[data-product-id]').forEach(btn => {
         btn.addEventListener('click', function(e) {
           e.stopPropagation();
@@ -1342,9 +1045,6 @@
       });
     }
 
-    // ============================================================
-    // МОДАЛЬНОЕ ОКНО
-    // ============================================================
     function openModal(product) {
       const modal = document.getElementById('modal');
       document.getElementById('modal-title').textContent = product.name;
@@ -1365,7 +1065,6 @@
       document.body.style.overflow = '';
     }
 
-    // Обработчики модалки
     document.getElementById('modal-close').addEventListener('click', closeModal);
     document.getElementById('modal').addEventListener('click', function(e) {
       if (e.target === this) closeModal();
@@ -1374,9 +1073,6 @@
       if (e.key === 'Escape') closeModal();
     });
 
-    // ============================================================
-    // ОТРИСОВКА ОТЗЫВОВ
-    // ============================================================
     function renderReviews() {
       const container = document.getElementById('reviews-container');
       if (!container) return;
@@ -1407,14 +1103,10 @@
       all: document.getElementById('tab-all'),
       reviews: document.getElementById('tab-reviews')
     };
-
     tabBtns.forEach(btn => {
       btn.addEventListener('click', function() {
-        // Убираем active у всех кнопок
         tabBtns.forEach(b => b.classList.remove('active'));
         this.classList.add('active');
-
-        // Скрываем все табы, показываем нужный
         const tab = this.dataset.tab;
         Object.keys(tabContents).forEach(key => {
           tabContents[key].classList.toggle('active', key === tab);
@@ -1423,12 +1115,11 @@
     });
 
     // ============================================================
-    // ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА (просто визуально)
+    // ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА (визуально)
     // ============================================================
     document.getElementById('lang-ru').addEventListener('click', function() {
       this.classList.add('active');
       document.getElementById('lang-en').classList.remove('active');
-      // можно добавить перевод, но для демонстрации оставляем
     });
     document.getElementById('lang-en').addEventListener('click', function() {
       this.classList.add('active');
@@ -1441,16 +1132,7 @@
     renderProducts('popular-grid', true);
     renderProducts('all-grid', false);
     renderReviews();
-
-    // ============================================================
-    // ДОПОЛНИТЕЛЬНЫЙ ЭФФЕКТ: при скролле показываем карточки с анимацией
-    // (уже есть в CSS, но можно добавить Intersection Observer для повторной анимации)
-    // ============================================================
-    // (опционально) 
     console.log('Сайт m1lwh успешно загружен!');
-    // ============================================================
-    // КОНЕЦ СКРИПТА
-    // ============================================================
   </script>
 </body>
 </html>
