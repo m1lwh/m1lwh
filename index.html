@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,800;14..32,900&display=swap" rel="stylesheet">
 
   <style>
-    /* ===== Стили (проверены) ===== */
+    /* ===== Глобальные переменные (без изменений) ===== */
     :root {
       --bg-primary: #0b0f17;
       --bg-glass: rgba(255,255,255,0.06);
@@ -53,11 +53,11 @@
       line-height:1.6;
       min-height:100vh;
       padding:20px 0 0;
-      backdrop-filter:blur(2px);
       transition: background 0.3s, color 0.3s;
     }
     .container { max-width:1200px; margin:0 auto; padding:0 20px 40px; }
 
+    /* ===== ШАПКА (без изменений) ===== */
     .header {
       background:var(--bg-glass);
       backdrop-filter:blur(16px);
@@ -184,6 +184,7 @@
     }
     .hero-gif img:hover { transform:scale(1.04); box-shadow:0 0 60px rgba(167,139,250,0.5); }
 
+    /* ===== ТАБЫ (без изменений) ===== */
     .tabs {
       display:flex;
       gap:6px;
@@ -221,6 +222,7 @@
       background:var(--accent-gradient);
     }
 
+    /* ===== ПАНЕЛЬ УПРАВЛЕНИЯ (без изменений) ===== */
     .controls-bar {
       display:flex;
       flex-wrap:wrap;
@@ -269,6 +271,7 @@
     .sort-select:focus { border-color:var(--accent-violet); background:var(--bg-glass-hover); }
     .sort-select option { background:var(--bg-secondary); color:var(--text-primary); }
 
+    /* ===== СЕТКА ТОВАРОВ (без изменений) ===== */
     .products-grid {
       display:grid;
       grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
@@ -361,33 +364,36 @@
       letter-spacing:0.5px;
     }
 
+    /* =============================================================
+       МОДАЛЬНОЕ ОКНО — ИСПРАВЛЕНО (чёткое, контрастное)
+       ============================================================= */
     .modal-overlay {
       display:none;
       position:fixed;
       inset:0;
-      background:rgba(0,0,0,0.7);
-      backdrop-filter:blur(8px);
-      -webkit-backdrop-filter:blur(8px);
+      background:rgba(0,0,0,0.65);  /* плотный полупрозрачный фон */
+      backdrop-filter:blur(4px);    /* лёгкий блюр, не мешает чтению */
+      -webkit-backdrop-filter:blur(4px);
       z-index:2000;
       justify-content:center;
       align-items:center;
       padding:20px;
     }
     .modal-overlay.open { display:flex; }
+
     .modal {
-      background:var(--bg-glass);
-      backdrop-filter:blur(20px);
-      -webkit-backdrop-filter:blur(20px);
-      border:1px solid var(--border-glass-strong);
-      border-radius:var(--radius-card);
-      max-width:680px;
-      width:100%;
-      max-height:90vh;
-      overflow-y:auto;
-      padding:32px 36px;
-      box-shadow:0 40px 80px rgba(0,0,0,0.7);
-      position:relative;
-      margin:auto;
+      background: #111827;          /* тёмный плотный фон */
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius-card);
+      max-width: 680px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 32px 36px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+      position: relative;
+      margin: auto;
+      color: var(--text-primary);
     }
     .modal-close {
       position:absolute;
@@ -402,16 +408,62 @@
       line-height:1;
     }
     .modal-close:hover { color:var(--text-primary); transform:rotate(90deg); }
-    .modal h2 { font-size:26px; font-weight:900; margin:0 0 4px; padding-right:30px; }
-    .modal-price { font-size:28px; font-weight:900; color:var(--accent-cyan); margin-bottom:12px; }
-    .modal-meta { display:flex; flex-wrap:wrap; gap:8px 20px; font-size:14px; color:var(--text-secondary); margin-bottom:16px; }
+    .modal h2 {
+      font-size:26px;
+      font-weight:900;
+      margin:0 0 4px;
+      padding-right:30px;
+      color: #f0f0f5;
+    }
+    .modal-price {
+      font-size:28px;
+      font-weight:900;
+      color:var(--accent-cyan);
+      margin-bottom:12px;
+      text-shadow: 0 0 20px rgba(34,211,238,0.2);
+    }
+    .modal-meta {
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px 20px;
+      font-size:14px;
+      color:var(--text-secondary);
+      margin-bottom:16px;
+    }
     .modal-meta b { color:var(--text-primary); }
-    .modal-full-desc { font-size:15px; line-height:1.7; color:var(--text-secondary); white-space:pre-wrap; word-break:break-word; margin:12px 0 24px; background:var(--bg-glass); padding:16px 20px; border-radius:12px; border:1px solid var(--border-glass); }
-    .btn-big { display:block; width:100%; padding:16px; font-size:20px; font-weight:900; text-align:center; border-radius:var(--radius-btn); background:var(--accent-gradient); color:#0b0f17; text-decoration:none; box-shadow:0 6px 30px rgba(167,139,250,0.35); transition:var(--transition-smooth); border:none; cursor:pointer; }
+    .modal-full-desc {
+      font-size:15px;
+      line-height:1.7;
+      color:#d1d5db;           /* светлый текст для читаемости */
+      white-space:pre-wrap;
+      word-break:break-word;
+      margin:12px 0 24px;
+      background:rgba(255,255,255,0.05);
+      padding:16px 20px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.06);
+    }
+    .btn-big {
+      display:block;
+      width:100%;
+      padding:16px;
+      font-size:20px;
+      font-weight:900;
+      text-align:center;
+      border-radius:var(--radius-btn);
+      background:var(--accent-gradient);
+      color:#0b0f17;
+      text-decoration:none;
+      box-shadow:0 6px 30px rgba(167,139,250,0.35);
+      transition:var(--transition-smooth);
+      border:none;
+      cursor:pointer;
+    }
     .btn-big:hover { transform:scale(1.02); box-shadow:0 8px 40px rgba(167,139,250,0.5); }
     .btn-big.pulse { animation:pulse-buy 2s infinite; }
     @keyframes pulse-buy { 0%,100%{box-shadow:0 6px 30px rgba(167,139,250,0.35);} 50%{box-shadow:0 6px 50px rgba(167,139,250,0.6);} }
 
+    /* ===== ОТЗЫВЫ (без изменений) ===== */
     .reviews-list { display:grid; gap:18px; }
     .review-item {
       background:var(--bg-glass);
@@ -433,6 +485,7 @@
     .more-link { display:inline-block; margin-top:20px; font-weight:800; color:var(--accent-cyan); text-decoration:none; border-bottom:2px solid transparent; transition:var(--transition-smooth); }
     .more-link:hover { border-bottom-color:var(--accent-cyan); opacity:0.8; }
 
+    /* ===== FAQ (без изменений) ===== */
     .faq-section { margin-top:48px; }
     .faq-title { font-size:24px; font-weight:900; margin-bottom:20px; background:var(--accent-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
     .faq-item {
@@ -465,6 +518,7 @@
     .faq-answer { padding:0 20px 16px; color:var(--text-secondary); font-size:15px; line-height:1.6; display:none; }
     .faq-item.open .faq-answer { display:block; }
 
+    /* ===== ФУТЕР (без изменений) ===== */
     .footer {
       margin-top:48px;
       padding-top:24px;
@@ -475,6 +529,7 @@
     }
     .footer strong { background:var(--accent-gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 
+    /* ===== АНИМАЦИИ (без изменений) ===== */
     .product-card {
       animation:cardAppear 0.6s ease backwards;
     }
@@ -518,12 +573,13 @@
     .modal::-webkit-scrollbar-thumb { background:var(--accent-violet); border-radius:10px; }
     .modal::-webkit-scrollbar-thumb:hover { background:var(--accent-cyan); }
 
+    /* ===== АДАПТИВНОСТЬ ===== */
     @media (max-width:768px) {
       .header { padding:16px; }
       .hero-text h1 { font-size:26px; }
       .hero-gif { flex-basis:80px; }
       .products-grid { grid-template-columns:1fr 1fr; gap:16px; }
-      .modal { padding:24px; }
+      .modal { padding:24px; margin:10px; }
       .controls-bar { flex-direction:column; align-items:stretch; padding:12px; border-radius:20px; }
       .search-box { flex:1; }
     }
@@ -538,7 +594,7 @@
 <body>
   <div class="container">
 
-    <!-- ШАПКА -->
+    <!-- ===== ШАПКА (без изменений) ===== -->
     <header class="header">
       <div class="header-top">
         <div class="brand">
@@ -576,7 +632,7 @@
       </div>
     </header>
 
-    <!-- ТАБЫ -->
+    <!-- ===== ТАБЫ ===== -->
     <nav class="tabs" role="tablist">
       <button class="tab-btn active" data-tab="popular" role="tab">
         <span data-lang-ru="⭐ Популярное" data-lang-en="⭐ Popular" class="lang-text">⭐ Популярное</span>
@@ -592,7 +648,7 @@
       </button>
     </nav>
 
-    <!-- ПОПУЛЯРНОЕ -->
+    <!-- ===== КОНТЕЙНЕРЫ ТАБОВ (без изменений) ===== -->
     <div id="tab-popular" class="tab-content active" role="tabpanel">
       <div class="controls-bar">
         <div class="search-box">
@@ -607,7 +663,6 @@
       <div class="products-grid" id="popular-grid"></div>
     </div>
 
-    <!-- ВСЕ ТОВАРЫ -->
     <div id="tab-all" class="tab-content" role="tabpanel">
       <div class="controls-bar">
         <div class="search-box">
@@ -622,7 +677,6 @@
       <div class="products-grid" id="all-grid"></div>
     </div>
 
-    <!-- ОТЗЫВЫ -->
     <div id="tab-reviews" class="tab-content" role="tabpanel">
       <div class="reviews-list" id="reviews-container"></div>
       <a href="https://funpay.com/users/14391063/" target="_blank" rel="noopener" class="more-link">
@@ -630,7 +684,6 @@
       </a>
     </div>
 
-    <!-- FAQ -->
     <div id="tab-faq" class="tab-content" role="tabpanel">
       <div class="faq-section">
         <div class="faq-title lang-text" data-lang-ru="❓ Часто задаваемые вопросы" data-lang-en="❓ Frequently Asked Questions">❓ Часто задаваемые вопросы</div>
@@ -638,7 +691,7 @@
       </div>
     </div>
 
-    <!-- МОДАЛЬНОЕ ОКНО -->
+    <!-- ===== МОДАЛЬНОЕ ОКНО ===== -->
     <div class="modal-overlay" id="modal">
       <div class="modal">
         <button class="modal-close" id="modal-close" aria-label="Закрыть">&times;</button>
@@ -652,17 +705,18 @@
       </div>
     </div>
 
-    <!-- ФУТЕР -->
+    <!-- ===== ФУТЕР ===== -->
     <footer class="footer">
       &copy; 2026 <strong>m1lwh</strong>
       <span data-lang-ru="— все права защищены" data-lang-en="— all rights reserved" class="lang-text">— все права защищены</span>
     </footer>
   </div>
 
+  <!-- ============================================================
+  СКРИПТЫ (без изменений, уже работают)
+  ============================================================ -->
   <script>
-    // =============================================================
-    // ДАННЫЕ ТОВАРОВ (синтаксически проверены)
-    // =============================================================
+    // ===== ДАННЫЕ ТОВАРОВ (те же, что были) =====
     const productsData = [
       {
         id: 'timmeit',
@@ -940,9 +994,7 @@
       }
     ];
 
-    // =============================================================
-    // FAQ
-    // =============================================================
+    // ===== FAQ =====
     const faqData = [
       { q: { ru: 'Как я могу оплатить товар?', en: 'How can I pay for the product?' }, a: { ru: 'Оплата производится через FunPay (или по договорённости). После оплаты вы получаете товар в течение указанного срока.', en: 'Payment is made via FunPay (or by agreement). After payment, you receive the product within the specified time.' } },
       { q: { ru: 'Как быстро я получу товар?', en: 'How fast will I get the product?' }, a: { ru: 'Сроки указаны в описании каждого товара. Обычно это от нескольких минут до 1-2 дней.', en: 'The terms are specified in the description of each product. Usually it is from a few minutes to 1-2 days.' } },
@@ -951,9 +1003,7 @@
       { q: { ru: 'Можно ли заказать товар, которого нет в списке?', en: 'Can I order a product that is not on the list?' }, a: { ru: 'Конечно! Напишите мне — я сделаю индивидуальное предложение.', en: 'Of course! Write to me — I will make a custom offer.' } }
     ];
 
-    // =============================================================
-    // ОТЗЫВЫ
-    // =============================================================
+    // ===== ОТЗЫВЫ =====
     const reviewsData = [
       { name: 'Anbreireti', order: 'XSEPYHUH', date: '23 июня в 9:43', days: '2 дня назад', game: 'Roblox', amount: '50 ₽', text: { ru: 'Топ', en: 'Top' }, answer: { ru: 'Спасибо вам за ваш положительный отзыв! 😊🌟 Я искренне рад, что мой товар был вам полезен и оправдал ваши ожидания.', en: 'Thank you for your positive review! 😊🌟 I am sincerely glad that my product was useful to you and met your expectations.' } },
       { name: 'Kwidoxzz', order: 'AFMR6GL8', date: '22 июня в 17:33', days: '3 дня назад', game: 'Minecraft', amount: '10 ₽', text: { ru: 'круто', en: 'cool' }, answer: { ru: 'ε(´｡•᎑•`)っ 💕', en: 'ε(´｡•᎑•`)っ 💕' } },
@@ -967,16 +1017,13 @@
       { name: 'user_3', order: 'AA789', date: '10 июня в 8:30', days: '2 недели назад', game: 'Roblox', amount: '60 ₽', text: { ru: 'Код пришёл сразу, всё работает.', en: 'Code came immediately, everything works.' }, answer: { ru: 'Приятной игры!', en: 'Enjoy the game!' } }
     ];
 
-    // =============================================================
-    // ПЕРЕМЕННЫЕ СОСТОЯНИЯ
-    // =============================================================
+    // ============================================================
+    // ОСНОВНОЙ СКРИПТ (без изменений)
+    // ============================================================
     let currentLang = 'ru';
     let currentSort = 'default';
     let searchQuery = '';
 
-    // =============================================================
-    // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
-    // =============================================================
     function getText(obj, lang) {
       if (obj && typeof obj === 'object') return obj[lang] !== undefined ? obj[lang] : obj.ru || obj.en || '';
       return String(obj);
@@ -992,9 +1039,6 @@
       };
     }
 
-    // =============================================================
-    // ОБНОВЛЕНИЕ ТЕКСТОВ НА СТРАНИЦЕ
-    // =============================================================
     function updatePageTexts(lang) {
       document.querySelectorAll('.lang-text').forEach(el => {
         const ru = el.getAttribute('data-lang-ru');
@@ -1013,9 +1057,6 @@
       });
     }
 
-    // =============================================================
-    // РЕНДЕРИНГ ТОВАРОВ
-    // =============================================================
     function renderProducts(containerId, filterPopular = false) {
       const container = document.getElementById(containerId);
       if (!container) return;
@@ -1080,9 +1121,6 @@
       });
     }
 
-    // =============================================================
-    // РЕНДЕРИНГ ОТЗЫВОВ
-    // =============================================================
     function renderReviews() {
       const container = document.getElementById('reviews-container');
       if (!container) return;
@@ -1104,9 +1142,6 @@
       container.innerHTML = html;
     }
 
-    // =============================================================
-    // РЕНДЕРИНГ FAQ
-    // =============================================================
     function renderFAQ() {
       const container = document.getElementById('faqContainer');
       if (!container) return;
@@ -1131,9 +1166,6 @@
       });
     }
 
-    // =============================================================
-    // МОДАЛЬНОЕ ОКНО
-    // =============================================================
     function openModal(product) {
       const modal = document.getElementById('modal');
       const localized = getLocalizedProduct(product, currentLang);
@@ -1163,9 +1195,6 @@
       if (e.key === 'Escape') closeModal();
     });
 
-    // =============================================================
-    // ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА
-    // =============================================================
     function setLanguage(lang) {
       currentLang = lang;
       document.documentElement.lang = lang;
@@ -1176,17 +1205,11 @@
       renderAll();
     }
 
-    // =============================================================
-    // ПЕРЕКЛЮЧЕНИЕ ТЕМЫ
-    // =============================================================
     function toggleTheme() {
       document.body.classList.toggle('light-theme');
       document.getElementById('themeIcon').textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
     }
 
-    // =============================================================
-    // ПЕРЕКЛЮЧЕНИЕ ТАБОВ
-    // =============================================================
     function switchTab(tabId) {
       document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.tab === tabId);
@@ -1197,9 +1220,6 @@
       if (tabId !== 'faq') renderAll();
     }
 
-    // =============================================================
-    // ОБНОВЛЕНИЕ ПОИСКА И СОРТИРОВКИ
-    // =============================================================
     function updateSearch(query) {
       searchQuery = query;
       renderAll();
@@ -1210,9 +1230,6 @@
       renderAll();
     }
 
-    // =============================================================
-    // ОБЩАЯ ПЕРЕРИСОВКА
-    // =============================================================
     function renderAll() {
       renderProducts('popular-grid', true);
       renderProducts('all-grid', false);
@@ -1220,9 +1237,6 @@
       renderFAQ();
     }
 
-    // =============================================================
-    // ИНИЦИАЛИЗАЦИЯ
-    // =============================================================
     document.addEventListener('DOMContentLoaded', function() {
       setLanguage('ru');
 
@@ -1253,7 +1267,7 @@
       renderAll();
     });
 
-    console.log('✅ Сайт m1lwh полностью работает!');
+    console.log('✅ Сайт m1lwh полностью работает! Модальное окно исправлено.');
   </script>
 </body>
 </html>
