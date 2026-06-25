@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Магазин Юкими</title>
+  <meta name="description" content="Витрина товаров Юкими" />
+  <link rel="icon" type="image/png" href="assets/favicon.jpg">
+  <link rel="apple-touch-icon" href="assets/favicon.jpg">
+  <meta name="theme-color" content="#0b0f17">
+
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #a78bfa;
+      --accent2: #22d3ee;
+      --border: rgba(255,255,255,.08);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --card-bg: rgba(17,24,39,.78);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; margin: 0; }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 20% 0%, rgba(167,139,250,.18), transparent 60%),
+                  radial-gradient(900px 500px at 90% 10%, rgba(34,211,238,.14), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 18px 60px;
+    }
+
+    /* Шапка */
+    .hero {
+      background: linear-gradient(135deg, rgba(167,139,250,.14), rgba(34,211,238,.10));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 32px;
+    }
+
+    .topbar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .badge {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .badge .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 4px rgba(167,139,250,.14);
+    }
+
+    .lang {
+      display: inline-flex;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+      overflow: hidden;
+    }
+
+    .lang button {
+      cursor: pointer;
+      border: 0;
+      padding: 8px 14px;
+      font-size: 14px;
+      color: var(--muted);
+      background: transparent;
+      transition: background .15s, color .15s;
+    }
+
+    .lang button.active {
+      color: var(--text);
+      background: rgba(167,139,250,.16);
+    }
+
+    h1 {
+      font-size: 28px;
+      margin: 14px 0 4px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin: 0 0 4px;
+    }
+
+    .meta {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .meta b { color: var(--text); }
+
+    /* Сетка товаров */
+    .section-title {
+      font-size: 22px;
+      font-weight: 900;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title span {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .product {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform .12s ease, box-shadow .12s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(0,0,0,.45);
+    }
+
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background: rgba(255,255,255,.04);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .product-info {
+      padding: 16px 18px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-info h3 {
+      font-size: 18px;
+      font-weight: 900;
+      margin: 0 0 4px;
+    }
+
+    .product-info .price {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--accent2);
+      margin-bottom: 8px;
+    }
+
+    .product-info p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+      margin: 0 0 14px;
+      flex: 1;
+    }
+
+    .btn-buy {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 10px 18px;
+      border-radius: 40px;
+      background: linear-gradient(135deg, var(--accent), #8b5cf6);
+      color: #fff;
+      font-weight: 800;
+      text-decoration: none;
+      border: none;
+      box-shadow: 0 6px 18px rgba(167,139,250,.25);
+      transition: transform .08s, opacity .08s;
+      text-align: center;
+    }
+
+    .btn-buy:hover {
+      opacity: .92;
+      transform: scale(1.02);
+    }
+
+    /* Блок с предупреждением / дополнительной информацией */
+    .info-block {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-top: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .info-block h2 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .info-block ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .info-block ul li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .info-block ul li .ic {
+      width: 22px;
+      flex: 0 0 22px;
+      opacity: .9;
+    }
+
+    .info-block ul li b { color: var(--text); }
+
+    .footer {
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+      opacity: .85;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+    }
+
+    /* Переключение языка */
+    [data-lang] { display: none; }
+    body.lang-ru [data-lang="ru"] { display: inline; }
+    body.lang-en [data-lang="en"] { display: inline; }
+    body.lang-ru div[data-lang="ru"] { display: block; }
+    body.lang-en div[data-lang="en"] { display: block; }
+
+    /* Адаптив */
+    @media (max-width: 600px) {
+      .hero { padding: 16px; }
+      .products-grid { grid-template-columns: 1fr; }
+      .product img { height: 150px; }
+    }
+  </style>
+</head>
+
+<body class="lang-ru">
+  <div class="wrap">
+
+    <!-- ШАПКА -->
+    <header class="hero">
+      <div class="topbar">
+        <div class="badge">
+          <span class="dot"></span>
+          <span data-lang="ru">Обновлено: 25 июня 2026</span>
+          <span data-lang="en">Updated: June 25, 2026</span>
+        </div>
+
+        <div class="lang" role="tablist">
+          <button id="btn-ru" class="active" type="button" aria-selected="true">RU</button>
+          <button id="btn-en" type="button" aria-selected="false">EN</button>
+        </div>
+      </div>
+
+      <div>
+        <div data-lang="ru">
+          <h1>🛍️ Магазин Юкими</h1>
+          <p class="subtitle">Готовые решения для вашего Steam-профиля и не только</p>
+          <p class="subtitle">Выбирайте товар, нажимайте «Купить» и переходите на FunPay</p>
+        </div>
+        <div data-lang="en">
+          <h1>🛍️ Yukimi Shop</h1>
+          <p class="subtitle">Ready-made solutions for your Steam profile and more</p>
+          <p class="subtitle">Pick a product, click «Buy» and go to FunPay</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- СЕТКА ТОВАРОВ -->
+    <div class="section-title"><span>✨ Наши продукты</span></div>
+
+    <div class="products-grid">
+
+      <!-- ТОВАР 1: Лайки -->
+      <div class="product">
+        <img src="assets/products/like.jpg" alt="Лайки для скриншотов" loading="lazy">
+        <div class="product-info">
+          <h3>❤️ Лайки на скриншоты</h3>
+          <div class="price">50 ₽</div>
+          <p>20 качественных лайков для вашего скриншота или обзора в Steam. Быстро и надёжно.</p>
+          <a href="https://funpay.com/lots/offer?id=61954569" target="_blank" rel="noopener" class="btn-buy">Купить →</a>
+        </div>
+      </div>
+
+      <!-- ТОВАР 2: Комментарии -->
+      <div class="product">
+        <img src="assets/products/comment.jpg" alt="Комментарии для профиля" loading="lazy">
+        <div class="product-info">
+          <h3>💬 Комментарии на профиль</h3>
+          <div class="price">70 ₽</div>
+          <p>20 уникальных комментариев для вашего Steam-профиля. Повысьте доверие и активность.</p>
+          <a href="https://funpay.com/lots/offer?id=61954834" target="_blank" rel="noopener" class="btn-buy">Купить →</a>
+        </div>
+      </div>
+
+      <!-- ТОВАР 3: Лайки на обзоры -->
+      <div class="product">
+        <img src="assets/products/review.jpg" alt="Лайки на обзоры игр" loading="lazy">
+        <div class="product-info">
+          <h3>⭐ Лайки на обзоры</h3>
+          <div class="price">30 ₽</div>
+          <p>10 лайков для вашего обзора игры в Steam. Помогите вашему мнению стать заметнее.</p>
+          <a href="https://funpay.com/lots/offer?id=58877689" target="_blank" rel="noopener" class="btn-buy">Купить →</a>
+        </div>
+      </div>
+
+      <!-- ТОВАР 4: (пример нового товара) -->
+      <div class="product">
+        <img src="assets/products/followers.jpg" alt="Подписчики" loading="lazy">
+        <div class="product-info">
+          <h3>👥 Подписчики в Steam</h3>
+          <div class="price">100 ₽</div>
+          <p>10 реальных подписчиков для вашего профиля. Увеличьте популярность.</p>
+          <a href="https://funpay.com/ваша_ссылка" target="_blank" rel="noopener" class="btn-buy">Купить →</a>
+        </div>
+      </div>
+
+      <!-- ====== ДОБАВЛЯЙТЕ НОВЫЕ ТОВАРЫ ЗДЕСЬ (копируйте блок выше) ====== -->
+
+    </div>
+
+    <!-- ИНФОРМАЦИОННЫЙ БЛОК -->
+    <div class="info-block">
+      <div data-lang="ru">
+        <h2>⚠️ Важно</h2>
+        <ul>
+          <li><span class="ic">📌</span> Все товары являются цифровыми услугами и предоставляются в течение 24 часов.</li>
+          <li><span class="ic">💬</span> Если у вас есть вопросы, свяжитесь со мной через FunPay или Telegram.</li>
+          <li><span class="ic">✅</span> Работаю честно и ответственно — отзывы подтверждают.</li>
+        </ul>
+      </div>
+      <div data-lang="en">
+        <h2>⚠️ Important</h2>
+        <ul>
+          <li><span class="ic">📌</span> All products are digital services and are delivered within 24 hours.</li>
+          <li><span class="ic">💬</span> If you have questions, contact me via FunPay or Telegram.</li>
+          <li><span class="ic">✅</span> I work honestly and responsibly — reviews confirm it.</li>
+        </ul>
+      </div>
+    </div>
+
+    <footer class="footer">
+      ✨ Юкими • 2026
+    </footer>
+  </div>
+
+  <script>
+    // ===== Переключение языка =====
+    const btnRu = document.getElementById('btn-ru');
+    const btnEn = document.getElementById('btn-en');
+
+    function setLang(lang) {
+      document.body.classList.toggle('lang-ru', lang === 'ru');
+      document.body.classList.toggle('lang-en', lang === 'en');
+      btnRu.classList.toggle('active', lang === 'ru');
+      btnEn.classList.toggle('active', lang === 'en');
+      btnRu.setAttribute('aria-selected', lang === 'ru');
+      btnEn.setAttribute('aria-selected', lang === 'en');
+      document.documentElement.lang = lang === 'ru' ? 'ru' : 'en';
+      localStorage.setItem('site_lang', lang);
+      document.title = (lang === 'ru') ? 'Магазин Юкими' : 'Yukimi Shop';
+    }
+
+    btnRu.addEventListener('click', () => setLang('ru'));
+    btnEn.addEventListener('click', () => setLang('en'));
+
+    const saved = localStorage.getItem('site_lang');
+    if (saved === 'en' || saved === 'ru') setLang(saved);
+    else setLang('ru');
+  </script>
+</body>
+</html>
