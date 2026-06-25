@@ -1,16 +1,78 @@
-## Hi there 👋
+⚡ m1lwh — цифровой магазин
+Современная витрина товаров и услуг для геймеров и не только.
+Стеклянный дизайн, адаптивная вёрстка, интерактивные карточки.
 
-<!--
-**m1lwh/m1lwh** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+📦 О проекте
+Этот сайт — личная витрина m1lwh, где представлены все мои товары и услуги:
 
-Here are some ideas to get you started:
+🎮 Буст аккаунтов в CS2, VALORANT, Among Us
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+⭐ Аккаунты Brawl Stars, Steam, Discord Nitro
+
+🛠️ Плагины, конфиги, сборки модов
+
+👤 Услуги: тиммейт, фарм, установка инжекторов
+
+Сайт построен на чистом HTML + CSS + JavaScript без внешних библиотек.
+Использован glassmorphism (стеклянный эффект), плавные анимации и удобная навигация по вкладкам.
+
+🌐 Демо
+Сайт доступен по адресу:
+👉 https://m1lwh.github.io/m1lwh/
+
+🛠️ Технологии
+HTML5 — семантическая разметка
+
+CSS3 — стеклянный дизайн, градиенты, анимации, адаптивность
+
+JavaScript — рендеринг товаров, модальные окна, переключение вкладок
+
+Google Fonts (Inter) — современный шрифт
+
+📁 Структура проекта
+text
+m1lwh/
+├── index.html          # Главная страница
+├── assets/
+│   ├── favicon.jpg     # Иконка сайта
+│   ├── hero.gif        # Гифка в шапке
+│   └── products/       # Картинки товаров
+│       ├── Timmeyt.jpg
+│       ├── amongUsProkachka.jpg
+│       ├── brawlaccaunt.jpg
+│       ├── metroArenda.jpg
+│       ├── VenusCFG.jpg
+│       ├── minecraftTimmeyt.jpg
+│       ├── MinecraftPVPsborka.jpg
+│       ├── zaregat10akkov.jpg
+│       ├── minecraftnakrutkaonline.jpg
+│       ├── robloxpomoguustanovitchit.jpg
+│       ├── 99nightvishit.jpg
+│       └── commentiVStime.png
+└── README.md           # Этот файл
+🚀 Как запустить локально
+Клонируйте репозиторий
+
+bash
+git clone https://github.com/m1lwh/m1lwh.git
+cd m1lwh
+Откройте index.html в любом браузере (двойной клик или через Live Server).
+Всё работает без сервера и сборки.
+
+
+🌍 Ссылки
+Профиль на FunPay — https://funpay.com/users/14391063/
+
+Репозиторий на GitHub — https://github.com/m1lwh/m1lwh
+
+💬 Отзывы покупателей
+Все отзывы, представленные на сайте, собраны с реальных заказов. Вы можете оставить свой отзыв после покупки на FunPay.
+
+📝 Лицензия
+Проект распространяется под лицензией MIT. Вы можете свободно использовать код для своих целей.
+
+❤️ Благодарности
+Спасибо всем, кто доверился и поддерживает мою работу.
+Сайт создан с ❤️ для удобства покупателей.
+
+Если у вас есть вопросы или предложения - пишите в личные сообщения на FunPay.ere 👋
