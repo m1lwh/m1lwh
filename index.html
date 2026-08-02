@@ -52,7 +52,6 @@
             scrollbar-width: thin;
             scrollbar-color: var(--accent-cyan-dim) var(--bg-primary);
         }
-
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -80,7 +79,6 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* ─── Canvas Background ─────────────────────── */
         #bgCanvas {
             position: fixed;
             top: 0;
@@ -92,7 +90,6 @@
             opacity: 0.7;
         }
 
-        /* ─── Custom Cursor Trail ─────────────────── */
         .cursor-trail {
             position: fixed;
             pointer-events: none;
@@ -131,7 +128,114 @@
             border-width: 2px;
         }
 
-        /* ─── Main Container ──────────────────────── */
+        /* Splash Screen */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10000;
+            background: #0a0a14;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+        #splash-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        #splash-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .splash-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            background: rgba(18, 18, 31, 0.85);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            padding: 50px 40px;
+            box-shadow: 0 0 60px rgba(0, 229, 255, 0.2);
+            max-width: 500px;
+            width: 90%;
+        }
+        .splash-title {
+            font-family: var(--font-mono);
+            font-size: 2.2rem;
+            color: #fff;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ffffff 0%, #c0e0ff 30%, #00e5ff 60%, #b44dff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 300% 300%;
+            animation: titleShimmer 6s ease-in-out infinite;
+        }
+        .splash-sub {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        .lang-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .lang-btn {
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: 2px solid var(--accent-cyan);
+            background: rgba(0, 229, 255, 0.08);
+            color: var(--accent-cyan);
+            transition: all 0.3s;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .lang-btn:hover {
+            background: var(--accent-cyan);
+            color: #000;
+            box-shadow: 0 0 35px var(--accent-cyan);
+            transform: scale(1.05);
+        }
+        .lang-btn:active {
+            transform: scale(0.98);
+        }
+
+        @keyframes titleShimmer {
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            25% {
+                background-position: 100% 0%;
+            }
+            50% {
+                background-position: 100% 100%;
+            }
+            75% {
+                background-position: 0% 100%;
+            }
+        }
+
+        /* Main Container */
         .main-container {
             position: relative;
             z-index: 1;
@@ -140,7 +244,6 @@
             padding: 0 24px;
         }
 
-        /* ─── Navigation ──────────────────────────── */
         .navbar {
             position: fixed;
             top: 16px;
@@ -197,7 +300,6 @@
             flex-shrink: 0;
         }
 
-        /* ─── Hero Section ────────────────────────── */
         .hero-section {
             min-height: 100vh;
             display: flex;
@@ -248,21 +350,6 @@
             -webkit-text-fill-color: transparent;
             animation: titleShimmer 6s ease-in-out infinite;
             background-size: 300% 300%;
-        }
-        @keyframes titleShimmer {
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-            25% {
-                background-position: 100% 0%;
-            }
-            50% {
-                background-position: 100% 100%;
-            }
-            75% {
-                background-position: 0% 100%;
-            }
         }
         .hero-subtitle {
             font-family: var(--font-mono);
@@ -335,12 +422,11 @@
             box-shadow: 0 15px 40px rgba(140, 46, 255, 0.55);
             background: linear-gradient(135deg, #9d4fff, #7b2ff0);
         }
-
         .btn .btn-icon {
             font-size: 1.1rem;
         }
 
-        /* ─── Floating Orbs ───────────────────────── */
+        /* Orbs */
         .orb {
             position: absolute;
             border-radius: 50%;
@@ -405,7 +491,7 @@
             }
         }
 
-        /* ─── Section Styles ──────────────────────── */
+        /* Sections */
         .section {
             padding: 80px 0;
             position: relative;
@@ -450,7 +536,7 @@
             margin: 16px auto;
         }
 
-        /* ─── Glass Card ──────────────────────────── */
+        /* Glass Card */
         .glass-card {
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
@@ -487,18 +573,12 @@
             border-color: var(--border-purple-glow);
         }
 
-        /* ─── About Section ───────────────────────── */
+        /* About */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1.4fr;
             gap: 40px;
             align-items: start;
-        }
-        .about-avatar-area {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
         }
         .avatar-container {
             width: 200px;
@@ -508,7 +588,7 @@
             padding: 4px;
             box-shadow: 0 0 50px rgba(0, 229, 255, 0.3), 0 0 80px rgba(180, 77, 255, 0.2);
             animation: avatarGlow 4s ease-in-out infinite;
-            position: relative;
+            margin: 0 auto 20px;
         }
         @keyframes avatarGlow {
             0%,
@@ -528,20 +608,9 @@
             align-items: center;
             justify-content: center;
             font-size: 5rem;
-            overflow: hidden;
-        }
-        .avatar-inner img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        .avatar-emoji {
-            font-size: 5rem;
-            filter: grayscale(0%);
         }
         .status-badge {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 8px;
             padding: 8px 18px;
@@ -568,44 +637,6 @@
                 box-shadow: 0 0 15px var(--accent-green), 0 0 25px var(--accent-green);
             }
         }
-        .about-text-area {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .about-text-area h3 {
-            font-family: var(--font-mono);
-            font-size: 1.5rem;
-            color: #fff;
-            margin-bottom: 4px;
-        }
-        .about-text-area p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            font-size: 0.98rem;
-        }
-        .highlight {
-            color: var(--accent-cyan);
-            font-weight: 600;
-        }
-        .highlight-purple {
-            color: var(--accent-purple);
-            font-weight: 600;
-        }
-        .highlight-green {
-            color: var(--accent-green);
-            font-weight: 600;
-        }
-        .highlight-orange {
-            color: var(--accent-orange);
-            font-weight: 600;
-        }
-        .tag-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 4px;
-        }
         .tag {
             padding: 7px 16px;
             background: rgba(255, 255, 255, 0.03);
@@ -622,23 +653,8 @@
             color: var(--accent-cyan);
             background: rgba(0, 229, 255, 0.05);
         }
-        .tag.java-tag:hover {
-            border-color: #f89820;
-            color: #f89820;
-            background: rgba(248, 152, 32, 0.06);
-        }
-        .tag.python-tag:hover {
-            border-color: #ffd740;
-            color: #ffd740;
-            background: rgba(255, 215, 64, 0.06);
-        }
-        .tag.os-tag:hover {
-            border-color: #ff4da6;
-            color: #ff4da6;
-            background: rgba(255, 77, 166, 0.06);
-        }
 
-        /* ─── Projects Section ───────────────────── */
+        /* Projects */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -683,9 +699,6 @@
         .project-card.green-line::after {
             background: linear-gradient(90deg, transparent, var(--accent-green), transparent);
         }
-        .project-card.orange-line::after {
-            background: linear-gradient(90deg, transparent, var(--accent-orange), transparent);
-        }
         .project-icon {
             width: 52px;
             height: 52px;
@@ -707,32 +720,6 @@
         .icon-green {
             background: rgba(76, 255, 76, 0.12);
             color: var(--accent-green);
-        }
-        .icon-orange {
-            background: rgba(255, 140, 66, 0.12);
-            color: var(--accent-orange);
-        }
-        .icon-pink {
-            background: rgba(255, 77, 166, 0.12);
-            color: var(--accent-pink);
-        }
-        .project-card h4 {
-            font-family: var(--font-mono);
-            font-size: 1.2rem;
-            color: #fff;
-            letter-spacing: 0.3px;
-        }
-        .project-card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.65;
-            flex-grow: 1;
-        }
-        .project-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            align-items: center;
         }
         .project-status {
             padding: 5px 12px;
@@ -758,16 +745,8 @@
             color: var(--accent-yellow);
             border: 1px solid rgba(255, 215, 64, 0.3);
         }
-        .project-tech {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            padding: 5px 10px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 15px;
-        }
 
-        /* ─── Server Card Special ────────────────── */
+        /* Server Card */
         .server-card {
             background: linear-gradient(135deg, rgba(18, 18, 31, 0.9), rgba(25, 25, 45, 0.9));
             border: 2px solid rgba(0, 229, 255, 0.3);
@@ -775,8 +754,7 @@
             padding: 36px;
             text-align: center;
             transition: var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
+            margin-top: 40px;
             box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 229, 255, 0.1);
         }
         .server-card:hover {
@@ -794,9 +772,6 @@
             text-shadow: 0 0 40px rgba(0, 229, 255, 0.5);
             user-select: all;
             cursor: text;
-        }
-        .server-ip:hover {
-            text-shadow: 0 0 60px rgba(0, 229, 255, 0.8);
         }
         .copy-btn {
             display: inline-flex;
@@ -823,7 +798,7 @@
             color: var(--accent-green);
         }
 
-        /* ─── Skills Section ─────────────────────── */
+        /* Skills */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -835,143 +810,40 @@
             border-radius: var(--radius-md);
             padding: 24px;
             transition: var(--transition-smooth);
-            cursor: default;
-        }
-        .skill-card:hover {
-            border-color: rgba(255, 255, 255, 0.15);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
-        }
-        .skill-header {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 16px;
-        }
-        .skill-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: var(--radius-sm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            flex-shrink: 0;
-        }
-        .skill-name {
-            font-family: var(--font-mono);
-            font-weight: 600;
-            color: #fff;
-            font-size: 1rem;
         }
         .skill-bar-bg {
             height: 8px;
             background: rgba(255, 255, 255, 0.06);
             border-radius: 10px;
+            margin-top: 8px;
             overflow: hidden;
-            margin-top: 6px;
         }
         .skill-bar-fill {
             height: 100%;
             border-radius: 10px;
-            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: width 1.5s ease;
         }
         .fill-java {
             background: linear-gradient(90deg, #f89820, #e67e00);
-            width: 92%;
             box-shadow: 0 0 15px rgba(248, 152, 32, 0.4);
         }
         .fill-python {
             background: linear-gradient(90deg, #ffd740, #ffc107);
-            width: 55%;
             box-shadow: 0 0 15px rgba(255, 215, 64, 0.4);
         }
         .fill-minecraft {
             background: linear-gradient(90deg, #4cff4c, #2ecc2e);
-            width: 88%;
             box-shadow: 0 0 15px rgba(76, 255, 76, 0.4);
         }
         .fill-linux {
             background: linear-gradient(90deg, #ff4da6, #e91e63);
-            width: 78%;
             box-shadow: 0 0 15px rgba(255, 77, 166, 0.4);
         }
-        .fill-git {
-            background: linear-gradient(90deg, #ff6d3a, #e64a19);
-            width: 70%;
-            box-shadow: 0 0 15px rgba(255, 109, 58, 0.4);
-        }
-        .skill-percent {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            text-align: right;
-            margin-top: 4px;
-        }
 
-        /* ─── Timeline ────────────────────────────── */
-        .timeline {
-            position: relative;
-            padding-left: 30px;
-        }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 12px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, var(--accent-cyan), var(--accent-purple), transparent);
-            border-radius: 2px;
-        }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 32px;
-            padding-left: 28px;
-        }
-        .timeline-dot {
-            position: absolute;
-            left: -21px;
-            top: 5px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            border: 3px solid var(--accent-cyan);
-            background: var(--bg-primary);
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.5);
-            z-index: 2;
-        }
-        .timeline-dot.purple {
-            border-color: var(--accent-purple);
-            box-shadow: 0 0 15px rgba(180, 77, 255, 0.5);
-        }
-        .timeline-dot.green {
-            border-color: var(--accent-green);
-            box-shadow: 0 0 15px rgba(76, 255, 76, 0.5);
-        }
-        .timeline-date {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--accent-cyan);
-            letter-spacing: 1px;
-            margin-bottom: 4px;
-        }
-        .timeline-title {
-            font-family: var(--font-mono);
-            font-weight: 600;
-            color: #fff;
-            font-size: 1rem;
-        }
-        .timeline-desc {
-            color: var(--text-secondary);
-            font-size: 0.88rem;
-            line-height: 1.6;
-        }
-
-        /* ─── Contact Section ────────────────────── */
+        /* Contact */
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
         }
         .contact-card {
@@ -1005,22 +877,7 @@
             background: rgba(0, 229, 255, 0.1);
             color: var(--accent-cyan);
         }
-        .contact-label {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-        }
-        .contact-value {
-            font-family: var(--font-mono);
-            font-weight: 600;
-            color: #fff;
-            font-size: 0.95rem;
-            word-break: break-all;
-        }
 
-        /* ─── Footer ──────────────────────────────── */
         .footer {
             text-align: center;
             padding: 40px 0;
@@ -1034,67 +891,11 @@
             color: var(--text-muted);
             letter-spacing: 1px;
         }
-        .footer-heart {
-            color: #ff4d6a;
-            animation: heartBeat 1.5s ease-in-out infinite;
-            display: inline-block;
-        }
-        @keyframes heartBeat {
-            0%,
-            100% {
-                transform: scale(1);
-            }
-            15% {
-                transform: scale(1.25);
-            }
-            30% {
-                transform: scale(1);
-            }
-            45% {
-                transform: scale(1.2);
-            }
-            60% {
-                transform: scale(1);
-            }
-        }
 
-        /* ─── Floating particles in hero ─────────── */
-        .floating-particle {
-            position: absolute;
-            pointer-events: none;
-            animation: floatUp 8s ease-in infinite;
-            opacity: 0;
-            font-size: 1.2rem;
-            z-index: 1;
-        }
-        @keyframes floatUp {
-            0% {
-                opacity: 0;
-                transform: translateY(60px) rotate(0deg) scale(0.5);
-            }
-            10% {
-                opacity: 0.8;
-            }
-            80% {
-                opacity: 0.6;
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-400px) rotate(360deg) scale(1.2);
-            }
-        }
-
-        /* ─── Responsive ─────────────────────────── */
         @media (max-width: 900px) {
             .about-grid {
                 grid-template-columns: 1fr;
                 text-align: center;
-            }
-            .about-avatar-area {
-                order: -1;
-            }
-            .tag-row {
-                justify-content: center;
             }
             .projects-grid {
                 grid-template-columns: 1fr;
@@ -1102,7 +903,6 @@
             .navbar {
                 gap: 2px;
                 padding: 6px 8px;
-                border-radius: 40px;
             }
             .nav-link {
                 font-size: 0.7rem;
@@ -1111,744 +911,550 @@
             .hero-title {
                 font-size: 2rem;
             }
-            .server-ip {
-                font-size: 1.3rem;
-            }
-            .section {
-                padding: 50px 0;
-            }
-        }
-        @media (max-width: 480px) {
-            .navbar {
-                gap: 0px;
-                padding: 5px 6px;
-                border-radius: 30px;
-                top: 8px;
-            }
-            .nav-link {
-                font-size: 0.65rem;
-                padding: 7px 9px;
-                letter-spacing: 0px;
-            }
-            .nav-dot {
-                display: none;
-            }
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-            .glass-card {
-                padding: 20px;
-            }
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
-    <!-- Preconnect for fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Background Canvas -->
-    <canvas id="bgCanvas"></canvas>
-
-    <!-- Custom Cursor Elements -->
-    <div class="cursor-trail" id="cursorTrail"></div>
-    <div class="cursor-dot" id="cursorDot"></div>
-
-    <!-- Floating Orbs -->
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-    <div class="orb orb-4"></div>
-
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <a href="#hero" class="nav-link active" data-section="hero">🏠 Главная</a>
-        <span class="nav-dot"></span>
-        <a href="#about" class="nav-link" data-section="about">👤 Обо мне</a>
-        <span class="nav-dot"></span>
-        <a href="#projects" class="nav-link" data-section="projects">🚀 Проекты</a>
-        <span class="nav-dot"></span>
-        <a href="#skills" class="nav-link" data-section="skills">⚡ Навыки</a>
-        <span class="nav-dot"></span>
-        <a href="#timeline-section" class="nav-link" data-section="timeline-section">📜 История</a>
-        <span class="nav-dot"></span>
-        <a href="#contact" class="nav-link" data-section="contact">📬 Контакты</a>
-    </nav>
-
-    <!-- Main Content Container -->
-    <div class="main-container">
-
-        <!-- ═══════════════ HERO SECTION ═══════════════ -->
-        <section class="hero-section" id="hero">
-            <div class="hero-content">
-                <div class="hero-badge">⚡ Java Developer</div>
-                <h1 class="hero-title">funsmine</h1>
-                <p class="hero-subtitle">Создаю миры. Пишу код. Ломаю границы.</p>
-                <p class="hero-tagline">
-                    Java-разработчик с глубокой страстью к Minecraft-экосистеме.
-                    Создаю плагины, моды, клиенты и серверные решения.
-                    Сейчас в активной работе — перевод легендарного <span class="highlight">PVZ Fusion Mod</span>.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">
-                        <span class="btn-icon">🚀</span> Мои проекты
-                    </a>
-                    <a href="#about" class="btn btn-outline">
-                        <span class="btn-icon">👤</span> Узнать больше
-                    </a>
-                    <a href="https://github.com/funsmine" target="_blank" rel="noopener" class="btn btn-purple">
-                        <span class="btn-icon">💻</span> GitHub
-                    </a>
-                </div>
+    <!-- Splash Screen with Language Selection -->
+    <div id="splash-screen">
+        <canvas id="splash-canvas"></canvas>
+        <div class="splash-content">
+            <div class="splash-title">funsmine</div>
+            <div class="splash-sub" data-i18n="splash_sub">Выберите язык / Choose language</div>
+            <div class="lang-buttons">
+                <button class="lang-btn" onclick="setLanguage('ru')">🇷🇺 RU</button>
+                <button class="lang-btn" onclick="setLanguage('en')">🇬🇧 EN</button>
             </div>
-            <!-- Floating particles in hero -->
-            <div class="floating-particle" style="left:10%;animation-delay:0s;">☕</div>
-            <div class="floating-particle" style="left:25%;animation-delay:2s;">💎</div>
-            <div class="floating-particle" style="left:40%;animation-delay:4s;">⚔️</div>
-            <div class="floating-particle" style="left:55%;animation-delay:1.5s;">🛡️</div>
-            <div class="floating-particle" style="left:70%;animation-delay:3.5s;">🌿</div>
-            <div class="floating-particle" style="left:82%;animation-delay:5s;">🔥</div>
-            <div class="floating-particle" style="left:15%;animation-delay:6s;">🧟</div>
-            <div class="floating-particle" style="left:60%;animation-delay:7s;">🎮</div>
-            <div class="floating-particle" style="left:35%;animation-delay:3s;">📦</div>
-            <div class="floating-particle" style="left:90%;animation-delay:5.5s;">✨</div>
-            <div class="floating-particle" style="left:48%;animation-delay:1s;">🐧</div>
-            <div class="floating-particle" style="left:5%;animation-delay:4.5s;">🔧</div>
-            <div class="floating-particle" style="left:75%;animation-delay:6.5s;">🎯</div>
-            <div class="floating-particle" style="left:20%;animation-delay:7.5s;">💻</div>
-            <div class="floating-particle" style="left:65%;animation-delay:8s;">🖥️</div>
-        </section>
-
-        <!-- ═══════════════ ABOUT SECTION ═══════════════ -->
-        <section class="section" id="about">
-            <div class="section-header">
-                <div class="section-label">👤 Обо мне</div>
-                <h2 class="section-title">Кто я такой?</h2>
-                <div class="divider"></div>
-                <p class="section-subtitle">Java-разработчик, моддер, переводчик и просто фанат Minecraft</p>
-            </div>
-
-            <div class="about-grid">
-                <!-- Avatar Area -->
-                <div class="about-avatar-area">
-                    <div class="avatar-container">
-                        <div class="avatar-inner">
-                            <span class="avatar-emoji">☕</span>
-                        </div>
-                    </div>
-                    <div class="status-badge">
-                        <span class="status-dot"></span> Активен | Open to Work
-                    </div>
-                    <div style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);text-align:center;">
-                        <span style="color:var(--accent-purple);">Debian</span> → <span style="color:var(--accent-pink);">OpenBSD</span>
-                        <br>Минимализм без systemd
-                    </div>
-                </div>
-
-                <!-- Text Area -->
-                <div class="about-text-area">
-                    <h3>Привет! Я <span class="highlight">funsmine</span> 👋</h3>
-                    <p>
-                        Я — увлечённый <span class="highlight">Java-разработчик</span> с многолетним опытом
-                        в создании плагинов и модификаций для Minecraft. Моя страсть — это
-                        расширение границ возможного в игровой вселенной: от кастомных
-                        серверных механик до глубоких клиентских модификаций.
-                    </p>
-                    <p>
-                        На данный момент я полностью погружён в проект по
-                        <span class="highlight-green">переводу PVZ Fusion Mod</span> —
-                        масштабной модификации, объединяющей вселенную Plants vs Zombies
-                        с механиками Minecraft. Это сложная и кропотливая работа,
-                        требующая внимания к каждой строке и каждому термину.
-                    </p>
-                    <p>
-                        Я также являюсь создателем и администратором сервера
-                        <span class="highlight-purple">mc.funsmine.su</span>,
-                        где воплощаю свои идеи в жизнь и собираю сообщество
-                        единомышленников.
-                    </p>
-                    <p>
-                        В плане операционных систем я прошёл путь от
-                        <span class="highlight-orange">Debian</span> к
-                        <span class="highlight-pink" style="color:var(--accent-pink);">OpenBSD</span> —
-                        это, по сути, Debian без systemd, что даёт мне больше
-                        контроля и минимализма в рабочем окружении. Ценю простоту,
-                        надёжность и безопасность во всём — от кода до инфраструктуры.
-                    </p>
-                    <p>
-                        Пишу код преимущественно на <span class="highlight">Java</span>,
-                        но также активно использую <span style="color:#ffd740;font-weight:600;">Python</span>
-                        для автоматизации, скриптов и вспомогательных инструментов.
-                        Соотношение — примерно 50/50 между этими двумя языками.
-                    </p>
-                    <div class="tag-row">
-                        <span class="tag java-tag">☕ Java</span>
-                        <span class="tag python-tag">🐍 Python</span>
-                        <span class="tag">🎮 Minecraft</span>
-                        <span class="tag">🔧 Плагины</span>
-                        <span class="tag">📦 Моды</span>
-                        <span class="tag os-tag">🐡 OpenBSD</span>
-                        <span class="tag">🐧 Linux</span>
-                        <span class="tag">🌐 Перевод</span>
-                        <span class="tag">🖥️ Серверы</span>
-                        <span class="tag">⚡ Git</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ═══════════════ PROJECTS SECTION ═══════════════ -->
-        <section class="section" id="projects">
-            <div class="section-header">
-                <div class="section-label">🚀 Проекты</div>
-                <h2 class="section-title">Мои работы</h2>
-                <div class="divider"></div>
-                <p class="section-subtitle">От серверов до клиентских модификаций — всё, чем я горжусь</p>
-            </div>
-
-            <div class="projects-grid">
-                <!-- PVZ Fusion Mod Card -->
-                <div class="project-card green-line">
-                    <div class="project-icon icon-green">🌱🧟</div>
-                    <h4>PVZ Fusion Mod — Перевод</h4>
-                    <p>
-                        Активный проект по полной локализации и переводу
-                        <strong>PVZ Fusion Mod</strong> — масштабной модификации,
-                        объединяющей Plants vs Zombies и Minecraft. Работа включает
-                        перевод интерфейса, описаний растений, зомби, механик,
-                        а также адаптацию культурных отсылок для русскоязычной аудитории.
-                        Кропотливая работа с тысячами строк текста.
-                    </p>
-                    <div class="project-meta">
-                        <span class="project-status status-translating">🔄 В переводе</span>
-                        <span class="project-tech">Java Mod</span>
-                        <span class="project-tech">Локализация</span>
-                        <span class="project-tech">JSON/YAML</span>
-                    </div>
-                </div>
-
-                <!-- WinterClient Card -->
-                <div class="project-card orange-line">
-                    <div class="project-icon icon-orange">❄️💻</div>
-                    <h4>WinterClient</h4>
-                    <p>
-                        Собственный чит-DLC клиент для Minecraft версии
-                        <strong>1.16.5</strong>. Включал продвинутые PvP-модули,
-                        визуальные улучшения, автоматизацию и уникальные эксплойты.
-                        Проект был моим основным фокусом в течение длительного времени,
-                        но сейчас <strong>больше не поддерживается</strong> и обновления
-                        не выходят. Остаётся в архиве как важная веха моего пути.
-                    </p>
-                    <div class="project-meta">
-                        <span class="project-status status-inactive">⚠️ Заброшен</span>
-                        <span class="project-tech">Java 1.16.5</span>
-                        <span class="project-tech">Forge/MCP</span>
-                        <span class="project-tech">DLC Client</span>
-                    </div>
-                </div>
-
-                <!-- Minecraft Server Card -->
-                <div class="project-card purple-line">
-                    <div class="project-icon icon-purple">🖥️🌐</div>
-                    <h4>Minecraft Сервер</h4>
-                    <p>
-                        Полноценный публичный Minecraft-сервер на домене
-                        <strong>mc.funsmine.su</strong>. Настроен с нуля: от выбора
-                        хостинга и оптимизации ядра до создания кастомных плагинов
-                        и уникальных игровых механик. Активное сообщество, регулярные
-                        обновления и стабильная работа 24/7.
-                    </p>
-                    <div class="project-meta">
-                        <span class="project-status status-active">🟢 Онлайн</span>
-                        <span class="project-tech">Paper/Spigot</span>
-                        <span class="project-tech">Плагины</span>
-                        <span class="project-tech">Администрирование</span>
-                    </div>
-                </div>
-
-                <!-- Other Projects Card -->
-                <div class="project-card">
-                    <div class="project-icon icon-cyan">📦🔮</div>
-                    <h4>Другие проекты</h4>
-                    <p>
-                        За время своей деятельности я создал множество небольших,
-                        но полезных проектов: кастомные плагины для серверов,
-                        утилиты для автоматизации сборки модов, скрипты на Python
-                        для анализа логов и управления инфраструктурой, а также
-                        различные экспериментальные модификации. Каждый проект —
-                        это опыт и шаг вперёд.
-                    </p>
-                    <div class="project-meta">
-                        <span class="project-status status-active">🔧 Разное</span>
-                        <span class="project-tech">Java</span>
-                        <span class="project-tech">Python</span>
-                        <span class="project-tech">Bash</span>
-                        <span class="project-tech">Разное</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Server Highlight Card -->
-            <div class="server-card" style="margin-top:40px;">
-                <div style="font-family:var(--font-mono);font-size:0.8rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent-cyan);">
-                    🌍 Присоединяйся к моему серверу
-                </div>
-                <div class="server-ip" id="serverIP">mc.funsmine.su</div>
-                <p style="color:var(--text-secondary);margin-bottom:16px;font-size:0.9rem;">
-                    Java Edition • 24/7 • Кастомные плагины • Дружное комьюнити
-                </p>
-                <button class="copy-btn" id="copyBtn" onclick="copyServerIP()">
-                    📋 <span id="copyBtnText">Скопировать IP</span>
-                </button>
-                <span id="copyFeedback" style="display:none;margin-left:12px;font-family:var(--font-mono);font-size:0.8rem;color:var(--accent-green);">✓ Скопировано!</span>
-            </div>
-        </section>
-
-        <!-- ═══════════════ SKILLS SECTION ═══════════════ -->
-        <section class="section" id="skills">
-            <div class="section-header">
-                <div class="section-label">⚡ Навыки</div>
-                <h2 class="section-title">Технический стек</h2>
-                <div class="divider"></div>
-                <p class="section-subtitle">Инструменты и технологии, с которыми я работаю</p>
-            </div>
-
-            <div class="skills-grid">
-                <!-- Java Card -->
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <div class="skill-icon icon-cyan">☕</div>
-                        <div>
-                            <div class="skill-name">Java</div>
-                            <div style="font-size:0.75rem;color:var(--text-muted);">Основной язык</div>
-                        </div>
-                    </div>
-                    <div class="skill-bar-bg">
-                        <div class="skill-bar-fill fill-java" style="width:0%;" data-width="92"></div>
-                    </div>
-                    <div class="skill-percent">92%</div>
-                    <p style="font-size:0.8rem;color:var(--text-muted);margin-top:8px;">
-                        Minecraft-моддинг, плагины, серверные приложения, клиентские моды
-                    </p>
-                </div>
-
-                <!-- Python Card -->
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <div class="skill-icon" style="background:rgba(255,215,64,0.12);color:#ffd740;">🐍</div>
-                        <div>
-                            <div class="skill-name">Python</div>
-                            <div style="font-size:0.75rem;color:var(--text-muted);">Второй язык</div>
-                        </div>
-                    </div>
-                    <div class="skill-bar-bg">
-                        <div class="skill-bar-fill fill-python" style="width:0%;" data-width="55"></div>
-                    </div>
-                    <div class="skill-percent">55%</div>
-                    <p style="font-size:0.8rem;color:var(--text-muted);margin-top:8px;">
-                        Автоматизация, скрипты, анализ данных, вспомогательные утилиты
-                    </p>
-                </div>
-
-                <!-- Minecraft Dev Card -->
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <div class="skill-icon icon-green">🎮</div>
-                        <div>
-                            <div class="skill-name">Minecraft Dev</div>
-                            <div style="font-size:0.75rem;color:var(--text-muted);">Плагины и моды</div>
-                        </div>
-                    </div>
-                    <div class="skill-bar-bg">
-                        <div class="skill-bar-fill fill-minecraft" style="width:0%;" data-width="88"></div>
-                    </div>
-                    <div class="skill-percent">88%</div>
-                    <p style="font-size:0.8rem;color:var(--text-muted);margin-top:8px;">
-                        Spigot, Paper, Forge, Fabric, кастомные механики, DLC-клиенты
-                    </p>
-                </div>
-
-                <!-- Linux/BSD Card -->
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <div class="skill-icon icon-pink">🐡</div>
-                        <div>
-                            <div class="skill-name">Linux / OpenBSD</div>
-                            <div style="font-size:0.75rem;color:var(--text-muted);">Системное администрирование</div>
-                        </div>
-                    </div>
-                    <div class="skill-bar-bg">
-                        <div class="skill-bar-fill fill-linux" style="width:0%;" data-width="78"></div>
-                    </div>
-                    <div class="skill-percent">78%</div>
-                    <p style="font-size:0.8rem;color:var(--text-muted);margin-top:8px;">
-                        Debian, OpenBSD, настройка серверов, безопасность, консоль
-                    </p>
-                </div>
-
-                <!-- Git & Tools Card -->
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <div class="skill-icon icon-orange">🔧</div>
-                        <div>
-                            <div class="skill-name">Git & Инструменты</div>
-                            <div style="font-size:0.75rem;color:var(--text-muted);">Контроль версий</div>
-                        </div>
-                    </div>
-                    <div class="skill-bar-bg">
-                        <div class="skill-bar-fill fill-git" style="width:0%;" data-width="70"></div>
-                    </div>
-                    <div class="skill-percent">70%</div>
-                    <p style="font-size:0.8rem;color:var(--text-muted);margin-top:8px;">
-                        Git, GitHub, CI/CD basics, Docker basics, терминал
-                    </p>
-                </div>
-
-                <!-- Translation Card -->
-                <div class="skill-card">
-                    <div class="skill-header">
-                        <div class="skill-icon" style="background:rgba(255,215,64,0.12);color:#ffd740;">🌐</div>
-                        <div>
-                            <div class="skill-name">Локализация</div>
-                            <div style="font-size:0.75rem;color:var(--text-muted);">Перевод и адаптация</div>
-                        </div>
-                    </div>
-                    <div class="skill-bar-bg">
-                        <div class="skill-bar-fill" style="width:0%;background:linear-gradient(90deg,#ffd740,#ffc107);box-shadow:0 0 15px rgba(255,215,64,0.4);" data-width="75"></div>
-                    </div>
-                    <div class="skill-percent">75%</div>
-                    <p style="font-size:0.8rem;color:var(--text-muted);margin-top:8px;">
-                        EN→RU перевод, адаптация игрового контента, работа с JSON/YAML локалями
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ═══════════════ TIMELINE SECTION ═══════════════ -->
-        <section class="section" id="timeline-section">
-            <div class="section-header">
-                <div class="section-label">📜 История</div>
-                <h2 class="section-title">Мой путь</h2>
-                <div class="divider"></div>
-                <p class="section-subtitle">Ключевые вехи в хронологическом порядке</p>
-            </div>
-
-            <div class="glass-card" style="max-width:700px;margin:0 auto;">
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-dot green"></div>
-                        <div class="timeline-date">2025 — Настоящее время</div>
-                        <div class="timeline-title">🌱 Перевод PVZ Fusion Mod</div>
-                        <div class="timeline-desc">
-                            Активная работа над полной локализацией масштабной модификации.
-                            Тысячи строк перевода, адаптация интерфейса и механик.
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot purple"></div>
-                        <div class="timeline-date">2024</div>
-                        <div class="timeline-title">🐡 Переход на OpenBSD</div>
-                        <div class="timeline-desc">
-                            Миграция с Debian на OpenBSD — Debian без systemd.
-                            Новый уровень контроля, безопасности и минимализма в рабочем окружении.
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">2023 — 2024</div>
-                        <div class="timeline-title">🖥️ Запуск mc.funsmine.su</div>
-                        <div class="timeline-desc">
-                            Создание и настройка собственного публичного Minecraft-сервера.
-                            Разработка кастомных плагинов, формирование сообщества.
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">2022 — 2023</div>
-                        <div class="timeline-title">❄️ Разработка WinterClient</div>
-                        <div class="timeline-desc">
-                            Создание чит-DLC клиента для Minecraft 1.16.5.
-                            Продвинутые PvP-модули, визуальные улучшения, эксплойты.
-                            Проект заморожен и больше не поддерживается.
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot purple"></div>
-                        <div class="timeline-date">2021 — 2022</div>
-                        <div class="timeline-title">☕ Углубление в Java-разработку</div>
-                        <div class="timeline-desc">
-                            Интенсивное изучение Java, Minecraft-моддинга,
-                            серверной архитектуры и экосистемы плагинов.
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-dot green"></div>
-                        <div class="timeline-date">2020</div>
-                        <div class="timeline-title">🎮 Начало пути</div>
-                        <div class="timeline-desc">
-                            Первые шаги в программировании и Minecraft-разработке.
-                            Знакомство с Python и основами Java.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ═══════════════ TECH PHILOSOPHY ═══════════════ -->
-        <section class="section">
-            <div class="section-header">
-                <div class="section-label">💡 Философия</div>
-                <h2 class="section-title">Мой подход</h2>
-                <div class="divider"></div>
-            </div>
-
-            <div class="projects-grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));">
-                <div class="glass-card">
-                    <div style="font-size:2.5rem;margin-bottom:12px;">🐡</div>
-                    <h4 style="font-family:var(--font-mono);color:#fff;margin-bottom:8px;">OpenBSD > Debian</h4>
-                    <p style="color:var(--text-secondary);font-size:0.9rem;">
-                        Перешёл с Debian на OpenBSD ради чистоты системы.
-                        Никакого systemd — только минимализм, безопасность
-                        и полный контроль над каждым процессом. Это философия
-                        простоты и надёжности, которую я переношу и в код.
-                    </p>
-                </div>
-                <div class="glass-card purple-glow">
-                    <div style="font-size:2.5rem;margin-bottom:12px;">☕🐍</div>
-                    <h4 style="font-family:var(--font-mono);color:#fff;margin-bottom:8px;">Java + Python = ❤️</h4>
-                    <p style="color:var(--text-secondary);font-size:0.9rem;">
-                        Java — для серьёзных проектов, модов и плагинов.
-                        Python — для быстрых скриптов, автоматизации и утилит.
-                        Вместе они покрывают 95% моих задач. Идеальный баланс
-                        между производительностью и скоростью разработки.
-                    </p>
-                </div>
-                <div class="glass-card">
-                    <div style="font-size:2.5rem;margin-bottom:12px;">🎯</div>
-                    <h4 style="font-family:var(--font-mono);color:#fff;margin-bottom:8px;">Качество & Комьюнити</h4>
-                    <p style="color:var(--text-secondary);font-size:0.9rem;">
-                        Каждый проект — это не просто код. Это опыт для пользователей.
-                        Будь то сервер, мод или перевод — я стремлюсь к тому,
-                        чтобы результат был полезным, стабильным и приносил радость
-                        сообществу.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ═══════════════ CONTACT SECTION ═══════════════ -->
-        <section class="section" id="contact">
-            <div class="section-header">
-                <div class="section-label">📬 Контакты</div>
-                <h2 class="section-title">Связь со мной</h2>
-                <div class="divider"></div>
-                <p class="section-subtitle">Всегда открыт к новым знакомствам и коллаборациям</p>
-            </div>
-
-            <div class="contact-grid">
-                <!-- GitHub -->
-                <a href="https://github.com/funsmine" target="_blank" rel="noopener" class="contact-card">
-                    <div class="contact-icon">💻</div>
-                    <div class="contact-label">GitHub</div>
-                    <div class="contact-value">github.com/funsmine</div>
-                </a>
-
-                <!-- Server -->
-                <div class="contact-card" onclick="copyServerIP()" style="cursor:pointer;">
-                    <div class="contact-icon">🌍</div>
-                    <div class="contact-label">Minecraft Сервер</div>
-                    <div class="contact-value">mc.funsmine.su</div>
-                </div>
-
-                <!-- Email (placeholder) -->
-                <div class="contact-card">
-                    <div class="contact-icon">📧</div>
-                    <div class="contact-label">Email</div>
-                    <div class="contact-value">funsmine@proton.me</div>
-                </div>
-
-                <!-- Discord (placeholder) -->
-                <div class="contact-card">
-                    <div class="contact-icon">💬</div>
-                    <div class="contact-label">Discord</div>
-                    <div class="contact-value">funsmine</div>
-                </div>
-            </div>
-
-            <!-- Extra: Open source statement -->
-            <div class="glass-card" style="text-align:center;margin-top:40px;max-width:600px;margin-left:auto;margin-right:auto;">
-                <p style="font-family:var(--font-mono);color:var(--text-secondary);font-size:0.9rem;">
-                    💡 <span style="color:var(--accent-cyan);">Открыт к сотрудничеству</span> —
-                    если у вас есть интересный проект, связанный с Minecraft,
-                    Java-разработкой или локализацией — пишите! Всегда рад
-                    новым идеям и партнёрствам.
-                </p>
-            </div>
-        </section>
-
-        <!-- ═══════════════ FOOTER ═══════════════ -->
-        <footer class="footer">
-            <p class="footer-text">
-                © <span id="currentYear">2025</span> funsmine •
-                Сделано с <span class="footer-heart">❤️</span> на OpenBSD •
-                <span style="color:var(--accent-cyan);">mc.funsmine.su</span>
-            </p>
-            <p style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text-muted);margin-top:8px;">
-                WinterClient (архив) • PVZ Fusion Mod Translator • Java & Python Developer
-            </p>
-            <p style="font-family:var(--font-mono);font-size:0.65rem;color:rgba(255,255,255,0.2);margin-top:6px;">
-                Debian → OpenBSD | Minimalism without systemd
-            </p>
-        </footer>
+        </div>
     </div>
 
-    <!-- ═══════════════ SCRIPTS ═══════════════ -->
+    <!-- Main Content (hidden until language chosen) -->
+    <div id="main-content" style="display:none;">
+
+        <canvas id="bgCanvas"></canvas>
+        <div class="cursor-trail" id="cursorTrail"></div>
+        <div class="cursor-dot" id="cursorDot"></div>
+
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="orb orb-4"></div>
+
+        <nav class="navbar" id="navbar">
+            <a href="#hero" class="nav-link active" data-section="hero" data-i18n="nav_home">🏠 Главная</a>
+            <span class="nav-dot"></span>
+            <a href="#about" class="nav-link" data-section="about" data-i18n="nav_about">👤 Обо мне</a>
+            <span class="nav-dot"></span>
+            <a href="#projects" class="nav-link" data-section="projects" data-i18n="nav_projects">🚀 Проекты</a>
+            <span class="nav-dot"></span>
+            <a href="#skills" class="nav-link" data-section="skills" data-i18n="nav_skills">⚡ Навыки</a>
+            <span class="nav-dot"></span>
+            <a href="#contact" class="nav-link" data-section="contact" data-i18n="nav_contact">📬 Контакты</a>
+        </nav>
+
+        <div class="main-container">
+
+            <section class="hero-section" id="hero">
+                <div class="hero-content">
+                    <div class="hero-badge" data-i18n="hero_badge">⚡ Java Developer</div>
+                    <h1 class="hero-title">funsmine</h1>
+                    <p class="hero-subtitle" data-i18n="hero_subtitle">Создаю миры. Пишу код. Ломаю границы.</p>
+                    <p class="hero-tagline" data-i18n="hero_tagline">Java-разработчик, моддер и переводчик. Сейчас работаю над PVZ Fusion Mod.</p>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">
+                            <span class="btn-icon">🚀</span> <span data-i18n="hero_btn_projects">Мои проекты</span>
+                        </a>
+                        <a href="#about" class="btn btn-outline">
+                            <span class="btn-icon">👤</span> <span data-i18n="hero_btn_about">Узнать больше</span>
+                        </a>
+                        <a href="https://github.com/funsmine" target="_blank" rel="noopener" class="btn btn-purple">
+                            <span class="btn-icon">💻</span> GitHub
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="about">
+                <div class="section-header">
+                    <div class="section-label" data-i18n="about_label">👤 Обо мне</div>
+                    <h2 class="section-title" data-i18n="about_title">Кто я такой?</h2>
+                    <div class="divider"></div>
+                    <p class="section-subtitle" data-i18n="about_subtitle">Java-разработчик, моддер, переводчик и просто фанат Minecraft</p>
+                </div>
+                <div class="about-grid">
+                    <div style="text-align:center;">
+                        <div class="avatar-container">
+                            <div class="avatar-inner">☕</div>
+                        </div>
+                        <div class="status-badge" data-i18n="about_status"><span class="status-dot"></span> Активен | Open to Work</div>
+                        <div style="font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);margin-top:8px;" data-i18n="about_os">Debian → OpenBSD (без systemd)</div>
+                    </div>
+                    <div>
+                        <h3 style="font-family:var(--font-mono);color:#fff;">funsmine</h3>
+                        <p data-i18n="about_p1">Я — увлечённый Java-разработчик с многолетним опытом в создании плагинов и модификаций для Minecraft.</p>
+                        <p data-i18n="about_p2">На данный момент я полностью погружён в проект по переводу PVZ Fusion Mod — масштабной модификации.</p>
+                        <p data-i18n="about_p3">Пишу код преимущественно на Java и Python, администрирую сервер mc.funsmine.su, а также использую OpenBSD.</p>
+                        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;">
+                            <span class="tag">☕ Java</span>
+                            <span class="tag">🐍 Python</span>
+                            <span class="tag">🎮 Minecraft</span>
+                            <span class="tag">🐡 OpenBSD</span>
+                            <span class="tag">🌐 Перевод</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="projects">
+                <div class="section-header">
+                    <div class="section-label" data-i18n="projects_label">🚀 Проекты</div>
+                    <h2 class="section-title" data-i18n="projects_title">Мои работы</h2>
+                    <div class="divider"></div>
+                    <p class="section-subtitle" data-i18n="projects_subtitle">От серверов до переводов — всё, чем я горжусь</p>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card green-line">
+                        <div class="project-icon icon-green">🌱🧟</div>
+                        <h4 style="font-family:var(--font-mono);color:#fff;">PVZ Fusion Mod — Перевод</h4>
+                        <p data-i18n="project_pvz_desc">Активный перевод мода на русский язык. Интерфейс, описания, механики — всё адаптируется.</p>
+                        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+                            <span class="project-status status-translating" data-i18n="project_pvz_status">🔄 В переводе</span>
+                            <span class="tag">Java Mod</span>
+                            <span class="tag">Локализация</span>
+                        </div>
+                        <a href="https://github.com/Teyliu/PVZF-Translation" target="_blank" rel="noopener" class="btn btn-outline" style="align-self:flex-start;padding:8px 18px;font-size:0.8rem;" data-i18n="project_pvz_github">🔗 GitHub репозиторий</a>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-icon icon-purple">❄️💻</div>
+                        <h4 style="font-family:var(--font-mono);color:#fff;">WinterClient</h4>
+                        <p data-i18n="project_winter_desc">Собственный чит-DLC клиент для Minecraft 1.16.5. Проект заморожен и больше не поддерживается.</p>
+                        <span class="project-status status-inactive" data-i18n="project_winter_status">⚠️ Заброшен</span>
+                    </div>
+                    <div class="project-card purple-line">
+                        <div class="project-icon icon-cyan">🖥️🌐</div>
+                        <h4 style="font-family:var(--font-mono);color:#fff;">Minecraft Сервер</h4>
+                        <p data-i18n="project_server_desc">Публичный сервер mc.funsmine.su с кастомными плагинами и уникальными механиками.</p>
+                        <span class="project-status status-active" data-i18n="project_server_status">🟢 Онлайн</span>
+                    </div>
+                </div>
+                <div class="server-card">
+                    <div style="font-family:var(--font-mono);font-size:0.8rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent-cyan);" data-i18n="server_card_label">🌍 Присоединяйся</div>
+                    <div class="server-ip" id="serverIP">mc.funsmine.su</div>
+                    <button class="copy-btn" id="copyBtn" onclick="copyServerIP()">
+                        📋 <span id="copyBtnText" data-i18n="copy_btn">Скопировать IP</span>
+                    </button>
+                    <span id="copyFeedback" style="display:none;margin-left:12px;font-family:var(--font-mono);font-size:0.8rem;color:var(--accent-green);">✓ <span data-i18n="copied">Скопировано!</span></span>
+                </div>
+            </section>
+
+            <section class="section" id="skills">
+                <div class="section-header">
+                    <div class="section-label" data-i18n="skills_label">⚡ Навыки</div>
+                    <h2 class="section-title" data-i18n="skills_title">Технический стек</h2>
+                    <div class="divider"></div>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <span style="font-family:var(--font-mono);color:#fff;">☕ Java</span>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill fill-java" style="width:0%;" data-width="92"></div></div>
+                        <div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text-muted);text-align:right;">92%</div>
+                    </div>
+                    <div class="skill-card">
+                        <span style="font-family:var(--font-mono);color:#fff;">🐍 Python</span>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill fill-python" style="width:0%;" data-width="55"></div></div>
+                        <div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text-muted);text-align:right;">55%</div>
+                    </div>
+                    <div class="skill-card">
+                        <span style="font-family:var(--font-mono);color:#fff;">🎮 Minecraft Dev</span>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill fill-minecraft" style="width:0%;" data-width="88"></div></div>
+                        <div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text-muted);text-align:right;">88%</div>
+                    </div>
+                    <div class="skill-card">
+                        <span style="font-family:var(--font-mono);color:#fff;">🐡 Linux / OpenBSD</span>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill fill-linux" style="width:0%;" data-width="78"></div></div>
+                        <div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text-muted);text-align:right;">78%</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="contact">
+                <div class="section-header">
+                    <div class="section-label" data-i18n="contact_label">📬 Контакты</div>
+                    <h2 class="section-title" data-i18n="contact_title">Связь со мной</h2>
+                    <div class="divider"></div>
+                    <p class="section-subtitle" data-i18n="contact_subtitle">Всегда открыт к новым знакомствам и коллаборациям</p>
+                </div>
+                <div class="contact-grid">
+                    <a href="https://github.com/funsmine" target="_blank" rel="noopener" class="contact-card">
+                        <div class="contact-icon">💻</div>
+                        <div style="font-family:var(--font-mono);font-size:0.75rem;letter-spacing:1px;color:var(--text-muted);">GitHub</div>
+                        <div style="font-family:var(--font-mono);color:#fff;">funsmine</div>
+                    </a>
+                    <div class="contact-card" onclick="copyServerIP()">
+                        <div class="contact-icon">🌍</div>
+                        <div style="font-family:var(--font-mono);font-size:0.75rem;letter-spacing:1px;color:var(--text-muted);" data-i18n="contact_server_label">Сервер</div>
+                        <div style="font-family:var(--font-mono);color:var(--accent-cyan);">mc.funsmine.su</div>
+                    </div>
+                    <a href="https://t.me/m1lwh" target="_blank" class="contact-card">
+                        <div class="contact-icon">✈️</div>
+                        <div style="font-family:var(--font-mono);font-size:0.75rem;letter-spacing:1px;color:var(--text-muted);">Telegram</div>
+                        <div style="font-family:var(--font-mono);color:#fff;">@m1lwh</div>
+                    </a>
+                    <div class="contact-card">
+                        <div class="contact-icon">💬</div>
+                        <div style="font-family:var(--font-mono);font-size:0.75rem;letter-spacing:1px;color:var(--text-muted);">Discord</div>
+                        <div style="font-family:var(--font-mono);color:#fff;">m1lwh_tvink</div>
+                    </div>
+                    <a href="https://discord.gg/FwETzuJ2HF" target="_blank" rel="noopener" class="contact-card">
+                        <div class="contact-icon">🎧</div>
+                        <div style="font-family:var(--font-mono);font-size:0.75rem;letter-spacing:1px;color:var(--text-muted);">Discord Server</div>
+                        <div style="font-family:var(--font-mono);color:var(--accent-cyan);">FunsMine</div>
+                    </a>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <p class="footer-text">
+                    © <span id="currentYear">2025</span> funsmine · <span data-i18n="footer_text">Сделано с ❤️</span> на OpenBSD · <span style="color:var(--accent-cyan);">mc.funsmine.su</span>
+                </p>
+            </footer>
+        </div>
+    </div>
+
+    <!-- i18n translations stored as JavaScript object -->
     <script>
-        // ─── Canvas Background Animation ───────────────────
-        const canvas = document.getElementById('bgCanvas');
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let particles = [];
-        const PARTICLE_COUNT = 120;
-
-        function resizeCanvas() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', () => {
-            resizeCanvas();
-            initParticles();
-        });
-
-        class Particle {
-            constructor() {
-                this.reset();
+        const translations = {
+            ru: {
+                splash_sub: "Выберите язык / Choose language",
+                nav_home: "🏠 Главная",
+                nav_about: "👤 Обо мне",
+                nav_projects: "🚀 Проекты",
+                nav_skills: "⚡ Навыки",
+                nav_contact: "📬 Контакты",
+                hero_badge: "⚡ Java Developer",
+                hero_subtitle: "Создаю миры. Пишу код. Ломаю границы.",
+                hero_tagline: "Java-разработчик, моддер и переводчик. Сейчас работаю над PVZ Fusion Mod.",
+                hero_btn_projects: "Мои проекты",
+                hero_btn_about: "Узнать больше",
+                about_label: "👤 Обо мне",
+                about_title: "Кто я такой?",
+                about_subtitle: "Java-разработчик, моддер, переводчик и просто фанат Minecraft",
+                about_status: "Активен | Open to Work",
+                about_os: "Debian → OpenBSD (без systemd)",
+                about_p1: "Я — увлечённый Java-разработчик с многолетним опытом в создании плагинов и модификаций для Minecraft.",
+                about_p2: "На данный момент я полностью погружён в проект по переводу PVZ Fusion Mod — масштабной модификации.",
+                about_p3: "Пишу код преимущественно на Java и Python, администрирую сервер mc.funsmine.su, а также использую OpenBSD.",
+                projects_label: "🚀 Проекты",
+                projects_title: "Мои работы",
+                projects_subtitle: "От серверов до переводов — всё, чем я горжусь",
+                project_pvz_desc: "Активный перевод мода на русский язык. Интерфейс, описания, механики — всё адаптируется.",
+                project_pvz_status: "🔄 В переводе",
+                project_pvz_github: "🔗 GitHub репозиторий",
+                project_winter_desc: "Собственный чит-DLC клиент для Minecraft 1.16.5. Проект заморожен и больше не поддерживается.",
+                project_winter_status: "⚠️ Заброшен",
+                project_server_desc: "Публичный сервер mc.funsmine.su с кастомными плагинами и уникальными механиками.",
+                project_server_status: "🟢 Онлайн",
+                server_card_label: "🌍 Присоединяйся",
+                copy_btn: "Скопировать IP",
+                copied: "Скопировано!",
+                skills_label: "⚡ Навыки",
+                skills_title: "Технический стек",
+                contact_label: "📬 Контакты",
+                contact_title: "Связь со мной",
+                contact_subtitle: "Всегда открыт к новым знакомствам и коллаборациям",
+                contact_server_label: "Сервер",
+                footer_text: "Сделано с ❤️"
+            },
+            en: {
+                splash_sub: "Choose language / Выберите язык",
+                nav_home: "🏠 Home",
+                nav_about: "👤 About",
+                nav_projects: "🚀 Projects",
+                nav_skills: "⚡ Skills",
+                nav_contact: "📬 Contact",
+                hero_badge: "⚡ Java Developer",
+                hero_subtitle: "Creating worlds. Writing code. Breaking boundaries.",
+                hero_tagline: "Java developer, modder and translator. Currently working on PVZ Fusion Mod.",
+                hero_btn_projects: "My projects",
+                hero_btn_about: "Learn more",
+                about_label: "👤 About me",
+                about_title: "Who am I?",
+                about_subtitle: "Java developer, modder, translator and just a Minecraft fan",
+                about_status: "Active | Open to Work",
+                about_os: "Debian → OpenBSD (no systemd)",
+                about_p1: "I'm a passionate Java developer with years of experience creating plugins and mods for Minecraft.",
+                about_p2: "Currently fully immersed in translating the PVZ Fusion Mod — a large-scale modification.",
+                about_p3: "I mainly code in Java & Python, run the server mc.funsmine.su, and use OpenBSD.",
+                projects_label: "🚀 Projects",
+                projects_title: "My works",
+                projects_subtitle: "From servers to translations — everything I'm proud of",
+                project_pvz_desc: "Active Russian translation of the mod. Interface, descriptions, mechanics — all adapted.",
+                project_pvz_status: "🔄 Translating",
+                project_pvz_github: "🔗 GitHub repository",
+                project_winter_desc: "My own cheat-DLC client for Minecraft 1.16.5. Frozen and no longer maintained.",
+                project_winter_status: "⚠️ Abandoned",
+                project_server_desc: "Public server mc.funsmine.su with custom plugins and unique mechanics.",
+                project_server_status: "🟢 Online",
+                server_card_label: "🌍 Join",
+                copy_btn: "Copy IP",
+                copied: "Copied!",
+                skills_label: "⚡ Skills",
+                skills_title: "Tech stack",
+                contact_label: "📬 Contact",
+                contact_title: "Get in touch",
+                contact_subtitle: "Always open to new acquaintances and collaborations",
+                contact_server_label: "Server",
+                footer_text: "Made with ❤️"
             }
-            reset() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.size = Math.random() * 2 + 0.5;
-                this.speedX = (Math.random() - 0.5) * 0.6;
-                this.speedY = (Math.random() - 0.5) * 0.6;
-                this.opacity = Math.random() * 0.5 + 0.2;
-                this.color = Math.random() < 0.5 ?
-                    `rgba(0,229,255,${this.opacity})` :
-                    `rgba(180,77,255,${this.opacity})`;
-                if (Math.random() < 0.15) {
-                    this.color = `rgba(76,255,76,${this.opacity})`;
+        };
+
+        let currentLang = 'ru';
+
+        function applyLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
                 }
+            });
+            document.documentElement.lang = lang;
+            localStorage.setItem('lang', lang);
+        }
+
+        function setLanguage(lang) {
+            applyLanguage(lang);
+            document.getElementById('splash-screen').classList.add('hidden');
+            document.getElementById('main-content').style.display = 'block';
+            // Re-trigger scroll position to update active nav
+            setTimeout(() => {
+                updateActiveNav();
+                animateSkills();
+            }, 100);
+        }
+
+        // Splash screen rain/snow effect
+        function initSplashEffect() {
+            const canvas = document.getElementById('splash-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+            const isSnow = Math.random() < 0.5;
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
             }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x < -20 || this.x > width + 20 || this.y < -20 || this.y > height + 20) {
-                    this.reset();
-                    if (Math.random() < 0.5) this.x = Math.random() * width;
-                    else this.y = Math.random() * height;
+            resize();
+            window.addEventListener('resize', resize);
+
+            const count = isSnow ? 150 : 200;
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    speed: isSnow ? 0.5 + Math.random() * 1.5 : 4 + Math.random() * 6,
+                    wind: isSnow ? (Math.random() - 0.5) * 0.5 : 0,
+                    size: isSnow ? 2 + Math.random() * 4 : 0.5 + Math.random() * 1.5,
+                    opacity: Math.random() * 0.8 + 0.2
+                });
+            }
+
+            function animate() {
+                if (document.getElementById('splash-screen').classList.contains('hidden')) return;
+                ctx.clearRect(0, 0, width, height);
+                if (isSnow) {
+                    ctx.fillStyle = '#ffffff';
+                } else {
+                    ctx.strokeStyle = '#a0d8ff';
+                    ctx.lineWidth = 1;
                 }
-            }
-            draw(ctx) {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-                // Glow
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size * 2.5, 0, Math.PI * 2);
-                ctx.fillStyle = this.color.replace(/[\d.]+\)$/, '0.08)');
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            particles = [];
-            for (let i = 0; i < PARTICLE_COUNT; i++) {
-                particles.push(new Particle());
-            }
-        }
-        initParticles();
-
-        // Connection lines between nearby particles
-        function drawConnections() {
-            const maxDist = 140;
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < maxDist) {
-                        const alpha = (1 - dist / maxDist) * 0.12;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(0,229,255,${alpha})`;
-                        ctx.lineWidth = 0.5;
+                particles.forEach(p => {
+                    p.y += p.speed;
+                    p.x += p.wind;
+                    if (p.y > height + 10) { p.y = -10;
+                        p.x = Math.random() * width; }
+                    if (p.x < -10) p.x = width + 10;
+                    if (p.x > width + 10) p.x = -10;
+                    ctx.globalAlpha = p.opacity;
+                    ctx.beginPath();
+                    if (isSnow) {
+                        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                        ctx.fill();
+                    } else {
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p.x - 0.2, p.y + p.size * 6);
                         ctx.stroke();
+                    }
+                });
+                ctx.globalAlpha = 1;
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // Main background particles
+        function initMainBackground() {
+            const canvas = document.getElementById('bgCanvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', () => {
+                resize();
+                initParticles();
+            });
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+                reset() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.size = Math.random() * 2 + 0.5;
+                    this.speedX = (Math.random() - 0.5) * 0.6;
+                    this.speedY = (Math.random() - 0.5) * 0.6;
+                    this.opacity = Math.random() * 0.5 + 0.2;
+                    this.color = Math.random() < 0.5 ? `rgba(0,229,255,${this.opacity})` : `rgba(180,77,255,${this.opacity})`;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.x < -20 || this.x > width + 20 || this.y < -20 || this.y > height + 20) this.reset();
+                }
+                draw(ctx) {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                }
+            }
+
+            function initParticles() {
+                particles = [];
+                for (let i = 0; i < 120; i++) particles.push(new Particle());
+            }
+            initParticles();
+
+            function drawConnections() {
+                const maxDist = 140;
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < maxDist) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(0,229,255,${(1 - dist/maxDist)*0.12})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
                     }
                 }
             }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                ctx.strokeStyle = 'rgba(255,255,255,0.015)';
+                ctx.lineWidth = 0.5;
+                for (let x = 60; x < width; x += 60) { ctx.beginPath();
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, height);
+                    ctx.stroke(); }
+                for (let y = 60; y < height; y += 60) { ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(width, y);
+                    ctx.stroke(); }
+                particles.forEach(p => { p.update();
+                    p.draw(ctx); });
+                drawConnections();
+                requestAnimationFrame(animate);
+            }
+            animate();
         }
 
-        function animateCanvas() {
-            ctx.clearRect(0, 0, width, height);
-            // Subtle grid
-            ctx.strokeStyle = 'rgba(255,255,255,0.015)';
-            ctx.lineWidth = 0.5;
-            const gridSize = 60;
-            for (let x = gridSize; x < width; x += gridSize) {
-                ctx.beginPath();
-                ctx.moveTo(x, 0);
-                ctx.lineTo(x, height);
-                ctx.stroke();
-            }
-            for (let y = gridSize; y < height; y += gridSize) {
-                ctx.beginPath();
-                ctx.moveTo(0, y);
-                ctx.lineTo(width, y);
-                ctx.stroke();
-            }
-
-            particles.forEach(p => { p.update();
-                p.draw(ctx); });
-            drawConnections();
-            requestAnimationFrame(animateCanvas);
+        function copyServerIP() {
+            const ip = document.getElementById('serverIP').textContent;
+            const btnText = document.getElementById('copyBtnText');
+            const feedback = document.getElementById('copyFeedback');
+            navigator.clipboard.writeText(ip).then(() => {
+                document.getElementById('copyBtn').classList.add('copied');
+                btnText.textContent = translations[currentLang].copied || 'Copied!';
+                feedback.style.display = 'inline';
+                setTimeout(() => {
+                    document.getElementById('copyBtn').classList.remove('copied');
+                    btnText.textContent = translations[currentLang].copy_btn;
+                    feedback.style.display = 'none';
+                }, 2500);
+            }).catch(() => {
+                const temp = document.createElement('input');
+                temp.value = ip;
+                document.body.appendChild(temp);
+                temp.select();
+                document.execCommand('copy');
+                document.body.removeChild(temp);
+                document.getElementById('copyBtn').classList.add('copied');
+                btnText.textContent = translations[currentLang].copied || 'Copied!';
+                feedback.style.display = 'inline';
+                setTimeout(() => {
+                    document.getElementById('copyBtn').classList.remove('copied');
+                    btnText.textContent = translations[currentLang].copy_btn;
+                    feedback.style.display = 'none';
+                }, 2500);
+            });
         }
-        animateCanvas();
 
-        // ─── Custom Cursor ──────────────────────────────────
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            let current = 'hero';
+            sections.forEach(sec => {
+                const top = sec.offsetTop - 120;
+                if (window.scrollY >= top) current = sec.id;
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.section === current) link.classList.add('active');
+            });
+        }
+        window.addEventListener('scroll', updateActiveNav);
+
+        function animateSkills() {
+            const skillBars = document.querySelectorAll('.skill-bar-fill');
+            const skillsSection = document.getElementById('skills');
+            if (!skillsSection) return;
+            const rect = skillsSection.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100 && rect.bottom > 0) {
+                skillBars.forEach(bar => {
+                    const targetWidth = bar.getAttribute('data-width');
+                    if (targetWidth) bar.style.width = targetWidth + '%';
+                });
+            }
+        }
+        window.addEventListener('scroll', animateSkills);
+
+        // Cursor effects
         const cursorTrail = document.getElementById('cursorTrail');
         const cursorDot = document.getElementById('cursorDot');
-        let mouseX = 0,
-            mouseY = 0;
-        let trailX = 0,
-            trailY = 0;
-        let isHovering = false;
-
+        let mouseX = 0, mouseY = 0, trailX = 0, trailY = 0, isHovering = false;
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
             cursorTrail.classList.add('active');
             cursorDot.classList.add('active');
-            // Check if hovering over interactive elements
             const target = e.target;
-            const interactive = target.closest('a, button, .contact-card, .project-card, .skill-card, .copy-btn, .nav-link');
-            if (interactive) {
+            if (target.closest('a, button, .contact-card, .project-card, .skill-card, .copy-btn, .nav-link')) {
                 cursorDot.classList.add('hovering');
                 isHovering = true;
             } else {
@@ -1860,11 +1466,6 @@
             cursorTrail.classList.remove('active');
             cursorDot.classList.remove('active');
         });
-        document.addEventListener('mouseenter', () => {
-            cursorTrail.classList.add('active');
-            cursorDot.classList.add('active');
-        });
-
         function animateCursor() {
             trailX += (mouseX - trailX) * 0.25;
             trailY += (mouseY - trailY) * 0.25;
@@ -1877,125 +1478,22 @@
         }
         animateCursor();
 
-        // ─── Copy Server IP ────────────────────────────────
-        function copyServerIP() {
-            const ip = document.getElementById('serverIP').textContent;
-            const btn = document.getElementById('copyBtn');
-            const btnText = document.getElementById('copyBtnText');
-            const feedback = document.getElementById('copyFeedback');
-
-            navigator.clipboard.writeText(ip).then(() => {
-                btn.classList.add('copied');
-                btnText.textContent = 'Скопировано! ✓';
-                feedback.style.display = 'inline';
-                setTimeout(() => {
-                    btn.classList.remove('copied');
-                    btnText.textContent = 'Скопировать IP';
-                    feedback.style.display = 'none';
-                }, 2500);
-            }).catch(() => {
-                // Fallback
-                const tempInput = document.createElement('input');
-                tempInput.value = ip;
-                document.body.appendChild(tempInput);
-                tempInput.select();
-                document.execCommand('copy');
-                document.body.removeChild(tempInput);
-                btn.classList.add('copied');
-                btnText.textContent = 'Скопировано! ✓';
-                feedback.style.display = 'inline';
-                setTimeout(() => {
-                    btn.classList.remove('copied');
-                    btnText.textContent = 'Скопировать IP';
-                    feedback.style.display = 'none';
-                }, 2500);
-            });
-        }
-
-        // ─── Navbar Active State on Scroll ─────────────────
-        const sections = document.querySelectorAll('section[id], .hero-section[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        function updateActiveNav() {
-            let currentSection = 'hero';
-            const scrollPos = window.scrollY + 100;
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 120;
-                const sectionBottom = sectionTop + section.offsetHeight;
-                if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
-                    currentSection = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('data-section') === currentSection) {
-                    link.classList.add('active');
-                }
-            });
-        }
-        window.addEventListener('scroll', updateActiveNav);
-        updateActiveNav();
-
-        // ─── Animate Skill Bars on Scroll ──────────────────
-        const skillBars = document.querySelectorAll('.skill-bar-fill');
-        let skillsAnimated = false;
-
-        function animateSkills() {
-            if (skillsAnimated) return;
-            const skillsSection = document.getElementById('skills');
-            if (!skillsSection) return;
-            const rect = skillsSection.getBoundingClientRect();
-            if (rect.top < window.innerHeight - 150 && rect.bottom > 0) {
-                skillsAnimated = true;
-                skillBars.forEach(bar => {
-                    const targetWidth = bar.getAttribute('data-width');
-                    if (targetWidth) {
-                        setTimeout(() => {
-                            bar.style.width = targetWidth + '%';
-                        }, 100);
-                    }
-                });
-            }
-        }
-        window.addEventListener('scroll', animateSkills);
-        animateSkills();
-
-        // ─── Smooth scroll for nav links ───────────────────
-        navLinks.forEach(link => {
+        // Navbar smooth scroll
+        document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('data-section');
                 const targetEl = document.getElementById(targetId);
                 if (targetEl) {
-                    const offset = 100;
-                    const top = targetEl.getBoundingClientRect().top + window.pageYOffset - offset;
-                    window.scrollTo({ top, behavior: 'smooth' });
+                    window.scrollTo({ top: targetEl.offsetTop - 100, behavior: 'smooth' });
                 }
             });
         });
 
-        // ─── Parallax on orbs ──────────────────────────────
-        document.addEventListener('mousemove', (e) => {
-            const orbs = document.querySelectorAll('.orb');
-            const x = (e.clientX / window.innerWidth - 0.5) * 20;
-            const y = (e.clientY / window.innerHeight - 0.5) * 20;
-            orbs.forEach((orb, i) => {
-                const factor = (i + 1) * 0.6;
-                orb.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
-            });
-        });
-
-        // ─── Set current year ──────────────────────────────
+        // Year
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // ─── Reveal animations on scroll ───────────────────
-        const observerOptions = {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
+        // Reveal animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -2003,56 +1501,41 @@
                     entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, observerOptions);
-
+        }, { threshold: 0.15 });
         document.querySelectorAll('.glass-card, .project-card, .skill-card, .contact-card, .server-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+            el.style.transition = 'opacity 0.7s, transform 0.7s';
             observer.observe(el);
         });
-
-        // Trigger initial reveal for elements in view
         setTimeout(() => {
-            document.querySelectorAll('.glass-card, .project-card, .skill-card, .contact-card, .server-card').forEach(
-            el => {
+            document.querySelectorAll('.glass-card, .project-card, .skill-card, .contact-card, .server-card').forEach(el => {
                 const rect = el.getBoundingClientRect();
                 if (rect.top < window.innerHeight && rect.bottom > 0) {
                     el.style.opacity = '1';
                     el.style.transform = 'translateY(0)';
                 }
             });
-        }, 300);
+        }, 400);
 
-        // ─── Keyboard shortcut for server IP ───────────────
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey && e.key === 'c' && document.activeElement === document.body) {
-                const ipEl = document.getElementById('serverIP');
-                if (ipEl) {
-                    const rect = ipEl.getBoundingClientRect();
-                    if (rect.top < window.innerHeight && rect.bottom > 0) {
-                        copyServerIP();
-                    }
-                }
+        // On load
+        window.addEventListener('DOMContentLoaded', () => {
+            initSplashEffect();
+            const savedLang = localStorage.getItem('lang');
+            if (savedLang === 'ru' || savedLang === 'en') {
+                applyLanguage(savedLang);
+                document.getElementById('splash-screen').classList.add('hidden');
+                document.getElementById('main-content').style.display = 'block';
+                initMainBackground();
+                setTimeout(() => {
+                    updateActiveNav();
+                    animateSkills();
+                }, 300);
+            } else {
+                applyLanguage('ru');
+                initMainBackground();
             }
         });
-
-        // ─── Console greeting ──────────────────────────────
-        console.log(`
-        %c🚀 funsmine %c| %cJava Developer & Minecraft Enthusiast
-        %c💻 github.com/funsmine %c| %c🌍 mc.funsmine.su
-        %c🐡 Running on OpenBSD — Debian without systemd
-            `,
-            'color:#00e5ff;font-size:18px;font-weight:bold;',
-            '',
-            'color:#e0e0f0;font-size:13px;',
-            'color:#b44dff;',
-            '',
-            'color:#4cff4c;',
-            'color:#ff4da6;font-style:italic;'
-        );
-        console.log('%c☕ Java 92% | 🐍 Python 55% | 🎮 Minecraft Dev 88%', 'color:#ffd740;');
-        console.log('%cСпасибо, что заглянули! Открыт к сотрудничеству 🎯', 'color:#00e5ff;');
     </script>
 </body>
 </html>
