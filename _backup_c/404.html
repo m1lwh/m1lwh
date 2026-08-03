@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>404 — m1lwh</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/custom.css">
+  <style>
+    body { min-height: 100vh; display: grid; place-items: center; padding: 24px; overflow-x: hidden; }
+    .nf-wrap { position: relative; z-index: 1; text-align: center; max-width: 560px; }
+    .nf-terminal {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-3);
+      margin-top: 40px;
+      text-align: left;
+      white-space: pre-wrap;
+      padding: 18px 22px;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .nf-terminal .green { color: var(--green); }
+    .nf-terminal .dim { color: var(--text-3); }
+  </style>
+</head>
+<body>
+  <div class="bg-scene" aria-hidden="true">
+    <div class="aurora aurora-1"></div>
+    <div class="aurora aurora-2"></div>
+    <div class="aurora aurora-3"></div>
+  </div>
+  <div class="bg-noise" aria-hidden="true"></div>
+
+  <div class="nf-wrap">
+    <div class="nf-code" aria-hidden="true">404</div>
+    <h1 class="nf-title" data-i18n="404_title">Страница не найдена</h1>
+    <p class="nf-text" data-i18n="404_desc">Похоже, этот путь ведёт в неизвестность — как паста из далёкого 2022 года.</p>
+    <div class="nf-actions">
+      <a class="btn btn-primary" href="./">
+        <i data-lucide="home"></i>
+        <span data-i18n="404_home">На главную</span>
+      </a>
+      <a class="btn btn-ghost" href="https://github.com/m1lwh" target="_blank" rel="noopener">
+        <i data-lucide="github"></i>
+        GitHub
+      </a>
+    </div>
+    <div class="lang-switch" style="margin:34px auto 0;width:max-content;" role="group" aria-label="Language">
+      <button class="lang-btn" data-lang="ru"><span class="lang-name">RU</span></button>
+      <button class="lang-btn" data-lang="en"><span class="lang-name">EN</span></button>
+    </div>
+    <pre class="nf-terminal">$ whoami
+<span class="dim">m1lwh: not found — but I'm still on <span class="green">OpenBSD</span></span>
+
+$ cd ~/m1lwh && open index.html</pre>
+  </div>
+
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/lucide.min.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var saved = localStorage.getItem(I18N_KEY);
+      var lang = (saved === 'ru' || saved === 'en') ? saved : 'ru';
+      applyLang(lang, { save: false });
+      document.querySelectorAll('.lang-btn[data-lang]').forEach(function (b) {
+        b.addEventListener('click', function () { applyLang(b.dataset.lang); });
+      });
+      window.addEventListener('load', function () {
+        if (window.lucide) window.lucide.createIcons();
+      });
+    })();
+  </script>
+</body>
+</html>
