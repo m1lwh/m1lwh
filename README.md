@@ -53,8 +53,8 @@ I am a passionate developer and enthusiast focused on backend solutions, custom 
 
 ## 🌟 Featured Projects
 
-* **[PVZ Fusion Russian Translation](https://github.com/m1lwh)**
-  * Centralized hub for Russian localization updates for the Plants vs Zombies Fusion modification. Designed for quick deployment and community accessibility.
+* **[MilwharioVisual](https://t.me/MilwharioVisual)**
+  * Best visual client for minecraft 1.21.11!
 * **Personal Portfolio Website**
   * Interactive cyberpunk themed developer bio built with modern web technologies, custom animations, and dynamic UI elements. Check it out live [here](https://m1lwh.github.io/m1lwh/).
 
