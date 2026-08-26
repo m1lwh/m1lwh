@@ -5,16 +5,16 @@ const I18N = {
   
 
   doc_title: {
-    ru: 'm1lwh - Java-разработчик и Minecraft-энтузиаст',
-    en: 'm1lwh - Java Developer & Minecraft Enthusiast',
+    ru: 'm1lwh - Java-разработчик и создатель MilwharioVisual',
+    en: 'm1lwh - Java Developer & MilwharioVisual Creator',
   },
   doc_desc: {
-    ru: 'm1lwh - Java-разработчик: плагины и моды для Minecraft, сервер mc.funsmine.su, перевод PVZ Fusion Mod. Пишет на Java и Python, живёт на OpenBSD.',
-    en: 'm1lwh - Java developer: Minecraft plugins & mods, mc.funsmine.su server, PVZ Fusion Mod translation. Codes in Java and Python, lives on OpenBSD.',
+    ru: 'm1lwh - Java-разработчик: плагины и моды для Minecraft, сервер mc.funsmine.su, визуальный клиент MilwharioVisual. Пишет на Java и Python, живёт на OpenBSD.',
+    en: 'm1lwh - Java developer: Minecraft plugins & mods, mc.funsmine.su server, MilwharioVisual client. Codes in Java and Python, lives on OpenBSD.',
   },
   doc_keywords: {
-    ru: 'm1lwh, java разработчик, minecraft, плагины, моды, openbsd, linux, debian, перевод, pvz fusion, mc.funsmine.su, портфолио',
-    en: 'm1lwh, java developer, minecraft, plugins, mods, openbsd, linux, debian, translation, pvz fusion, mc.funsmine.su, portfolio',
+    ru: 'm1lwh, java разработчик, minecraft, плагины, моды, openbsd, linux, debian, MilwharioVisual, mc.funsmine.su, портфолио',
+    en: 'm1lwh, java developer, minecraft, plugins, mods, openbsd, linux, debian, MilwharioVisual, mc.funsmine.su, portfolio',
   },
 
   
@@ -40,11 +40,11 @@ const I18N = {
 
   
 
-  hero_badge: { ru: 'Запивает водяру из-за своих же ошибок.', en: 'Drinking vodka because of his own mistakes.' },
+  hero_badge: { ru: '�-апивает водяру из-за своих же ошибок.', en: 'Drinking vodka because of his own mistakes.' },
   hero_greeting: { ru: 'Привет, меня зовут', en: 'Hi, my name is' },
   hero_tagline: {
-    ru: 'Java-разработчик с глубокой страстью к Minecraft-экосистеме. Создаю плагины, моды и серверные решения, перевожу культовый <span class="hl">PVZ Fusion Mod</span> и живу на OpenBSD.',
-    en: 'A Java developer with a deep passion for the Minecraft ecosystem. I build plugins, mods and server solutions, translate the iconic <span class="hl">PVZ Fusion Mod</span> and live on OpenBSD.',
+    ru: 'Java-разработчик с глубокой страстью к Minecraft-экосистеме. Создаю плагины, моды, серверные решения и визуальный клиент <span class="hl">MilwharioVisual</span> для Minecraft 1.21.11.',
+    en: 'A Java developer with a deep passion for the Minecraft ecosystem. I build plugins, mods, server solutions and a visual client <span class="hl">MilwharioVisual</span> for Minecraft 1.21.11.',
   },
   hero_btn_projects: { ru: 'Мои проекты', en: 'My projects' },
   hero_btn_contact: { ru: 'Связаться', en: 'Get in touch' },
@@ -80,8 +80,8 @@ const I18N = {
     en: 'A passionate <span class="hl">Java developer</span> with years of experience building plugins and modifications for Minecraft. My passion is pushing boundaries: from custom server mechanics to deep client-side mods.',
   },
   about_p2: {
-    ru: 'Сейчас я полностью погружён в проект <span class="hl">PVZ Fusion</span> - масштабную модификацию для Plants vs Zombies. Я участник команды перевода и работаю над официальной русской локализацией: тысячи строк, каждый термин и каждая культурная отсылка имеют значение.',
-    en: 'Right now I am fully immersed in the <span class="hl">PVZ Fusion</span> project - a massive modification for Plants vs Zombies. I am part of the translation team, working on the official Russian localization: thousands of lines, every term and cultural reference matters.',
+    ru: 'Сейчас я полностью погружён в проект <span class="hl">MilwharioVisual</span> - визуальный клиент для Minecraft Java 1.21.11. Версия v1.1 показывает лишь 20% функционала, а актуальная версия уже v1.3. Скриншоты, обновления и скачивание - в нашем Telegram-канале.',
+    en: 'Right now I am fully immersed in <span class="hl">MilwharioVisual</span> - a visual client for Minecraft Java 1.21.11. Version v1.1 shows only 20% of the functionality, while the current version is already v1.3. Screenshots, updates and downloads are in our Telegram channel.',
   },
   about_p3: {
     ru: 'Я создатель и администратор сервера <span class="hl">mc.funsmine.su</span> - там я воплощаю идеи в жизнь и собираю сообщество единомышленников. А в операционных системах прошёл путь от Debian к OpenBSD: минимализм без systemd и полный контроль над каждым процессом.',
@@ -89,7 +89,7 @@ const I18N = {
   },
   about_ach_t: { ru: 'Ключевые вехи', en: 'Key milestones' },
   ach_1: { ru: 'Сервер mc.funsmine.su - 24/7', en: 'mc.funsmine.su server - 24/7' },
-  ach_2: { ru: 'Официальная русская локализация PVZ Fusion', en: 'Official Russian PVZ Fusion localization' },
+  ach_2: { ru: 'Визуальный клиент MilwharioVisual v1.3', en: 'MilwharioVisual client v1.3' },
   ach_3: { ru: 'Собственный DLC-клиент для 1.16.5', en: 'Custom DLC client for 1.16.5' },
   ach_4: { ru: 'Миграция на OpenBSD', en: 'Migration to OpenBSD' },
   about_tags_t: { ru: 'Чем я занимаюсь', en: 'What I work with' },
@@ -112,18 +112,18 @@ const I18N = {
     ru: 'От серверов до клиентских модификаций - всё, что создано с душой',
     en: 'From servers to client mods - everything built with heart',
   },
-  pvz_title: { ru: 'PVZ Fusion Mod - перевод', en: 'PVZ Fusion Mod - translation' },
+  pvz_title: { ru: 'MilwharioVisual - визуальный клиент', en: 'MilwharioVisual - visual client' },
   pvz_desc: {
-    ru: 'Официальная русская локализация мода PVZ Fusion для Plants vs Zombies: интерфейс, описания растений и зомби, механики, культурные отсылки. Я - участник команды перевода, в моей зоне тысячи строк текста для русскоязычных игроков.',
-    en: 'Official Russian localization of the PVZ Fusion mod for Plants vs Zombies: UI, plant and zombie descriptions, mechanics, cultural references. I am part of the translation team, handling thousands of lines for Russian-speaking players.',
+    ru: 'Визуальный клиент для Minecraft Java 1.21.11. На скриншотах - версия v1.1 (20% функционала). Актуальная версия - v1.3. Скачать и обновления: <a href="https://t.me/MilwharioVisual" target="_blank" rel="noopener" class="hl">t.me/MilwharioVisual</a>',
+    en: 'A visual client for Minecraft Java 1.21.11. Screenshots show v1.1 (20% of functionality). Current version is v1.3. Download and updates: <a href="https://t.me/MilwharioVisual" target="_blank" rel="noopener" class="hl">t.me/MilwharioVisual</a>',
   },
-  pvz_status: { ru: 'В работе', en: 'In progress' },
+  pvz_status: { ru: 'Активен', en: 'Active' },
   winter_title: { ru: 'WinterClient', en: 'WinterClient' },
   winter_desc: {
     ru: 'Собственный DLC-клиент для Minecraft 1.16.5: продвинутые PvP-модули, визуальные улучшения и уникальные эксплойты. Проект был долгое время моим фокусом, но сейчас заморожен и остаётся важной вехой.',
     en: 'Custom DLC client for Minecraft 1.16.5: advanced PvP modules, visual enhancements and unique exploits. It was my main focus for a long time, now frozen - an important milestone.',
   },
-  winter_status: { ru: 'Заброшен', en: 'Abandoned' },
+  winter_status: { ru: '�-аброшен', en: 'Abandoned' },
   server_p_title: { ru: 'Minecraft-сервер', en: 'Minecraft server' },
   server_p_desc: {
     ru: 'Публичный сервер mc.funsmine.su, настроенный с нуля: от выбора хостинга и оптимизации ядра до кастомных плагинов и уникальных игровых механик. Активное комьюнити и стабильная работа 24/7.',
@@ -170,12 +170,12 @@ const I18N = {
     en: 'A crime saga with a 1940s-50s atmosphere: deep story, style, a unique soundtrack.',
   },
   g_mafia_badge: { ru: 'Сюжет', en: 'Story' },
-  g_pvz_title: { ru: 'Plants vs Zombies', en: 'Plants vs Zombies' },
+  g_pvz_title: { ru: 'MilwharioVisual', en: 'MilwharioVisual' },
   g_pvz_desc: {
-    ru: 'Легендарная стратегия, из которой вырос мой любимый мод-проект - Fusion.',
-    en: 'The legendary strategy that grew into my favorite mod project - Fusion.',
+    ru: 'Визуальный клиент для Minecraft Java 1.21.11 - мой главный проект.',
+    en: 'A visual client for Minecraft Java 1.21.11 - my main project.',
   },
-  g_pvz_badge: { ru: 'Классика', en: 'Classic' },
+  g_pvz_badge: { ru: 'Проект', en: 'Project' },
 
   
 
@@ -192,8 +192,8 @@ const I18N = {
   sk_linux_note: { ru: 'Debian • OpenBSD • безопасность', en: 'Debian • OpenBSD • security' },
   sk_git: { ru: 'Git и инструменты', en: 'Git & tooling' },
   sk_git_note: { ru: 'GitHub • CI/CD • Docker', en: 'GitHub • CI/CD • Docker' },
-  sk_loc: { ru: 'Локализация', en: 'Localization' },
-  sk_loc_note: { ru: 'EN→RU • JSON/YAML локали', en: 'EN→RU • JSON/YAML locales' },
+  sk_loc: { ru: 'MilwharioVisual', en: 'MilwharioVisual' },
+  sk_loc_note: { ru: 'визуальный клиент • Minecraft 1.21.11', en: 'visual client • Minecraft 1.21.11' },
 
   
 
@@ -220,7 +220,7 @@ const I18N = {
       colors: 'Показать доступные цвета терминала.',
       contact: 'Контактная информация владельца.',
       cowsay: 'Корова скажет то, что вы попросите.',
-      cpu: 'Загрузка процессора.',
+      cpu: '�-агрузка процессора.',
       date: 'Текущая дата.',
       disk: 'Использование диска.',
       echo: 'Вывести текст в терминал.',
@@ -228,7 +228,7 @@ const I18N = {
       fastfetch: 'Инфо о системе - та же neofetch, но быстрее.',
       figlet: 'Вывести текст большими буквами.',
       fortune: 'Случайная мудрость.',
-      fusion: 'PVZ Fusion - что это за проект.',
+      fusion: 'MilwharioVisual - визуальный клиент для Minecraft.',
       games: 'Любимые игры.',
       git: 'Статус git-репозитория.',
       github: 'Открыть GitHub-профиль в новой вкладке.',
@@ -282,7 +282,7 @@ const I18N = {
       worldbox: 'WorldBox - симулятор миров.',
       alias: 'Показать или создать алиас: alias имя=команда.',
       coffee: 'Сварить кофе. Осторожно, горячо.',
-      curl: 'Загрузить страницу: curl <url>.',
+      curl: '�-агрузить страницу: curl <url>.',
       dd: 'Утилита для дисков. Всё спишет.',
       df: 'Свободное место на дисках.',
       du: 'Размер каталога.',
@@ -291,7 +291,7 @@ const I18N = {
       find: 'Поиск файлов: find <имя>.',
       free: 'Память в человеческом формате.',
       grep: 'Поиск по содержимому: grep <паттерн>.',
-      kill: 'Завершить процесс. Сначала processes.',
+      kill: '�-авершить процесс. Сначала processes.',
       mkdir: 'Создать каталог: mkdir <имя>.',
       motd: 'Сообщение дня.',
       nano: 'Простой текстовый редактор.',
@@ -345,7 +345,7 @@ const I18N = {
       fastfetch: 'System info - the same neofetch, but faster.',
       figlet: 'Render text in big letters.',
       fortune: 'Random wisdom.',
-      fusion: 'PVZ Fusion - what this project is.',
+      fusion: 'MilwharioVisual - a visual client for Minecraft.',
       games: 'Favorite games.',
       git: 'Git repository status.',
       github: 'Open the GitHub profile in a new tab.',
@@ -440,7 +440,7 @@ const I18N = {
   },
   term_man_usage: { ru: 'Использование: man <команда>', en: 'Usage: man <command>' },
   term_man_missing: { ru: 'man: нет страницы для {cmd}', en: 'man: no manual page for {cmd}' },
-  term_man_hint: { ru: 'Запустите help для полного списка команд.', en: 'Run help for the full list of commands.' },
+  term_man_hint: { ru: '�-апустите help для полного списка команд.', en: 'Run help for the full list of commands.' },
   term_help_hdr: { ru: 'ДОСТУПНЫЕ КОМАНДЫ', en: 'AVAILABLE COMMANDS' },
   term_help_sub: { ru: 'Подробности: man <команда>', en: 'Details: man <command>' },
   term_help_rule: { ru: '──────────────────────────────────────────────', en: '──────────────────────────────────────────────' },
@@ -508,7 +508,7 @@ const I18N = {
   term_po_3: { ru: 'Синхронизация дисков...', en: 'Syncing disks...' },
   term_po_4: { ru: 'Система остановлена. Включите питание или введите команду.', en: 'System halted. Power on or type a command.' },
   term_nano_help: { ru: '^X Выход  ^O Сохранить  ^W Поиск', en: '^X Exit  ^O WriteOut  ^W WhereIs' },
-  term_nano_saved: { ru: 'Записано 12 строк', en: 'Wrote 12 lines' },
+  term_nano_saved: { ru: '�-аписано 12 строк', en: 'Wrote 12 lines' },
   term_nano_usage: { ru: 'Использование: nano <файл>', en: 'Usage: nano <file>' },
   term_curl_404: { ru: 'curl: (22) URL не найден', en: 'curl: (22) URL not found' },
   term_curl_usage: { ru: 'Использование: curl <url>', en: 'Usage: curl <url>' },
@@ -534,7 +534,7 @@ const I18N = {
       'во всей Галактике.',
       'Тысячи команд, скрытые пасхалки',
       'и один паровозик sl.',
-      'help — единственная надежда.',
+      'help - единственная надежда.',
     ],
     en: [
       'A LONG TIME AGO IN A GALAXY FAR, FAR AWAY...',
@@ -556,8 +556,8 @@ const I18N = {
     en: ['Minecraft 1.21.1 (Java Edition)', 'Modes: survival, creative, mc.funsmine.su server', 'Favorite mob: creeper. Favorite block: emerald ore'],
   },
   term_fusion: {
-    ru: ['PVZ Fusion - масштабная модификация для Plants vs Zombies', 'Официальная русская локализация - команда m1lwh', 'Тысячи строк перевода уже в игре'],
-    en: ['PVZ Fusion - a massive modification for Plants vs Zombies', 'Official Russian localization - the m1lwh team', 'Thousands of translated lines already in-game'],
+    ru: ['MilwharioVisual - визуальный клиент для Minecraft Java 1.21.11.', 'Актуальная версия: v1.3. Скачать: t.me/MilwharioVisual', 'На скриншотах показано лишь 20% функционала.'],
+    en: ['MilwharioVisual - visual client for Minecraft Java 1.21.11.', 'Current version: v1.3. Download: t.me/MilwharioVisual', 'Screenshots show only 20% of the functionality.'],
   },
   term_worldbox: {
     ru: ['WorldBox - песочница богов', 'Создаю миры, цивилизации и катастрофы'],
@@ -607,7 +607,7 @@ const I18N = {
     ru: [
       'Интерактивный терминал-портфолио m1lwh.',
       'Почти всё здесь интерактивно: команды, разделы сайта, скрытые функции и пасхалки.',
-      'Введите «help» — чтобы увидеть все доступные команды.',
+      'Введите «help» - чтобы увидеть все доступные команды.',
     ],
     en: [
       'm1lwh interactive portfolio terminal.',
@@ -617,11 +617,11 @@ const I18N = {
   },
   term_warn: {
     ru: [
-      'Внимание: никогда не вводите «sudo rm -rf /» или «sudo rm rf /» — возможен хаос.',
-      'И никогда — «iamgod».',
+      'Внимание: никогда не вводите «sudo rm -rf /» или «sudo rm rf /» - возможен хаос.',
+      'И никогда - «iamgod».',
     ],
     en: [
-      "Warning: never type 'sudo rm -rf /' or 'sudo rm rf /' — chaos may follow.",
+      "Warning: never type 'sudo rm -rf /' or 'sudo rm rf /' - chaos may follow.",
       "And never type 'iamgod'.",
     ],
   },
@@ -683,21 +683,21 @@ const I18N = {
   },
   term_fusion: {
     ru: [
-      'Перевожу PVZ Fusion Mod на русский.',
-      'Все тексты, интерфейс и описания растений - полностью на русском.',
-      'Уже переведено: 40+ растений, 20+ зомби, все диалоги.',
+      'MilwharioVisual - визуальный клиент для Minecraft Java 1.21.11.',
+      'Актуальная версия: v1.3. Скачать: t.me/MilwharioVisual',
+      'На скриншотах показано лишь 20% функционала.',
     ],
     en: [
-      'Translating PVZ Fusion Mod into Russian.',
-      'All texts, UI and plant descriptions - fully in Russian.',
-      'Done so far: 40+ plants, 20+ zombies, all dialogues.',
+      'MilwharioVisual - visual client for Minecraft Java 1.21.11.',
+      'Current version: v1.3. Download: t.me/MilwharioVisual',
+      'Screenshots show only 20% of the functionality.',
     ],
   },
   term_worldbox: {
     ru: [
       'Играю в WorldBox - симулятор бога.',
       'Создаю миры, устраиваю эпидемии и апокалипсисы.',
-      'Мои цивилизации обычно живут 3-4 минуты. Зато весело.',
+      'Мои цивилизации обычно живут 3-4 минуты. �-ато весело.',
     ],
     en: [
       'I play WorldBox - a god simulator.',
@@ -721,11 +721,11 @@ const I18N = {
     ru: ['3.4.0: стыковка терминала в 9 зон, 116 команд и каталог commands.txt', '3.3.0: терминал обзавёлся man, drag&drop и новыми командами', '3.2.1: новый терминал в портфолио', '3.2.0: добавлены calc, base64, md5, sha256', '3.1.4: iamgod получил модалку (не нажимайте ДА)', '3.1.0: help переработан'],
     en: ['3.4.0: terminal docks into 9 zones, 116 commands and a commands.txt catalog', '3.3.0: terminal got man, drag&drop and new commands', '3.2.1: a brand new terminal landed in the portfolio', '3.2.0: added calc, base64, md5, sha256', '3.1.4: iamgod got a modal (do not press YES)', '3.1.0: the help command was redesigned'],
   },
-  term_sudo: { ru: 'Nice try. Здесь sudo не нужен — вы уже root этого портфолио.', en: 'Nice try. No sudo needed here - you are already the root of this portfolio.' },
+  term_sudo: { ru: 'Nice try. �-десь sudo не нужен - вы уже root этого портфолио.', en: 'Nice try. No sudo needed here - you are already the root of this portfolio.' },
   term_rm_start: { ru: 'Удаление rootfs...', en: 'Removing rootfs...' },
   term_rm_scan: { ru: 'Сканирование файловой системы...', en: 'Scanning filesystem...' },
   term_rm_del: { ru: 'Удалено: /etc, /usr, /var, /home, /boot...', en: 'Deleted: /etc, /usr, /var, /home, /boot...' },
-  term_rm_glitch_1: { ru: '▒▓▒ РАЗРУШЕНИЕ ▓▒▓ ERASING... ▒▓▒', en: '▒▓▒ DESTRUCTION ▓▒▓ ERASING... ▒▓▒' },
+  term_rm_glitch_1: { ru: '▒▓▒ РА�-РУШЕНИЕ ▓▒▓ ERASING... ▒▓▒', en: '▒▓▒ DESTRUCTION ▓▒▓ ERASING... ▒▓▒' },
   term_rm_glitch_2: { ru: '▓░▒ 0x0000007B PAGE_FAULT_IN_NONPAGED_AREA ▒░▓', en: '▓░▒ 0x0000007B PAGE_FAULT_IN_NONPAGED_AREA ▒░▓' },
   term_rm_panic: { ru: 'KERNEL PANIC - not syncing: Attempted to kill init!', en: 'KERNEL PANIC - not syncing: Attempted to kill init!' },
   term_rm_halt: { ru: 'Система остановлена.', en: 'System halted.' },
@@ -853,18 +853,18 @@ const I18N = {
   },
   term_banner: {
     ru: [
-      '███╗   ███╗ ██╗      ██╗    ██╗ ██╗    ██╗',
-      '████╗ ████║ ██║      ██║    ██║ ██║    ██║',
-      '██╔████╔██║ ██║ ██╗  ██║    ██║ ██║ █╗ ██║',
-      '██║╚██╔╝██║ ██║╚██╗ ██║    ██║ ██║███╗██║',
+      '███�-   ███�- ██�-      ██�-    ██�- ██�-    ██�-',
+      '████�- ████║ ██║      ██║    ██║ ██║    ██║',
+      '██╔████╔██║ ██║ ██�-  ██║    ██║ ██║ █�- ██║',
+      '██║╚██╔╝██║ ██║╚██�- ██║    ██║ ██║███�-██║',
       '██║ ╚═╝ ██║ ██║ ╚═╝ ██║    ██║ ╚███╔███╔╝',
       '╚═╝     ╚═╝ ╚═╝     ╚═╝    ╚═╝  ╚══╝╚══╝ ',
     ],
     en: [
-      '███╗   ███╗ ██╗      ██╗    ██╗ ██╗    ██╗',
-      '████╗ ████║ ██║      ██║    ██║ ██║    ██║',
-      '██╔████╔██║ ██║ ██╗  ██║    ██║ ██║ █╗ ██║',
-      '██║╚██╔╝██║ ██║╚██╗ ██║    ██║ ██║███╗██║',
+      '███�-   ███�- ██�-      ██�-    ██�- ██�-    ██�-',
+      '████�- ████║ ██║      ██║    ██║ ██║    ██║',
+      '██╔████╔██║ ██║ ██�-  ██║    ██║ ██║ █�- ██║',
+      '██║╚██╔╝██║ ██║╚██�- ██║    ██║ ██║███�-██║',
       '██║ ╚═╝ ██║ ██║ ╚═╝ ██║    ██║ ╚███╔███╔╝',
       '╚═╝     ╚═╝ ╚═╝     ╚═╝    ╚═╝  ╚══╝╚══╝ ',
     ],
@@ -922,7 +922,7 @@ const I18N = {
       'CPU: AMD Ryzen 9 5950X (32) @ 3.4GHz',
       'Memory: 6.2GiB / 31.3GiB',
       'Languages: Java 72% · Python 62%',
-      'Project: PVZ Fusion Mod - RU localization',
+      'Project: MilwharioVisual v1.3',
       'Server: mc.funsmine.su - online',
     ],
     en: [
@@ -939,22 +939,22 @@ const I18N = {
       'CPU: AMD Ryzen 9 5950X (32) @ 3.4GHz',
       'Memory: 6.2GiB / 31.3GiB',
       'Languages: Java 72% · Python 62%',
-      'Project: PVZ Fusion Mod - RU localization',
+      'Project: MilwharioVisual v1.3',
       'Server: mc.funsmine.su - online',
     ],
   },
   term_skills: {
-    ru: ['Java - плагины, моды, серверы', 'Python - автоматизация и скрипты', 'Minecraft Dev - Paper, Forge, Fabric', 'Linux/BSD - Debian, OpenBSD', 'Git, CI/CD, Docker', 'Локализация EN→RU'],
-    en: ['Java - plugins, mods, servers', 'Python - automation & scripts', 'Minecraft Dev - Paper, Forge, Fabric', 'Linux/BSD - Debian, OpenBSD', 'Git, CI/CD, Docker', 'Localization EN→RU'],
+    ru: ['Java - плагины, моды, серверы, визуальный клиент', 'Python - автоматизация и скрипты', 'Minecraft Dev - Paper, Forge, Fabric, 1.21.11', 'Linux/BSD - Debian, OpenBSD', 'Git, CI/CD, Docker', 'MilwharioVisual - визуальный клиент'],
+    en: ['Java - plugins, mods, servers, visual client', 'Python - automation & scripts', 'Minecraft Dev - Paper, Forge, Fabric, 1.21.11', 'Linux/BSD - Debian, OpenBSD', 'Git, CI/CD, Docker', 'MilwharioVisual - visual client'],
   },
   term_projects: {
     ru: [
-      'PVZ Fusion Mod - перевод (в работе)',
+      'MilwharioVisual - визуальный клиент (v1.3)',
       'WinterClient - DLC-клиент 1.16.5 (архив)',
       'mc.funsmine.su - Minecraft-сервер (онлайн)',
     ],
     en: [
-      'PVZ Fusion Mod - translation (in progress)',
+      'MilwharioVisual - visual client (v1.3)',
       'WinterClient - DLC client 1.16.5 (archived)',
       'mc.funsmine.su - Minecraft server (online)',
     ],
@@ -963,21 +963,21 @@ const I18N = {
   term_contact: { ru: 'GitHub: github.com/m1lwh · Telegram: @m1lwh · Discord: m1lwh_tvink', en: 'GitHub: github.com/m1lwh · Telegram: @m1lwh · Discord: m1lwh_tvink' },
   term_about: {
     ru: [
-      'm1lwh - Java-разработчик и Minecraft-энтузиаст.',
+      'm1lwh - Java-разработчик и создатель MilwharioVisual.',
       'Пишу плагины и моды, администрирую mc.funsmine.su.',
-      'Участник команды перевода PVZ Fusion Mod.',
+      'Создатель визуального клиента MilwharioVisual для Minecraft 1.21.11.',
       'Прошёл путь от Debian до OpenBSD.',
     ],
     en: [
-      'm1lwh - Java developer and Minecraft enthusiast.',
+      'm1lwh - Java developer and MilwharioVisual creator.',
       'Writing plugins and mods, running mc.funsmine.su.',
-      'Part of the PVZ Fusion Mod translation team.',
+      'Creator of the MilwharioVisual client for Minecraft 1.21.11.',
       'Went from Debian to OpenBSD.',
     ],
   },
   term_games: {
-    ru: ['Minecraft - основная песочница', 'WorldBox - создание миров', 'Mafia II - атмосферный сюжет', 'Plants vs Zombies - классика'],
-    en: ['Minecraft - main sandbox', 'WorldBox - creating worlds', 'Mafia II - atmospheric story', 'Plants vs Zombies - classic'],
+    ru: ['Minecraft - основная песочница', 'WorldBox - создание миров', 'Mafia II - атмосферный сюжет', 'MilwharioVisual - визуальный клиент'],
+    en: ['Minecraft - main sandbox', 'WorldBox - creating worlds', 'Mafia II - atmospheric story', 'MilwharioVisual - visual client'],
   },
 
   
@@ -998,10 +998,10 @@ const I18N = {
   j3_y: { ru: '2022 - 2023', en: '2022 - 2023' },
   j3_t: { ru: 'WinterClient', en: 'WinterClient' },
   j3_d1: { ru: 'WinterClient - собственный DLC-клиент для Minecraft 1.16.5 с PvP-модулями, визуальными улучшениями и продвинутыми механиками. Мой первый по-настоящему большой проект.', en: 'WinterClient - my own DLC client for Minecraft 1.16.5 with PvP modules, visual upgrades and advanced mechanics. My first truly big project.' },
-  j3_d2: { ru: 'Здесь я впервые работал с Mixin, собирал билды через Gradle, держал связь с сотнями пользователей и учился выпускать обновления. Проект дал мне первый опыт ответственности за продукт.', en: 'Here I first worked with Mixin, built Gradle pipelines, kept in touch with hundreds of users and learned to ship updates. The project gave me my first taste of responsibility for a real product.' },
+  j3_d2: { ru: '�-десь я впервые работал с Mixin, собирал билды через Gradle, держал связь с сотнями пользователей и учился выпускать обновления. Проект дал мне первый опыт ответственности за продукт.', en: 'Here I first worked with Mixin, built Gradle pipelines, kept in touch with hundreds of users and learned to ship updates. The project gave me my first taste of responsibility for a real product.' },
   j3_d3: { ru: 'Сейчас проект заморожен: изменились и время, и контекст. Но именно WinterClient показал мне, чем разработчик отличается от любителя - идеей, доведённой до финального билда.', en: 'The project is frozen now: times and context have changed. But WinterClient is what showed me the difference between a developer and a hobbyist - taking an idea all the way to a finished build.' },
   j4_y: { ru: '2023 - 2024', en: '2023 - 2024' },
-  j4_t: { ru: 'Запуск mc.funsmine.su', en: 'Launch of mc.funsmine.su' },
+  j4_t: { ru: '�-апуск mc.funsmine.su', en: 'Launch of mc.funsmine.su' },
   j4_d1: { ru: 'Логичный следующий шаг - публичный сервер с нуля: выбор хостинга, оптимизация ядра, кастомные плагины, баланс и защита от читеров.', en: 'The logical next step was a public server built from scratch: hosting choice, kernel tuning, custom plugins, balance and cheat protection.' },
   j4_d2: { ru: 'Сложнее всего оказался не код, а люди: модерация, ивенты, обратная связь и работа 24/7. Сервер превратился в живой организм, а не в набор плагинов.', en: 'The hardest part was not the code but the people: moderation, events, feedback and 24/7 uptime. The server became a living organism rather than a set of plugins.' },
   j4_d3: { ru: 'Сегодня mc.funsmine.su работает круглосуточно, и я до сих пор удивляюсь, как идея из 2020 года стала местом, где каждый день собираются десятки игроков.', en: 'Today mc.funsmine.su runs around the clock, and I still wonder how an idea from 2020 became a place where dozens of players gather every day.' },
@@ -1011,10 +1011,10 @@ const I18N = {
   j5_d2: { ru: 'Переход на OpenBSD - это не смена пакетного менеджера, а смена философии. Никакого systemd, продуманные права, документация как эталон. Каждая настроенная машина становится понятнее предыдущей.', en: 'Moving to OpenBSD was not a package manager swap but a philosophy change. No systemd, well-thought-out permissions, documentation as a benchmark. Every machine I set up since has felt clearer than the last.' },
   j5_d3: { ru: 'Эта любовь к простоте и контролю перекочевала и в код: меньше магии, больше понимания - теперь это мой главный принцип.', en: 'That love for simplicity and control spilled into my code as well: less magic, more understanding - it is now my core principle.' },
   j6_y: { ru: '2025 - сейчас', en: '2025 - now' },
-  j6_t: { ru: 'Перевод PVZ Fusion Mod', en: 'PVZ Fusion Mod translation' },
-  j6_d1: { ru: 'PVZ Fusion - масштабная модификация для Plants vs Zombies с тысячами игроков. Я - участник команды перевода и работаю над официальной русской локализацией проекта.', en: 'PVZ Fusion is a massive modification for Plants vs Zombies with thousands of players. I am part of the translation team and work on the official Russian localization of the project.' },
-  j6_d2: { ru: 'Это не просто перевод строк: каждый термин, шутка и культурная отсылка должны звучать естественно. Интерфейс, описания растений и зомби, игровые механики - тысячи строк текста.', en: 'It is not just translating lines: every term, joke and cultural reference must sound natural. UI, plant and zombie descriptions, game mechanics - thousands of lines of text.' },
-  j6_d3: { ru: 'Работа над локализацией научила меня главному: качество - это когда игрок не замечает, что текст изначально был написан на другом языке.', en: 'Working on localization taught me the key lesson: quality is when a player never notices the text was originally written in another language.' },
+  j6_t: { ru: 'MilwharioVisual - визуальный клиент', en: 'MilwharioVisual - visual client' },
+  j6_d1: { ru: 'MilwharioVisual - визуальный клиент для Minecraft Java 1.21.11 с расширенными графическими возможностями. Версия v1.1 показывает лишь 20% функционала, а актуальная версия уже v1.3.', en: 'MilwharioVisual - a visual client for Minecraft Java 1.21.11 with extended graphics capabilities. Version v1.1 shows only 20% of the functionality, while the current version is already v1.3.' },
+  j6_d2: { ru: 'Клиент включает визуальные улучшения, настройку шейдеров, HUD-элементы и многое другое. Всё разработано на Java с использованием Minecraft 1.21.11.', en: 'The client includes visual enhancements, shader configuration, HUD elements and much more. Everything is developed in Java using Minecraft 1.21.11.' },
+  j6_d3: { ru: 'Скачать клиент и следить за обновлениями можно в Telegram-канале: t.me/MilwharioVisual', en: 'Download the client and follow updates in the Telegram channel: t.me/MilwharioVisual' },
 
   
 
@@ -1042,13 +1042,13 @@ const I18N = {
   gallery_title: { ru: 'Мой мир в картинках', en: 'My world in pictures' },
   gallery_sub: { ru: 'То, что меня окружает: код, серверы и атмосфера', en: 'What surrounds me: code, servers and the vibe' },
   g_pixel: { ru: 'Пиксельная эстетика', en: 'Pixel aesthetics' },
-  g_pvz: { ru: 'Сад PVZ', en: 'PVZ garden' },
+  g_pvz: { ru: 'MilwharioVisual', en: 'MilwharioVisual' },
   g_mc: { ru: 'Кубический закат', en: 'Cubic sunset' },
   g_code: { ru: 'Java-код', en: 'Java code' },
   g_cyber: { ru: 'Киберпанк-настроение', en: 'Cyberpunk mood' },
   g_term: { ru: 'Терминал - дом', en: 'Terminal is home' },
   g_server: { ru: 'Серверная', en: 'Server room' },
-  g_winter: { ru: 'Зимний лес', en: 'Winter forest' },
+  g_winter: { ru: '�-имний лес', en: 'Winter forest' },
   g_mafia: { ru: 'Улицы Mafia II', en: 'Mafia II streets' },
 
   
@@ -1057,8 +1057,8 @@ const I18N = {
   faq_title: { ru: 'Частые вопросы', en: 'Frequently asked' },
   faq1_q: { ru: 'Чем ты занимаешься?', en: 'What do you do?' },
   faq1_a: {
-    ru: 'Пишу плагины и моды для Minecraft на Java, администрирую сервер mc.funsmine.su и занимаюсь локализацией PVZ Fusion Mod. Параллельно автоматизирую рутину на Python.',
-    en: 'I write Minecraft plugins and mods in Java, run the mc.funsmine.su server and localize PVZ Fusion Mod. Alongside that, I automate routine work with Python.',
+    ru: 'Пишу плагины и моды для Minecraft на Java, администрирую сервер mc.funsmine.su и разрабатываю визуальный клиент MilwharioVisual для Minecraft 1.21.11. Параллельно автоматизирую рутину на Python.',
+    en: 'I write Minecraft plugins and mods in Java, run the mc.funsmine.su server and develop the MilwharioVisual client for Minecraft 1.21.11. Alongside that, I automate routine work with Python.',
   },
   faq2_q: { ru: 'Как попасть на твой сервер?', en: 'How do I join your server?' },
   faq2_a: {
@@ -1067,8 +1067,8 @@ const I18N = {
   },
   faq3_q: { ru: 'Ты открыт к сотрудничеству?', en: 'Are you open to collaboration?' },
   faq3_a: {
-    ru: 'Да! Если у тебя есть проект, связанный с Java, Minecraft или локализацией - пиши в Telegram или Discord. Всегда рад интересным идеям и партнёрствам.',
-    en: 'Yes! If you have a project related to Java, Minecraft or localization - reach out on Telegram or Discord. Always happy about interesting ideas and partnerships.',
+    ru: 'Да! Если у тебя есть проект, связанный с Java, Minecraft или MilwharioVisual - пиши в Telegram или Discord. Всегда рад интересным идеям и партнёрствам.',
+    en: 'Yes! If you have a project related to Java, Minecraft or MilwharioVisual - reach out on Telegram or Discord. Always happy about interesting ideas and partnerships.',
   },
   faq4_q: { ru: 'Почему OpenBSD?', en: 'Why OpenBSD?' },
   faq4_a: {
@@ -1087,13 +1087,13 @@ const I18N = {
   c_discord_server: { ru: 'Discord сервер', en: 'Discord Server' },
   c_server: { ru: 'IP сервера (1.16.5–1.21.x) / копировать', en: 'Server IP (1.16.5–1.21.x) / copy' },
   collab_note: {
-    ru: '<span class="hl">Открыт к вопросам</span> — если у тебя есть вопросы по Java, Minecraft, OpenBSD или локализации PVZ Fusion, я с удовольствием отвечу.',
-    en: '<span class="hl">Open to questions</span> - feel free to ask me about Java, Minecraft, OpenBSD or PVZ Fusion localization.',
+    ru: '<span class="hl">Открыт к вопросам</span> - если у тебя есть вопросы по Java, Minecraft, OpenBSD или MilwharioVisual, я с удовольствием отвечу.',
+    en: '<span class="hl">Open to questions</span> - feel free to ask me about Java, Minecraft, OpenBSD or MilwharioVisual.',
   },
 
   
 
-  footer_about: { ru: 'Java-разработчик, Minecraft-энтузиаст и фанат OpenBSD. Пишу плагины, моды и переводы, администрирую сервер mc.funsmine.su.', en: 'Java developer, Minecraft enthusiast and OpenBSD fan. Writing plugins, mods and translations, running the mc.funsmine.su server.' },
+  footer_about: { ru: 'Java-разработчик, создатель MilwharioVisual и фанат OpenBSD. Пишу плагины, моды и визуальный клиент, администрирую сервер mc.funsmine.su.', en: 'Java developer, MilwharioVisual creator and OpenBSD fan. Writing plugins, mods and a visual client, running the mc.funsmine.su server.' },
   footer_nav: { ru: 'Навигация', en: 'Navigation' },
   footer_social: { ru: 'Соцсети', en: 'Socials' },
   footer_made: { ru: 'Сделано с', en: 'Made with' },
@@ -1138,7 +1138,7 @@ const I18N = {
   a_github: { ru: 'GitHub', en: 'GitHub' },
   a_telegram: { ru: 'Telegram', en: 'Telegram' },
   a_lang: { ru: 'Язык: русский', en: 'Language: English' },
-  a_close: { ru: 'Закрыть', en: 'Close' },
+  a_close: { ru: '�-акрыть', en: 'Close' },
   a_lightbox: { ru: 'Открыть в полном размере', en: 'Open full size' },
   a_music_pop: { ru: 'Музыкальный плеер', en: 'Music player' },
   a_music_pp: { ru: 'Воспроизведение / пауза', en: 'Play / pause' },
@@ -1170,7 +1170,7 @@ const I18N = {
   toast_term_docked: { ru: 'Терминал пристыкован', en: 'Terminal docked' },
   toast_term_restored: { ru: 'Терминал восстановлен', en: 'Terminal restored' },
   music_default_set: { ru: 'Песня по умолчанию: {song}', en: 'Default song: {song}' },
-  music_default_cleared: { ru: 'Песня по умолчанию снята — случайный выбор', en: 'Default song cleared - random pick' },
+  music_default_cleared: { ru: 'Песня по умолчанию снята - случайный выбор', en: 'Default song cleared - random pick' },
   iamgod_title: { ru: 'Ты уверен?..', en: 'Are you sure?..' },
   iamgod_sub: { ru: 'После этого пути назад нет. Почти.', en: 'There is no way back after this. Almost.' },
   iamgod_yes: { ru: 'ДА', en: 'YES' },
@@ -1201,14 +1201,14 @@ const I18N = {
   tutorial_8_t: { ru: 'Галерея', en: 'Gallery' },
   tutorial_8_d: { ru: 'Кликай по фото, чтобы открыть его в полном размере.', en: 'Click any photo to open it in full size.' },
   tutorial_9_t: { ru: 'Контакты', en: 'Contacts' },
-  tutorial_9_d: { ru: 'GitHub, Telegram, Discord и IP сервера — и я всегда открыт к вопросам.', en: 'GitHub, Telegram, Discord and the server IP - and I am always open to questions.' },
+  tutorial_9_d: { ru: 'GitHub, Telegram, Discord и IP сервера - и я всегда открыт к вопросам.', en: 'GitHub, Telegram, Discord and the server IP - and I am always open to questions.' },
 
   
 
   toast_lang: { ru: 'Язык: русский', en: 'Language: English' },
   toast_term_reset: { ru: 'Положение окна сброшено', en: 'Window position reset' },
-  toast_sound_on: { ru: 'Звук включён', en: 'Sound on' },
-  toast_sound_off: { ru: 'Звук выключен', en: 'Sound off' },
+  toast_sound_on: { ru: '�-вук включён', en: 'Sound on' },
+  toast_sound_off: { ru: '�-вук выключен', en: 'Sound off' },
   toast_music_on: { ru: 'Музыка включена', en: 'Music on' },
   toast_music_off: { ru: 'Музыка выключена', en: 'Music off' },
 };

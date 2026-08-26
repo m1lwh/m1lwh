@@ -180,7 +180,7 @@
     starwars: 'Секретная команда. Да пребудет с тобой сила.',
     help: 'help -a выводит полный список команд в терминал.',
     poweroff: 'Система перестанет отвечать. Шутка.',
-    su: 'Запросите пароль. Или нет.',
+    su: '�-апросите пароль. Или нет.',
     yes: 'Остановка: просто введите другую команду.',
     watch: 'Остановка: введите другую команду.',
     nano: 'Игрушечный редактор. Настоящие файлы не сохраняются.',
@@ -2169,7 +2169,7 @@
         case 'kill': {
           const pid = parseInt(arg, 10);
           if (!pid) { respond('kill <pid>', 'c-dim'); break; }
-          if (pid === 1) { respond('kill: PID 1 — init. Даже здесь нельзя.', 'c-red'); break; }
+          if (pid === 1) { respond('kill: PID 1 - init. Даже здесь нельзя.', 'c-red'); break; }
           respond(t('term_kill').replace('{pid}', pid), 'c-green');
           break;
         }
@@ -2204,7 +2204,7 @@
         }
         case 'playlist': {
           const lines = ['<span class="c-cyan">' + esc(t('term_playlist_hdr')) + '</span>', ''];
-          MUSIC_TRACKS.forEach((tr, i) => lines.push(`<span class="c-green">${i + 1}. ${esc(tr.title)}</span>  <span class="c-dim">— ${esc(tr.artist)}</span>`));
+          MUSIC_TRACKS.forEach((tr, i) => lines.push(`<span class="c-green">${i + 1}. ${esc(tr.title)}</span>  <span class="c-dim">- ${esc(tr.artist)}</span>`));
           lines.push(`<span class="c-dim">♫ ${esc(nick)}@portfolio  volume: ${musicVol}%</span>`);
           respondHtml(lines, '');
           break;
@@ -2213,11 +2213,11 @@
           respondHtml([
             `<span class="c-cyan">${esc(t('term_wallpaper_hdr'))}</span>`,
             '',
-            '<span class="c-green">1. openbsd-mountains.png</span>  <span class="c-dim">3840×2160</span>',
-            '<span class="c-green">2. matrix-code.png</span>       <span class="c-dim">2560×1440</span>',
-            '<span class="c-green">3. minimal-cyan.png</span>      <span class="c-dim">1920×1080</span>',
+            '<span class="c-green">1. openbsd-mountains.png</span>  <span class="c-dim">3840�-2160</span>',
+            '<span class="c-green">2. matrix-code.png</span>       <span class="c-dim">2560�-1440</span>',
+            '<span class="c-green">3. minimal-cyan.png</span>      <span class="c-dim">1920�-1080</span>',
             '',
-            '<span class="c-dim">theme set cyan — сменить акцент.</span>',
+            '<span class="c-dim">theme set cyan - сменить акцент.</span>',
           ], '');
           break;
         case 'motd':
@@ -2492,7 +2492,7 @@
           respondHtml([
             '<span class="c-cyan">m1lwh/portfolio</span>        <span class="c-dim">→ this site</span>',
             '<span class="c-cyan">m1lwh/winterclient</span>     <span class="c-dim">→ DLC client 1.16.5</span>',
-            '<span class="c-cyan">m1lwh/pvz-fusion-l10n</span>  <span class="c-dim">→ RU localization</span>',
+            '<span class="c-cyan">m1lwh/milwhario-visual</span>  <span class="c-dim">→ visual client 1.21.11</span>',
             '<span class="c-cyan">m1lwh/funsmine-plugins</span> <span class="c-dim">→ server plugins</span>',
             '<span class="c-dim">Tip: use github to open the profile</span>',
           ], '');
@@ -3325,7 +3325,7 @@
 
   function consoleGreeting() {
     console.log(
-      '%cm1lwh%c | %cJava Developer & Minecraft Enthusiast\n%c● github.com/m1lwh   ● mc.funsmine.su   ● Discord: m1lwh_tvink\n%cOpenBSD - minimalism without systemd',
+      '%cm1lwh%c | %cJava Developer & Minecraft Enthusiast\n%c�-� github.com/m1lwh   �-� mc.funsmine.su   �-� Discord: m1lwh_tvink\n%cOpenBSD - minimalism without systemd',
       'font-size:22px;font-weight:800;background:linear-gradient(90deg,#22d3ee,#a78bfa);-webkit-background-clip:text;color:transparent;',
       'color:#626f96;',
       'font-size:13px;color:#aab6d6;',
