@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://m1lwh.github.io/m1lwh/sitemap.xml
